@@ -34,11 +34,11 @@ class USER
 
 
 			$db->commit();
-			$request->closeCursor();
+			//$request->closeCursor();
 		} catch (PDOException $e) {
 			$db->rollBack();
-			$request->closeCursor();
-			die('Erreur delete USER : ' . $e->getMessage());
+			//$request->closeCursor();
+			die('Erreur insert USER : ' . $e->getMessage());
 		}
 	}
 
@@ -51,11 +51,11 @@ class USER
 
 
 			$db->commit();
-			$request->closeCursor();
+			//$request->closeCursor();
 		} catch (PDOException $e) {
 			$db->rollBack();
-			$request->closeCursor();
-			die('Erreur delete USER : ' . $e->getMessage());
+			//$request->closeCursor();
+			die('Erreur update USER : ' . $e->getMessage());
 		}
 	}
 
@@ -67,10 +67,10 @@ class USER
 
 
 			$db->commit();
-			$request->closeCursor();
+			//$request->closeCursor();
 		} catch (PDOException $e) {
 			$db->rollBack();
-			$request->closeCursor();
+			//$request->closeCursor();
 			die('Erreur delete USER : ' . $e->getMessage());
 		}
 	}
