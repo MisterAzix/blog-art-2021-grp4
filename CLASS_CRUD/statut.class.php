@@ -8,7 +8,10 @@ class STATUT
 	function get_1Statut($idStat)
 	{
 		global $db;
-		$query = $db->query("SELECT * FROM statut WHERE idStat=$idStat");
+		$query = $db->prepare("SELECT * FROM statut WHERE idStat=:idStat");
+		$query->execute([
+			'idStat' => $idStat
+		]);
 		$result = $query->fetch(PDO::FETCH_OBJ);
 		return $result;
 	}

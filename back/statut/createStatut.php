@@ -13,6 +13,7 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 // controle des saisies du formulaire
 $error = null;
 $libStat = null;
+
 if (isset($_POST['libStat'])) {
     require_once __DIR__ . '/../../util/ctrlSaisies.php';
     $libStat = ctrlSaisies($_POST['libStat']);
@@ -28,7 +29,7 @@ if (isset($_POST['libStat'])) {
 
         header('Location: ./statut.php');
     } else {
-        $error = 'La longueur minimale d\'statut est de 5 caractères.';
+        $error = 'La longueur minimale d\'un statut est de 5 caractères.';
     }
 }
 
