@@ -10,13 +10,12 @@
 // Mode DEV
 require_once __DIR__ . '/../../util/utilErrOn.php';
 
-
-// controle des saisies du formulaire
 $error = null;
 
 // Init variables form
 include __DIR__ . '/initStatut.php';
 
+// controle des saisies du formulaire
 if (isset($_GET['id'])) {
     // insertion classe STATUT
     require_once __DIR__ . '/../../CLASS_CRUD/statut.class.php';
@@ -81,8 +80,9 @@ if (isset($_GET['id'])) {
     <h3><?= $error ?: '' ?></h3>
     <?php
     // Supp : récup id à supprimer
+    ?>
 
-    ?> <form method="post" action="" enctype="multipart/form-data">
+    <form method="post" action="" enctype="multipart/form-data">
 
         <fieldset>
             <legend class="legend1">Formulaire Statut...</legend>
