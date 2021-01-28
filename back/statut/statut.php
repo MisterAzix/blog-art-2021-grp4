@@ -38,57 +38,61 @@ $all = $statut->get_AllStatuts();
             border-radius: 5px;
         }
     </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <h1>BLOGART21 Admin - Gestion du CRUD Statut</h1>
+    <main class="container">
+        <div class="d-flex flex-column">
+            <h1>BLOGART21 Admin - Gestion du CRUD Statut</h1>
 
-    <hr /><br />
-    <h2>Nouveau statut :&nbsp;<a href="./createStatut.php"><i>Créer un statut</i></a></h2>
-    <br />
-    <hr />
-    <h2>Tous les statuts</h2>
+            <hr /><br />
+            <h2>Nouveau statut :&nbsp;<a href="./createStatut.php"><i>Créer un statut</i></a></h2>
+            <br />
+            <hr />
+            <h2>Tous les statuts</h2>
 
-    <table border="3" bgcolor="aliceblue">
-        <thead>
-            <tr>
-                <th>&nbsp;Numéro&nbsp;</th>
-                <th>&nbsp;Nom&nbsp;</th>
-                <th colspan="2">&nbsp;Action&nbsp;</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            // Boucle pour afficher
-            foreach ($all as $row) :
-            ?>
-                <tr>
-                    <td>
-                        <h4>&nbsp; <?= $row->idStat; ?> &nbsp;</h4>
-                    </td>
+            <table border="3" bgcolor="aliceblue">
+                <thead>
+                    <tr>
+                        <th>&nbsp;Numéro&nbsp;</th>
+                        <th>&nbsp;Nom&nbsp;</th>
+                        <th colspan="2">&nbsp;Action&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    // Boucle pour afficher
+                    foreach ($all as $row) :
+                    ?>
+                        <tr>
+                            <td>
+                                <h4>&nbsp; <?= $row->idStat; ?> &nbsp;</h4>
+                            </td>
 
-                    <td>&nbsp; <?= $row->libStat; ?> &nbsp;</td>
+                            <td>&nbsp; <?= $row->libStat; ?> &nbsp;</td>
 
-                    <td>&nbsp;<a href="./updateStatut.php?id=<?= $row->idStat ?>"><i>Modifier</i></a>&nbsp;
-                        <br />
-                    </td>
-                    <td>&nbsp;<a href="./deleteStatut.php?id=<?= $row->idStat ?>"><i>Supprimer</i></a>&nbsp;
-                        <br />
-                    </td>
-                </tr>
-            <?php
-            endforeach; // End of foreach 
-            ?>
-        </tbody>
-    </table>
-    <?php if ($errCIR == 1) : ?>
-        <i>
-            <div class="error">=> Suppression impossible, existence de user(s) associé(s) à ce statut. Vous devez d'abord supprimer le(s) user(s) concerné(s)</div>
-        </i>
-    <?php endif ?>
-    <?php
-    require_once __DIR__ . '/footer.php';
-    ?>
+                            <td>&nbsp;<a href="./updateStatut.php?id=<?= $row->idStat ?>"><i>Modifier</i></a>&nbsp;
+                                <br />
+                            </td>
+                            <td>&nbsp;<a href="./deleteStatut.php?id=<?= $row->idStat ?>"><i>Supprimer</i></a>&nbsp;
+                                <br />
+                            </td>
+                        </tr>
+                    <?php
+                    endforeach; // End of foreach 
+                    ?>
+                </tbody>
+            </table>
+            <?php if ($errCIR == 1) : ?>
+                <i>
+                    <div class="error">=> Suppression impossible, existence de user(s) associé(s) à ce statut. Vous devez d'abord supprimer le(s) user(s) concerné(s)</div>
+                </i>
+            <?php endif ?>
+
+            <?php require_once __DIR__ . '/footer.php' ?>
+        </div>
+    </main>
 </body>
 
 </html>
