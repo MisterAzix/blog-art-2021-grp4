@@ -23,6 +23,13 @@ class USER
 
 	function get_NbAllUsersByidStat($idStat)
 	{
+		global $db;
+		$query = $db->prepare('SELECT * FROM user US INNER JOIN statut ST ON US.idStat = ST.idStat WHERE ST.idStat = :idStat');
+		$query->execute([
+			'idStat' => $idStat
+		]);
+		$allNbUsersByStat = $query->fetchAll(PDO::FETCH_OBJ);
+		return $allNbUsersByStat;
 	}
 
 	function create($pseudoUser, $passUser, $nomUser, $prenomUser, $emailUser, $idStat)

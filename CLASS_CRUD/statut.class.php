@@ -29,15 +29,15 @@ class STATUT
 		global $db;
 		try {
 			$db->beginTransaction();
-			$request = $db->prepare('INSERT INTO statut (libStat) VALUES (:libStat)');
-			$request->execute([
+			$query = $db->prepare('INSERT INTO statut (libStat) VALUES (:libStat)');
+			$query->execute([
 				'libStat' => $libStat
 			]);
 			$db->commit();
-			$request->closeCursor();
+			$query->closeCursor();
 		} catch (PDOException $e) {
 			$db->rollBack();
-			$request->closeCursor();
+			$query->closeCursor();
 			die('Erreur insert STATUT : ' . $e->getMessage());
 		}
 	}
@@ -47,16 +47,16 @@ class STATUT
 		global $db;
 		try {
 			$db->beginTransaction();
-			$request = $db->prepare('UPDATE statut SET libStat=:libStat WHERE idStat=:idStat');
-			$request->execute([
+			$query = $db->prepare('UPDATE statut SET libStat=:libStat WHERE idStat=:idStat');
+			$query->execute([
 				'idStat' => $idStat,
 				'libStat' => $libStat
 			]);
 			$db->commit();
-			$request->closeCursor();
+			$query->closeCursor();
 		} catch (PDOException $e) {
 			$db->rollBack();
-			$request->closeCursor();
+			$query->closeCursor();
 			die('Erreur update STATUT : ' . $e->getMessage());
 		}
 	}
@@ -66,15 +66,16 @@ class STATUT
 		global $db;
 		try {
 			$db->beginTransaction();
-			$request = $db->prepare('DELETE FROM statut WHERE idStat=:idStat');
-			$request->execute([
+			$query = $db->prepare('DELETE FROM statut WHERE idStat=:idStat');
+			$query->execute([
 				'idStat' => $idStat
 			]);
 			$db->commit();
-			$request->closeCursor();
+			$query->closeCursor();
+			return $query->rowCount();
 		} catch (PDOException $e) {
 			$db->rollBack();
-			$request->closeCursor();
+			$query->closeCursor();
 			die('Erreur delete STATUT : ' . $e->getMessage());
 		}
 	}

@@ -21,18 +21,30 @@ if (isset($_GET['id'])) {
     require_once __DIR__ . '/../../CLASS_CRUD/statut.class.php';
     $statut = new STATUT();
 
-    // Ctrl CIR
     require_once __DIR__ . '/../../util/ctrlSaisies.php';
-    $result = $statut->get_1Statut($_GET['id']);
+    $idStat = ctrlSaisies($_GET['id']);
+    $result = $statut->get_1Statut($idStat);
+    if (!$result) header('Location: ./statut.php');
     $libStat = ctrlSaisies($result->libStat);
 
     if (isset($_POST['Submit'])) {
         if ($_POST['Submit'] === 'Valider') {
-            // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
-            // suppression effective du statut
-            $statut->delete($_GET['id']);
+            // insertion classe STATUT
+            require_once __DIR__ . '/../../CLASS_CRUD/user.class.php';
+            $user = new USER();
+
+            $errCIR = 0;
+            $nbAllUsersByidStat = (int)($user->get_NbAllUsersByidStat($idStat));
+
+            if ($nbAllUsersByidStat < 1) {
+                // suppression effective du statut
+                $count = $statut->delete($idStat);
+                ($count == 1) ? header('Location: ./statut.php') : die('Erreur delete STATUT !');
+            } else {
+                $errCIR = 1;
+                header("Location: ./statut.php?errCIR=$errCIR");
+            }
         }
-        header('Location: ./statut.php');
     }
 }
 ?>
