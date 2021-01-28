@@ -18,19 +18,24 @@ $libStat = null;
 require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
 $langue = new LANGUE();
 
-if (isset($_POST['libStat'])) {
-    require_once __DIR__ . '/../../util/ctrlSaisies.php';
-    $libStat = ctrlSaisies($_POST['libStat']);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!empty($_POST['lib1Lang']) && !empty($_POST['lib2Lang']) && !empty($_POST['numPays'])) {
+        require_once __DIR__ . '/../../util/ctrlSaisies.php';
+        $lib1Lang = ctrlSaisies($_POST['lib1Lang']);
+        $lib2Lang = ctrlSaisies($_POST['lib2Lang']);
 
-    if (strlen($libStat) >= 5) {
+        if (strlen($lib1Lang) >= 5 && strlen($lib2Lang) >= 5) {
+            // ajout effectif de la langue
+            //$langue->create($libStat);
 
-        // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
-        // ajout effectif de la langue
-        //$langue->create($libStat);
-
-        header('Location: ./langue.php');
+            header('Location: ./langue.php');
+        } else {
+            $error = 'La longueur minimale d\'une langue ou d\'un libellé est de 5 caractères.';
+        }
+    } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
+        header('Location: ./createLangue.php');
     } else {
-        $error = 'La longueur minimale d\'une langue est de 5 caractères.';
+        $error = 'Merci de renseigner tous les champs du formulaire.';
     }
 }
 
@@ -64,7 +69,9 @@ include __DIR__ . '/initLangue.php';
                 <div class="col-8">
                     <h2>Ajout d'une langue</h2>
 
-                    <h3><?= $error ?: '' ?></h3>
+                    <?php if ($error) : ?>
+                        <div class="alert alert-danger"><?= $error ?: '' ?></div>
+                    <?php endif ?>
 
                     <form class="form" method="post" action="" enctype="multipart/form-data">
 
@@ -84,8 +91,8 @@ include __DIR__ . '/initLangue.php';
                             </div>
 
                             <div class="form-group mb-3">
-                                <label for="exampleFormControlSelect1"><b>Pays :</b></label>
-                                <select class="form-control" id="exampleFormControlSelect1">
+                                <label for="numPays"><b>Pays :</b></label>
+                                <select name="numPays" class="form-control" id="numPays">
                                     <?php foreach ($countries as $country) : ?>
                                         <option value="<?= $country->numPays ?>"><?= $country->frPays ?></option>
                                     <?php endforeach ?>
