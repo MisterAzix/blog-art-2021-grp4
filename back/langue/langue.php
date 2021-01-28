@@ -10,7 +10,11 @@
 // Mode DEV
 require_once __DIR__ . '/../../util/utilErrOn.php';
 
+require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
+$langue = new LANGUE();
+$all = $langue->get_AllLangues();
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -26,46 +30,42 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 </head>
 
 <body>
-    <h1>BLOGART21 Admin - Gestion du CRUD Langue</h1>
-    <hr>
-    <h2>Tous les statuts</h2>
-    <hr>
-
     <main class="container">
         <div class="d-flex flex-column">
+            <h1>BLOGART21 Admin - Gestion du CRUD Langue</h1>
+            <hr>
+            <h2>Nouvelle langue : <a href="./createLangue.php"><i>Create a language</i></a></h2>
+            <hr>
+            <h2>Tous les statuts</h2>
+
             <table border="3" bgcolor="aliceblue">
                 <thead>
                     <tr>
-                        <th>&nbsp;Numéro&nbsp;</th>
-                        <th>&nbsp;Nom&nbsp;</th>
-                        <th colspan="2">&nbsp;Action&nbsp;</th>
+                        <th>Numéro</th>
+                        <th>Nom</th>
+                        <th>Libellé</th>
+                        <th colspan="2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    // Boucle pour afficher
-                    foreach ($all as $row) :
-                    ?>
+                    <?php foreach ($all as $row) : ?>
                         <tr>
                             <td>
-                                <h4>&nbsp; <?= $row->idStat; ?> &nbsp;</h4>
+                                <h4> <?= $row->numLang ?> </h4>
                             </td>
-
-                            <td>&nbsp; <?= $row->libStat; ?> &nbsp;</td>
-
-                            <td>&nbsp;<a href="./updateStatut.php?id=<?= $row->idStat ?>"><i>Modifier</i></a>&nbsp;
-                                <br />
+                            <td> <?= $row->lib1Lang; ?> </td>
+                            <td> <?= $row->lib2Lang; ?> </td>
+                            <td><a href="./updateLangue.php?id=<?= $row->numLang ?>"><i>Modifier</i></a>
+                                <br>
                             </td>
-                            <td>&nbsp;<a href="./deleteStatut.php?id=<?= $row->idStat ?>"><i>Supprimer</i></a>&nbsp;
-                                <br />
+                            <td><a href="./deleteLangue.php?id=<?= $row->numLang ?>"><i>Supprimer</i></a>
+                                <br>
                             </td>
                         </tr>
-                    <?php
-                    endforeach; // End of foreach 
-                    ?>
+                    <?php endforeach  ?>
                 </tbody>
             </table>
-            
+
             <?php require_once __DIR__ . '/footer.php' ?>
         </div>
     </main>
