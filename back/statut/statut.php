@@ -9,14 +9,15 @@
 
 // Mode DEV
 require_once __DIR__ . '/../../util/utilErrOn.php';
-// controle des saisies du formulaire
+
+// Récupération des codes d'erreurs
 $errCIR = isset($_GET['errCIR']) ?: null;
 
+// Insertion classe STATUT
 require_once __DIR__ . '/../../CLASS_CRUD/statut.class.php';
-// insertion classe STATUT
+$statut = new STATUT();
 
 // Appel méthode : tous les statuts en BDD
-$statut = new STATUT();
 $all = $statut->get_AllStatuts();
 ?>
 

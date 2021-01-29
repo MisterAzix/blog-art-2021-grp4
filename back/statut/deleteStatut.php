@@ -30,18 +30,24 @@ if (isset($_GET['id'])) {
     $libStat = ctrlSaisies($result->libStat);
 
     if (isset($_POST['Submit'])) {
-        if ($_POST['Submit'] === 'Valider') {
-            $errCIR = 0;
-            $nbAllUsersByidStat = (int)($user->get_NbAllUsersByidStat($idStat));
+        $errCIR = 0;
+        switch ($_POST['Submit']) {
+            case 'Valider':
+                $nbAllUsersByidStat = (int)($user->get_NbAllUsersByidStat($idStat));
 
-            if ($nbAllUsersByidStat < 1) {
-                // Suppression effective du statut
-                $count = $statut->delete($idStat);
-                ($count == 1) ? header('Location: ./statut.php') : die('Erreur delete STATUT !');
-            } else {
-                $errCIR = 1;
-                header("Location: ./statut.php?errCIR=$errCIR");
-            }
+                if ($nbAllUsersByidStat < 1) {
+                    // Suppression effective du statut
+                    $count = $statut->delete($idStat);
+                    ($count == 1) ? header('Location: ./statut.php') : die('Erreur delete STATUT !');
+                } else {
+                    $errCIR = 1;
+                    header("Location: ./statut.php?errCIR=$errCIR");
+                }
+                break;
+
+            case 'Annuler':
+                header('Location: ./statut.php');
+                break;
         }
     }
 }

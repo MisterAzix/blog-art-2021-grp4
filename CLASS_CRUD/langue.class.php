@@ -108,6 +108,7 @@ class LANGUE
 			]);
 			$db->commit();
 			$query->closeCursor();
+			return $query->rowCount();
 		} catch (PDOException $e) {
 			$db->rollBack();
 			$query->closeCursor();
