@@ -24,6 +24,9 @@ $thematique = new THEMATIQUE();
 // Init variables form
 include __DIR__ . '/initLangue.php';
 $error = null;
+$angles = null;
+$motcles = null;
+$thematiques = null;
 
 
 // controle des saisies du formulaire
@@ -37,7 +40,6 @@ if (isset($_GET['id'])) {
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_POST['Submit'])) {
-            $errCIR = 0;
             switch ($_POST['Submit']) {
                 case 'Valider':
                     $angles = $angle->get_AllAnglesByLang($numLang);
@@ -47,11 +49,9 @@ if (isset($_GET['id'])) {
                     if (!$angles && !$motcles && !$thematiques) {
                         // Suppression effective de la langue
                         $count = $langue->delete($numLang);
-                        var_dump($count);
                         ($count == 1) ? header('Location: ./langue.php') : die('Erreur delete LANGUE !');
                     } else {
-                        $errCIR = 1;
-                        header("Location: ./langue.php?errCIR=$errCIR");
+                        $error = "Suppression impossible, existence d'angle(s), de mot(s) clé(s) ou de thématique(s) associé(s) à cette langue. Vous devez d'abord les supprimer pour supprimer la langue.";
                     }
                     break;
 
@@ -120,12 +120,38 @@ $countries = $langue->get_AllPays();
                                 </select>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mb-3">
                                 <input type="submit" value="Annuler" name="Submit" class="btn btn-primary" />
                                 <input type="submit" value="Valider" name="Submit" class="btn btn-danger" />
                             </div>
                         </fieldset>
                     </form>
+
+                    <?php if ($angles) : ?>
+                        <h4>Angle<?= (count($angles) > 1) ? 's' : '' ?> à supprimer :</h4>
+                        <ul>
+                            <?php foreach ($angles as $angle) : ?>
+                                <li><?= $angle->libAngl ?></li>
+                            <?php endforeach ?>
+                        </ul>
+                    <?php endif ?>
+                    <?php if ($motcles) : ?>
+                        <h4>Mot<?= (count($motcles) > 1) ? 's' : '' ?> Clé<?= (count($motcles) > 1) ? 's' : '' ?> à supprimer :</h4>
+                        <ul>
+                            <?php foreach ($motcles as $motcle) : ?>
+                                <li><?= $motcle->libMotCle ?></li>
+                            <?php endforeach ?>
+                        </ul>
+                    <?php endif ?>
+                    <?php if ($thematiques) : ?>
+                        <h4>Thématique<?= (count($thematiques) > 1) ? 's' : '' ?> à supprimer :</h4>
+                        <ul>
+                            <?php foreach ($thematiques as $thematique) : ?>
+                                <li><?= $thematique->libThem ?></li>
+                            <?php endforeach ?>
+                        </ul>
+                    <?php endif ?>
+
                 </div>
             </div>
 

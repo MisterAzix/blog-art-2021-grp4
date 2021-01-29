@@ -85,11 +85,6 @@ $all = $statut->get_AllStatuts();
                     ?>
                 </tbody>
             </table>
-            <?php if ($errCIR == 1) : ?>
-                <i>
-                    <div class="error">=> Suppression impossible, existence de user(s) associé(s) à ce statut. Vous devez d'abord supprimer le(s) user(s) concerné(s)</div>
-                </i>
-            <?php endif ?>
 
             <?php require_once __DIR__ . '/footer.php' ?>
         </div>

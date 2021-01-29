@@ -10,9 +10,6 @@
 // Mode DEV
 require_once __DIR__ . '/../../util/utilErrOn.php';
 
-// Récupération des codes d'erreurs
-$errCIR = isset($_GET['errCIR']) ?: null;
-
 // Insertion classe LANGUE
 require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
 $langue = new LANGUE();
@@ -42,11 +39,6 @@ $all = $langue->get_AllLangues();
             <hr>
             <h2>Nouvelle langue : <a href="./createLangue.php"><i>Create a language</i></a></h2>
             <hr>
-            <?php if ($errCIR == 1) : ?>
-                <i>
-                    <div class="alert alert-danger">Suppression impossible, existence d'angle(s), de mot(s) clé(s) ou de thématique(s) associé(s) à cette langue. Vous devez d'abord les supprimer pour supprimer la langue.</div>
-                </i>
-            <?php endif ?>
             <h2>Tous les statuts</h2>
 
             <table border="3" bgcolor="aliceblue">

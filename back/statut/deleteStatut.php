@@ -30,7 +30,6 @@ if (isset($_GET['id'])) {
     $libStat = ctrlSaisies($result->libStat);
 
     if (isset($_POST['Submit'])) {
-        $errCIR = 0;
         switch ($_POST['Submit']) {
             case 'Valider':
                 $nbAllUsersByidStat = (int)($user->get_NbAllUsersByidStat($idStat));
@@ -40,8 +39,7 @@ if (isset($_GET['id'])) {
                     $count = $statut->delete($idStat);
                     ($count == 1) ? header('Location: ./statut.php') : die('Erreur delete STATUT !');
                 } else {
-                    $errCIR = 1;
-                    header("Location: ./statut.php?errCIR=$errCIR");
+                    $error = "Suppression impossible, existence de user(s) associé(s) à ce statut. Vous devez d'abord supprimer le(s) user(s) concerné(s)";
                 }
                 break;
 
@@ -93,7 +91,9 @@ if (isset($_GET['id'])) {
     <h1>BLOGART21 Admin - Gestion du CRUD Statut</h1>
     <h2>Suppression d'un statut</h2>
 
-    <h3><?= $error ?: '' ?></h3>
+    <?php if ($error) : ?>
+        <div class="error"><?= $error ?: '' ?></div>
+    <?php endif ?>
 
     <form method="post" action="" enctype="multipart/form-data">
 
