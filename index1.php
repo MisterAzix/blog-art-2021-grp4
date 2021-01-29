@@ -9,8 +9,8 @@
 
 // Mode DEV
 require_once __DIR__ . '/util/utilErrOn.php';
-
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -20,72 +20,37 @@ require_once __DIR__ . '/util/utilErrOn.php';
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<style type="text/css">
-		div {
-			padding-top: 60px;
-			padding-bottom: 40px;
-			margin-bottom: 0px;
-			margin-left: 60px;
-		}
-
-		span {
-			background-color: yellow;
-		}
-	</style>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
-	<br />
-	<h1>Panneau d'Admin : Gestion des CRUD - BLOGART21</h1>
-	<small><span><i>CRUD fini et valide (reste à tester et à intégrer)</i></span></small>
-	<br />
-	<hr />
-	<div>
-		Gestion du CRUD :
-		<a href="./BACK/angle/angle.php">Angle </a>
-		<br /><br />
-		Gestion du CRUD :
-		<a href="./BACK/article/article.php">Article </a>
-		<br /><br />
-		Gestion du CRUD :
-		<a href="./BACK/comment/comment.php">Commentaire </a>
-		<br /><br />
-		Gestion du CRUD :
-		<a href="./BACK/commentplus/commentplus.php">Réponse sur Commentaire </a>
-		<br /><br />
-		Gestion du CRUD :
-		<a href="./BACK/langue/langue.php">Langue </a>
-		<br /><br />
-		Gestion du CRUD :
-		<a href="./BACK/likeart/likeart.php">Like Article </a>
-		<br /><br />
-		Gestion du CRUD :
-		<a href="./BACK/likecom/likecom.php">Like Commentaire </a>
-		<br /><br />
-		Gestion du CRUD :
-		<a href="./BACK/membre/membre.php">Membre </a>
-		<br /><br />
-		Gestion du CRUD :
-		<a href="./BACK/motcle/motcle.php">Mot-clé </a>
-		<br /><br />
-		Gestion du CRUD :
-		<a href="./BACK/motclearticle/motclearticle.php">Mot-clé Article </a>
-		<br /><br />
-		Gestion du CRUD :
-		<a href="./BACK/statut/statut.php"><span>Statut (*)</span></a>
-		<br /><br />
-		Gestion du CRUD :
-		<a href="./BACK/thematique/thematique.php">Thématique </a>
-		<br /><br />
-		Gestion du CRUD :
-		<a href="./BACK/user/user.php">User </a>
-	</div>
-	<br>
-	<hr>
-	<h3><i>- - Etudiants - -</i></h3>
-	<?php
-	require_once __DIR__ . '/footer.php';
-	?>
+	<main class="container">
+		<h1>Panneau d'Admin : Gestion des CRUD - BLOGART21</h1>
+		<div class="alert alert-success">CRUD fini et valide (reste à tester et à intégrer)</div>
+		<hr>
+		<div class="row d-flex justify-content-center">
+			<div class="col-8">
+				<div class="list-group">
+					<a class="list-group-item list-group-item-info" href="./BACK/angle/angle.php"><b>Gestion du CRUD :</b> Angle </a>
+					<a class="list-group-item disabled" href="./BACK/article/article.php"><b>Gestion du CRUD :</b> Article </a>
+					<a class="list-group-item disabled" href="./BACK/comment/comment.php"><b>Gestion du CRUD :</b> Commentaire </a>
+					<a class="list-group-item disabled" href="./BACK/commentplus/commentplus.php"><b>Gestion du CRUD :</b> Réponse sur Commentaire </a>
+					<a class="list-group-item list-group-item-success" href="./BACK/langue/langue.php"><b>Gestion du CRUD :</b> Langue </a>
+					<a class="list-group-item disabled" href="./BACK/likeart/likeart.php"><b>Gestion du CRUD :</b> Like Article </a>
+					<a class="list-group-item disabled" href="./BACK/likecom/likecom.php"><b>Gestion du CRUD :</b> Like Commentaire </a>
+					<a class="list-group-item disabled" href="./BACK/membre/membre.php"><b>Gestion du CRUD :</b> Membre </a>
+					<a class="list-group-item list-group-item-info" href="./BACK/motcle/motcle.php"><b>Gestion du CRUD :</b> Mot-clé </a>
+					<a class="list-group-item disabled" href="./BACK/motclearticle/motclearticle.php"><b>Gestion du CRUD :</b>  Mot-clé Article </a>
+					<a class="list-group-item list-group-item-success" href="./BACK/statut/statut.php"><b>Gestion du CRUD :</b> Statut (*)</a>
+					<a class="list-group-item list-group-item-info" href="./BACK/thematique/thematique.php"><b>Gestion du CRUD :</b> Thématique </a>
+					<a class="list-group-item disabled" href="./BACK/user/user.php"><b>Gestion du CRUD :</b> User </a>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<h3><i>- - Etudiants - -</i></h3>
+		<?php require_once __DIR__ . '/footer.php' ?>
+	</main>
 </body>
 
 </html>
