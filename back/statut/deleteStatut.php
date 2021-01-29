@@ -9,19 +9,21 @@
 
 // Mode DEV
 require_once __DIR__ . '/../../util/utilErrOn.php';
+require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
-$error = null;
+// Insertion classe
+require_once __DIR__ . '/../../CLASS_CRUD/statut.class.php';
+$statut = new STATUT();
+require_once __DIR__ . '/../../CLASS_CRUD/user.class.php';
+$user = new USER();
 
 // Init variables form
 include __DIR__ . '/initStatut.php';
+$error = null;
 
-// controle des saisies du formulaire
+
+// Controle des saisies du formulaire
 if (isset($_GET['id'])) {
-    // insertion classe STATUT
-    require_once __DIR__ . '/../../CLASS_CRUD/statut.class.php';
-    $statut = new STATUT();
-
-    require_once __DIR__ . '/../../util/ctrlSaisies.php';
     $idStat = ctrlSaisies($_GET['id']);
     $result = $statut->get_1Statut($idStat);
     if (!$result) header('Location: ./statut.php');
@@ -29,15 +31,11 @@ if (isset($_GET['id'])) {
 
     if (isset($_POST['Submit'])) {
         if ($_POST['Submit'] === 'Valider') {
-            // insertion classe STATUT
-            require_once __DIR__ . '/../../CLASS_CRUD/user.class.php';
-            $user = new USER();
-
             $errCIR = 0;
             $nbAllUsersByidStat = (int)($user->get_NbAllUsersByidStat($idStat));
 
             if ($nbAllUsersByidStat < 1) {
-                // suppression effective du statut
+                // Suppression effective du statut
                 $count = $statut->delete($idStat);
                 ($count == 1) ? header('Location: ./statut.php') : die('Erreur delete STATUT !');
             } else {
@@ -90,9 +88,6 @@ if (isset($_GET['id'])) {
     <h2>Suppression d'un statut</h2>
 
     <h3><?= $error ?: '' ?></h3>
-    <?php
-    // Supp : récup id à supprimer
-    ?>
 
     <form method="post" action="" enctype="multipart/form-data">
 

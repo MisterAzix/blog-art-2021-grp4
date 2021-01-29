@@ -9,27 +9,24 @@
 
 // Mode DEV
 require_once __DIR__ . '/../../util/utilErrOn.php';
+require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
-$error = null;
+// Insertion classe STATUT
+require_once __DIR__ . '/../../CLASS_CRUD/statut.class.php';
+$statut = new STATUT();
 
 // Init variables form
 include __DIR__ . '/initStatut.php';
+$error = null;
 
-// controle des saisies du formulaire
+// Controle des saisies du formulaire
 if (isset($_GET['id'])) {
-    // insertion classe STATUT
-    require_once __DIR__ . '/../../CLASS_CRUD/statut.class.php';
-    $statut = new STATUT();
-
-    // Ctrl CIR
-    require_once __DIR__ . '/../../util/ctrlSaisies.php';
     $result = $statut->get_1Statut($_GET['id']);
     $libStat = ctrlSaisies($result->libStat);
 
     if (isset($_POST['Submit']) && $libStat) {
         if ($_POST['Submit'] === 'Valider') {
-            // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
-            // modification effective du statut
+            // Modification effective du statut
             $statut->update($_GET['id'], $_POST['libStat']);
 
             header('Location: ./statut.php');
@@ -56,9 +53,6 @@ if (isset($_GET['id'])) {
     <h2>Modification d'un statut</h2>
 
     <h3><?= $error ?: '' ?></h3>
-    <?php
-    // Modif : récup id à modifier
-    ?>
 
     <form method="post" action="" enctype="multipart/form-data">
 

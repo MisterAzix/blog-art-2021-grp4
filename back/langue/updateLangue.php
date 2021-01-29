@@ -9,19 +9,19 @@
 
 // Mode DEV
 require_once __DIR__ . '/../../util/utilErrOn.php';
+require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
-$error = null;
+// Insertion classe LANGUE
+require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
+$langue = new LANGUE();
 
 // Init variables form
 include __DIR__ . '/initLangue.php';
+$error = null;
+
 
 // controle des saisies du formulaire
 if (isset($_GET['id'])) {
-    require_once __DIR__ . '/../../util/ctrlSaisies.php';
-
-    // insertion classe LANGUE
-    require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
-    $langue = new LANGUE();
     $result = $langue->get_1Langue($_GET['id']);
     $lib1Lang = ctrlSaisies($result->lib1Lang);
     $lib2Lang = ctrlSaisies($result->lib2Lang);
@@ -34,7 +34,7 @@ if (isset($_GET['id'])) {
             $lib2Lang = ctrlSaisies($_POST['lib2Lang']);
 
             if (strlen($lib1Lang) >= 5 && strlen($lib2Lang) >= 5) {
-                // modification effective du statut
+                // Modification effective du statut
                 $langue->update($numLang, $lib1Lang, $lib2Lang);
 
                 header('Location: ./langue.php');
@@ -42,7 +42,7 @@ if (isset($_GET['id'])) {
                 $error = 'La longueur minimale d\'une langue ou d\'un libellé est de 5 caractères.';
             }
         } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
-            header('Location: ./updateLangue.php?id='.$_GET['id']);
+            header('Location: ./updateLangue.php?id=' . $_GET['id']);
         } else {
             $error = 'Merci de renseigner tous les champs du formulaire.';
         }

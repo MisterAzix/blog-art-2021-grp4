@@ -9,25 +9,27 @@
 
 // Mode DEV
 require_once __DIR__ . '/../../util/utilErrOn.php';
+require_once __DIR__ . '/../../util/ctrlSaisies.php';
+require_once __DIR__ . '/../../CLASS_CRUD/getNextNumLang.php';
 
-// controle des saisies du formulaire
-$error = null;
-$libStat = null;
-
-// insertion classe LANGUE
+// Insertion classe
 require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
 $langue = new LANGUE();
 
+// Init variables form
+include __DIR__ . '/initLangue.php';
+$error = null;
+
+
+// Controle des saisies du formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST['lib1Lang']) && !empty($_POST['lib2Lang']) && !empty($_POST['numPays'])) {
-        require_once __DIR__ . '/../../util/ctrlSaisies.php';
         $lib1Lang = ctrlSaisies($_POST['lib1Lang']);
         $lib2Lang = ctrlSaisies($_POST['lib2Lang']);
         $numPays = $_POST['numPays'];
 
         if (strlen($lib1Lang) >= 5 && strlen($lib2Lang) >= 5) {
-            // ajout effectif de la langue
-            require_once __DIR__ . '/../../CLASS_CRUD/getNextNumLang.php';
+            // Ajout effectif de la langue
             $numLang = getNextNumLang($numPays);
             $langue->create($numLang, $lib1Lang, $lib2Lang, $numPays);
 
@@ -43,9 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $countries = $langue->get_AllPays();
-
-// Init variables form
-include __DIR__ . '/initLangue.php';
 ?>
 
 <!DOCTYPE html>

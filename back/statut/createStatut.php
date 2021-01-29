@@ -9,22 +9,23 @@
 
 // Mode DEV
 require_once __DIR__ . '/../../util/utilErrOn.php';
+require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
-// controle des saisies du formulaire
+// Insertion classe
+require_once __DIR__ . '/../../CLASS_CRUD/statut.class.php';
+$statut = new STATUT();
+
+// Init variables form
+include __DIR__ . '/initStatut.php';
 $error = null;
 $libStat = null;
 
+// Controle des saisies du formulaire
 if (isset($_POST['libStat'])) {
-    require_once __DIR__ . '/../../util/ctrlSaisies.php';
     $libStat = ctrlSaisies($_POST['libStat']);
 
     if (strlen($libStat) >= 5) {
-        // insertion classe STATUT
-        require_once __DIR__ . '/../../CLASS_CRUD/statut.class.php';
-        $statut = new STATUT();
-
-        // Gestion du $_SERVER["REQUEST_METHOD"] => En POST
-        // ajout effectif du statut
+        // Ajout effectif du statut
         $statut->create($libStat);
 
         header('Location: ./statut.php');
@@ -32,10 +33,6 @@ if (isset($_POST['libStat'])) {
         $error = 'La longueur minimale d\'un statut est de 5 caractères.';
     }
 }
-
-
-// Init variables form
-include __DIR__ . '/initStatut.php';
 ?>
 
 <!DOCTYPE html>
