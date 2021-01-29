@@ -60,7 +60,7 @@ class LANGUE
 		global $db;
 		try {
 			$db->beginTransaction();
-			$query = $db->prepare('INSERT INTO statut (numLang, lib1Lang, lib2Lang, numPays) VALUES (:numLang, :lib1Lang, :lib2Lang, :numPays)');
+			$query = $db->prepare('INSERT INTO langue (numLang, lib1Lang, lib2Lang, numPays) VALUES (:numLang, :lib1Lang, :lib2Lang, :numPays)');
 			$query->execute([
 				'numLang' => $numLang,
 				'lib1Lang' => $lib1Lang,
@@ -72,28 +72,27 @@ class LANGUE
 		} catch (PDOException $e) {
 			$db->rollBack();
 			$query->closeCursor();
-			die('Erreur delete LANGUE : ' . $e->getMessage());
+			die('Erreur create LANGUE : ' . $e->getMessage());
 		}
 	}
 
-	function update($numLang, $lib1Lang, $lib2Lang, $numPays)
+	function update($numLang, $lib1Lang, $lib2Lang)
 	{
 		global $db;
 		try {
 			$db->beginTransaction();
-			$query = $db->prepare('UPDATE statut SET lib1Lang=:lib1Lang, lib2Lang=:lib2Lang, numPays=:numPays WHERE numLang=:numLang');
+			$query = $db->prepare('UPDATE langue SET lib1Lang=:lib1Lang, lib2Lang=:lib2Lang WHERE numLang=:numLang');
 			$query->execute([
 				'numLang' => $numLang,
 				'lib1Lang' => $lib1Lang,
-				'lib2Lang' => $lib2Lang,
-				'numPays' => $numPays
+				'lib2Lang' => $lib2Lang
 			]);
 			$db->commit();
 			$query->closeCursor();
 		} catch (PDOException $e) {
 			$db->rollBack();
 			$query->closeCursor();
-			die('Erreur delete LANGUE : ' . $e->getMessage());
+			die('Erreur update LANGUE : ' . $e->getMessage());
 		}
 	}
 
@@ -103,7 +102,7 @@ class LANGUE
 		global $db;
 		try {
 			$db->beginTransaction();
-			$query = $db->prepare('DELETE FROM statut WHERE numLang=:numLang');
+			$query = $db->prepare('DELETE FROM langue WHERE numLang=:numLang');
 			$query->execute([
 				'numLang' => $numLang
 			]);
