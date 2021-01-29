@@ -55,9 +55,11 @@ class LANGUE
 		return $result;
 	}
 
-	function create($numLang, $lib1Lang, $lib2Lang, $numPays)
+	function create($lib1Lang, $lib2Lang, $numPays)
 	{
 		global $db;
+		require_once __DIR__ . '/../../CLASS_CRUD/getNextNumLang.php';
+		$numLang = getNextNumLang($numPays);
 		try {
 			$db->beginTransaction();
 			$query = $db->prepare('INSERT INTO langue (numLang, lib1Lang, lib2Lang, numPays) VALUES (:numLang, :lib1Lang, :lib2Lang, :numPays)');

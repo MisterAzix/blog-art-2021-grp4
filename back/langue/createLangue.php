@@ -10,7 +10,6 @@
 // Mode DEV
 require_once __DIR__ . '/../../util/utilErrOn.php';
 require_once __DIR__ . '/../../util/ctrlSaisies.php';
-require_once __DIR__ . '/../../CLASS_CRUD/getNextNumLang.php';
 
 // Insertion classe
 require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
@@ -30,8 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if (strlen($lib1Lang) >= 5 && strlen($lib2Lang) >= 5) {
             // Ajout effectif de la langue
-            $numLang = getNextNumLang($numPays);
-            $langue->create($numLang, $lib1Lang, $lib2Lang, $numPays);
+            $langue->create($lib1Lang, $lib2Lang, $numPays);
 
             header('Location: ./langue.php');
         } else {
