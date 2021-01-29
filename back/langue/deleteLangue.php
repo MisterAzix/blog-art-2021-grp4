@@ -113,7 +113,7 @@ $countries = $langue->get_AllPays();
 
                             <div class="form-group mb-3">
                                 <label for="numPays"><b>Pays :</b></label>
-                                <select name="numPays" class="form-control" id="numPays">
+                                <select name="numPays" class="form-control" id="numPays" disabled>
                                     <?php foreach ($countries as $country) : ?>
                                         <option value="<?= $country->numPays ?>" <?= ($country->numPays === $selectedPays) ? 'selected' : 'disabled' ?>><?= $country->frPays ?></option>
                                     <?php endforeach ?>
@@ -131,7 +131,7 @@ $countries = $langue->get_AllPays();
                         <h4>Angle<?= (count($angles) > 1) ? 's' : '' ?> à supprimer :</h4>
                         <ul>
                             <?php foreach ($angles as $angle) : ?>
-                                <li><?= $angle->libAngl ?></li>
+                                <li><b><?= $angle->numAngl ?> :</b> <?= $angle->libAngl ?></li>
                             <?php endforeach ?>
                         </ul>
                     <?php endif ?>
@@ -139,7 +139,7 @@ $countries = $langue->get_AllPays();
                         <h4>Mot<?= (count($motcles) > 1) ? 's' : '' ?> Clé<?= (count($motcles) > 1) ? 's' : '' ?> à supprimer :</h4>
                         <ul>
                             <?php foreach ($motcles as $motcle) : ?>
-                                <li><?= $motcle->libMotCle ?></li>
+                                <li><b><?= $motcle->numMotCle ?> :</b> <?= $motcle->libMotCle ?></li>
                             <?php endforeach ?>
                         </ul>
                     <?php endif ?>
@@ -147,7 +147,7 @@ $countries = $langue->get_AllPays();
                         <h4>Thématique<?= (count($thematiques) > 1) ? 's' : '' ?> à supprimer :</h4>
                         <ul>
                             <?php foreach ($thematiques as $thematique) : ?>
-                                <li><?= $thematique->libThem ?></li>
+                                <li><b><?= $thematique->numThem ?> :</b> <?= $thematique->libThem ?></li>
                             <?php endforeach ?>
                         </ul>
                     <?php endif ?>
