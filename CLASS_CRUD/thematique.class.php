@@ -34,9 +34,11 @@ class THEMATIQUE
 		return ($result);
 	}
 
-	function create($numThem, $libThem, $numLang)
+	function create($libThem, $numLang)
 	{
 		global $db;
+		require_once __DIR__ . './getNextNumThem.php';
+		$numThem = getNextNumThem($numLang);
 		try {
 			$db->beginTransaction();
 			$query = $db->prepare('INSERT INTO thematique (numThem, libThem, numLang) VALUES (:numThem, :libThem, :numLang)');

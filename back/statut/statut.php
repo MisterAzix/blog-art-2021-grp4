@@ -30,15 +30,7 @@ $all = $statut->get_AllStatuts();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <style type="text/css">
-        .error {
-            padding: 2px;
-            border: solid 0px black;
-            color: red;
-            font-style: italic;
-            border-radius: 5px;
-        }
-    </style>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -53,7 +45,7 @@ $all = $statut->get_AllStatuts();
             <hr />
             <h2>Tous les statuts</h2>
 
-            <table border="3" bgcolor="aliceblue">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Numéro</th>

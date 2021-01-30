@@ -35,9 +35,11 @@ class ANGLE
 		return ($result);
 	}
 
-	function create($numAngl, $libAngl, $numLang)
+	function create($libAngl, $numLang)
 	{
 		global $db;
+		require_once __DIR__ . './getNextNumAngl.php';
+		$numAngl = getNextNumAngl($numLang);
 		try {
 			$db->beginTransaction();
 			$query = $db->prepare('INSERT INTO angle (numAngl, libAngl, numLang) VALUES (:numAngl, :libAngl, :numLang)');

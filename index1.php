@@ -26,7 +26,6 @@ require_once __DIR__ . '/util/utilErrOn.php';
 <body>
 	<main class="container">
 		<h1>Panneau d'Admin : Gestion des CRUD - BLOGART21</h1>
-		<div class="alert alert-success">CRUD fini et valide (reste à tester et à intégrer)</div>
 		<hr>
 		<div class="row d-flex justify-content-center">
 			<div class="col-8">
@@ -40,11 +39,19 @@ require_once __DIR__ . '/util/utilErrOn.php';
 					<a class="list-group-item disabled" href="./BACK/likecom/likecom.php"><b>Gestion du CRUD :</b> Like Commentaire </a>
 					<a class="list-group-item disabled" href="./BACK/membre/membre.php"><b>Gestion du CRUD :</b> Membre </a>
 					<a class="list-group-item list-group-item-info" href="./BACK/motcle/motcle.php"><b>Gestion du CRUD :</b> Mot-clé </a>
-					<a class="list-group-item disabled" href="./BACK/motclearticle/motclearticle.php"><b>Gestion du CRUD :</b>  Mot-clé Article </a>
-					<a class="list-group-item list-group-item-success" href="./BACK/statut/statut.php"><b>Gestion du CRUD :</b> Statut (*)</a>
+					<a class="list-group-item disabled" href="./BACK/motclearticle/motclearticle.php"><b>Gestion du CRUD :</b> Mot-clé Article </a>
+					<a class="list-group-item list-group-item-success" href="./BACK/statut/statut.php"><b>Gestion du CRUD :</b> Statut</a>
 					<a class="list-group-item list-group-item-info" href="./BACK/thematique/thematique.php"><b>Gestion du CRUD :</b> Thématique </a>
 					<a class="list-group-item disabled" href="./BACK/user/user.php"><b>Gestion du CRUD :</b> User </a>
 				</div>
+			</div>
+			<div class="col-4">
+				<h5>État des CRUD</h5>
+				<ul class="list-group">
+					<li class="list-group-item list-group-item-success">CRUD fini et valide</li>
+					<li class="list-group-item list-group-item-info">CRUD en cours</li>
+					<li class="list-group-item disabled">CRUD à faire</li>
+				</ul>
 			</div>
 		</div>
 		<hr>

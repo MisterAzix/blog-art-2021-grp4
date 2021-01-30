@@ -5,7 +5,7 @@ require_once __DIR__ . '../../CONNECT/database.php';
 
 class MOTCLE
 {
-	function get_1Motcle($numMotCle)
+	function get_1MotCle($numMotCle)
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM motcle WHERE numMotCle=:numMotCle");
@@ -16,7 +16,7 @@ class MOTCLE
 		return $result;
 	}
 
-	function get_AllMotscles()
+	function get_AllMotsCles()
 	{
 		global $db;
 		$query = $db->query('SELECT * FROM motcle');
@@ -35,9 +35,11 @@ class MOTCLE
 		return ($result);
 	}
 
-	function create($numMotCle, $libMotCle, $numLang)
+	function create($libMotCle, $numLang)
 	{
 		global $db;
+		require_once __DIR__ . './getNextNumLang.php';
+		$numMotCle = getNextNumMoCle($numLang);
 		try {
 			$db->beginTransaction();
 			$query = $db->prepare('INSERT INTO motcle (numMotCle, libMotCle, numLang) VALUES (:numMotCle, :libMotCle, :numLang)');

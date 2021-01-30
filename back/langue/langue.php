@@ -41,7 +41,7 @@ $all = $langue->get_AllLangues();
             <hr>
             <h2>Tous les statuts</h2>
 
-            <table border="3" bgcolor="aliceblue">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>Numéro</th>
