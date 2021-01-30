@@ -58,7 +58,7 @@ class LANGUE
 	function create($lib1Lang, $lib2Lang, $numPays)
 	{
 		global $db;
-		require_once __DIR__ . './getNextNumLang.php';
+		require_once __DIR__ . '/getNextNumLang.php';
 		$numLang = getNextNumLang($numPays);
 		try {
 			$db->beginTransaction();

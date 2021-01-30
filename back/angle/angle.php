@@ -45,6 +45,7 @@ $all = $angles->get_AllAngles();
                 <thead>
                     <tr>
                         <th>Numéro</th>
+                        <th>Langue</th>
                         <th>Libellé</th>
                         <th colspan="2">Action</th>
                     </tr>
@@ -53,8 +54,9 @@ $all = $angles->get_AllAngles();
                     <?php foreach ($all as $row) : ?>
                         <tr>
                             <td>
-                                <h4> <?= $row->numLang ?> </h4>
+                                <h4> <?= $row->numAngl ?> </h4>
                             </td>
+                            <td> <?= $row->numLang ?> </td>
                             <td> <?= $row->libAngl ?> </td>
                             <td><a href="./updateAngle.php?id=<?= $row->numAngl ?>"><i>Modifier</i></a>
                                 <br>
