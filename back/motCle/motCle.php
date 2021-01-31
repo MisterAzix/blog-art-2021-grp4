@@ -45,6 +45,7 @@ $all = $motcles->get_AllMotsCles();
                 <thead>
                     <tr>
                         <th>Numéro</th>
+                        <th>Langue</th>
                         <th>Libellé</th>
                         <th colspan="2">Action</th>
                     </tr>
@@ -53,8 +54,9 @@ $all = $motcles->get_AllMotsCles();
                     <?php foreach ($all as $row) : ?>
                         <tr>
                             <td>
-                                <h4> <?= $row->numLang ?> </h4>
+                                <h4> <?= $row->numMotCle ?> </h4>
                             </td>
+                            <td> <?= $row->numLang ?> </td>
                             <td> <?= $row->libMotCle ?> </td>
                             <td><a href="./updateMotCle.php?id=<?= $row->numMotCle ?>"><i>Modifier</i></a>
                                 <br>
