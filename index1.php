@@ -30,7 +30,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
 		<div class="row d-flex justify-content-center">
 			<div class="col-8">
 				<div class="list-group">
-					<a class="list-group-item list-group-item-info" href="./BACK/angle/angle.php"><b>Gestion du CRUD :</b> Angle </a>
+					<a class="list-group-item list-group-item-success" href="./BACK/angle/angle.php"><b>Gestion du CRUD :</b> Angle </a>
 					<a class="list-group-item disabled" href="./BACK/article/article.php"><b>Gestion du CRUD :</b> Article </a>
 					<a class="list-group-item disabled" href="./BACK/comment/comment.php"><b>Gestion du CRUD :</b> Commentaire </a>
 					<a class="list-group-item disabled" href="./BACK/commentplus/commentplus.php"><b>Gestion du CRUD :</b> Réponse sur Commentaire </a>
@@ -41,7 +41,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
 					<a class="list-group-item list-group-item-info" href="./BACK/motcle/motcle.php"><b>Gestion du CRUD :</b> Mot-clé </a>
 					<a class="list-group-item disabled" href="./BACK/motclearticle/motclearticle.php"><b>Gestion du CRUD :</b> Mot-clé Article </a>
 					<a class="list-group-item list-group-item-success" href="./BACK/statut/statut.php"><b>Gestion du CRUD :</b> Statut</a>
-					<a class="list-group-item list-group-item-info" href="./BACK/thematique/thematique.php"><b>Gestion du CRUD :</b> Thématique </a>
+					<a class="list-group-item list-group-item-success" href="./BACK/thematique/thematique.php"><b>Gestion du CRUD :</b> Thématique </a>
 					<a class="list-group-item disabled" href="./BACK/user/user.php"><b>Gestion du CRUD :</b> User </a>
 				</div>
 			</div>
