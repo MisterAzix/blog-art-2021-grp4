@@ -44,6 +44,7 @@ $all = $thematiques->get_AllThematiques();
                 <thead>
                     <tr>
                         <th>Numéro</th>
+                        <th>Langue</th>
                         <th>Libellé</th>
                         <th colspan="2">Action</th>
                     </tr>
@@ -52,8 +53,9 @@ $all = $thematiques->get_AllThematiques();
                     <?php foreach ($all as $row) : ?>
                         <tr>
                             <td>
-                                <h4> <?= $row->numLang ?> </h4>
+                                <h4> <?= $row->numThem ?> </h4>
                             </td>
+                            <td> <?= $row->numLang ?> </td>
                             <td> <?= $row->libThem ?> </td>
                             <td><a href="./updateThematique.php?id=<?= $row->numThem ?>"><i>Modifier</i></a>
                                 <br>
