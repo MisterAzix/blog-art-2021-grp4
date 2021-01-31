@@ -38,13 +38,10 @@ class MOTCLE
 	function create($libMotCle, $numLang)
 	{
 		global $db;
-		require_once __DIR__ . './getNextNumMotCle.php';
-		$numMotCle = getNextNumMotCle($numLang);
 		try {
 			$db->beginTransaction();
-			$query = $db->prepare('INSERT INTO motcle (numMotCle, libMotCle, numLang) VALUES (:numMotCle, :libMotCle, :numLang)');
+			$query = $db->prepare('INSERT INTO motcle (libMotCle, numLang) VALUES (:libMotCle, :numLang)');
 			$query->execute([
-				'numMotCle' => $numMotCle,
 				'libMotCle' => $libMotCle,
 				'numLang' => $numLang
 			]);

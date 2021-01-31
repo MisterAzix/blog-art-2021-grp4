@@ -28,13 +28,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $libMotCle = ctrlSaisies($_POST['libMotCle']);
         $numLang = $_POST['numLang'];
 
-        if (strlen($libMotCle) >= 5) {
+        if (strlen($libMotCle) >= 3) {
             // Ajout effectif de la langue
             $motcle->create($libMotCle, $numLang);
 
-            header('Location: ./angle.php');
+            header('Location: ./motCle.php');
         } else {
-            $error = 'La longueur minimale d\'un mot clé est de 5 caractères.';
+            $error = 'La longueur minimale d\'un mot clé est de 3 caractères.';
         }
     } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
         header('Location: ./createMotcle.php');
