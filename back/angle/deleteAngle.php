@@ -22,6 +22,7 @@ $article = new ARTICLE();
 // Init variables form
 include __DIR__ . '/initAngle.php';
 $error = null;
+$articles = null;
 
 
 // Controle des saisies du formulaire
@@ -36,7 +37,7 @@ if (isset($_GET['id'])) {
         if (isset($_POST['Submit'])) {
             switch ($_POST['Submit']) {
                 case 'Valider':
-                    $articles = $article->get_AllArticlesByAngl($numLang);
+                    $articles = $article->get_AllArticlesByAngl($numAngl);
 
                     if (!$articles) {
                         // Suppression effective de l'angle
@@ -108,12 +109,21 @@ $languages = $langue->get_AllLangues();
                                 </select>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group mb-3">
                                 <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
                                 <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
                             </div>
                         </fieldset>
                     </form>
+
+                    <?php if ($articles) : ?>
+                        <h4>Article<?= (count($articles) > 1) ? 's' : '' ?> à supprimer :</h4>
+                        <ul>
+                            <?php foreach ($articles as $article) : ?>
+                                <li><b><?= $article->numArt ?> :</b> <?= $article->libTitrArt ?></li>
+                            <?php endforeach ?>
+                        </ul>
+                    <?php endif ?>
                 </div>
             </div>
 

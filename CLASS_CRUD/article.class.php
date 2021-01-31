@@ -35,6 +35,17 @@ class ARTICLE
 		return ($result);
 	}
 
+	function get_AllArticlesByThem($numThem)
+	{
+		global $db;
+		$query = $db->prepare('SELECT * FROM article WHERE numThem = :numThem');
+		$query->execute([
+			'numThem' => $numThem
+		]);
+		$result = $query->fetchAll(PDO::FETCH_OBJ);
+		return ($result);
+	}
+
 	/*function create($libAngl, $numLang)
 	{
 		global $db;
