@@ -28,7 +28,7 @@ if (isset($_GET['id'])) {
     $selectedPays = ctrlSaisies($result->numPays);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (!empty($_POST['lib1Lang']) && !empty($_POST['lib2Lang']) && !empty($_POST['numPays'])) {
+        if (!empty($_POST['lib1Lang']) && !empty($_POST['lib2Lang'])) {
             $numLang = ctrlSaisies($_GET['id']);
             $lib1Lang = ctrlSaisies($_POST['lib1Lang']);
             $lib2Lang = ctrlSaisies($_POST['lib2Lang']);
@@ -99,9 +99,9 @@ $countries = $langue->get_AllPays();
 
                             <div class="form-group mb-3">
                                 <label for="numPays"><b>Pays :</b></label>
-                                <select name="numPays" class="form-control" id="numPays">
+                                <select name="numPays" class="form-control" id="numPays" disabled>
                                     <?php foreach ($countries as $country) : ?>
-                                        <option value="<?= $country->numPays ?>" <?= ($country->numPays === $selectedPays) ? 'selected' : 'disabled' ?>><?= $country->frPays ?></option>
+                                        <option value="<?= $country->numPays ?>" <?= ($country->numPays === $selectedPays) ? 'selected' : '' ?>><?= $country->frPays ?></option>
                                     <?php endforeach ?>
                                 </select>
                             </div>

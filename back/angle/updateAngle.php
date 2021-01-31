@@ -3,7 +3,7 @@
 //
 //  CRUD ANGLE (PDO) - Code Modifié - 23 Janvier 2021
 //
-//  Script  : createAngle.php  (ETUD)   -   BLOGART21
+//  Script  : updateAngle.php  (ETUD)   -   BLOGART21
 //
 ///////////////////////////////////////////////////////////////
 
@@ -23,23 +23,29 @@ $error = null;
 
 
 // Controle des saisies du formulaire
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!empty($_POST['libAngl']) && !empty($_POST['numLang'])) {
-        $libAngl = ctrlSaisies($_POST['libAngl']);
-        $numLang = $_POST['numLang'];
+if (isset($_GET['id'])) {
+    $result = $angle->get_1Angle($_GET['id']);
+    $libAngl = ctrlSaisies($result->libAngl);
+    $selectedLang = ctrlSaisies($result->numLang);
 
-        if (strlen($libAngl) >= 3) {
-            // Ajout effectif de la langue
-            $angle->create($libAngl, $numLang);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (!empty($_POST['libAngl'])) {
+            $numAngl = ctrlSaisies($_GET['id']);
+            $libAngl = ctrlSaisies($_POST['libAngl']);
 
-            header('Location: ./angle.php');
+            if (strlen($libAngl) >= 3) {
+                // Ajout effectif de la langue
+                $angle->update($numAngl, $libAngl);
+
+                header('Location: ./angle.php');
+            } else {
+                $error = 'La longueur minimale d\'un angle est de 5 caractères.';
+            }
+        } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
+            header('Location: ./updateAngle.php?id=' . $_GET['id']);
         } else {
-            $error = 'La longueur minimale d\'un angle est de 5 caractères.';
+            $error = 'Merci de renseigner tous les champs du formulaire.';
         }
-    } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
-        header('Location: ./createAngle.php');
-    } else {
-        $error = 'Merci de renseigner tous les champs du formulaire.';
     }
 }
 
@@ -68,7 +74,7 @@ $languages = $langue->get_AllLangues();
 
             <div class="row d-flex justify-content-center">
                 <div class="col-8">
-                    <h2>Ajout d'un angle</h2>
+                    <h2>Modification d'un angle</h2>
 
                     <?php if ($error) : ?>
                         <div class="alert alert-danger"><?= $error ?: '' ?></div>
@@ -88,10 +94,10 @@ $languages = $langue->get_AllLangues();
 
                             <div class="form-group mb-3">
                                 <label for="numLang"><b>Langues :</b></label>
-                                <select name="numLang" class="form-control" id="numLang">
+                                <select name="numLang" class="form-control" id="numLang" disabled>
                                     <option value="">--Choississez une langue--</option>
                                     <?php foreach ($languages as $language) : ?>
-                                        <option value="<?= $language->numLang ?>"><?= $language->lib1Lang ?></option>
+                                        <option value="<?= $language->numLang ?>" <?= ($language->numLang === $selectedLang) ? 'selected' : '' ?>><?= $language->lib1Lang ?></option>
                                     <?php endforeach ?>
                                 </select>
                             </div>

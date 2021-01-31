@@ -57,16 +57,15 @@ class ANGLE
 		}
 	}
 
-	function update($numAngl, $libAngl, $numLang)
+	function update($numAngl, $libAngl)
 	{
 		global $db;
 		try {
 			$db->beginTransaction();
-			$query = $db->prepare('UPDATE angle SET libMotCle = :libMotCle, numLang = :numLang WHERE numMotCle = :numMotCle');
+			$query = $db->prepare('UPDATE angle SET libAngl = :libAngl WHERE numAngl = :numAngl');
 			$query->execute([
-				'numMotCle' => $numAngl,
-				'libMotCle' => $libAngl,
-				'numLang' => $numLang
+				'numAngl' => $numAngl,
+				'libAngl' => $libAngl
 			]);
 			$db->commit();
 			$query->closeCursor();
