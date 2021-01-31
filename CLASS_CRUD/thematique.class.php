@@ -56,16 +56,15 @@ class THEMATIQUE
 		}
 	}
 
-	function update($numThem, $libThem, $numLang)
+	function update($numThem, $libThem)
 	{
 		global $db;
 		try {
 			$db->beginTransaction();
-			$query = $db->prepare('UPDATE thematique SET libThem = :libThem, numLang = :numLang WHERE numThem = :numThem');
+			$query = $db->prepare('UPDATE thematique SET libThem = :libThem WHERE numThem = :numThem');
 			$query->execute([
 				'numThem' => $numThem,
-				'libThem' => $libThem,
-				'numLang' => $numLang
+				'libThem' => $libThem
 			]);
 			$db->commit();
 			$query->closeCursor();

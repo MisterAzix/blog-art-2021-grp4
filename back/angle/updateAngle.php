@@ -34,12 +34,12 @@ if (isset($_GET['id'])) {
             $libAngl = ctrlSaisies($_POST['libAngl']);
 
             if (strlen($libAngl) >= 3) {
-                // Modification effectif de l'angle
+                // Modification effective de l'angle
                 $angle->update($numAngl, $libAngl);
 
                 header('Location: ./angle.php');
             } else {
-                $error = 'La longueur minimale d\'un angle est de 5 caractères.';
+                $error = 'La longueur minimale d\'un angle est de 3 caractères.';
             }
         } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
             header('Location: ./updateAngle.php?id=' . $_GET['id']);

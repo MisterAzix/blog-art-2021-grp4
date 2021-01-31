@@ -3,7 +3,7 @@
 //
 //  CRUD THEMATIQUE (PDO) - Code Modifié - 23 Janvier 2021
 //
-//  Script  : createThematique.php  (ETUD)   -   BLOGART21
+//  Script  : updateThematique.php  (ETUD)   -   BLOGART21
 //
 ///////////////////////////////////////////////////////////////
 
@@ -23,23 +23,29 @@ $error = null;
 
 
 // Controle des saisies du formulaire
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!empty($_POST['libThem']) && !empty($_POST['numLang'])) {
-        $libThem = ctrlSaisies($_POST['libThem']);
-        $numLang = $_POST['numLang'];
+if (isset($_GET['id'])) {
+    $result = $thematique->get_1Thematique($_GET['id']);
+    $libThem = ctrlSaisies($result->libThem);
+    $selectedLang = ctrlSaisies($result->numLang);
 
-        if (strlen($libThem) >= 5) {
-            // Ajout effectif de la langue
-            $thematique->create($libThem, $numLang);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (!empty($_POST['libThem'])) {
+            $numThem = ctrlSaisies($_GET['id']);
+            $libThem = ctrlSaisies($_POST['libThem']);
 
-            header('Location: ./thematique.php');
+            if (strlen($libThem) >= 3) {
+                // Modification effective de la thématique
+                $thematique->update($numThem, $libThem);
+
+                header('Location: ./thematique.php');
+            } else {
+                $error = 'La longueur minimale d\'une thématique est de 3 caractères.';
+            }
+        } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
+            header('Location: ./updateThematique.php?id=' . $_GET['id']);
         } else {
-            $error = 'La longueur minimale d\'une thématique est de 5 caractères.';
+            $error = 'Merci de renseigner tous les champs du formulaire.';
         }
-    } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
-        header('Location: ./createThematique.php');
-    } else {
-        $error = 'Merci de renseigner tous les champs du formulaire.';
     }
 }
 
@@ -68,7 +74,7 @@ $languages = $langue->get_AllLangues();
 
             <div class="row d-flex justify-content-center">
                 <div class="col-8">
-                    <h2>Ajout d'une thématique</h2>
+                    <h2>Modification d'une thématique</h2>
 
                     <?php if ($error) : ?>
                         <div class="alert alert-danger"><?= $error ?: '' ?></div>
@@ -88,10 +94,10 @@ $languages = $langue->get_AllLangues();
 
                             <div class="form-group mb-3">
                                 <label for="numLang"><b>Langues :</b></label>
-                                <select name="numLang" class="form-control" id="numLang">
+                                <select name="numLang" class="form-control" id="numLang" disabled>
                                     <option value="">--Choississez une langue--</option>
                                     <?php foreach ($languages as $language) : ?>
-                                        <option value="<?= $language->numLang ?>"><?= $language->lib1Lang ?></option>
+                                        <option value="<?= $language->numLang ?>" <?= ($language->numLang === $selectedLang) ? 'selected' : '' ?>><?= $language->lib1Lang ?></option>
                                     <?php endforeach ?>
                                 </select>
                             </div>
