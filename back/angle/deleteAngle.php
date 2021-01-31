@@ -3,7 +3,7 @@
 //
 //  CRUD ANGLE (PDO) - Code Modifié - 23 Janvier 2021
 //
-//  Script  : updateAngle.php  (ETUD)   -   BLOGART21
+//  Script  : deleteAngle.php  (ETUD)   -   BLOGART21
 //
 ///////////////////////////////////////////////////////////////
 
@@ -13,9 +13,11 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe
 require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
-$langue = new LANGUE();
 require_once __DIR__ . '/../../CLASS_CRUD/angle.class.php';
+require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
+$langue = new LANGUE();
 $angle = new ANGLE();
+$article = new ARTICLE();
 
 // Init variables form
 include __DIR__ . '/initAngle.php';
@@ -24,27 +26,31 @@ $error = null;
 
 // Controle des saisies du formulaire
 if (isset($_GET['id'])) {
-    $result = $angle->get_1Angle($_GET['id']);
+    $numAngl = ctrlSaisies($_GET['id']);
+    $result = $angle->get_1Angle($numAngl);
+    if (!$result) header('Location: ./angle.php');
     $libAngl = ctrlSaisies($result->libAngl);
     $selectedLang = ctrlSaisies($result->numLang);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (!empty($_POST['libAngl'])) {
-            $numAngl = ctrlSaisies($_GET['id']);
-            $libAngl = ctrlSaisies($_POST['libAngl']);
+        if (isset($_POST['Submit'])) {
+            switch ($_POST['Submit']) {
+                case 'Valider':
+                    $articles = $article->get_AllArticlesByAngl($numLang);
 
-            if (strlen($libAngl) >= 3) {
-                // Modification effectif de l'angle
-                $angle->update($numAngl, $libAngl);
+                    if (!$articles) {
+                        // Suppression effective de l'angle
+                        $count = $angle->delete($numAngl);
+                        ($count == 1) ? header('Location: ./angle.php') : die('Erreur delete ANGLE !');
+                    } else {
+                        $error = "Suppression impossible, existence d'article(s) associé(s) à cet angle. Vous devez d'abord les supprimer pour supprimer l'angle.";
+                    }
+                    break;
 
-                header('Location: ./angle.php');
-            } else {
-                $error = 'La longueur minimale d\'un angle est de 5 caractères.';
+                default:
+                    header('Location: ./angle.php');
+                    break;
             }
-        } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
-            header('Location: ./updateAngle.php?id=' . $_GET['id']);
-        } else {
-            $error = 'Merci de renseigner tous les champs du formulaire.';
         }
     }
 }
@@ -74,7 +80,7 @@ $languages = $langue->get_AllLangues();
 
             <div class="row d-flex justify-content-center">
                 <div class="col-8">
-                    <h2>Modification d'un angle</h2>
+                    <h2>Suppression d'un angle</h2>
 
                     <?php if ($error) : ?>
                         <div class="alert alert-danger"><?= $error ?: '' ?></div>
@@ -89,7 +95,7 @@ $languages = $langue->get_AllLangues();
 
                             <div class="form-group mb-3">
                                 <label for="libAngl"><b>Nom de l'angle :</b></label>
-                                <input class="form-control" type="text" name="libAngl" id="libAngl" size="80" maxlength="80" value="<?= $libAngl ?>" autofocus="autofocus" />
+                                <input class="form-control" type="text" name="libAngl" id="libAngl" size="80" maxlength="80" value="<?= $libAngl ?>" autofocus="autofocus" disabled />
                             </div>
 
                             <div class="form-group mb-3">

@@ -33,7 +33,7 @@ $thematiques = null;
 if (isset($_GET['id'])) {
     $numLang = ctrlSaisies($_GET['id']);
     $result = $langue->get_1Langue($numLang);
-    if (!$result) header('Location: ./statut.php');
+    if (!$result) header('Location: ./langue.php');
     $lib1Lang = ctrlSaisies($result->lib1Lang);
     $lib2Lang = ctrlSaisies($result->lib2Lang);
     $selectedPays = ctrlSaisies($result->numPays);
@@ -115,7 +115,7 @@ $countries = $langue->get_AllPays();
                                 <label for="numPays"><b>Pays :</b></label>
                                 <select name="numPays" class="form-control" id="numPays" disabled>
                                     <?php foreach ($countries as $country) : ?>
-                                        <option value="<?= $country->numPays ?>" <?= ($country->numPays === $selectedPays) ? 'selected' : 'disabled' ?>><?= $country->frPays ?></option>
+                                        <option value="<?= $country->numPays ?>" <?= ($country->numPays === $selectedPays) ? 'selected' : '' ?>><?= $country->frPays ?></option>
                                     <?php endforeach ?>
                                 </select>
                             </div>
