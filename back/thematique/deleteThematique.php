@@ -1,9 +1,9 @@
 <?php
 ///////////////////////////////////////////////////////////////
 //
-//  CRUD ANGLE (PDO) - Code Modifié - 23 Janvier 2021
+//  CRUD THEMATIQUE (PDO) - Code Modifié - 23 Janvier 2021
 //
-//  Script  : deleteAngle.php  (ETUD)   -   BLOGART21
+//  Script  : deleteThematique.php  (ETUD)   -   BLOGART21
 //
 ///////////////////////////////////////////////////////////////
 
@@ -13,23 +13,23 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe
 require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
-require_once __DIR__ . '/../../CLASS_CRUD/angle.class.php';
+require_once __DIR__ . '/../../CLASS_CRUD/thematique.class.php';
 require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
 $langue = new LANGUE();
-$angle = new ANGLE();
+$thematique = new THEMATIQUE();
 $article = new ARTICLE();
 
 // Init variables form
-include __DIR__ . '/initAngle.php';
+include __DIR__ . '/initThematique.php';
 $error = null;
 
 
 // Controle des saisies du formulaire
 if (isset($_GET['id'])) {
-    $numAngl = ctrlSaisies($_GET['id']);
-    $result = $angle->get_1Angle($numAngl);
-    if (!$result) header('Location: ./angle.php');
-    $libAngl = ctrlSaisies($result->libAngl);
+    $numThem = ctrlSaisies($_GET['id']);
+    $result = $thematique->get_1Thematique($numThem);
+    if (!$result) header('Location: ./thematique.php');
+    $libThem = ctrlSaisies($result->libThem);
     $selectedLang = ctrlSaisies($result->numLang);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -39,16 +39,16 @@ if (isset($_GET['id'])) {
                     $articles = $article->get_AllArticlesByAngl($numLang);
 
                     if (!$articles) {
-                        // Suppression effective de l'angle
-                        $count = $angle->delete($numAngl);
-                        ($count == 1) ? header('Location: ./angle.php') : die('Erreur delete ANGLE !');
+                        // Suppression effective de la thématique
+                        $count = $thematique->delete($numThem);
+                        ($count == 1) ? header('Location: ./thematique.php') : die('Erreur delete THEMATIQUE !');
                     } else {
-                        $error = "Suppression impossible, existence d'article(s) associé(s) à cet angle. Vous devez d'abord les supprimer pour supprimer l'angle.";
+                        $error = "Suppression impossible, existence d'article(s) associé(s) à cette thématique. Vous devez d'abord les supprimer pour supprimer la thématique.";
                     }
                     break;
 
                 default:
-                    header('Location: ./angle.php');
+                    header('Location: ./thematique.php');
                     break;
             }
         }
@@ -63,7 +63,7 @@ $languages = $langue->get_AllLangues();
 
 <head>
     <meta charset="utf-8" />
-    <title>Admin - Gestion du CRUD Angle</title>
+    <title>Admin - Gestion du CRUD Thématique</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="" />
     <meta name="author" content="" />
@@ -75,12 +75,12 @@ $languages = $langue->get_AllLangues();
 <body>
     <main class="container">
         <div class="d-flex flex-column">
-            <h1>BLOGART21 Admin - Gestion du CRUD Angle</h1>
+            <h1>BLOGART21 Admin - Gestion du CRUD Thématique</h1>
             <hr>
 
             <div class="row d-flex justify-content-center">
                 <div class="col-8">
-                    <h2>Suppression d'un angle</h2>
+                    <h2>Suppression d'une thématique</h2>
 
                     <?php if ($error) : ?>
                         <div class="alert alert-danger"><?= $error ?: '' ?></div>
@@ -89,13 +89,13 @@ $languages = $langue->get_AllLangues();
                     <form class="form" method="post" action="" enctype="multipart/form-data">
 
                         <fieldset>
-                            <legend class="legend1">Formulaire Angle...</legend>
+                            <legend class="legend1">Formulaire Thématique...</legend>
 
                             <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ?: '' ?>" />
 
                             <div class="form-group mb-3">
-                                <label for="libAngl"><b>Nom de l'angle :</b></label>
-                                <input class="form-control" type="text" name="libAngl" id="libAngl" size="80" maxlength="80" value="<?= $libAngl ?>" disabled />
+                                <label for="libThem"><b>Nom de la thématique :</b></label>
+                                <input class="form-control" type="text" name="libThem" id="libThem" size="80" maxlength="80" value="<?= $libThem ?>" disabled />
                             </div>
 
                             <div class="form-group mb-3">
@@ -118,7 +118,7 @@ $languages = $langue->get_AllLangues();
             </div>
 
             <?php
-            require_once __DIR__ . '/footerAngle.php';
+            require_once __DIR__ . '/footerThematique.php';
 
             require_once __DIR__ . '/footer.php';
             ?>
