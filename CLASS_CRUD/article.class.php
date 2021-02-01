@@ -46,18 +46,46 @@ class ARTICLE
 		return ($result);
 	}
 
-	/*function create($libAngl, $numLang)
-	{
+	function create(
+		$dtCreArt,
+		$libTitrArt,
+		$libChapoArt,
+		$libAccrochArt,
+		$parag1Art,
+		$libSsTitr1Art,
+		$parag2Art,
+		$libSsTitr2Art,
+		$parag3Art,
+		$libConclArt,
+		$urlPhotArt,
+		$numAngl,
+		$numThem
+	) {
 		global $db;
 		require_once __DIR__ . '/getNextNumAngl.php';
 		$numAngl = getNextNumAngl($numLang);
 		try {
 			$db->beginTransaction();
-			$query = $db->prepare('INSERT INTO article (numAngl, libAngl, numLang) VALUES (:numAngl, :libAngl, :numLang)');
+			$query = $db->prepare(
+				'INSERT INTO blogart21 (dtCreArt, libTitrArt, libChapoArt, libAccrochArt, parag1Art, 
+				libSsTitr1Art, parag2Art, libSsTitr2Art, parag3Art, libConclArt, urlPhotArt, numAngl, numThem)
+				VALUES (:dtCreArt, :libTitrArt, :libChapoArt, :libAccrochArt, :parag1Art, :libSsTitr1Art, 
+				:parag2Art, :libSsTitr2Art, :parag3Art, :libConclArt, :urlPhotArt, :numAngl, :numThem)'
+			);
 			$query->execute([
+				'dtCreArt' => $dtCreArt,
+				'libTitrArt' => $libTitrArt,
+				'libChapoArt' => $libChapoArt,
+				'libAccrochArt' => $libAccrochArt,
+				'parag1Art' => $parag1Art,
+				'libSsTitr1Art' => $libSsTitr1Art,
+				'parag2Art' => $parag2Art,
+				'libSsTitr2Art' => $libSsTitr2Art,
+				'parag3Art' => $parag3Art,
+				'libConclArt' => $libConclArt,
+				'urlPhotArt' => $urlPhotArt,
 				'numAngl' => $numAngl,
-				'libAngl' => $libAngl,
-				'numLang' => $numLang
+				'numThem' => $numThem
 			]);
 			$db->commit();
 			$query->closeCursor();
@@ -68,7 +96,7 @@ class ARTICLE
 		}
 	}
 
-	function update($numAngl, $libAngl)
+	/*function update($numAngl, $libAngl)
 	{
 		global $db;
 		try {
