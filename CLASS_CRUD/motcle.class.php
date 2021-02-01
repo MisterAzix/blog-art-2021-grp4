@@ -54,16 +54,15 @@ class MOTCLE
 		}
 	}
 
-	function update($numMotCle, $libMotCle, $numLang)
+	function update($numMotCle, $libMotCle)
 	{
 		global $db;
 		try {
 			$db->beginTransaction();
-			$query = $db->prepare('UPDATE motcle SET libMotCle = :libMotCle, numLang = :numLang WHERE numMotCle = :numMotCle');
+			$query = $db->prepare('UPDATE motcle SET libMotCle = :libMotCle WHERE numMotCle = :numMotCle');
 			$query->execute([
 				'numMotCle' => $numMotCle,
-				'libMotCle' => $libMotCle,
-				'numLang' => $numLang
+				'libMotCle' => $libMotCle
 			]);
 			$db->commit();
 			$query->closeCursor();
