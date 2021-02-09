@@ -3,7 +3,7 @@
 //
 //  CRUD ARTICLE (PDO) - Code Modifié - 23 Janvier 2021
 //
-//  Script  : updateArticle.php  (ETUD)   -   BLOGART21
+//  Script  : deleteArticle.php  (ETUD)   -   BLOGART21
 //
 ///////////////////////////////////////////////////////////////
 
@@ -15,49 +15,23 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
 require_once __DIR__ . '/../../CLASS_CRUD/angle.class.php';
 require_once __DIR__ . '/../../CLASS_CRUD/thematique.class.php';
+require_once __DIR__ . '/../../CLASS_CRUD/comment.class.php';
 $article = new ARTICLE();
 $angle = new ANGLE();
 $thematique = new THEMATIQUE();
+$comment = new COMMENT();
 
 // Init variables form
 include __DIR__ . '/initArticle.php';
 $error = null;
 $fileName = null;
 $saved = null;
+$comments = null;
 
-//Récupérer et sauvegarde de l'image
-if (isset($_FILES['urlPhotArt'])) {
-    $maxSize = 3 * 1000 * 1000; //3Mo
-    $validExt = array('.jpg', '.jpeg', '.gif', '.png');
-
-    if ($_FILES['urlPhotArt']['error'] <= 0) {
-        $fileSize = $_FILES['urlPhotArt']['size'];
-
-        if ($fileSize < $maxSize) {
-            $fileName = $_FILES['urlPhotArt']['name'];
-            $fileExt = '.' . strtolower(substr(strrchr($fileName, '.'), 1));
-
-            if (in_array($fileExt, $validExt)) {
-                $tmpName = $_FILES['urlPhotArt']['tmp_name'];
-                $uniqueName = md5(uniqid(rand(), true));
-                $fileName = '../../upload/' . $uniqueName . $fileExt;
-                $result = move_uploaded_file($tmpName, $fileName);
-
-                $saved = $result ? ($uniqueName . $fileExt) : null;
-            } else {
-                $error = 'Le fichier selectionné n\'est pas une image !';
-            }
-        } else {
-            $error = 'Le fichier est trop volumineux!';
-        }
-    } else {
-        $error = 'Erreur durant le transfert !';
-    }
-}
-
-// Controle des saisies du formulaire
 if (isset($_GET['id'])) {
-    $result = $article->get_1Article($_GET['id']);
+    $numArt = ctrlSaisies($_GET['id']);
+    $result = $article->get_1Article($numArt);
+    if (!$result) header('Location: ./article.php');
     $libTitrArt = ctrlSaisies($result->libTitrArt);
     $libChapoArt = ctrlSaisies($result->libChapoArt);
     $libAccrochArt = ctrlSaisies($result->libAccrochArt);
@@ -67,56 +41,28 @@ if (isset($_GET['id'])) {
     $libSsTitr2Art = ctrlSaisies($result->libSsTitr2Art);
     $parag3Art = ctrlSaisies($result->parag3Art);
     $libConclArt = ctrlSaisies($result->libConclArt);
-    $urlPhotArt = ctrlSaisies($result->urlPhotArt);
     $selectedAngl = ctrlSaisies($result->numAngl);
     $selectedThem = ctrlSaisies($result->numThem);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (
-            !empty($_POST['libTitrArt']) && !empty($_POST['libChapoArt']) && !empty($_POST['libAccrochArt'])
-            && !empty($_POST['parag1Art']) && !empty($_POST['libSsTitr1Art']) && !empty($_POST['parag2Art'])
-            && !empty($_POST['libSsTitr2Art']) && !empty($_POST['parag3Art']) && !empty($_POST['libConclArt'])
-            /*&& !empty($_POST['urlPhotArt'])*/ && !empty($_POST['numAngl']) && !empty($_POST['numThem'])
-        ) {
-            $numArt = ctrlSaisies($_GET['id']);
-            $libTitrArt = $_POST['libTitrArt'];
-            $libChapoArt = $_POST['libChapoArt'];
-            $libAccrochArt = $_POST['libAccrochArt'];
-            $parag1Art = $_POST['parag1Art'];
-            $libSsTitr1Art = $_POST['libSsTitr1Art'];
-            $parag2Art = $_POST['parag2Art'];
-            $libSsTitr2Art = $_POST['libSsTitr2Art'];
-            $parag3Art = $_POST['parag3Art'];
-            $libConclArt = $_POST['libConclArt'];
-            $urlPhotArt = $saved ?: $urlPhotArt;
-            $numAngl = $_POST['numAngl'];
-            $numThem = $_POST['numThem'];
+        if (isset($_POST['Submit'])) {
+            switch ($_POST['Submit']) {
+                case 'Valider':
+                    $comments = $comment->get_AllCommentsByArticle($numArt);
 
-            if (strlen($parag1Art) >= 10 && strlen($parag2Art) >= 10 && strlen($parag3Art) >= 10) {
-                // Modification effective de l'article'
-                $article->update(
-                    $numArt,
-                    $libTitrArt,
-                    $libChapoArt,
-                    $libAccrochArt,
-                    $parag1Art,
-                    $libSsTitr1Art,
-                    $parag2Art,
-                    $libSsTitr2Art,
-                    $parag3Art,
-                    $libConclArt,
-                    $urlPhotArt,
-                    $numAngl,
-                    $numThem
-                );
-                header('Location: ./article.php');
-            } else {
-                $error = 'La longueur minimale des paragraphes est de 1000 caractères';
+                    if (!$comments) {
+                        // Suppression effective de l'article
+                        $count = $article->delete($numArt);
+                        ($count == 1) ? header('Location: ./article.php') : die('Erreur delete ARTICLE !');
+                    } else {
+                        $error = "Suppression impossible, existence d'angle(s), de mot(s) clé(s) ou de thématique(s) associé(s) à cette langue. Vous devez d'abord les supprimer pour supprimer la langue.";
+                    }
+                    break;
+
+                default:
+                    header('Location: ./article.php');
+                    break;
             }
-        } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
-            header('Location: ./updateArticle.php?id=' . $_GET['id']);
-        } else {
-            $error = 'Merci de renseigner tous les champs du formulaire.';
         }
     }
 }
@@ -147,7 +93,7 @@ $thematics = $thematique->get_AllThematiques();
 
             <div class="row d-flex justify-content-center">
                 <div class="col-8">
-                    <h2>Modification d'un article</h2>
+                    <h2>Suppression d'un article</h2>
 
                     <?php if ($error) : ?>
                         <div class="alert alert-danger"><?= $error ?: '' ?></div>
@@ -159,55 +105,51 @@ $thematics = $thematique->get_AllThematiques();
                         <div class="row">
                             <div class="form-group mb-3 col-6">
                                 <label for="libTitrArt"><b>Titre de l'article</b></label>
-                                <input class="form-control" type="text" name="libTitrArt" id="libTitrArt" maxlength="100" value="<?= $libTitrArt ?>" placeholder="Un bon titre putaclic" autofocus="autofocus" />
+                                <input class="form-control" type="text" name="libTitrArt" id="libTitrArt" maxlength="100" value="<?= $libTitrArt ?>" placeholder="Un bon titre putaclic" disabled/>
                             </div>
-                            <!-- <div class="form-group mb-3 col-6">
-                                <label for="urlPhotArt"><b>URL de l'image</b></label>
-                                <input class="form-control" type="url" name="urlPhotArt" id="urlPhotArt" maxlength="100" value="<?= $urlPhotArt ?>" placeholder="https://www.example.com/"/>
-                            </div> -->
                             <div class="form-group mb-3 col-6">
                                 <label for="urlPhotArt"><b>Image :</b></label>
-                                <input type="file" class="form-control" name="urlPhotArt">
+                                <input type="file" class="form-control" name="urlPhotArt" disabled>
                             </div>
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="libChapoArt"><b>Chapeau</b></label>
-                            <textarea class="form-control" type="text" name="libChapoArt" id="libChapoArt" cols="30" rows="2" maxlength="500" placeholder="Chapeau vert (car je suis plein d'ideés)"><?= $libChapoArt ?></textarea>
+                            <textarea class="form-control" type="text" name="libChapoArt" id="libChapoArt" cols="30" rows="2" maxlength="500" placeholder="Chapeau vert (car je suis plein d'ideés)" disabled><?= $libChapoArt ?></textarea>
                             <span class="pull-right label label-default" id="count_message" style="background-color: smoke; margin-top: -20px; margin-right: 5px;"></span>
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="libAccrochArt"><b>Accroche</b></label>
-                            <input class="form-control" type="text" name="libAccrochArt" id="libAccrochArt" maxlength="100" value="<?= $libAccrochArt ?>" placeholder="Une super accroche" />
+                            <input class="form-control" type="text" name="libAccrochArt" id="libAccrochArt" maxlength="100" value="<?= $libAccrochArt ?>" placeholder="Une super accroche" disabled/>
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="libSsTitr1Art"><b>Paragraphe 1</b></label>
-                            <input class="form-control" type="text" name="libSsTitr1Art" id="libSsTitr1Art" maxlength="100" value="<?= $libSsTitr1Art ?>" placeholder="Titre 1er article" />
-                            <textarea class="form-control" type="text" name="parag1Art" id="parag1Art" cols="30" rows="3" maxlength="1200" placeholder="Premièrement..."><?= $parag1Art ?></textarea>
+                            <input class="form-control" type="text" name="libSsTitr1Art" id="libSsTitr1Art" maxlength="100" value="<?= $libSsTitr1Art ?>" placeholder="Titre 1er article" disabled/>
+                            <textarea class="form-control" type="text" name="parag1Art" id="parag1Art" cols="30" rows="3" maxlength="1200" placeholder="Premièrement..." disabled><?= $parag1Art ?></textarea>
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="libSsTitr2Art"><b>Paragraphe 2</b></label>
-                            <input class="form-control" type="text" name="libSsTitr2Art" id="libSsTitr2Art" maxlength="100" value="<?= $libSsTitr2Art ?>" placeholder="Titre 2eme article" />
-                            <textarea class="form-control" type="text" name="parag2Art" id="parag2Art" cols="30" rows="3" maxlength="1200" placeholder="Ensuite..."><?= $parag2Art ?></textarea>
+                            <input class="form-control" type="text" name="libSsTitr2Art" id="libSsTitr2Art" maxlength="100" value="<?= $libSsTitr2Art ?>" placeholder="Titre 2eme article" disabled/>
+                            <textarea class="form-control" type="text" name="parag2Art" id="parag2Art" cols="30" rows="3" maxlength="1200" placeholder="Ensuite..." disabled><?= $parag2Art ?></textarea>
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="parag3Art"><b>Paragraphe 3</b></label>
-                            <textarea class="form-control" type="text" name="parag3Art" id="parag3Art" cols="30" rows="3" maxlength="1200" placeholder="Dans ce troisième paragraphe..."><?= $parag3Art ?></textarea>
+                            <textarea class="form-control" type="text" name="parag3Art" id="parag3Art" cols="30" rows="3" maxlength="1200" placeholder="Dans ce troisième paragraphe..." disabled><?= $parag3Art ?></textarea>
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="libConclArt"><b>Conclusion</b></label>
-                            <textarea class="form-control" type="text" name="libConclArt" id="libConclArt" cols="30" rows="2" maxlength="800" placeholder="En conclusion..."><?= $libConclArt ?></textarea>
+                            <textarea class="form-control" type="text" name="libConclArt" id="libConclArt" cols="30" rows="2" maxlength="800" placeholder="En conclusion..." disabled><?= $libConclArt ?></textarea>
                         </div>
 
                         <div class="row">
                             <div class="form-group mb-3 col-6">
                                 <label for="numAngl"><b>Angle :</b></label>
-                                <select name="numAngl" class="form-control" id="numAngl">
+                                <select name="numAngl" class="form-control" id="numAngl" disabled>
                                     <option value="">--Choississez un angle--</option>
                                     <?php foreach ($perpectives as $perpective) : ?>
                                         <option value="<?= $perpective->numAngl ?>" <?= ($perpective->numAngl === $selectedAngl) ? 'selected' : '' ?>><?= $perpective->libAngl ?></option>
@@ -216,7 +158,7 @@ $thematics = $thematique->get_AllThematiques();
                             </div>
                             <div class="form-group mb-3 col-6">
                                 <label for="numThem"><b>Thématique :</b></label>
-                                <select name="numThem" class="form-control" id="numThem">
+                                <select name="numThem" class="form-control" id="numThem" disabled>
                                     <option value="">--Choississez une thématique--</option>
                                     <?php foreach ($thematics as $thematic) : ?>
                                         <option value="<?= $thematic->numThem ?>" <?= ($thematic->numThem === $selectedThem) ? 'selected' : '' ?>><?= $thematic->libThem ?></option>
@@ -230,6 +172,15 @@ $thematics = $thematique->get_AllThematiques();
                             <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
                         </div>
                     </form>
+
+                    <?php if ($comments) : ?>
+                        <h4>Commentaire<?= (count($comments) > 1) ? 's' : '' ?> à supprimer :</h4>
+                        <ul>
+                            <?php foreach ($comments as $comment) : ?>
+                                <li><b><?= $comment->numSeqCom ?> :</b> <?= $comment->libCom ?></li>
+                            <?php endforeach ?>
+                        </ul>
+                    <?php endif ?>
                 </div>
             </div>
 

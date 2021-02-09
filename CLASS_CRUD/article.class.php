@@ -142,14 +142,14 @@ class ARTICLE
 		}
 	}
 
-	/*function delete($numAngl)
+	function delete($numArt)
 	{
 		global $db;
 		try {
 			$db->beginTransaction();
-			$query = $db->prepare('DELETE FROM article WHERE numAngl=:numAngl');
+			$query = $db->prepare('DELETE FROM article WHERE numArt=:numArt');
 			$query->execute([
-				'numAngl' => $numAngl
+				'numArt' => $numArt
 			]);
 			$db->commit();
 			$query->closeCursor();
@@ -159,5 +159,5 @@ class ARTICLE
 			$query->closeCursor();
 			die('Erreur delete ARTICLE : ' . $e->getMessage());
 		}
-	}*/
+	}
 }	// End of class
