@@ -23,18 +23,45 @@ $thematique = new THEMATIQUE();
 include __DIR__ . '/initArticle.php';
 $error = null;
 
-
 // Controle des saisies du formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!empty($_POST['lib1Lang']) && !empty($_POST['lib2Lang']) && !empty($_POST['numPays'])) {
-        $lib1Lang = ctrlSaisies($_POST['lib1Lang']);
-        $lib2Lang = ctrlSaisies($_POST['lib2Lang']);
-        $numPays = $_POST['numPays'];
+    if (
+        !empty($_POST['libTitrArt']) && !empty($_POST['libChapoArt']) && !empty($_POST['libAccrochArt'])
+        && !empty($_POST['parag1Art']) && !empty($_POST['libSsTitr1Art']) && !empty($_POST['parag2Art'])
+        && !empty($_POST['libSsTitr2Art']) && !empty($_POST['parag3Art']) && !empty($_POST['libConclArt'])
+        && !empty($_POST['urlPhotArt']) && !empty($_POST['numAngl']) && !empty($_POST['numThem'])
+    ) {
+        $dtCreArt = date("Y-m-d H:i:s");
+        $libTitrArt = ctrlSaisies($_POST['libTitrArt']);
+        $libChapoArt = ctrlSaisies($_POST['libChapoArt']);
+        $libAccrochArt = ctrlSaisies($_POST['libAccrochArt']);
+        $parag1Art = ctrlSaisies($_POST['parag1Art']);
+        $libSsTitr1Art = ctrlSaisies($_POST['libSsTitr1Art']);
+        $parag2Art = ctrlSaisies($_POST['parag2Art']);
+        $libSsTitr2Art = ctrlSaisies($_POST['libSsTitr2Art']);
+        $parag3Art = ctrlSaisies($_POST['parag3Art']);
+        $libConclArt = ctrlSaisies($_POST['libConclArt']);
+        $urlPhotArt = ctrlSaisies($_POST['urlPhotArt']);
+        $numAngl = $_POST['numAngl'];
+        $numThem = $_POST['numThem'];
 
-        if (strlen($parag1Art) >= 1000 && strlen($parag2Art) >= 1000 && strlen($parag3Art) >= 1000) {
+        if (strlen($parag1Art) >= 10 && strlen($parag2Art) >= 10 && strlen($parag3Art) >= 10) {
             // Ajout effectif de l'article'
-            $article->create();
-
+            $article->create(
+                $dtCreArt,
+                $libTitrArt,
+                $libChapoArt,
+                $libAccrochArt,
+                $parag1Art,
+                $libSsTitr1Art,
+                $parag2Art,
+                $libSsTitr2Art,
+                $parag3Art,
+                $libConclArt,
+                $urlPhotArt,
+                $numAngl,
+                $numThem
+            );
             header('Location: ./article.php');
         } else {
             $error = 'La longueur minimale des paragraphes est de 1000 caractères';
@@ -46,8 +73,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$angles = $angle->get_AllAngles();
-$thematiques = $thematique->get_AllThematiques();
+$perpectives = $angle->get_AllAngles();
+$thematics = $thematique->get_AllThematiques();
 ?>
 
 <!DOCTYPE html>
@@ -79,48 +106,92 @@ $thematiques = $thematique->get_AllThematiques();
                     <?php endif ?>
 
                     <form class="form" method="post" action="" enctype="multipart/form-data">
+                        <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ?: '' ?>" />
 
-                        <fieldset>
-                            <legend class="legend1">Formulaire Langue...</legend>
-
-                            <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ?: '' ?>" />
-
-                            <div class="form-group mb-3">
-                                <label for="lib1Lang"><b>Nom de la langue :</b></label>
-                                <input class="form-control" type="text" name="lib1Lang" id="lib1Lang" size="80" maxlength="80" value="<?= $lib1Lang ?>" autofocus="autofocus" />
+                        <div class="row">
+                            <div class="form-group mb-3 col-6">
+                                <label for="libTitrArt"><b>Titre de l'article</b></label>
+                                <input class="form-control" type="text" name="libTitrArt" id="libTitrArt" maxlength="100" value="<?= $libTitrArt ?>"  placeholder="Un bon titre putaclic" autofocus="autofocus" />
                             </div>
-
-                            <div class="form-group mb-3">
-                                <label for="lib2Lang"><b>Libellé de la langue :</b></label>
-                                <input class="form-control" type="text" name="lib2Lang" id="lib2Lang" size="80" maxlength="80" value="<?= $lib2Lang ?>" />
+                            <div class="form-group mb-3 col-6">
+                                <label for="urlPhotArt"><b>URL de l'image</b></label>
+                                <input class="form-control" type="url" name="urlPhotArt" id="urlPhotArt" maxlength="100" value="<?= $urlPhotArt ?>" placeholder="https://www.example.com/"/>
                             </div>
+                        </div>
 
-                            <div class="form-group mb-3">
-                                <label for="numPays"><b>Pays :</b></label>
-                                <select name="numPays" class="form-control" id="numPays">
-                                    <option value="">--Choississez un pays--</option>
-                                    <?php foreach ($countries as $country) : ?>
-                                        <option value="<?= $country->numPays ?>"><?= $country->frPays ?></option>
+                        <div class="form-group mb-3">
+                            <label for="libChapoArt"><b>Chapeau</b></label>
+                            <textarea class="form-control" type="text" name="libChapoArt" id="libChapoArt" cols="30" rows="2" maxlength="500" placeholder="Chapeau vert (car je suis plein d'ideés)"><?= $libChapoArt ?></textarea>
+                            <span class="pull-right label label-default" id="count_message" style="background-color: smoke; margin-top: -20px; margin-right: 5px;"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="libAccrochArt"><b>Accroche</b></label>
+                            <input class="form-control" type="text" name="libAccrochArt" id="libAccrochArt" maxlength="100" value="<?= $libAccrochArt ?>" placeholder="Une super accroche" />
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="libSsTitr1Art"><b>Paragraphe 1</b></label>
+                            <input class="form-control" type="text" name="libSsTitr1Art" id="libSsTitr1Art" maxlength="100" value="<?= $libSsTitr1Art ?>" placeholder="Titre 1er article" />
+                            <textarea class="form-control" type="text" name="parag1Art" id="parag1Art" cols="30" rows="3" maxlength="1200" placeholder="Premièrement..."><?= $parag1Art ?></textarea>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="libSsTitr2Art"><b>Paragraphe 2</b></label>
+                            <input class="form-control" type="text" name="libSsTitr2Art" id="libSsTitr2Art" maxlength="100" value="<?= $libSsTitr2Art ?>"  placeholder="Titre 2eme article" />
+                            <textarea class="form-control" type="text" name="parag2Art" id="parag2Art" cols="30" rows="3" maxlength="1200" placeholder="Ensuite..."><?= $parag2Art ?></textarea>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="parag3Art"><b>Paragraphe 3</b></label>
+                            <textarea class="form-control" type="text" name="parag3Art" id="parag3Art" cols="30" rows="3" maxlength="1200" placeholder="Dans ce troisième paragraphe..."><?= $parag3Art ?></textarea>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="libConclArt"><b>Conclusion</b></label>
+                            <textarea class="form-control" type="text" name="libConclArt" id="libConclArt" cols="30" rows="2" maxlength="800" placeholder="En conclusion..."><?= $libConclArt ?></textarea>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group mb-3 col-6">
+                                <label for="numAngl"><b>Angle :</b></label>
+                                <select name="numAngl" class="form-control" id="numAngl">
+                                    <option value="">--Choississez un angle--</option>
+                                    <?php foreach ($perpectives as $perpective) : ?>
+                                        <option value="<?= $perpective->numAngl ?>"><?= $perpective->libAngl ?></option>
                                     <?php endforeach ?>
                                 </select>
                             </div>
-
-                            <div class="form-group">
-                                <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
-                                <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
+                            <div class="form-group mb-3 col-6">
+                                <label for="numThem"><b>Thématique :</b></label>
+                                <select name="numThem" class="form-control" id="numThem">
+                                    <option value="">--Choississez une thématique--</option>
+                                    <?php foreach ($thematics as $thematic) : ?>
+                                        <option value="<?= $thematic->numThem ?>"><?= $thematic->libThem ?></option>
+                                    <?php endforeach ?>
+                                </select>
                             </div>
-                        </fieldset>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
+                            <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
+                        </div>
                     </form>
                 </div>
             </div>
 
             <?php
-            require_once __DIR__ . '/footerLangue.php';
+            require_once __DIR__ . '/footerArticle.php';
 
             require_once __DIR__ . '/footer.php';
             ?>
         </div>
     </main>
+
+    <!-- SCRIPT -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../../js/char_counter.js"></script>
 </body>
 
 </html>

@@ -63,11 +63,11 @@ class ARTICLE
 	) {
 		global $db;
 		require_once __DIR__ . '/getNextNumAngl.php';
-		$numAngl = getNextNumAngl($numLang);
+		//$numAngl = getNextNumAngl($numLang);
 		try {
 			$db->beginTransaction();
 			$query = $db->prepare(
-				'INSERT INTO blogart21 (dtCreArt, libTitrArt, libChapoArt, libAccrochArt, parag1Art, 
+				'INSERT INTO article (dtCreArt, libTitrArt, libChapoArt, libAccrochArt, parag1Art, 
 				libSsTitr1Art, parag2Art, libSsTitr2Art, parag3Art, libConclArt, urlPhotArt, numAngl, numThem)
 				VALUES (:dtCreArt, :libTitrArt, :libChapoArt, :libAccrochArt, :parag1Art, :libSsTitr1Art, 
 				:parag2Art, :libSsTitr2Art, :parag3Art, :libConclArt, :urlPhotArt, :numAngl, :numThem)'
