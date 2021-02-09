@@ -3,7 +3,7 @@
 //
 //  CRUD ARTICLE (PDO) - Code Modifié - 23 Janvier 2021
 //
-//  Script  : createArticle.php  (ETUD)   -   BLOGART21
+//  Script  : updateArticle.php  (ETUD)   -   BLOGART21
 //
 ///////////////////////////////////////////////////////////////
 
@@ -24,52 +24,68 @@ include __DIR__ . '/initArticle.php';
 $error = null;
 
 // Controle des saisies du formulaire
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (
-        !empty($_POST['libTitrArt']) && !empty($_POST['libChapoArt']) && !empty($_POST['libAccrochArt'])
-        && !empty($_POST['parag1Art']) && !empty($_POST['libSsTitr1Art']) && !empty($_POST['parag2Art'])
-        && !empty($_POST['libSsTitr2Art']) && !empty($_POST['parag3Art']) && !empty($_POST['libConclArt'])
-        && !empty($_POST['urlPhotArt']) && !empty($_POST['numAngl']) && !empty($_POST['numThem'])
-    ) {
-        $dtCreArt = date("Y-m-d H:i:s");
-        $libTitrArt = $_POST['libTitrArt'];
-        $libChapoArt = $_POST['libChapoArt'];
-        $libAccrochArt = $_POST['libAccrochArt'];
-        $parag1Art = $_POST['parag1Art'];
-        $libSsTitr1Art = $_POST['libSsTitr1Art'];
-        $parag2Art = $_POST['parag2Art'];
-        $libSsTitr2Art = $_POST['libSsTitr2Art'];
-        $parag3Art = $_POST['parag3Art'];
-        $libConclArt = $_POST['libConclArt'];
-        $urlPhotArt = $_POST['urlPhotArt'];
-        $numAngl = $_POST['numAngl'];
-        $numThem = $_POST['numThem'];
+if (isset($_GET['id'])) {
+    $result = $article->get_1Article($_GET['id']);
+    $libTitrArt = ctrlSaisies($result->libTitrArt);
+    $libChapoArt = ctrlSaisies($result->libChapoArt);
+    $libAccrochArt = ctrlSaisies($result->libAccrochArt);
+    $parag1Art = ctrlSaisies($result->parag1Art);
+    $libSsTitr1Art = ctrlSaisies($result->libSsTitr1Art);
+    $parag2Art = ctrlSaisies($result->parag2Art);
+    $libSsTitr2Art = ctrlSaisies($result->libSsTitr2Art);
+    $parag3Art = ctrlSaisies($result->parag3Art);
+    $libConclArt = ctrlSaisies($result->libConclArt);
+    $urlPhotArt = ctrlSaisies($result->urlPhotArt);
+    $selectedAngl = ctrlSaisies($result->numAngl);
+    $selectedThem = ctrlSaisies($result->numThem);
 
-        if (strlen($parag1Art) >= 1000 && strlen($parag2Art) >= 1000 && strlen($parag3Art) >= 1000) {
-            // Ajout effectif de l'article'
-            $article->create(
-                $dtCreArt,
-                $libTitrArt,
-                $libChapoArt,
-                $libAccrochArt,
-                $parag1Art,
-                $libSsTitr1Art,
-                $parag2Art,
-                $libSsTitr2Art,
-                $parag3Art,
-                $libConclArt,
-                $urlPhotArt,
-                $numAngl,
-                $numThem
-            );
-            header('Location: ./article.php');
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (
+            !empty($_POST['libTitrArt']) && !empty($_POST['libChapoArt']) && !empty($_POST['libAccrochArt'])
+            && !empty($_POST['parag1Art']) && !empty($_POST['libSsTitr1Art']) && !empty($_POST['parag2Art'])
+            && !empty($_POST['libSsTitr2Art']) && !empty($_POST['parag3Art']) && !empty($_POST['libConclArt'])
+            && !empty($_POST['urlPhotArt']) && !empty($_POST['numAngl']) && !empty($_POST['numThem'])
+        ) {
+            $numArt = ctrlSaisies($_GET['id']);
+            $libTitrArt = $_POST['libTitrArt'];
+            $libChapoArt = $_POST['libChapoArt'];
+            $libAccrochArt = $_POST['libAccrochArt'];
+            $parag1Art = $_POST['parag1Art'];
+            $libSsTitr1Art = $_POST['libSsTitr1Art'];
+            $parag2Art = $_POST['parag2Art'];
+            $libSsTitr2Art = $_POST['libSsTitr2Art'];
+            $parag3Art = $_POST['parag3Art'];
+            $libConclArt = $_POST['libConclArt'];
+            $urlPhotArt = $_POST['urlPhotArt'];
+            $numAngl = $_POST['numAngl'];
+            $numThem = $_POST['numThem'];
+
+            if (strlen($parag1Art) >= 10 && strlen($parag2Art) >= 10 && strlen($parag3Art) >= 10) {
+                // Modification effective de l'article'
+                $article->update(
+                    $numArt,
+                    $libTitrArt,
+                    $libChapoArt,
+                    $libAccrochArt,
+                    $parag1Art,
+                    $libSsTitr1Art,
+                    $parag2Art,
+                    $libSsTitr2Art,
+                    $parag3Art,
+                    $libConclArt,
+                    $urlPhotArt,
+                    $numAngl,
+                    $numThem
+                );
+                header('Location: ./article.php');
+            } else {
+                $error = 'La longueur minimale des paragraphes est de 1000 caractères';
+            }
+        } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
+            header('Location: ./updateArticle.php?id=' . $_GET['id']);
         } else {
-            $error = 'La longueur minimale des paragraphes est de 1000 caractères';
+            $error = 'Merci de renseigner tous les champs du formulaire.';
         }
-    } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
-        header('Location: ./createArticle.php');
-    } else {
-        $error = 'Merci de renseigner tous les champs du formulaire.';
     }
 }
 
@@ -111,11 +127,11 @@ $thematics = $thematique->get_AllThematiques();
                         <div class="row">
                             <div class="form-group mb-3 col-6">
                                 <label for="libTitrArt"><b>Titre de l'article</b></label>
-                                <input class="form-control" type="text" name="libTitrArt" id="libTitrArt" maxlength="100" value="<?= $libTitrArt ?>"  placeholder="Un bon titre putaclic" autofocus="autofocus" />
+                                <input class="form-control" type="text" name="libTitrArt" id="libTitrArt" maxlength="100" value="<?= $libTitrArt ?>" placeholder="Un bon titre putaclic" autofocus="autofocus" />
                             </div>
                             <div class="form-group mb-3 col-6">
                                 <label for="urlPhotArt"><b>URL de l'image</b></label>
-                                <input class="form-control" type="url" name="urlPhotArt" id="urlPhotArt" maxlength="100" value="<?= $urlPhotArt ?>" placeholder="https://www.example.com/"/>
+                                <input class="form-control" type="url" name="urlPhotArt" id="urlPhotArt" maxlength="100" value="<?= $urlPhotArt ?>" placeholder="https://www.example.com/" />
                             </div>
                         </div>
 
@@ -138,7 +154,7 @@ $thematics = $thematique->get_AllThematiques();
 
                         <div class="form-group mb-3">
                             <label for="libSsTitr2Art"><b>Paragraphe 2</b></label>
-                            <input class="form-control" type="text" name="libSsTitr2Art" id="libSsTitr2Art" maxlength="100" value="<?= $libSsTitr2Art ?>"  placeholder="Titre 2eme article" />
+                            <input class="form-control" type="text" name="libSsTitr2Art" id="libSsTitr2Art" maxlength="100" value="<?= $libSsTitr2Art ?>" placeholder="Titre 2eme article" />
                             <textarea class="form-control" type="text" name="parag2Art" id="parag2Art" cols="30" rows="3" maxlength="1200" placeholder="Ensuite..."><?= $parag2Art ?></textarea>
                         </div>
 
@@ -158,7 +174,7 @@ $thematics = $thematique->get_AllThematiques();
                                 <select name="numAngl" class="form-control" id="numAngl">
                                     <option value="">--Choississez un angle--</option>
                                     <?php foreach ($perpectives as $perpective) : ?>
-                                        <option value="<?= $perpective->numAngl ?>"><?= $perpective->libAngl ?></option>
+                                        <option value="<?= $perpective->numAngl ?>" <?= ($perpective->numAngl === $selectedAngl) ? 'selected' : '' ?>><?= $perpective->libAngl ?></option>
                                     <?php endforeach ?>
                                 </select>
                             </div>
@@ -167,7 +183,7 @@ $thematics = $thematique->get_AllThematiques();
                                 <select name="numThem" class="form-control" id="numThem">
                                     <option value="">--Choississez une thématique--</option>
                                     <?php foreach ($thematics as $thematic) : ?>
-                                        <option value="<?= $thematic->numThem ?>"><?= $thematic->libThem ?></option>
+                                        <option value="<?= $thematic->numThem ?>" <?= ($thematic->numThem === $selectedThem) ? 'selected' : '' ?>><?= $thematic->libThem ?></option>
                                     <?php endforeach ?>
                                 </select>
                             </div>

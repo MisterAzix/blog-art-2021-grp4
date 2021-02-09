@@ -1,5 +1,5 @@
 let text_max = 200;
-$('#count_message').html('0 / ' + text_max);
+$('#count_message').html($('textarea').val().length + ' / ' + text_max);
 
 $('textarea').keyup(function () {
     let text_length = $('textarea').val().length;

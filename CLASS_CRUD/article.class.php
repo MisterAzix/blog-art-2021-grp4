@@ -96,15 +96,42 @@ class ARTICLE
 		}
 	}
 
-	/*function update($numAngl, $libAngl)
-	{
+	function update(
+		$numArt,
+		$libTitrArt,
+		$libChapoArt,
+		$libAccrochArt,
+		$parag1Art,
+		$libSsTitr1Art,
+		$parag2Art,
+		$libSsTitr2Art,
+		$parag3Art,
+		$libConclArt,
+		$urlPhotArt,
+		$numAngl,
+		$numThem
+	) {
 		global $db;
 		try {
 			$db->beginTransaction();
-			$query = $db->prepare('UPDATE article SET libAngl = :libAngl WHERE numAngl = :numAngl');
+			$query = $db->prepare('UPDATE article SET libTitrArt = :libTitrArt, libChapoArt = :libChapoArt, 
+			libAccrochArt = :libAccrochArt, parag1Art = :parag1Art, libSsTitr1Art = :libSsTitr1Art, parag2Art = :parag2Art, 
+			libSsTitr2Art = :libSsTitr2Art, parag3Art = :parag3Art, libConclArt = :libConclArt, urlPhotArt = :urlPhotArt, 
+			numAngl = :numAngl, numThem = :numThem WHERE numArt = :numArt');
 			$query->execute([
+				'numArt' => $numArt,
+				'libTitrArt' => $libTitrArt,
+				'libChapoArt' => $libChapoArt,
+				'libAccrochArt' => $libAccrochArt,
+				'parag1Art' => $parag1Art,
+				'libSsTitr1Art' => $libSsTitr1Art,
+				'parag2Art' => $parag2Art,
+				'libSsTitr2Art' => $libSsTitr2Art,
+				'parag3Art' => $parag3Art,
+				'libConclArt' => $libConclArt,
+				'urlPhotArt' => $urlPhotArt,
 				'numAngl' => $numAngl,
-				'libAngl' => $libAngl
+				'numThem' => $numThem
 			]);
 			$db->commit();
 			$query->closeCursor();
@@ -115,7 +142,7 @@ class ARTICLE
 		}
 	}
 
-	function delete($numAngl)
+	/*function delete($numAngl)
 	{
 		global $db;
 		try {

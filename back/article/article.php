@@ -58,8 +58,8 @@ $all = $article->get_AllArticles();
 
                         <p><?= $row->libConclArt ?></p>
 
-                        <a href="./updateAngle.php?id=<?= $row->numArt ?>"><i>Modifier</i></a>
-                        <a href="./deleteAngle.php?id=<?= $row->numArt ?>"><i>Supprimer</i></a>
+                        <a href="./updateArticle.php?id=<?= $row->numArt ?>"><i>Modifier</i></a>
+                        <a href="./deleteArticle.php?id=<?= $row->numArt ?>"><i>Supprimer</i></a>
                     </div>
                     <div class="col-4">
                         <img src="../../upload/<?= $row->urlPhotArt ?>" alt="">
