@@ -22,6 +22,38 @@ $thematique = new THEMATIQUE();
 // Init variables form
 include __DIR__ . '/initArticle.php';
 $error = null;
+$fileName = null;
+$saved = null;
+
+//Récupérer et sauvegarde de l'image
+if (isset($_FILES['urlPhotArt'])) {
+    $maxSize = 3 * 1000 * 1000; //3Mo
+    $validExt = array('.jpg', '.jpeg', '.gif', '.png');
+
+    if ($_FILES['urlPhotArt']['error'] <= 0) {
+        $fileSize = $_FILES['urlPhotArt']['size'];
+
+        if ($fileSize < $maxSize) {
+            $fileName = $_FILES['urlPhotArt']['name'];
+            $fileExt = '.' . strtolower(substr(strrchr($fileName, '.'), 1));
+
+            if (in_array($fileExt, $validExt)) {
+                $tmpName = $_FILES['urlPhotArt']['tmp_name'];
+                $uniqueName = md5(uniqid(rand(), true));
+                $fileName = '../../upload/' . $uniqueName . $fileExt;
+                $result = move_uploaded_file($tmpName, $fileName);
+
+                $saved = $result ? ($uniqueName . $fileExt) : null;
+            } else {
+                $error = 'Le fichier selectionné n\'est pas une image !';
+            }
+        } else {
+            $error = 'Le fichier est trop volumineux!';
+        }
+    } else {
+        $error = 'Erreur durant le transfert !';
+    }
+}
 
 // Controle des saisies du formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -29,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         !empty($_POST['libTitrArt']) && !empty($_POST['libChapoArt']) && !empty($_POST['libAccrochArt'])
         && !empty($_POST['parag1Art']) && !empty($_POST['libSsTitr1Art']) && !empty($_POST['parag2Art'])
         && !empty($_POST['libSsTitr2Art']) && !empty($_POST['parag3Art']) && !empty($_POST['libConclArt'])
-        && !empty($_POST['urlPhotArt']) && !empty($_POST['numAngl']) && !empty($_POST['numThem'])
+        /*&& !empty($_POST['urlPhotArt'])*/ && !empty($_POST['numAngl']) && !empty($_POST['numThem'])
     ) {
         $dtCreArt = date("Y-m-d H:i:s");
         $libTitrArt = $_POST['libTitrArt'];
@@ -41,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $libSsTitr2Art = $_POST['libSsTitr2Art'];
         $parag3Art = $_POST['parag3Art'];
         $libConclArt = $_POST['libConclArt'];
-        $urlPhotArt = $_POST['urlPhotArt'];
+        $urlPhotArt = $saved;
         $numAngl = $_POST['numAngl'];
         $numThem = $_POST['numThem'];
 
@@ -110,45 +142,45 @@ $thematics = $thematique->get_AllThematiques();
 
                         <div class="row">
                             <div class="form-group mb-3 col-6">
-                                <label for="libTitrArt"><b>Titre de l'article</b></label>
-                                <input class="form-control" type="text" name="libTitrArt" id="libTitrArt" maxlength="100" value="<?= $libTitrArt ?>"  placeholder="Un bon titre putaclic" autofocus="autofocus" />
+                                <label for="libTitrArt"><b>Titre de l'article :</b></label>
+                                <input class="form-control" type="text" name="libTitrArt" id="libTitrArt" maxlength="100" value="<?= $libTitrArt ?>" placeholder="Un bon titre putaclic" autofocus="autofocus" />
                             </div>
                             <div class="form-group mb-3 col-6">
-                                <label for="urlPhotArt"><b>URL de l'image</b></label>
-                                <input class="form-control" type="url" name="urlPhotArt" id="urlPhotArt" maxlength="100" value="<?= $urlPhotArt ?>" placeholder="https://www.example.com/"/>
+                                <label for="urlPhotArt"><b>Image :</b></label>
+                                <input type="file" class="form-control" name="urlPhotArt">
                             </div>
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="libChapoArt"><b>Chapeau</b></label>
+                            <label for="libChapoArt"><b>Chapeau :</b></label>
                             <textarea class="form-control" type="text" name="libChapoArt" id="libChapoArt" cols="30" rows="2" maxlength="500" placeholder="Chapeau vert (car je suis plein d'ideés)"><?= $libChapoArt ?></textarea>
                             <span class="pull-right label label-default" id="count_message" style="background-color: smoke; margin-top: -20px; margin-right: 5px;"></span>
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="libAccrochArt"><b>Accroche</b></label>
+                            <label for="libAccrochArt"><b>Accroche :</b></label>
                             <input class="form-control" type="text" name="libAccrochArt" id="libAccrochArt" maxlength="100" value="<?= $libAccrochArt ?>" placeholder="Une super accroche" />
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="libSsTitr1Art"><b>Paragraphe 1</b></label>
+                            <label for="libSsTitr1Art"><b>Paragraphe 1 :</b></label>
                             <input class="form-control" type="text" name="libSsTitr1Art" id="libSsTitr1Art" maxlength="100" value="<?= $libSsTitr1Art ?>" placeholder="Titre 1er article" />
                             <textarea class="form-control" type="text" name="parag1Art" id="parag1Art" cols="30" rows="3" maxlength="1200" placeholder="Premièrement..."><?= $parag1Art ?></textarea>
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="libSsTitr2Art"><b>Paragraphe 2</b></label>
-                            <input class="form-control" type="text" name="libSsTitr2Art" id="libSsTitr2Art" maxlength="100" value="<?= $libSsTitr2Art ?>"  placeholder="Titre 2eme article" />
+                            <label for="libSsTitr2Art"><b>Paragraphe 2 :</b></label>
+                            <input class="form-control" type="text" name="libSsTitr2Art" id="libSsTitr2Art" maxlength="100" value="<?= $libSsTitr2Art ?>" placeholder="Titre 2eme article" />
                             <textarea class="form-control" type="text" name="parag2Art" id="parag2Art" cols="30" rows="3" maxlength="1200" placeholder="Ensuite..."><?= $parag2Art ?></textarea>
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="parag3Art"><b>Paragraphe 3</b></label>
+                            <label for="parag3Art"><b>Paragraphe 3 :</b></label>
                             <textarea class="form-control" type="text" name="parag3Art" id="parag3Art" cols="30" rows="3" maxlength="1200" placeholder="Dans ce troisième paragraphe..."><?= $parag3Art ?></textarea>
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="libConclArt"><b>Conclusion</b></label>
+                            <label for="libConclArt"><b>Conclusion :</b></label>
                             <textarea class="form-control" type="text" name="libConclArt" id="libConclArt" cols="30" rows="2" maxlength="800" placeholder="En conclusion..."><?= $libConclArt ?></textarea>
                         </div>
 

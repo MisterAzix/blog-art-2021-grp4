@@ -62,7 +62,7 @@ $all = $article->get_AllArticles();
                         <a href="./deleteArticle.php?id=<?= $row->numArt ?>"><i>Supprimer</i></a>
                     </div>
                     <div class="col-4">
-                        <img src="../../upload/<?= $row->urlPhotArt ?>" alt="">
+                        <img class="img-fluid" src="../../upload/<?= $row->urlPhotArt ?>" alt="">
                     </div>
                 </div>
 

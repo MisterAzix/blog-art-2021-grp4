@@ -22,6 +22,38 @@ $thematique = new THEMATIQUE();
 // Init variables form
 include __DIR__ . '/initArticle.php';
 $error = null;
+$fileName = null;
+$saved = null;
+
+//Récupérer et sauvegarde de l'image
+if (isset($_FILES['urlPhotArt'])) {
+    $maxSize = 3 * 1000 * 1000; //3Mo
+    $validExt = array('.jpg', '.jpeg', '.gif', '.png');
+
+    if ($_FILES['urlPhotArt']['error'] <= 0) {
+        $fileSize = $_FILES['urlPhotArt']['size'];
+
+        if ($fileSize < $maxSize) {
+            $fileName = $_FILES['urlPhotArt']['name'];
+            $fileExt = '.' . strtolower(substr(strrchr($fileName, '.'), 1));
+
+            if (in_array($fileExt, $validExt)) {
+                $tmpName = $_FILES['urlPhotArt']['tmp_name'];
+                $uniqueName = md5(uniqid(rand(), true));
+                $fileName = '../../upload/' . $uniqueName . $fileExt;
+                $result = move_uploaded_file($tmpName, $fileName);
+
+                $saved = $result ? ($uniqueName . $fileExt) : null;
+            } else {
+                $error = 'Le fichier selectionné n\'est pas une image !';
+            }
+        } else {
+            $error = 'Le fichier est trop volumineux!';
+        }
+    } else {
+        $error = 'Erreur durant le transfert !';
+    }
+}
 
 // Controle des saisies du formulaire
 if (isset($_GET['id'])) {
@@ -44,7 +76,7 @@ if (isset($_GET['id'])) {
             !empty($_POST['libTitrArt']) && !empty($_POST['libChapoArt']) && !empty($_POST['libAccrochArt'])
             && !empty($_POST['parag1Art']) && !empty($_POST['libSsTitr1Art']) && !empty($_POST['parag2Art'])
             && !empty($_POST['libSsTitr2Art']) && !empty($_POST['parag3Art']) && !empty($_POST['libConclArt'])
-            && !empty($_POST['urlPhotArt']) && !empty($_POST['numAngl']) && !empty($_POST['numThem'])
+            /*&& !empty($_POST['urlPhotArt'])*/ && !empty($_POST['numAngl']) && !empty($_POST['numThem'])
         ) {
             $numArt = ctrlSaisies($_GET['id']);
             $libTitrArt = $_POST['libTitrArt'];
@@ -56,7 +88,7 @@ if (isset($_GET['id'])) {
             $libSsTitr2Art = $_POST['libSsTitr2Art'];
             $parag3Art = $_POST['parag3Art'];
             $libConclArt = $_POST['libConclArt'];
-            $urlPhotArt = $_POST['urlPhotArt'];
+            $urlPhotArt = $saved ?: $urlPhotArt;
             $numAngl = $_POST['numAngl'];
             $numThem = $_POST['numThem'];
 
@@ -129,9 +161,13 @@ $thematics = $thematique->get_AllThematiques();
                                 <label for="libTitrArt"><b>Titre de l'article</b></label>
                                 <input class="form-control" type="text" name="libTitrArt" id="libTitrArt" maxlength="100" value="<?= $libTitrArt ?>" placeholder="Un bon titre putaclic" autofocus="autofocus" />
                             </div>
-                            <div class="form-group mb-3 col-6">
+                            <!-- <div class="form-group mb-3 col-6">
                                 <label for="urlPhotArt"><b>URL de l'image</b></label>
-                                <input class="form-control" type="url" name="urlPhotArt" id="urlPhotArt" maxlength="100" value="<?= $urlPhotArt ?>" placeholder="https://www.example.com/" />
+                                <input class="form-control" type="url" name="urlPhotArt" id="urlPhotArt" maxlength="100" value="<?= $urlPhotArt ?>" placeholder="https://www.example.com/"/>
+                            </div> -->
+                            <div class="form-group mb-3 col-6">
+                                <label for="urlPhotArt"><b>Image :</b></label>
+                                <input type="file" class="form-control" name="urlPhotArt">
                             </div>
                         </div>
 
