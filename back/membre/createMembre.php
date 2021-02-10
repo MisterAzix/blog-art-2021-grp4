@@ -19,44 +19,53 @@ $membre = new MEMBRE();
 include __DIR__ . '/initMembre.php';
 $error = null;
 
+$config = file_get_contents('../../config.json');
+$configData = json_decode($config);
 
 // Controle des saisies du formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    print_r(1);
-    if (
-        !empty($_POST['prenomMemb']) && !empty($_POST['nomMemb']) && !empty($_POST['pseudoMemb'])
-        && !empty($_POST['email1Memb']) && !empty($_POST['pass1Memb']) && !empty($_POST['pass2Memb'])
-    ) {
-        $prenomMemb = ctrlSaisies($_POST['prenomMemb']);
-        $nomMemb = ctrlSaisies($_POST['nomMemb']);
-        $pseudoMemb = ctrlSaisies($_POST['pseudoMemb']);
-        $eMailMemb = ctrlSaisies($_POST['email1Memb']);
-        $pass1Memb = ctrlSaisies($_POST['pass1Memb']);
-        $pass2Memb = ctrlSaisies($_POST['pass2Memb']);
-        $passMemb = passConfirm($pass1Memb, $pass2Memb);
+    if (!empty($_POST['g-recaptcha-response'])) {
+        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $configData->CAPTCHA_SECRET_KEY . '&response=' . $_POST['g-recaptcha-response']);
+        $responseData = json_decode($verifyResponse);
 
-        print_r(2);
+        if ($responseData->success) {
+            if (
+                !empty($_POST['prenomMemb']) && !empty($_POST['nomMemb']) && !empty($_POST['pseudoMemb'])
+                && !empty($_POST['email1Memb']) && !empty($_POST['pass1Memb']) && !empty($_POST['pass2Memb'])
+            ) {
+                $prenomMemb = ctrlSaisies($_POST['prenomMemb']);
+                $nomMemb = ctrlSaisies($_POST['nomMemb']);
+                $pseudoMemb = ctrlSaisies($_POST['pseudoMemb']);
+                $eMailMemb = ctrlSaisies($_POST['email1Memb']);
+                $pass1Memb = ctrlSaisies($_POST['pass1Memb']);
+                $pass2Memb = ctrlSaisies($_POST['pass2Memb']);
+                $passMemb = passConfirm($pass1Memb, $pass2Memb);
 
-        if (strlen($prenomMemb) >= 2 && strlen($nomMemb) >= 2 && strlen($pseudoMemb) >= 2) {
-            if (passCheck($pass1Memb)) {
-                if ($passMemb) {
-                    // Ajout effectif d'un membre
-                    $membre->create($prenomMemb, $nomMemb, $pseudoMemb, $eMailMemb, $passMemb);
-                    header('Location: ./membre.php');
+                if (strlen($prenomMemb) >= 2 && strlen($nomMemb) >= 2 && strlen($pseudoMemb) >= 2) {
+                    if (passCheck($pass1Memb)) {
+                        if ($passMemb) {
+                            // Ajout effectif d'un membre
+                            $membre->create($prenomMemb, $nomMemb, $pseudoMemb, $eMailMemb, $passMemb);
+                            header('Location: ./membre.php');
+                        } else {
+                            $error = 'La confirmation du mot de passe est différente !';
+                        }
+                    } else {
+                        $error = 'Le mot de passe doit contenir entre 8 et 64 caractère, au moins une minuscule, une majuscule et un nombre !';
+                    }
                 } else {
-                    $error = 'La confirmation du mot de passe est différente !';
+                    $error = "La longueur minimale du prénom, du nom ou du pseudo est de 2 caractères !";
                 }
+            } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
+                header('Location: ./createMembre.php');
             } else {
-                $error = 'Le mot de passe doit contenir entre 8 et 64 caractère, au moins une minuscule, une majuscule et un nombre !';
+                $error = 'Merci de renseigner tous les champs du formulaire.';
             }
         } else {
-            $error = "La longueur minimale du prénom, du nom ou du pseudo est de 2 caractères !";
+            $error = "Captcha invalide !";
         }
-    } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
-        print_r(42);
-        header('Location: ./createMembre.php');
     } else {
-        $error = 'Merci de renseigner tous les champs du formulaire.';
+        $error = "Captcha invalide !";
     }
 }
 
@@ -92,6 +101,9 @@ function passConfirm(string $pass1Memb, string $pass2Memb)
     <meta name="description" content="" />
     <meta name="author" content="" />
 
+    <!-- SCRIPT -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -110,9 +122,9 @@ function passConfirm(string $pass1Memb, string $pass2Memb)
                     <?php endif ?>
 
                     <form class="form" method="post" action="" enctype="multipart/form-data">
-
                         <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ?: '' ?>" />
 
+                        <!-- INPUTS -->
                         <div class="row">
                             <div class="form-group mb-3 col-6">
                                 <label for="prenomMemb"><b>Prénom :</b></label>
@@ -149,11 +161,16 @@ function passConfirm(string $pass1Memb, string $pass2Memb)
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
-                            <input type="submit" value="S'inscrire" name="Submit" class="btn btn-success" />
+                        <!-- CAPTCHA -->
+                        <div class="d-flex justify-content-center">
+                            <div class="g-recaptcha" data-sitekey="<?= $configData->CAPTCHA_SITE_KEY ?>"></div>
                         </div>
-                        </fieldset>
+
+                        <!-- BUTTONS -->
+                        <div class="form-group d-flex justify-content-center">
+                            <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary m-2" />
+                            <input type="submit" value="S'inscrire" name="Submit" class="btn btn-success m-2" />
+                        </div>
                     </form>
                 </div>
             </div>
