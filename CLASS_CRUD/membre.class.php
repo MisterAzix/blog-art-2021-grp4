@@ -69,16 +69,18 @@ class MEMBRE
 		}
 	}
 
-	/*function update($numMemb, $lib1Lang, $lib2Lang)
+	function update($prenomMemb, $nomMemb, $pseudoMemb, $eMailMemb, $passMemb)
 	{
 		global $db;
 		try {
 			$db->beginTransaction();
-			$query = $db->prepare('UPDATE membre SET lib1Lang=:lib1Lang, lib2Lang=:lib2Lang WHERE numMemb=:numMemb');
+			$query = $db->prepare('UPDATE membre SET prenomMemb=:prenomMemb, nomMemb=:nomMemb, pseudoMemb=:pseudoMemb, eMailMemb=:eMailMemb, passMemb=:passMemb WHERE numMemb=:numMemb');
 			$query->execute([
-				'numMemb' => $numMemb,
-				'lib1Lang' => $lib1Lang,
-				'lib2Lang' => $lib2Lang
+				'prenomMemb' => $prenomMemb,
+				'nomMemb' => $nomMemb,
+				'pseudoMemb' => $pseudoMemb,
+				'eMailMemb' => $eMailMemb,
+				'passMemb' => $passMemb
 			]);
 			$db->commit();
 			$query->closeCursor();
@@ -107,5 +109,5 @@ class MEMBRE
 			$query->closeCursor();
 			die('Erreur delete MEMBRE : ' . $e->getMessage());
 		}
-	}*/
+	}
 }	// End of class
