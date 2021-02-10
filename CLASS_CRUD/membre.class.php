@@ -46,18 +46,19 @@ class MEMBRE
 		return $result;
 	}
 
-	/*function create($lib1Lang, $lib2Lang, $numPays)
+	function create($prenomMemb, $nomMemb, $pseudoMemb, $eMailMemb, $passMemb)
 	{
 		global $db;
-		$numLang = getNextNumLang($numPays);
 		try {
 			$db->beginTransaction();
-			$query = $db->prepare('INSERT INTO membre (numLang, lib1Lang, lib2Lang, numPays) VALUES (:numLang, :lib1Lang, :lib2Lang, :numPays)');
+			$query = $db->prepare('INSERT INTO membre (prenomMemb, nomMemb, pseudoMemb, eMailMemb, passMemb, dtCreaMemb) VALUES (:prenomMemb, :nomMemb, :pseudoMemb, :eMailMemb, :passMemb, :dtCreaMemb)');
 			$query->execute([
-				'numLang' => $numLang,
-				'lib1Lang' => $lib1Lang,
-				'lib2Lang' => $lib2Lang,
-				'numPays' => $numPays
+				'prenomMemb' => $prenomMemb,
+				'nomMemb' => $nomMemb,
+				'pseudoMemb' => $pseudoMemb,
+				'eMailMemb' => $eMailMemb,
+				'passMemb' => $passMemb,
+				'dtCreaMemb' => date("Y-m-d H:i:s")
 			]);
 			$db->commit();
 			$query->closeCursor();
@@ -68,7 +69,7 @@ class MEMBRE
 		}
 	}
 
-	function update($numMemb, $lib1Lang, $lib2Lang)
+	/*function update($numMemb, $lib1Lang, $lib2Lang)
 	{
 		global $db;
 		try {
