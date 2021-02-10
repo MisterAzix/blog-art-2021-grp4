@@ -3,7 +3,7 @@
 //
 //  CRUD MEMBRE (PDO) - Code Modifié - 23 Janvier 2021
 //
-//  Script  : createMembre.php  (ETUD)   -   BLOGART21
+//  Script  : updateMembre.php  (ETUD)   -   BLOGART21
 //
 ///////////////////////////////////////////////////////////////
 
@@ -23,71 +23,79 @@ $config = file_get_contents('../../config.json');
 $configData = json_decode($config);
 
 // Controle des saisies du formulaire
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!empty($_POST['g-recaptcha-response'])) {
-        $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $configData->CAPTCHA_SECRET_KEY . '&response=' . $_POST['g-recaptcha-response']);
-        $responseData = json_decode($verifyResponse);
+if (isset($_GET['id'])) {
+    $numMemb = $_GET['id'];
+    $result = $membre->get_1Membre($numMemb);
+    if (!$result) header('Location: ./membre.php');
+    $prenomMemb = $result->prenomMemb;
+    $nomMemb = $result->nomMemb;
+    $pseudoMemb = $result->pseudoMemb;
+    $eMailMemb = $result->eMailMemb;
+    $password = $result->passMemb;
 
-        if ($responseData->success) {
-            if (
-                !empty($_POST['prenomMemb']) && !empty($_POST['nomMemb']) && !empty($_POST['pseudoMemb'])
-                && !empty($_POST['email1Memb']) && !empty($_POST['pass1Memb']) && !empty($_POST['pass2Memb'])
-            ) {
-                $prenomMemb = ctrlSaisies($_POST['prenomMemb']);
-                $nomMemb = ctrlSaisies($_POST['nomMemb']);
-                $pseudoMemb = ctrlSaisies($_POST['pseudoMemb']);
-                $eMailMemb = ctrlSaisies($_POST['email1Memb']);
-                $pass1Memb = ctrlSaisies($_POST['pass1Memb']);
-                $pass2Memb = ctrlSaisies($_POST['pass2Memb']);
-                $passMemb = passConfirm($pass1Memb, $pass2Memb);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (!empty($_POST['g-recaptcha-response'])) {
+            $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $configData->CAPTCHA_SECRET_KEY . '&response=' . $_POST['g-recaptcha-response']);
+            $responseData = json_decode($verifyResponse);
 
-                if (strlen($prenomMemb) >= 2 && strlen($nomMemb) >= 2 && strlen($pseudoMemb) >= 2) {
-                    if (passCheck($pass1Memb)) {
-                        if ($passMemb) {
-                            // Ajout effectif d'un membre
-                            $membre->create($prenomMemb, $nomMemb, $pseudoMemb, $eMailMemb, $passMemb);
-                            header('Location: ./membre.php');
+            if ($responseData->success) {
+                if (
+                    !empty($_POST['prenomMemb']) && !empty($_POST['nomMemb']) && !empty($_POST['pseudoMemb'])
+                    && !empty($_POST['email1Memb']) && !empty($_POST['pass1Memb']) && !empty($_POST['pass2Memb'])
+                ) {
+                    $prenomMemb = ctrlSaisies($_POST['prenomMemb']);
+                    $nomMemb = ctrlSaisies($_POST['nomMemb']);
+                    $pseudoMemb = ctrlSaisies($_POST['pseudoMemb']);
+                    $eMailMemb = ctrlSaisies($_POST['email1Memb']);
+                    $pass1Memb = ctrlSaisies($_POST['pass1Memb']);
+                    $pass2Memb = $_POST['pass2Memb'];
+                    $passMemb = password_hash($pass2Memb, PASSWORD_DEFAULT, ['cost' => 12]);
+
+                    if (strlen($prenomMemb) >= 2 && strlen($nomMemb) >= 2 && strlen($pseudoMemb) >= 2) {
+                        if (passCheck($pass1Memb)) {
+                            if (passConfirm($password, $pass1Memb)) {
+                                // Ajout effectif d'un membre
+                                $membre->update($numMemb, $prenomMemb, $nomMemb, $pseudoMemb, $eMailMemb, $passMemb);
+                                header('Location: ./membre.php');
+                            } else {
+                                $error = 'Mot de passe incorrect !';
+                            }
                         } else {
-                            $error = 'La confirmation du mot de passe est différente !';
+                            $error = 'Le mot de passe doit contenir entre 8 et 64 caractère, au moins une minuscule, une majuscule et un nombre !';
                         }
                     } else {
-                        $error = 'Le mot de passe doit contenir entre 8 et 64 caractère, au moins une minuscule, une majuscule et un nombre !';
+                        $error = "La longueur minimale du prénom, du nom ou du pseudo est de 2 caractères !";
                     }
+                } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
+                    header('Location: ./updateMembre.php?id=' . $_GET['id']);
                 } else {
-                    $error = "La longueur minimale du prénom, du nom ou du pseudo est de 2 caractères !";
+                    $error = 'Merci de renseigner tous les champs du formulaire.';
                 }
-            } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
-                header('Location: ./createMembre.php');
             } else {
-                $error = 'Merci de renseigner tous les champs du formulaire.';
+                $error = "Captcha invalide !";
             }
         } else {
             $error = "Captcha invalide !";
         }
-    } else {
-        $error = "Captcha invalide !";
     }
 }
 
-function passCheck(string $pass1Memb): bool
+function passCheck(string $pass2Memb): bool
 {
-    $uppercase = preg_match('@[A-Z]@', $pass1Memb);
-    $lowercase = preg_match('@[a-z]@', $pass1Memb);
-    $number = preg_match('@[0-9]@', $pass1Memb);
+    $uppercase = preg_match('@[A-Z]@', $pass2Memb);
+    $lowercase = preg_match('@[a-z]@', $pass2Memb);
+    $number = preg_match('@[0-9]@', $pass2Memb);
 
-    if ($uppercase && $lowercase && $number && strlen($pass1Memb) >= 8 && strlen($pass1Memb) <= 64) {
+    if ($uppercase && $lowercase && $number && strlen($pass2Memb) >= 8 && strlen($pass2Memb) <= 64) {
         return true;
     }
     return false;
 }
 
-function passConfirm(string $pass1Memb, string $pass2Memb)
+function passConfirm(string $password, string $pass1Memb): bool
 {
-    $passMemb = null;
-    if ($pass1Memb === $pass2Memb) {
-        $passMemb = password_hash($pass1Memb, PASSWORD_DEFAULT, ['cost' => 12]);
-    }
-    return $passMemb;
+    if (password_verify($pass1Memb, $password)) return true;
+    return false;
 }
 ?>
 
@@ -115,7 +123,7 @@ function passConfirm(string $pass1Memb, string $pass2Memb)
 
             <div class="row d-flex justify-content-center">
                 <div class="col-8">
-                    <h2>Ajout d'un membre</h2>
+                    <h2>Modification d'un membre</h2>
 
                     <?php if ($error) : ?>
                         <div class="alert alert-danger"><?= $error ?: '' ?></div>
@@ -145,18 +153,18 @@ function passConfirm(string $pass1Memb, string $pass2Memb)
 
                             <div class="form-group mb-3 col-6">
                                 <label for="email1Memb"><b>Email :</b></label>
-                                <input class="form-control" type="email" name="email1Memb" maxlength="80" value="<?= $email1Memb ?>" placeholder="john@doe.fr" />
+                                <input class="form-control" type="email" name="email1Memb" maxlength="80" value="<?= $eMailMemb ?>" placeholder="john@doe.fr" />
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="form-group mb-3 col-6">
-                                <label for="pass1Memb"><b>Mot de passe :</b></label>
+                                <label for="pass1Memb"><b>Mot de passe actuel :</b></label>
                                 <input class="form-control" type="password" name="pass1Memb" maxlength="80" value="<?= $pass1Memb ?>" placeholder="••••••••••" />
                             </div>
 
                             <div class="form-group mb-3 col-6">
-                                <label for="pass2Memb"><b>Confirmation Mot de passe :</b></label>
+                                <label for="pass2Memb"><b>Nouveau Mot de passe :</b></label>
                                 <input class="form-control" type="password" name="pass2Memb" maxlength="80" value="<?= $pass2Memb ?>" placeholder="••••••••••" />
                             </div>
                         </div>
@@ -169,7 +177,7 @@ function passConfirm(string $pass1Memb, string $pass2Memb)
                         <!-- BUTTONS -->
                         <div class="form-group d-flex justify-content-center">
                             <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary m-2" />
-                            <input type="submit" value="S'inscrire" name="Submit" class="btn btn-success m-2" />
+                            <input type="submit" value="Modifier" name="Submit" class="btn btn-success m-2" />
                         </div>
                     </form>
                 </div>
