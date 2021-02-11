@@ -8,6 +8,8 @@
 
     <title>L'écopin <?= !empty($page_title) ? "- $page_title" : '' ?></title>
     <meta name="description" content="<?= $page_description ?: "Découvert de nombreux articles sur l'écologie !" ?>">
+
+    <link rel="stylesheet" href="../../assets/css/main.css">
 </head>
 
 <body>
