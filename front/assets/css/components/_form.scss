@@ -1,0 +1,68 @@
+.group {
+    position: relative;
+    margin: 32px;
+    * {
+      box-sizing: border-box;
+    }  
+    .input {
+    font-family: $font-text;
+    color: $black;
+    font-size: 14px;
+    padding-left: 20px;
+    display: block;
+    width: 25%;
+    height: 48px;
+    border: 1px solid #999;
+    border-radius: 8px;
+    background-color: $beige;
+  }
+    label {
+    font-family: $font-text;
+    color: #999;
+    background: none;
+    font-size: 20px;
+    font-weight: 500;
+    position: absolute;
+    pointer-events: none;
+    left: 16px;
+    top: 12px;
+    padding: 0 4px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+  }
+  
+}
+ 
+
+  .input:focus {
+    outline: none;
+  }
+  
+
+  /* active state */
+  .input:focus ~ label,
+  .input:valid ~ label {
+    top: -12px;
+    font-size: 18px;
+    color: $greentxt;
+    background: $beige;
+  }
+  
+  .input:focus,
+  .input:valid {
+    top: -10px;
+    color: $black;
+    border: 1px solid $greentxt;
+  }
+  
+  .input::placeholder {
+    color: #999;
+    opacity: 0;
+    transition: 0.2s ease;
+  }
+  
+  .input:focus::placeholder,
+  .input:valid::placeholder {
+    opacity: 1;
+  }
