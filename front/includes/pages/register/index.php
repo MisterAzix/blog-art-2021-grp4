@@ -17,4 +17,4 @@ require_once '../../commons/header.php';
 
 
 
-<?php require_once '../../commons/fooer.php' ?>
+<?php require_once '../../commons/footer.php' ?>
