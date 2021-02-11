@@ -5,21 +5,35 @@ require_once __DIR__ . '../../CONNECT/database.php';
 
 class USER
 {
-	function get_1User($pseudoUser, $passUser)
+	function get_1User($pseudoUser/*, $passUser*/)
 	{
+		global $db;
+		$query = $db->prepare('SELECT * FROM user WHERE pseudoUser=:pseudoUser');
+		$query->execute([
+			'pseudoUser' => $pseudoUser
+		]);
+		$result = $query->fetch(PDO::FETCH_OBJ);
+		return $result;
 	}
 
 	function get_AllUsers()
 	{
+		global $db;
+		$query = $db->query('SELECT * FROM user');
+		$result = $query->fetchAll(PDO::FETCH_OBJ);
+		return $result;
 	}
 
-	function get_ExistPseudo($pseudoUser)
+	/*function get_ExistPseudo($pseudoUser)
 	{
-	}
-
-	function get_AllUsersByStat()
-	{
-	}
+		global $db;
+		$query = $db->prepare('SELECT * FROM user WHERE pseudoUser=:pseudoUser');
+		$query->execute([
+			'pseudoUser' => $pseudoUser
+		]);
+		$result = $query->fetchAll(PDO::FETCH_OBJ);
+		return $result;
+	}*/
 
 	function get_NbAllUsersByidStat($idStat)
 	{
@@ -37,14 +51,20 @@ class USER
 		global $db;
 		try {
 			$db->beginTransaction();
-
-
-
+			$query = $db->prepare('INSERT INTO user (pseudoUser, passUser, nomUser, prenomUser, emailUser, idStat) VALUES (:pseudoUser, :passUser, :nomUser, :prenomUser, :emailUser, :idStat)');
+			$query->execute([
+				'pseudoUser' => $pseudoUser,
+				'passUser' => $passUser,
+				'nomUser' => $nomUser,
+				'prenomUser' => $prenomUser,
+				'emailUser' => $emailUser,
+				'idStat' => $idStat
+			]);
 			$db->commit();
-			//$request->closeCursor();
+			$query->closeCursor();
 		} catch (PDOException $e) {
 			$db->rollBack();
-			//$request->closeCursor();
+			$query->closeCursor();
 			die('Erreur insert USER : ' . $e->getMessage());
 		}
 	}
@@ -54,14 +74,20 @@ class USER
 		global $db;
 		try {
 			$db->beginTransaction();
-
-
-
+			$query = $db->prepare('UPDATE user SET pseudoUser=:pseudoUser, passUser=:passUser, nomUser=:nomUser, prenomUser=:prenomUser, emailUser=:emailUser, idStat=:idStat  WHERE pseudoUser=:pseudoUser');
+			$query->execute([
+				'pseudoUser' => $pseudoUser,
+				'passUser' => $passUser,
+				'nomUser' => $nomUser,
+				'prenomUser' => $prenomUser,
+				'emailUser' => $emailUser,
+				'idStat' => $idStat
+			]);
 			$db->commit();
-			//$request->closeCursor();
+			$query->closeCursor();
 		} catch (PDOException $e) {
 			$db->rollBack();
-			//$request->closeCursor();
+			$query->closeCursor();
 			die('Erreur update USER : ' . $e->getMessage());
 		}
 	}
@@ -71,13 +97,22 @@ class USER
 		global $db;
 		try {
 			$db->beginTransaction();
-
-
+			$query = $db->prepare('SELECT passUser FROM user WHERE pseudoUser=:pseudoUser');
+			$query->execute([
+				'pseudoUser' => $pseudoUser
+			]);
+			$password = $query->fetch(PDO::FETCH_OBJ)->passUser;
+			if (password_verify($passUser, $password)) {
+				$query = $db->prepare('DELETE FROM user WHERE pseudoUser=:pseudoUser');
+				$query->execute([
+					'pseudoUser' => $pseudoUser
+				]);
+			}
 			$db->commit();
-			//$request->closeCursor();
+			$query->closeCursor();
 		} catch (PDOException $e) {
 			$db->rollBack();
-			//$request->closeCursor();
+			$query->closeCursor();
 			die('Erreur delete USER : ' . $e->getMessage());
 		}
 	}
