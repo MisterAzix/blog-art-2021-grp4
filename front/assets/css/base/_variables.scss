@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+
+@font-face {
+    font-family: "Metropolis Thin";
+    src: url("../../font/Metropolis-Thin.otf") format("truetype");
+}
+
+@font-face {
+    font-family: "Metropolis Extralight";
+    src: url("../../font/Metropolis-ExtraLight.otf") format("truetype");
+}
+
+@font-face {
+    font-family: "Metropolis Regular";
+    src: url("../../font/Metropolis-Regular.otf") format("truetype");
+}
+
+$beige: #FFFBF2;
+$green: linear-gradient(0.95turn, #AAE797, #CCF580);
+$black: #1C1F1B;
+
+$font-title: 'DM Serif Display', serif;
+$font-text-thin: 'Metropolis Thin', sans-serif;
+$font-text-extralight: 'Metropolis Extralight', sans-serif;
+$font-text-regular: 'Metropolis Regular', sans-serif;
+
+$weight-thin: 100;
+$weight-extralight: 200;
+$weight-regular: 400;
