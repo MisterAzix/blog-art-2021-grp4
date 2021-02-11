@@ -5,3 +5,5 @@ config.json
 front/assets/css/main.css
 front/assets/css/main.css.map
 front/includes/work.php
+includes/work.php
+work.php
