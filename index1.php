@@ -37,12 +37,12 @@ require_once __DIR__ . '/util/utilErrOn.php';
 					<a class="list-group-item list-group-item-success" href="./BACK/langue/langue.php"><b>Gestion du CRUD :</b> Langue </a>
 					<a class="list-group-item disabled" href="./BACK/likeart/likeart.php"><b>Gestion du CRUD :</b> Like Article </a>
 					<a class="list-group-item disabled" href="./BACK/likecom/likecom.php"><b>Gestion du CRUD :</b> Like Commentaire </a>
-					<a class="list-group-item list-group-item-info" href="./BACK/membre/membre.php"><b>Gestion du CRUD :</b> Membre </a>
+					<a class="list-group-item list-group-item-success" href="./BACK/membre/membre.php"><b>Gestion du CRUD :</b> Membre </a>
 					<a class="list-group-item list-group-item-success" href="./BACK/motcle/motcle.php"><b>Gestion du CRUD :</b> Mot-clé </a>
 					<a class="list-group-item disabled" href="./BACK/motclearticle/motclearticle.php"><b>Gestion du CRUD :</b> Mot-clé Article </a>
 					<a class="list-group-item list-group-item-success" href="./BACK/statut/statut.php"><b>Gestion du CRUD :</b> Statut</a>
 					<a class="list-group-item list-group-item-success" href="./BACK/thematique/thematique.php"><b>Gestion du CRUD :</b> Thématique </a>
-					<a class="list-group-item disabled" href="./BACK/user/user.php"><b>Gestion du CRUD :</b> User </a>
+					<a class="list-group-item list-group-item-info" href="./BACK/user/user.php"><b>Gestion du CRUD :</b> User </a>
 				</div>
 			</div>
 			<div class="col-4">
