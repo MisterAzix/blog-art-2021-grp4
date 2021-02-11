@@ -60,7 +60,7 @@ $all = $user->get_AllUsers();
                                 <h4> <?= $row->pseudoUser ?> </h4>
                             </td>
                             <td> <?= $row->nomUser ?> </td>
-                            <td> <?= $row->prenomMemb ?> </td>
+                            <td> <?= $row->prenomUser ?> </td>
                             <td> <?= $row->eMailUser ?> </td>
                             <td> <?= $statut->get_1Statut($row->idStat)->libStat ?> </td>
                             <td><a href="./updateUser.php?id=<?= $row->pseudoUser ?>"><i>Modifier</i></a>
