@@ -1,0 +1,27 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 32px;
+    background-color: pink;
+
+    .logo {
+        height: 48px;
+    }
+
+    .icon_recherche {
+        height: 40px;
+    }
+
+    .header-right {
+        display: flex;
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}
