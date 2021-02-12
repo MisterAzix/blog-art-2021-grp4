@@ -1,57 +1,11 @@
-
-#basebutton { 
-  width: 103px;
-  height: 30px;
-  background-color: #B1F091; 
-  cursor: pointer;
-  font-family: $font-text;
-  font-weight: 200;
-  border: none;
-  color: black;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  border-radius: 19px;
-  transition-duration: 0.4s;
-
-}
-
-#basebutton:hover{
-    transform: scale(1.05);
-}
-
-.connexion{
-  width: 103px;
-  height: 30px;
-  border: 2px solid #B1F091;
-  background-color: #FFFBF2;
-  cursor: pointer;
-  font-family: $font-text;
-  font-weight: 200;
-  color: black;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  border-radius: 19px;
-  transition-duration: 0.4s;
-}
-
-.connexion:hover{
-    transform: scale(1.05);
-    border: 2px solid #B1F091;
-    background-color: #B1F091;
-}
-
-.lire{
-    width: 133px;
+button {
+    width: 103px;
     height: 30px;
-    background-color: #B1F091;
-    border: none;
+    background: linear-gradient(to bottom right, #cefa7d, #9fea9c);
     cursor: pointer;
     font-family: $font-text;
     font-weight: 200;
+    border: none;
     color: black;
     text-align: center;
     text-decoration: none;
@@ -59,16 +13,18 @@
     font-size: 14px;
     border-radius: 19px;
     transition-duration: 0.4s;
-}
 
-.lire:hover{
+    &:hover {
         transform: scale(1.05);
-}
+    }
 
-label {
-    font-family: $font-text;
-    font-weight: 600;
-    font-size: 14px;
-    color: black;
-    cursor: pointer;
+    &.connect-button {
+        border: 2px solid #b1f091;
+        background: #fffbf2;
+
+        &:hover {
+            border: 2px solid #b1f091;
+            background: #b1f091;
+        }
+    }
 }
