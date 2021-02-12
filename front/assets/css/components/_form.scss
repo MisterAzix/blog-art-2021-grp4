@@ -1,6 +1,6 @@
 .group {
     position: relative;
-    margin: 32px;
+    margin-bottom: 32px;
     * {
       box-sizing: border-box;
     }  
@@ -20,7 +20,7 @@
     font-family: $font-text;
     color: #999;
     background: none;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
     position: absolute;
     pointer-events: none;
@@ -44,7 +44,7 @@
   .input:focus ~ label,
   .input:valid ~ label {
     top: -12px;
-    font-size: 18px;
+    font-size: 16px;
     color: $greentxt;
     background: $beige;
   }
