@@ -1,7 +1,7 @@
 button {
     width: 104px;
     height: 30px;
-    background: linear-gradient(to bottom right, #cefa7d, #9fea9c);
+    background: linear-gradient(140deg, #cefa7d, #9fea9c);
     cursor: pointer;
     font-family: $font-text;
     font-weight: 200;
@@ -12,11 +12,13 @@ button {
     display: inline-block;
     font-size: 14px;
     border-radius: 19px;
-    transition-duration: 0.4s;
+    transition-duration:0.4s;
     margin: 4px 8px;
 
     &:hover {
         transform: scale(1.05);
+        background: linear-gradient(40deg, #cefa7d, #9fea9c);
+
     }
 
     &.connect-button {
@@ -29,3 +31,6 @@ button {
         }
     }
 }
+
+/* to bottom right 
+transform: background:linear-gradient(2deg);*/
