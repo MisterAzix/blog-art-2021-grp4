@@ -1,10 +1,14 @@
-.login_container{
-    //width: 100%;
+.sign_container{
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     .illustration{
-
+       img{
+           width: 800px;
+           height: auto;
+         }
+        
     }
     .login{
         align-items:flex-start;

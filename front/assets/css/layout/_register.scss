@@ -1,20 +1,42 @@
-.signUp_container{
-    h2{
+.sign_container{
+    padding-right: 200px;
+    .illustration{
+        img{
+            width:800px;
+        }
+    }
+     .register{
+        h2{
+        font-family: $font-title;
+        font-size:56px;
+        color:$black;
+        }
+        .input_container{
+            .info{
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                .input{
+                   // width:0%;
+                }
+                p{
+                    padding:0;
+                    width: 20%;
+                    font-family: $font-text;
+                    color:$black;
+                    font-size:10px;
+                    font-weight:$weight-extralight;
+                }
+            }
+             .input{
+                width:80%;
+            }
+            
+       }
+    }     
+     }
+    
 
-    }
-     .input_container{
-         .info{
-             display: flex;
-             flex-direction: row;
-             p{
-                 font-family: $font-text;
-                 color:$black;
-                 font-size:10px;
-                 font-weight:$weight-extralight;
-             }
-         }
-    }
-}
     
      
     

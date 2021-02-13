@@ -14,9 +14,9 @@ $page_description = '';
 require_once '../../commons/header.php';
 ?>
 
-<div class='login_container'>
+<div class='sign_container'>
     <div class='illustration'>
-        <img src="../../images/Capture_d_écran_2021-02-09_à_15.47.20-removebg.png" alt="loginImage">
+        <img src="../../../assets/images/Capture_d_écran_2021-02-09_à_15.47.20-removebg.png" alt="loginImage">
     </div>
     <div class='login'>
         <h2>Connexion</h2>
