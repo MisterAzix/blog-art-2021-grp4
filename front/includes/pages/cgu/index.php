@@ -16,7 +16,7 @@ require_once '../../commons/header.php';
 
 <!-- WRITE HTML CODE BELOW -->
 
-<div class="cgu_container">
+<div class="cgu_container layout">
 <h1>Mention Légale </h1>
 <h2><span></span>Définitions</h2>
 
@@ -233,4 +233,4 @@ require_once '../../commons/header.php';
 
             
 
-<?php require_once '../../commons/fooer.php' ?>
+<?php require_once '../../commons/footer.php' ?>

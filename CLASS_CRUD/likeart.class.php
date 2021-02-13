@@ -5,19 +5,27 @@ require_once __DIR__ . '../../CONNECT/database.php';
 
 class LIKEART
 {
-	function get_1LikeArt($numArt, $numMemb)
+	function get_1LikeArt($numMemb, $numArt)
 	{
 		global $db;
-		$query = $db->prepare("SELECT * FROM likeart WHERE numArt=:numArt AND numMemb=:numMemb");
+		$query = $db->prepare("SELECT * FROM likeart WHERE numMemb=:numMemb AND numArt=:numArt");
 		$query->execute([
-			'numAngl' => $numArt,
-			'numAngl' => $numMemb
+			'numMemb' => $numMemb,
+			'numArt' => $numArt
 		]);
 		$result = $query->fetch(PDO::FETCH_OBJ);
 		return $result;
 	}
 
-	function get_AllLikesArt($numArt)
+	function get_AllLikesArt()
+	{
+		global $db;
+		$query = $db->query('SELECT * FROM likeart');
+		$result = $query->fetchAll(PDO::FETCH_OBJ);
+		return $result;
+	}
+
+	function get_AllLikesArtByArticle($numArt)
 	{
 		global $db;
 		$query = $db->prepare('SELECT * FROM likeart WHERE numArt = :numArt');
@@ -39,63 +47,22 @@ class LIKEART
 		return ($result);
 	}
 
-	/*function create($libAngl, $numLang)
+	function createOrUpdate($numMemb, $numArt)
 	{
 		global $db;
-		require_once __DIR__ . '/getNextNumAngl.php';
-		$numAngl = getNextNumAngl($numLang);
 		try {
 			$db->beginTransaction();
-			$query = $db->prepare('INSERT INTO likeart (numAngl, libAngl, numLang) VALUES (:numAngl, :libAngl, :numLang)');
+			$query = $db->prepare('INSERT INTO likeart (numMemb, numArt, likeA) VALUES (:numMemb, :numArt, 1) ON DUPLICATE KEY UPDATE likeA = !likeA');
 			$query->execute([
-				'numAngl' => $numAngl,
-				'libAngl' => $libAngl,
-				'numLang' => $numLang
+				'numMemb' => $numMemb,
+				'numArt' => $numArt
 			]);
 			$db->commit();
 			$query->closeCursor();
 		} catch (PDOException $e) {
 			$db->rollBack();
 			$query->closeCursor();
-			die('Erreur insert LIKEART : ' . $e->getMessage());
+			die('Erreur insertOrUpdate LIKEART : ' . $e->getMessage());
 		}
 	}
-
-	function update($numAngl, $libAngl)
-	{
-		global $db;
-		try {
-			$db->beginTransaction();
-			$query = $db->prepare('UPDATE likeart SET libAngl = :libAngl WHERE numAngl = :numAngl');
-			$query->execute([
-				'numAngl' => $numAngl,
-				'libAngl' => $libAngl
-			]);
-			$db->commit();
-			$query->closeCursor();
-		} catch (PDOException $e) {
-			$db->rollBack();
-			$query->closeCursor();
-			die('Erreur update LIKEART : ' . $e->getMessage());
-		}
-	}
-
-	function delete($numAngl)
-	{
-		global $db;
-		try {
-			$db->beginTransaction();
-			$query = $db->prepare('DELETE FROM likeart WHERE numAngl=:numAngl');
-			$query->execute([
-				'numAngl' => $numAngl
-			]);
-			$db->commit();
-			$query->closeCursor();
-			return $query->rowCount();
-		} catch (PDOException $e) {
-			$db->rollBack();
-			$query->closeCursor();
-			die('Erreur delete LIKEART : ' . $e->getMessage());
-		}
-	}*/
 }	// End of class

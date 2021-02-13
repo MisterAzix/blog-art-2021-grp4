@@ -1,0 +1,35 @@
+header {
+    background-color: $beige;
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 32px;
+
+    .logo {
+        height: 48px;
+    }
+
+    .icon_recherche {
+        height: 40px;
+
+    }
+
+    .header-right {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 15%;
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 5%;
+        }
+        .nav_button{
+            margin-bottom: 10%;
+        }
+    }
+}

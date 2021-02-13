@@ -1,11 +1,15 @@
 .sign_container{
-    width: 100%;
+    margin-top:8%;
+    margin-bottom:2%;
+    max-width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     .illustration{
        img{
-           width: 800px;
+           width: 100%;
+           min-width: 400px;
            height: auto;
          }
         
@@ -14,29 +18,36 @@
         align-items:flex-start;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+       
 
         h2{
             font-family: $font-title;
             font-size:56px;
             color:$black;
-
         }
-        .input_container{
-            .input{
-                width:150%;
+            .input_container{
+                .input{
+                    width:150%;
+                }
             }
-        }
-          a{
+                a{
+                    font-family:$font-text;
+                    font-size: 16px;
+                    color:$black;
+                }
+
+            p{
             font-family:$font-text;
             font-size: 16px;
             color:$black;
         }
-
-         p{
-        font-family:$font-text;
-        font-size: 16px;
-        color:$black;
+        .login_button{
+            padding: 20px 40px;
+            border-radius: 40px;
+            font-size: 28px;
+            font-family: $font-text;
+            font-weight: $weight-bold;
+            margin-top: 40px;
         }
     }
 

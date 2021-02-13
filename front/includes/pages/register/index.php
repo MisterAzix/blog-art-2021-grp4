@@ -14,7 +14,7 @@ require_once '../../commons/header.php';
 ?>
 
 <!-- WRITE HTML CODE BELOW -->
-<div class="sign_container">
+<div class="sign_container layout">
     <div class="illustration">
         <img src="../../../assets/images/Capture_d_écran_2021-02-09_à_15.47.20-removebg.png" alt="loginImage">
     </div>
@@ -35,7 +35,7 @@ require_once '../../commons/header.php';
                             <label>Pseudo *</label>
                         </div>
                         <div class="group">
-                            <input class="input" name="etext" type="text" placeholder="Renseigne ton etext" required/>
+                            <input class="input" name="etext" type="text" placeholder="Renseigne ton email" required/>
                             <label>Email *</label>
                         </div>
                         <div class="group info">
@@ -44,17 +44,23 @@ require_once '../../commons/header.php';
                             <p>Le mot de passe doit contenir entre  8 et 64 caractères, des lettres minuscules et majuscules et au moins un caractère spécial.</p>
                         </div>
                     </form>
-                    <div>
+                    <div class="checkbox">
                         <input type="checkbox" id="accepter" name="accepter">
                         <label for="accepter">J'accepte les <a href="../cgu/index.php">conditions générales d'utilisations</a>.</label>
                     </div>
 
-                    <div>
+                    <div class="checkbox">
                         <input type="checkbox" id="newsletter" name="newsletter">
                         <label for="newsletter">J'adhère à la newsletter.</label>
                     </div>
+                    <?php 
+                $buttonTitle='S\'inscrire';
+                $buttonClass='login_button';
+                require '../../components/button.php';
+                ?>
                 </div>
-                <button id="basebutton" href="../register/index.php">s'inscrire</button>
+                    
+               
     </div>
 </div>
 

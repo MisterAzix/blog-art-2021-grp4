@@ -14,7 +14,7 @@ $page_description = '';
 require_once '../../commons/header.php';
 ?>
 
-<div class='sign_container'>
+<div class='sign_container layout'>
     <div class='illustration'>
         <img src="../../../assets/images/Capture_d_écran_2021-02-09_à_15.47.20-removebg.png" alt="loginImage">
     </div>
@@ -33,7 +33,12 @@ require_once '../../commons/header.php';
                 </form>
             </div>
         <a href="">Mot de passe oublié ?</a>
-            <?php require_once '../../components/button.php' ?>
+        
+            <?php 
+             $buttonTitle='Se connecter';
+             $buttonClass='login_button';
+             require '../../components/button.php';
+             ?>
         <p>Pas de compte ? <a href="../../pages/register/index.php">Inscris-toi ! </a> </p> 
     </div>
 </div>

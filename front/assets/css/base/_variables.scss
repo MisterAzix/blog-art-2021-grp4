@@ -2,20 +2,32 @@
 
 @font-face {
     font-family: "Metropolis";
-    src: url("../../../assets/font/Metropolis-Thin.otf") format("truetype");
+    src: url("../font/Metropolis-Thin.otf") format("truetype");
     font-weight: 100;
 }
 
 @font-face {
     font-family: "Metropolis";
-    src: url("../../../assets/font/Metropolis-ExtraLight.otf") format("truetype");
+    src: url("../font/Metropolis-ExtraLight.otf") format("truetype");
     font-weight: 200;
 }
 
 @font-face {
     font-family: "Metropolis";
-    src: url("../../../assets/font/Metropolis-Regular.otf") format("truetype");
+    src: url("../font/Metropolis-Regular.otf") format("truetype");
     font-weight: 400;
+}
+
+@font-face {
+    font-family: "Metropolis";
+    src: url("../font/Metropolis-SemiBold.otf") format("truetype");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "Metropolis";
+    src: url("../font/Metropolis-Bold.otf") format("truetype");
+    font-weight: 700;
 }
 
 $beige: #FFFBF2;
@@ -29,3 +41,5 @@ $font-text: 'Metropolis', sans-serif;
 $weight-thin: 100;
 $weight-extralight: 200;
 $weight-regular: 400;
+$weight-semibold: 600;
+$weight-bold: 700;

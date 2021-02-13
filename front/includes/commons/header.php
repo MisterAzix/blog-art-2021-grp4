@@ -14,6 +14,23 @@
 
 <body>
     <header>
-
+        <img src="../../../assets/images/logo_lecopin.svg" alt="Logo du site avec écrit l'écopins" class="logo">
+        <div class="header-right">
+            <img src="../../../assets/images/search_icon.svg" alt="Icon de recherche" class="icon_recherche">
+            <div class="button-container">
+                <?php 
+                $buttonTitle = "Inscription";
+                $buttonHref = '';
+                $buttonClass ='nav_button';
+                require '../../components/button.php';
+                ?>
+                <?php 
+                $buttonTitle = "Connexion";
+                $buttonHref = '';
+                $buttonClass = 'connect-button';
+                require '../../components/button.php';
+                ?>
+            </div>
+        </div>
     </header>
     <main>

@@ -1,0 +1,33 @@
+footer {
+    padding-top: 16px;
+    background-color: #1C1F1B;
+    padding-bottom: 16px;
+
+    .logos {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin: 0 auto;
+
+        img {
+            height: 32px;
+            margin: 10px;
+        }
+        
+    }
+
+    p{
+        text-align: center;
+        color: $beige;
+        font-family: $font-text;
+        font-weight: $weight-extralight;
+    }
+
+    a {
+        color: $beige;
+
+        &:visited {
+            color: $beige;
+        }
+    }
+}
