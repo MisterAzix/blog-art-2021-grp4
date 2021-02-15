@@ -1,10 +1,12 @@
 .sign_container{
     
      .register{
+        flex-basis: 50%;
         h2{
         font-family: $font-title;
         font-size:56px;
         color:$black;
+        font-weight: $weight-regular;
             width: 100%;
         }
         .input_container{
