@@ -1,0 +1,111 @@
+.article_container{
+    margin-top:50%;
+    display: flex;
+    flex-direction: row;
+    .txt_container{
+        background-color: $beige;
+        width: 50%;
+        .article{
+            .absolute{
+                position: absolute;
+                 .info{
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: center;
+                    p{
+                        font-size: 16px;
+                        font-family: $font-text;
+                        font-weight: $weight-thin;
+                        color: $black;  
+                        transform:rotate(90deg);
+                    }
+                    a{
+                        font-size: 16px;
+                        font-family: $font-text;
+                        font-weight: $weight-thin;
+                        color: $black;  
+                    }
+                    .trait{
+                    border-top: 1px solid #000;
+                    width :15%; 
+                    transform:rotate(90deg);
+                    }
+                }
+            }
+           
+            .text{
+                h2{
+                    font-size: 64px;
+                    font-family: $font-title;
+                    font-weight: $weight-regular;
+                    color: $black;  
+                    line-height: 65px;
+                    margin-bottom: 0;
+                }
+                h3{
+                    font-size: 24px;
+                    font-family: $font-title;
+                    font-weight: $weight-regular;
+                    color: $black;  
+                }
+                p{
+                    font-size: 18px;
+                    font-family: $font-text;
+                    font-weight: $weight-extralight;
+                    color: $black;  
+                    line-height: 30px;
+                }
+                .editor{
+                    font-size: 11px;
+                    font-family: $font-text;
+                    font-weight: $weight-thin;
+                    color: $black;  
+                }
+                
+                .info_bottom{
+                    .comment_button{
+
+                    }
+                }
+            }
+        }
+        hr{
+            width: 50%;
+        }
+        .suggestions{
+            p{
+                font-size: 24px;
+                font-family: $font-title;
+                font-weight: $weight-regular;
+                color: $black;  
+            }
+            .sug_container{
+                display:flex;
+                flex-direction: row;
+                    .suggestion{
+                    img{
+                        width: 286px;
+                        height: 137px;
+                        object-fit: cover;
+                        border-radius: 13px;
+                    }
+                    p{
+                        font-size: 16px;
+                        font-family: $font-title;
+                        font-weight: $weight-regular;
+                        color: $black;
+                        width: 75%;
+                    }
+                }
+            }
+            
+        }
+    }
+    .illustration{
+        width: 50%;
+        height: 100vh;
+    }
+}
+
