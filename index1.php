@@ -54,6 +54,19 @@ require_once __DIR__ . '/util/utilErrOn.php';
 					<li class="list-group-item disabled">CRUD à faire</li>
 					<li class="list-group-item list-group-item-danger">CRUD Supprimé</li>
 				</ul>
+
+				<br>
+
+				<h5>Pages</h5>
+				<div class="list-group">
+					<a class="list-group-item" href="./front/includes/pages/article/">Article</a>
+					<a class="list-group-item" href="./front/includes/pages/cgu/">CGU</a>
+					<a class="list-group-item" href="./front/includes/pages/contact/">Contact</a>
+					<a class="list-group-item" href="./front/includes/pages/home/">Home</a>
+					<a class="list-group-item" href="./front/includes/pages/login/">Login</a>
+					<a class="list-group-item" href="./front/includes/pages/plan/">Plan</a>
+					<a class="list-group-item" href="./front/includes/pages/register/">Register</a>
+				</div>
 			</div>
 		</div>
 		<?php require_once __DIR__ . '/footer.php' ?>
