@@ -15,15 +15,15 @@ require_once '../../commons/header.php';
 ?>
 
 <!-- WRITE HTML CODE BELOW -->
-<div class="article_container layout">
+<div class="article_container ">
     <div class="txt_container">
         <div class="article">
             <div class="absolute">
                 <div class="info">
                     <p>09/02/2021</p>
                     <div class="trait"></div>
-                    <a href=""> <img src="../../../assets/images/Vector-2.png" alt="loginImage"> 56</a>
-                    <a href=""><img src="../../../assets/images/Vector-3.png" alt="loginImage"> 22</a>
+                    <a href=""> <img src="../../../assets/images/Vector-2.png" alt="loginImage">56</a>
+                    <a href=""><img src="../../../assets/images/Vector-3.png" alt="loginImage">22</a>
                 </div>
             </div>
             <div class="text">
@@ -49,10 +49,10 @@ require_once '../../commons/header.php';
                     </p>
                 <div class="info_bottom">
                     <a href=""><img src="../../../assets/images/share-2 1.png" alt="loginImage"></a> 
-                    <a href=""> <img src="../../../assets/images/Vector-2.png" alt="loginImage"> 56</a>
-                    <a href=""><img src="../../../assets/images/Vector-3.png" alt="loginImage"> 22</a>
+                    <a href=""> <img src="../../../assets/images/Vector-2.png" alt="loginImage">56</a>
+                    <a href=""><img src="../../../assets/images/Vector-3.png" alt="loginImage">22</a>
                     <?php 
-                    $buttonTitle='Commentaire';
+                    $buttonTitle='Commentaires';
                     $buttonClass='comment_button';
                     require '../../components/button.php';
                     ?>   

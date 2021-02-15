@@ -1,19 +1,29 @@
 .article_container{
-    margin-top:50%;
+    margin:10% 0 0 10%;
+    margin-left: 120px;
     display: flex;
     flex-direction: row;
     .txt_container{
+        padding-right: 5%;
         background-color: $beige;
-        width: 50%;
+        width: 100%;
         .article{
+            display: flex;
+            position: relative;
             .absolute{
                 position: absolute;
+                left: -100px;
+                top:90px;
+                
                  .info{
-                    position: relative;
+                    
                     display: flex;
                     flex-direction: column;
                     justify-content: space-between;
                     align-items: center;
+                    height: 200px;
+                    
+
                     p{
                         font-size: 16px;
                         font-family: $font-text;
@@ -29,13 +39,16 @@
                     }
                     .trait{
                     border-top: 1px solid #000;
-                    width :15%; 
+                    width :35%; 
                     transform:rotate(90deg);
                     }
                 }
             }
            
             .text{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
                 h2{
                     font-size: 64px;
                     font-family: $font-title;
@@ -62,9 +75,15 @@
                     font-family: $font-text;
                     font-weight: $weight-thin;
                     color: $black;  
+                    
                 }
                 
                 .info_bottom{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 250px;
                     .comment_button{
 
                     }
@@ -75,6 +94,7 @@
             width: 50%;
         }
         .suggestions{
+            margin-bottom: 10%;
             p{
                 font-size: 24px;
                 font-family: $font-title;
@@ -84,6 +104,8 @@
             .sug_container{
                 display:flex;
                 flex-direction: row;
+                justify-content: space-between;
+                width: 100%;
                     .suggestion{
                     img{
                         width: 286px;
@@ -104,8 +126,13 @@
         }
     }
     .illustration{
-        width: 50%;
-        height: 100vh;
+        width: 100%;
+        img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        }
+     
     }
 }
 
