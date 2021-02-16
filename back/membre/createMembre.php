@@ -13,7 +13,9 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe
 require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
+require_once __DIR__ . '/../../CLASS_CRUD/statut.class.php';
 $membre = new MEMBRE();
+$statut = new STATUT();
 
 // Init variables form
 include __DIR__ . '/initMembre.php';
@@ -31,7 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($responseData->success) {
             if (
                 !empty($_POST['prenomMemb']) && !empty($_POST['nomMemb']) && !empty($_POST['pseudoMemb'])
-                && !empty($_POST['email1Memb']) && !empty($_POST['pass1Memb']) && !empty($_POST['pass2Memb'])
+                && !empty($_POST['email1Memb']) && !empty($_POST['pass1Memb']) && !empty($_POST['pass2Memb']
+                    && !empty($_POST['idStat']))
             ) {
                 $prenomMemb = ctrlSaisies($_POST['prenomMemb']);
                 $nomMemb = ctrlSaisies($_POST['nomMemb']);
@@ -40,12 +43,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $pass1Memb = ctrlSaisies($_POST['pass1Memb']);
                 $pass2Memb = ctrlSaisies($_POST['pass2Memb']);
                 $passMemb = passConfirm($pass1Memb, $pass2Memb);
+                $idStat = $_POST['idStat'];
 
                 if (strlen($prenomMemb) >= 2 && strlen($nomMemb) >= 2 && strlen($pseudoMemb) >= 2) {
                     if (passCheck($pass1Memb)) {
                         if ($passMemb) {
                             // Ajout effectif d'un membre
-                            $membre->create($prenomMemb, $nomMemb, $pseudoMemb, $eMailMemb, $passMemb);
+                            $membre->create($prenomMemb, $nomMemb, $pseudoMemb, $eMailMemb, $passMemb, $idStat);
                             header('Location: ./membre.php');
                         } else {
                             $error = 'La confirmation du mot de passe est différente !';
@@ -89,6 +93,8 @@ function passConfirm(string $pass1Memb, string $pass2Memb)
     }
     return $passMemb;
 }
+
+$allStatus = $statut->get_AllStatuts();
 ?>
 
 <!DOCTYPE html>
@@ -158,6 +164,18 @@ function passConfirm(string $pass1Memb, string $pass2Memb)
                             <div class="form-group mb-3 col-6">
                                 <label for="pass2Memb"><b>Confirmation Mot de passe :</b></label>
                                 <input class="form-control" type="password" name="pass2Memb" maxlength="80" value="<?= $pass2Memb ?>" placeholder="••••••••••" />
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3 d-flex justify-content-center">
+                            <div class="col-6">
+                                <label for="idStat"><b>Statut :</b></label>
+                                <select name="idStat" class="form-control" id="idStat">
+                                    <option value="">--Choississez un statut--</option>
+                                    <?php foreach ($allStatus as $status) : ?>
+                                        <option value="<?= $status->idStat ?>"><?= $status->libStat ?></option>
+                                    <?php endforeach ?>
+                                </select>
                             </div>
                         </div>
 
