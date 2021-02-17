@@ -2,11 +2,11 @@ footer {
     padding-top: 16px;
     background-color: #1C1F1B;
     padding-bottom: 16px;
+    width: 100vw;
 
     .logos {
         display: flex;
         justify-content: center;
-        width: 100%;
         margin: 0 auto;
 
         img {
@@ -25,6 +25,7 @@ footer {
 
     a {
         color: $beige;
+        display: inline-block;
 
         &:visited {
             color: $beige;

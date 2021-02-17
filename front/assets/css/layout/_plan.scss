@@ -1,8 +1,11 @@
 .plan_container{
-    margin: 10% 0 10% 0;
+    margin: 10% 0 15% 0;
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media (max-width: 500px) {
+        margin: 35% 0 15% 0;
+     }
 
       
     .title{
@@ -14,6 +17,9 @@
            text-align: center;
            position:relative;
            display: inline-block;
+           @media (max-width: 500px) {
+            font-size: 28px;
+         }
         }
         
         span{
@@ -34,14 +40,29 @@
         justify-content: space-between;
         display: flex;
         flex-direction: row;
-    
+    @media (max-width: 765px) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+        .path{
+            display: block;
+            @media (max-width: 765px) {
+                display: none;
+            }
+        }
         .section_container{
             flex-basis: 33%;
             display: flex;
             flex-direction: column;
             align-items: center;
+            @media (max-width: 765px) {
+               align-items:f lex-start;
+            }
             .section {
                 max-width: 70%;
+                @media (max-width: 765px) {
+                    max-width: none;
+                }
             }
             h2{
                 font-family: $font-title;
@@ -49,13 +70,26 @@
                 color: $black;
                 font-size: 24px;
                 text-transform: uppercase;
+                @media (max-width: 500px) {
+                    font-size: 18px;
+                 }
             }
-            p{
-                width: 50%;
+            a{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                text-decoration: none;
+                height: 28%;
                 font-family: $font-text;
                 font-weight: $weight-extralight;
                 color: $black;
                 font-size: 18px;
+                @media (max-width: 765px) {
+                    margin-top: 20px;
+                }
+                @media (max-width: 500px) {
+                    font-size: 14px;
+                 }
             } 
         }
     } 

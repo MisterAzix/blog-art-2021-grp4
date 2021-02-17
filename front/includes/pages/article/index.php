@@ -52,7 +52,7 @@ require_once '../../commons/header.php';
                     <a href=""> <img src="../../../assets/images/Vector-2.png" alt="loginImage">56</a>
                     <a href=""><img src="../../../assets/images/Vector-3.png" alt="loginImage">22</a>
                     <?php 
-                    $buttonTitle='Commentaires';
+                    $buttonTitle='Commentaires ';
                     $buttonClass='comment_button';
                     require '../../components/button.php';
                     ?>   
