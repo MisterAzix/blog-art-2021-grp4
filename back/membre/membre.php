@@ -12,10 +12,13 @@ require_once __DIR__ . '/../../util/utilErrOn.php';
 
 // Insertion classe MEMBRE
 require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
+require_once __DIR__ . '/../../CLASS_CRUD/statut.class.php';
 $membre = new MEMBRE();
+$statut = new STATUT();
 
 // Appel méthode : tous les membres en BDD
 $all = $membre->get_AllMembres();
+$allStatus = $statut->get_AllStatuts();
 ?>
 
 <!DOCTYPE html>
@@ -48,6 +51,7 @@ $all = $membre->get_AllMembres();
                         <th>Nom</th>
                         <th>Pseudo</th>
                         <th>Email</th>
+                        <th>Statut</th>
                         <th>Date de création</th>
                         <th colspan="2">Action</th>
                     </tr>
@@ -62,6 +66,7 @@ $all = $membre->get_AllMembres();
                             <td> <?= $row->nomMemb; ?> </td>
                             <td> <?= $row->pseudoMemb; ?> </td>
                             <td> <?= $row->eMailMemb; ?> </td>
+                            <td> <?= $allStatus[array_search($row->idStat, array_column($allStatus, 'idStat'))]->libStat ?> </td>
                             <td> <?= $row->dtCreaMemb; ?> </td>
                             <td><a href="./updateMembre.php?id=<?= $row->numMemb ?>"><i>Modifier</i></a>
                                 <br>

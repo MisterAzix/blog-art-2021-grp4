@@ -37,7 +37,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
 					<a class="list-group-item list-group-item-success" href="./BACK/langue/langue.php"><b>Gestion du CRUD :</b> Langue </a>
 					<a class="list-group-item list-group-item-success" href="./BACK/likeart/likeart.php"><b>Gestion du CRUD :</b> Like Article </a>
 					<a class="list-group-item list-group-item-success" href="./BACK/likecom/likecom.php"><b>Gestion du CRUD :</b> Like Commentaire </a>
-					<a class="list-group-item list-group-item-warning" href="./BACK/membre/membre.php"><b>Gestion du CRUD :</b> Membre </a>
+					<a class="list-group-item list-group-item-warning" href="./BACK/membre/membre.php"><b>Gestion du CRUD :</b> Membre (Ajout vérification si pseudo existe déjà)</a>
 					<a class="list-group-item list-group-item-success" href="./BACK/motcle/motcle.php"><b>Gestion du CRUD :</b> Mot-clé </a>
 					<a class="list-group-item list-group-item-info" href="./BACK/motclearticle/motclearticle.php"><b>Gestion du CRUD :</b> Mot-clé Article </a>
 					<a class="list-group-item list-group-item-success" href="./BACK/statut/statut.php"><b>Gestion du CRUD :</b> Statut</a>
@@ -50,10 +50,23 @@ require_once __DIR__ . '/util/utilErrOn.php';
 				<ul class="list-group">
 					<li class="list-group-item list-group-item-success">CRUD fini et valide</li>
 					<li class="list-group-item list-group-item-info">CRUD en cours</li>
-					<li class="list-group-item list-group-item-warning">CRUD à modifier</li>
+					<li class="list-group-item list-group-item-warning">CRUD à modifier (+ info modif)</li>
 					<li class="list-group-item disabled">CRUD à faire</li>
 					<li class="list-group-item list-group-item-danger">CRUD Supprimé</li>
 				</ul>
+
+				<br>
+
+				<h5>Pages</h5>
+				<div class="list-group">
+					<a class="list-group-item" href="./front/includes/pages/article/">Article</a>
+					<a class="list-group-item" href="./front/includes/pages/cgu/">CGU</a>
+					<a class="list-group-item" href="./front/includes/pages/contact/">Contact</a>
+					<a class="list-group-item" href="./front/includes/pages/home/">Home</a>
+					<a class="list-group-item" href="./front/includes/pages/login/">Login</a>
+					<a class="list-group-item" href="./front/includes/pages/plan/">Plan</a>
+					<a class="list-group-item" href="./front/includes/pages/register/">Register</a>
+				</div>
 			</div>
 		</div>
 		<?php require_once __DIR__ . '/footer.php' ?>
