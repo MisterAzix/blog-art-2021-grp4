@@ -1,8 +1,10 @@
 footer {
-    padding-top: 16px;
+    padding: 25px;
     background-color: #1C1F1B;
-    padding-bottom: 16px;
-    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
     .logos {
         display: flex;

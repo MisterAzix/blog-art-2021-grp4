@@ -87,6 +87,12 @@ require_once '../../commons/header.php';
     <div class="illustration">
         <img src="../../../assets/images/home.jpg" alt="homeImage">
     </div>
+
+    <div class="container_comment" style="display: none;">
+        <?php
+            require '../../components/comment.php';
+        ?>
+    </div>
 </div>
 
 

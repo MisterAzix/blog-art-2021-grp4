@@ -7,9 +7,10 @@
     align-items: center;
     .illustration{
         flex-basis: 100%;
+        text-align: center;
        img{
            width: 100%;
-           min-width: 400px;
+           min-width:200px;
            height: auto;
          }
         
@@ -29,8 +30,9 @@
             color:$black;
         }
             .input_container{
+                width:100%;
                 .input{
-                    width:150%;
+                    width:100%;
                 }
             }
                 a{

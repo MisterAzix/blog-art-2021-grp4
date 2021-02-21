@@ -56,17 +56,17 @@ require_once '../../commons/header.php';
                             <label>Email</label>
                         </div>
                         <div class="group">
-                            <input class="input message" name="message" type="text" placeholder="Renseigne ton message" required/>
+                            <textarea class="input"name="message" placeholder="Renseigne ton message" required></textarea>
                             <label>Message</label>
                         </div>
+                        <?php 
+                            $buttonTitle='Envoyer  <img src="../../../assets/images/Vector.png" alt="loginImage">';
+                            $buttonClass='contact_button';
+                            require '../../components/button.php';
+                        ?>
                     </form>
                 </div>
                 <!--Insert Captcha here -->
-                <?php 
-                $buttonTitle='Envoyer  <img src="../../../assets/images/Vector.png" alt="loginImage">';
-                $buttonClass='contact_button';
-                require '../../components/button.php';
-                ?>
                 <div class="network_container">
                     <p>Ou rejoins-moi sur mes réseaux :)</p> 
                         <div class="network">
