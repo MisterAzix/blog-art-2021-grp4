@@ -36,16 +36,12 @@ class MOTCLEARTICLE
 		return $result;
 	}
 
-	function createOrDelete($numArt, $numMotCle)
+	function create($numArt, $numMotCle)
 	{
 		global $db;
-		$exist = $this->get_1MotCleArt($numArt, $numMotCle);
-		$queryStr = $exist ? 
-		'DELETE FROM motclearticle WHERE numArt=:numArt AND numMotCle=:numMotCle' : 
-		'INSERT INTO motclearticle (numArt, numMotCle) VALUES (:numArt, :numMotCle)';
 		try {
 			$db->beginTransaction();
-			$query = $db->prepare($queryStr);
+			$query = $db->prepare('INSERT IGNORE INTO motclearticle (numArt, numMotCle) VALUES (:numArt, :numMotCle)');
 			$query->execute([
 				'numArt' => $numArt,
 				'numMotCle' => $numMotCle
@@ -55,7 +51,26 @@ class MOTCLEARTICLE
 		} catch (PDOException $e) {
 			$db->rollBack();
 			$query->closeCursor();
-			die('Erreur' . $exist ? 'delete' : 'insert' . 'MOTCLEARTICLE : ' . $e->getMessage());
+			die('Erreur insert MOTCLEARTICLE : ' . $e->getMessage());
+		}
+	}
+
+	function delete($numArt, $numMotCle)
+	{
+		global $db;
+		try {
+			$db->beginTransaction();
+			$query = $db->prepare('DELETE FROM motclearticle WHERE numArt=:numArt AND numMotCle=:numMotCle');
+			$query->execute([
+				'numArt' => $numArt,
+				'numMotCle' => $numMotCle
+			]);
+			$db->commit();
+			$query->closeCursor();
+		} catch (PDOException $e) {
+			$db->rollBack();
+			$query->closeCursor();
+			die('Erreur insert MOTCLEARTICLE : ' . $e->getMessage());
 		}
 	}
 }	// End of class

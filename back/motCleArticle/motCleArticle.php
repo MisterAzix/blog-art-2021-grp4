@@ -44,7 +44,7 @@ $allArticles = $article->get_AllArticles();
         <div class="d-flex flex-column">
             <h1>BLOGART21 Admin - Gestion du CRUD Mots-Clés / Article</h1>
             <hr>
-            <h2>Nouveau mot-clé sur article : <a href="./createMotCleArt.php"><i>Create a keyord-article</i></a></h2>
+            <h2>Nouveau mot-clé sur article : <a href="./createMotCleArt.php"><i>Create a keyword-article</i></a></h2>
             <hr>
             <h2>Tous les mots-clés sur article</h2>
 

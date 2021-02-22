@@ -3,7 +3,7 @@
 //
 //  CRUD MOTCLEART (PDO) - Code Modifié - 12 Février 2021
 //
-//  Script  : createMotCleArt.php  (ETUD)   -   BLOGART21
+//  Script  : updateMotCleArt.php  (ETUD)   -   BLOGART21
 //
 ///////////////////////////////////////////////////////////////
 
@@ -23,19 +23,33 @@ $article = new ARTICLE();
 include __DIR__ . '/initMotCleArticle.php';
 $error = null;
 
-// Controle des saisies du formulaire
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!empty($_POST['numArt']) && !empty($_POST['numMotCle']) && count($_POST['numMotCle']) > 0) {
-        $numArt = $_POST['numArt'];
+if (isset($_GET['numArt'])) {
+    $result = $motclearticle->get_AllMotCleArtByArticle($_GET['numArt']);
+    if (!$result) header('Location: ./motCleArticle.php');
+    foreach ($result as $value) {
+        $selectedKeywords[] = $value->numMotCle;
+    }
 
-        foreach ($_POST['numMotCle'] as $numMotCle) {
-            $motclearticle->create($numArt, $numMotCle);
+    //var_dump($_POST['numMotCle']);
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (!empty($_POST['numMotCle']) && count($_POST['numMotCle']) > 0) {
+            $numArt = ctrlSaisies($_GET['numArt']);
+            $keywordToAdd = array_diff($_POST['numMotCle'], $selectedKeywords);
+            $keywordToDel = array_diff($selectedKeywords, $_POST['numMotCle']);
+
+            foreach ($keywordToAdd as $numMotCle) {
+                $motclearticle->create($numArt, $numMotCle);
+            }
+            foreach ($keywordToDel as $numMotCle) {
+                $motclearticle->delete($numArt, $numMotCle);
+            }
+            header('Location: ./motCleArticle.php');
+        } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
+            header('Location: ./updateMotCleArticle.php?numArt=' . $_GET['id']);
+        } else {
+            $error = 'Merci de renseigner tous les champs du formulaire.';
         }
-        header('Location: ./motCleArticle.php');
-    } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
-        header('Location: ./createMotCleArt.php');
-    } else {
-        $error = 'Merci de renseigner tous les champs du formulaire.';
     }
 }
 
@@ -77,10 +91,10 @@ $allArticles = $article->get_AllArticles();
                         <div class="row">
                             <div class="form-group mb-3 col-6">
                                 <label for="numArt"><b>Article :</b></label>
-                                <select name="numArt" class="form-control">
+                                <select name="numArt" class="form-control" disabled>
                                     <option value="">--Choississez un article--</option>
                                     <?php foreach ($allArticles as $article) : ?>
-                                        <option value="<?= $article->numArt ?>"><?= $article->libTitrArt ?></option>
+                                        <option value="<?= $article->numArt ?>" <?= ($article->numArt === $_GET['numArt']) ? 'selected' : '' ?>><?= $article->libTitrArt ?></option>
                                     <?php endforeach ?>
                                 </select>
                             </div>
@@ -90,7 +104,7 @@ $allArticles = $article->get_AllArticles();
                                 <select name="numMotCle[]" class="form-control" multiple>
                                     <option value="">--Choississez un ou plusieurs mot(s)-clé(s)--</option>
                                     <?php foreach ($allMotsCles as $motcle) : ?>
-                                        <option value="<?= $motcle->numMotCle ?>"><?= $motcle->libMotCle ?></option>
+                                        <option value="<?= $motcle->numMotCle ?>" <?= in_array($motcle->numMotCle, $selectedKeywords) ? 'selected' : '' ?>><?= $motcle->libMotCle ?></option>
                                     <?php endforeach ?>
                                 </select>
                             </div>
