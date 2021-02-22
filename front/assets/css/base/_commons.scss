@@ -1,6 +1,6 @@
 html {
     min-width: fit-content;
-    overflow: auto;
+    overflow-x: hidden;
 }
 
 body {
@@ -8,7 +8,6 @@ body {
     padding: 0;
     box-sizing: border-box;
     background-color: $beige;
-    min-width: fit-content;
     overflow-x: hidden;
 }
 
