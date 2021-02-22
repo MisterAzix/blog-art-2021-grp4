@@ -39,7 +39,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
 					<a class="list-group-item list-group-item-success" href="./BACK/likecom/likecom.php"><b>Gestion du CRUD :</b> Like Commentaire </a>
 					<a class="list-group-item list-group-item-warning" href="./BACK/membre/membre.php"><b>Gestion du CRUD :</b> Membre (Ajout vérification si pseudo existe déjà)</a>
 					<a class="list-group-item list-group-item-success" href="./BACK/motcle/motcle.php"><b>Gestion du CRUD :</b> Mot-clé </a>
-					<a class="list-group-item list-group-item-info" href="./BACK/motclearticle/motclearticle.php"><b>Gestion du CRUD :</b> Mot-clé Article </a>
+					<a class="list-group-item list-group-item-success" href="./BACK/motclearticle/motclearticle.php"><b>Gestion du CRUD :</b> Mot-clé Article </a>
 					<a class="list-group-item list-group-item-success" href="./BACK/statut/statut.php"><b>Gestion du CRUD :</b> Statut</a>
 					<a class="list-group-item list-group-item-success" href="./BACK/thematique/thematique.php"><b>Gestion du CRUD :</b> Thématique </a>
 					<a class="list-group-item list-group-item-danger"><b>Gestion du CRUD :</b> User </a>
