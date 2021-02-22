@@ -5,13 +5,13 @@ require_once __DIR__ . '../../CONNECT/database.php';
 
 class MOTCLEARTICLE
 {
-	function get_1MotCleArt($numMemb, $numArt)
+	function get_1MotCleArt($numArt, $numMotCle)
 	{
 		global $db;
-		$query = $db->prepare("SELECT * FROM motclearticle WHERE numMemb=:numMemb AND numArt=:numArt");
+		$query = $db->prepare("SELECT * FROM motclearticle WHERE numArt=:numArt AND numMotCle=:numMotCle");
 		$query->execute([
-			'numMemb' => $numMemb,
-			'numArt' => $numArt
+			'numArt' => $numArt,
+			'numMotCle' => $numMotCle
 		]);
 		$result = $query->fetch(PDO::FETCH_OBJ);
 		return $result;
@@ -36,12 +36,16 @@ class MOTCLEARTICLE
 		return $result;
 	}
 
-	function create($numArt, $numMotCle)
+	function createOrDelete($numArt, $numMotCle)
 	{
 		global $db;
+		$exist = $this->get_1MotCleArt($numArt, $numMotCle);
+		$queryStr = $exist ? 
+		'DELETE FROM motclearticle WHERE numArt=:numArt AND numMotCle=:numMotCle' : 
+		'INSERT INTO motclearticle (numArt, numMotCle) VALUES (:numArt, :numMotCle)';
 		try {
 			$db->beginTransaction();
-			$query = $db->prepare('INSERT INTO motclearticle (numArt, numMotCle) VALUES (:numArt, :numMotCle)');
+			$query = $db->prepare($queryStr);
 			$query->execute([
 				'numArt' => $numArt,
 				'numMotCle' => $numMotCle
@@ -51,26 +55,7 @@ class MOTCLEARTICLE
 		} catch (PDOException $e) {
 			$db->rollBack();
 			$query->closeCursor();
-			die('Erreur insert MOTCLEARTICLE : ' . $e->getMessage());
-		}
-	}
-
-	function delete($numArt, $numMotCle)
-	{
-		global $db;
-		try {
-			$db->beginTransaction();
-			$query = $db->prepare('DELETE FROM motclearticle WHERE numArt = :numArt AND numMotCle = :numMotCle');
-			$query->execute([
-				'numArt' => $numArt,
-				'numMotCle' => $numMotCle
-			]);
-			$db->commit();
-			$query->closeCursor();
-		} catch (PDOException $e) {
-			$db->rollBack();
-			$query->closeCursor();
-			die('Erreur delete MOTCLEARTICLE : ' . $e->getMessage());
+			die('Erreur' . $exist ? 'delete' : 'insert' . 'MOTCLEARTICLE : ' . $e->getMessage());
 		}
 	}
 }	// End of class

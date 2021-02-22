@@ -18,7 +18,6 @@ $likeart = new LIKEART();
 $membre = new MEMBRE();
 $article = new ARTICLE();
 
-// Appel méthode : toutes les langues en BDD
 $all = $likeart->get_AllLikesArt();
 $allMembers = $membre->get_AllMembres();
 $allArticles = $article->get_AllArticles();
