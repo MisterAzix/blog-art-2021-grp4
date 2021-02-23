@@ -9,6 +9,7 @@
     <title>L'écopin <?= !empty($page_title) ? "- $page_title" : '' ?></title>
     <meta name="description" content="<?= !empty($page_title) ? $page_description : "Découvert de nombreux articles sur l'écologie !" ?>">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <link rel="stylesheet" href="../../../assets/css/main.css">
 </head>
 <body>

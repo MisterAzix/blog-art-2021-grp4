@@ -15,8 +15,8 @@ class AUTH
      */
     public function __construct()
     {
-        require_once 'user.class.php';
-        $this->user = new USER();
+        require_once 'membre.class.php';
+        $this->user = new MEMBRE();
     }
 
     /**

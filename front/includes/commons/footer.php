@@ -8,7 +8,9 @@
     </footer>
 
     <!-- SCRIPT JS -->
-    <!-- <script src="../../assets/your_js_file.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script src="../../assets/js/notyf.js"></script>
+    <script src="../../assets/js/slideshow.js"></script>
 </body>
 
 </html>
