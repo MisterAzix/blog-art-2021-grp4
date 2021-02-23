@@ -1,3 +1,8 @@
+<?php
+require_once __DIR__ . '/../../../CLASS_CRUD/auth.class.php';
+$auth = new AUTH();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -8,10 +13,11 @@
 
     <title>L'écopin <?= !empty($page_title) ? "- $page_title" : '' ?></title>
     <meta name="description" content="<?= !empty($page_title) ? $page_description : "Découvert de nombreux articles sur l'écologie !" ?>">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" >
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <link rel="stylesheet" href="../../../assets/css/main.css">
 </head>
+
 <body>
     <header>
         <div class="header-container">
@@ -20,20 +26,28 @@
                 <div class="header-right">
                     <div class="header-right-container">
                         <img src="../../../assets/images/search_icon.svg" alt="Icon de recherche" class="icon_recherche">
-                        <div class="button-container">
-                            <?php 
-                            $buttonTitle = "Inscription";
-                            $buttonHref = '';
-                            $buttonClass ='nav_button';
-                            require '../../components/button.php';
-                            ?>
-                            <?php 
-                            $buttonTitle = "Connexion";
-                            $buttonHref = '';
-                            $buttonClass = 'connect-button';
-                            require '../../components/button.php';
-                            ?>
-                        </div>
+                        <?php if ($auth->is_connected()) : ?>
+                            <?php if ($auth->is_admin()): ?>
+                                <div class="button-container">
+                                    <a href="../../../../index1.php">ADMIN</a>
+                                </div>
+                            <?php endif ?>
+                        <?php else: ?>
+                            <div class="button-container">
+                                <?php
+                                $buttonTitle = "Inscription";
+                                $buttonHref = '';
+                                $buttonClass = 'nav_button';
+                                require '../../components/button.php';
+                                ?>
+                                <?php
+                                $buttonTitle = "Connexion";
+                                $buttonHref = '';
+                                $buttonClass = 'connect-button';
+                                require '../../components/button.php';
+                                ?>
+                            </div>
+                        <?php endif ?>
                     </div>
                 </div>
             </div>
