@@ -17,14 +17,14 @@ $membre = new MEMBRE();
 $auth = new AUTH();
 
 if ($auth->is_connected()) {
-    header('Location: ../index.php');
+    header('Location: ../home');
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST['email']) && !empty($_POST['password'])) {
         $login = $auth->login($_POST['email'], $_POST['password']);
         if ($login) {
-            header('Location: ../');
+            header('Location: ../home');
         } else {
             $error = 'Error : Invalid password or email!';
         }
@@ -55,15 +55,10 @@ require_once '../../commons/header.php';
                     <input class="input" name="password" type="password" placeholder="Renseigne ton mot de passe" required />
                     <label>Mot de passe</label>
                 </div>
+                <a href="">Mot de passe oublié ?</a>
+                <button class="login_button" type="submit">Se connecter</button>
             </form>
         </div>
-        <a href="">Mot de passe oublié ?</a>
-
-        <?php
-        $buttonTitle = 'Se connecter';
-        $buttonClass = 'login_button';
-        require '../../components/button.php';
-        ?>
         <p>Pas de compte ? <a href="../../pages/register/index.php">Inscris-toi ! </a> </p>
     </div>
 </div>

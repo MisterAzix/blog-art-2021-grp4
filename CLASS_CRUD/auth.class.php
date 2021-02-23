@@ -1,12 +1,13 @@
 <?php
 
+require_once __DIR__ . '../../CONNECT/database.php';
 /** Gèrer les connexions des utilisateurs.
  * AUTH
  */
 class AUTH
 {
 
-    private $user;
+    private $membre;
 
     /**
      * __construct
@@ -16,7 +17,7 @@ class AUTH
     public function __construct()
     {
         require_once 'membre.class.php';
-        $this->user = new MEMBRE();
+        $this->membre = new MEMBRE();
     }
 
     /**
@@ -30,6 +31,25 @@ class AUTH
             session_start();
         }
         return !empty($_SESSION['logged']);
+    }
+    
+    /**
+     * is_admin
+     *
+     * @return bool
+     */
+    public function is_admin(): bool
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        if ($this->is_connected()) {
+            $result = $this->membre->get_1Membre($this->get_connected_id());
+            if ($result) {
+                if ($result->idStat == 9) return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -57,10 +77,10 @@ class AUTH
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        $result = $this->user->get_1UserByEmail($email);
+        $result = $this->membre->get_AllMembresByEmail($email);
         if ($result) {
-            if (password_verify($password, $result->password)) {
-                $_SESSION['logged'] = $result->id;
+            if (password_verify($password, $result[0]->passMemb)) {
+                $_SESSION['logged'] = $result[0]->numMemb;
                 return true;
             }
         }

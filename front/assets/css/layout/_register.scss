@@ -1,48 +1,52 @@
-.sign_container{
-    
-     .register{
+.sign_container {
+    .register {
         flex-basis: 50%;
-        h2{
-        font-family: $font-title;
-        font-size:56px;
-        color:$black;
-        font-weight: $weight-regular;
+        h2 {
+            font-family: $font-title;
+            font-size: 56px;
+            color: $black;
+            font-weight: $weight-regular;
             width: 100%;
         }
-        .input_container{
-            .info{
+        .input_container {
+            .info {
                 display: flex;
                 flex-direction: column;
                 width: 100%;
-                
-                p{
-                    padding:0;
-                  
-                    font-family: $font-text;
-                    color:$black;
-                    font-size:10px;
-                    font-weight:$weight-extralight;
-                }
-            }     
-            .input{
-                width:100%;
-            }
-            .checkbox{
-                font-family: $font-text;
-                color:$black;
-                font-size:14px;
-                font-weight: $weight-semibold;
-                margin-bottom:5%;
-                a{
-                    font-family: $font-text;
-                    color:$greentxt;
-                    font-size:14px;
-                    font-weight: $weight-semibold;
-                }
-            }
-            
 
-            .login_button{
+                p {
+                    padding: 0;
+
+                    font-family: $font-text;
+                    color: $black;
+                    font-size: 10px;
+                    font-weight: $weight-extralight;
+                }
+            }
+            .input {
+                width: 100%;
+            }
+
+            .checkbox-container {
+                margin-top: 100px;
+
+                .checkbox {
+                    font-family: $font-text;
+                    color: $black;
+                    font-size: 14px;
+                    font-weight: $weight-semibold;
+                    margin-bottom: 5%;
+
+                    a {
+                        font-family: $font-text;
+                        color: $greentxt;
+                        font-size: 14px;
+                        font-weight: $weight-semibold;
+                    }
+                }
+            }
+
+            .login_button {
                 padding: 20px 40px;
                 border-radius: 40px;
                 font-size: 28px;
@@ -50,12 +54,6 @@
                 font-weight: $weight-bold;
                 margin-top: 40px;
             }
-            
-       }
-    }     
-     }
-    
-
-    
-     
-    
+        }
+    }
+}
