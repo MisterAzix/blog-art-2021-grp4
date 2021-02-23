@@ -12,7 +12,11 @@ Il est nécessaire d'ajouter à la racine du projet un fichier **config.json** e
 ```json
 {
     "CAPTCHA_SITE_KEY": "",
-    "CAPTCHA_SECRET_KEY": ""
+    "CAPTCHA_SECRET_KEY": "",
+    "DB_HOSTNAME": "",
+    "DB_NAME": "",
+    "DB_USER": "",
+    "DB_PASSWORD": ""
 }
 ```
 
