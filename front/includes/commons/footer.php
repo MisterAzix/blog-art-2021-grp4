@@ -7,8 +7,10 @@
         </div<>
     </footer>
 
-   
-  <script src="../../../assets/js/slideshow.js"></script>
+    <!-- SCRIPT JS -->
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script src="../../../assets/js/notyf.js"></script>
+    <script src="../../../assets/js/slideshow.js"></script>
 </body>
 
 </html>

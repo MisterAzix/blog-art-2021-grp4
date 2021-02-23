@@ -38,7 +38,7 @@ class MEMBRE
 	function get_AllMembresByEmail($eMailMemb)
 	{
 		global $db;
-		$query = $db->prepare("SELECT * FROM membre WHERE eMailMemb=:eMailMemb");
+		$query = $db->prepare("SELECT numMemb, passMemb FROM membre WHERE eMailMemb=:eMailMemb");
 		$query->execute([
 			'eMailMemb' => $eMailMemb
 		]);
