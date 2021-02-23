@@ -4,6 +4,7 @@
 @import "./base/commons";
 
 /* Components */
+<<<<<<< HEAD
 @import "./components/header";
 @import "./components/button";
 @import "./components/article";
@@ -11,6 +12,17 @@
 @import "./components/sub_comment";
 @import "./components/form";
 @import "./components/footer";
+=======
+@import './components/header';
+@import './components/button';
+@import './components/article';
+@import './components/comment';
+@import './components/sub_comment';
+@import './components/sub_article';
+@import './components/form';
+@import './components/footer';
+
+>>>>>>> ea5e5d8c9b417b9364218665d1068870cdf4325b
 
 /* Layout */
 @import "./layout/home";
