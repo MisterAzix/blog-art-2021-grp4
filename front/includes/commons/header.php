@@ -11,12 +11,12 @@
 
     <link rel="stylesheet" href="../../../assets/css/main.css">
 </head>
-
 <body>
     <header>
         <img src="../../../assets/images/logo_lecopin.svg" alt="Logo du site avec écrit l'écopins" class="logo">
         <div class="header-right">
             <img src="../../../assets/images/search_icon.svg" alt="Icon de recherche" class="icon_recherche">
+        </div>
             <div class="button-container">
                 <?php 
                 $buttonTitle = "Inscription";
