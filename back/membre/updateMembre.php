@@ -13,7 +13,9 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe
 require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
+require_once __DIR__ . '/../../CLASS_CRUD/statut.class.php';
 $membre = new MEMBRE();
+$statut = new STATUT();
 
 // Init variables form
 include __DIR__ . '/initMembre.php';
@@ -32,6 +34,7 @@ if (isset($_GET['id'])) {
     $pseudoMemb = $result->pseudoMemb;
     $eMailMemb = $result->eMailMemb;
     $password = $result->passMemb;
+    $idStat = $result->idStat;
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!empty($_POST['g-recaptcha-response'])) {
@@ -42,6 +45,7 @@ if (isset($_GET['id'])) {
                 if (
                     !empty($_POST['prenomMemb']) && !empty($_POST['nomMemb']) && !empty($_POST['pseudoMemb'])
                     && !empty($_POST['email1Memb']) && !empty($_POST['pass1Memb']) && !empty($_POST['pass2Memb'])
+                    && !empty($_POST['idStat'])
                 ) {
                     $prenomMemb = ctrlSaisies($_POST['prenomMemb']);
                     $nomMemb = ctrlSaisies($_POST['nomMemb']);
@@ -50,12 +54,13 @@ if (isset($_GET['id'])) {
                     $pass1Memb = ctrlSaisies($_POST['pass1Memb']);
                     $pass2Memb = $_POST['pass2Memb'];
                     $passMemb = password_hash($pass2Memb, PASSWORD_DEFAULT, ['cost' => 12]);
+                    $idStat = $_POST['idStat'];
 
                     if (strlen($prenomMemb) >= 2 && strlen($nomMemb) >= 2 && strlen($pseudoMemb) >= 2) {
                         if (passCheck($pass1Memb)) {
                             if (passConfirm($password, $pass1Memb)) {
                                 // Ajout effectif d'un membre
-                                $membre->update($numMemb, $prenomMemb, $nomMemb, $pseudoMemb, $eMailMemb, $passMemb);
+                                $membre->update($numMemb, $prenomMemb, $nomMemb, $pseudoMemb, $eMailMemb, $passMemb, $idStat);
                                 header('Location: ./membre.php');
                             } else {
                                 $error = 'Mot de passe incorrect !';
@@ -97,6 +102,8 @@ function passConfirm(string $password, string $pass1Memb): bool
     if (password_verify($pass1Memb, $password)) return true;
     return false;
 }
+
+$allStatus = $statut->get_AllStatuts();
 ?>
 
 <!DOCTYPE html>
@@ -166,6 +173,18 @@ function passConfirm(string $password, string $pass1Memb): bool
                             <div class="form-group mb-3 col-6">
                                 <label for="pass2Memb"><b>Nouveau Mot de passe :</b></label>
                                 <input class="form-control" type="password" name="pass2Memb" maxlength="80" value="<?= $pass2Memb ?>" placeholder="••••••••••" />
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3 d-flex justify-content-center">
+                            <div class="col-6">
+                                <label for="idStat"><b>Statut :</b></label>
+                                <select name="idStat" class="form-control" id="idStat">
+                                    <option value="">--Choississez un statut--</option>
+                                    <?php foreach ($allStatus as $status) : ?>
+                                        <option value="<?= $status->idStat ?>" <?= ($status->idStat === $idStat) ? 'selected' : '' ?>><?= $status->libStat ?></option>
+                                    <?php endforeach ?>
+                                </select>
                             </div>
                         </div>
 

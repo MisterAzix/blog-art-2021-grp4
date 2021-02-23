@@ -7,4 +7,4 @@
     // FK PK MotCleArticle
     $numArt = "";
     // FK PK MotCleArticle
-    $numMotCle = "";
+    $numMotCle = [];

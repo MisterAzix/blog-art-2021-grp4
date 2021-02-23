@@ -46,19 +46,19 @@ class MEMBRE
 		return $result;
 	}
 
-	function create($prenomMemb, $nomMemb, $pseudoMemb, $eMailMemb, $passMemb)
+	function create($prenomMemb, $nomMemb, $pseudoMemb, $eMailMemb, $passMemb, $idStat)
 	{
 		global $db;
 		try {
 			$db->beginTransaction();
-			$query = $db->prepare('INSERT INTO membre (prenomMemb, nomMemb, pseudoMemb, eMailMemb, passMemb, dtCreaMemb) VALUES (:prenomMemb, :nomMemb, :pseudoMemb, :eMailMemb, :passMemb, :dtCreaMemb)');
+			$query = $db->prepare('INSERT INTO membre (prenomMemb, nomMemb, pseudoMemb, eMailMemb, passMemb, dtCreaMemb, souvenirMemb, accordMemb, idStat) VALUES (:prenomMemb, :nomMemb, :pseudoMemb, :eMailMemb, :passMemb, NOW(), 0, 0, :idStat)');
 			$query->execute([
 				'prenomMemb' => $prenomMemb,
 				'nomMemb' => $nomMemb,
 				'pseudoMemb' => $pseudoMemb,
 				'eMailMemb' => $eMailMemb,
 				'passMemb' => $passMemb,
-				'dtCreaMemb' => date("Y-m-d H:i:s")
+				'idStat' => $idStat
 			]);
 			$db->commit();
 			$query->closeCursor();
