@@ -7,8 +7,8 @@
         </div<>
     </footer>
 
-    <!-- SCRIPT JS -->
-    <!-- <script src="../../assets/your_js_file.js"></script> -->
+   
+  <script src="../../../assets/js/slideshow.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,56 @@
+
+.homepage_container{
+    .slideshow{
+        position: relative;
+        .slides{
+            display: none;
+        }
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 1.5s;
+            animation-name: fade;
+            animation-duration: 1.5s;
+          }
+        .line_container{
+            text-align: center;
+           .line{
+            cursor: pointer;
+            height: 2px;
+            width: 70px;
+            margin: 0 2px;
+            background-color: #bbb;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+            &.active {
+                background-color: $greentxt;
+            }
+            &:hover {
+                background-color:$greentxt;
+              }
+            } 
+        }
+        
+    }
+    .all_articles{
+        h2{
+            font-family: $font-title;
+            font-size: 56px;
+            font-weight: $weight-regular;
+            color: $black;
+            text-align: center;
+        }
+        .article{
+
+        }
+    }
+}
+
+@keyframes fade {
+    from {opacity: .8} 
+    to {opacity: 1}
+  }    
+   
+  
+    
+
+  
