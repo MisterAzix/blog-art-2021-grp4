@@ -16,6 +16,17 @@ class USER
 		return $result;
 	}
 
+	function get_1UserByEmail($emailUser)
+	{
+		global $db;
+		$query = $db->prepare('SELECT password FROM user WHERE emailUser=:emailUser');
+		$query->execute([
+			'emailUser' => $emailUser
+		]);
+		$result = $query->fetch(PDO::FETCH_OBJ);
+		return $result;
+	}
+
 	function get_AllUsers()
 	{
 		global $db;
