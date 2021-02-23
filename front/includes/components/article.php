@@ -15,7 +15,7 @@
         <?php 
             $buttonTitle = "Lire l'article";
             $buttonHref = '';
-            require '../../components/button.php';
+            require 'button.php';
         ?>
     </div>
     <img src="../../../assets/images/drone.jpg" alt="photo colorée de bordeaux vue de haut">
