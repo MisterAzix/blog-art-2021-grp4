@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" >
     <link rel="stylesheet" href="../../../assets/css/main.css">
 </head>
-
 <body>
     <header>
         <div class="header-container">
