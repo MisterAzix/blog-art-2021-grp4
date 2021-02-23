@@ -1,23 +1,22 @@
 /* Base */
-@import './base/variables';
-@import './base/commons';
-
+@import "./base/variables";
+@import "./base/typography";
+@import "./base/commons";
 
 /* Components */
-@import './components/header';
-@import './components/button';
-@import './components/article';
-@import './components/comment';
-@import './components/sub_comment';
-@import './components/form';
-@import './components/footer';
-
+@import "./components/header";
+@import "./components/button";
+@import "./components/article";
+@import "./components/comment";
+@import "./components/sub_comment";
+@import "./components/form";
+@import "./components/footer";
 
 /* Layout */
-@import './layout/home';
-@import './layout/article';
-@import './layout/login';
-@import './layout/register';
-@import './layout/cgu';
-@import './layout/plan';
-@import './layout/contact';
+@import "./layout/home";
+@import "./layout/article";
+@import "./layout/login";
+@import "./layout/register";
+@import "./layout/cgu";
+@import "./layout/plan";
+@import "./layout/contact";
