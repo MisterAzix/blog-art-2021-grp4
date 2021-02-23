@@ -9,6 +9,12 @@
 
 // Mode DEV
 require_once __DIR__ . '/util/utilErrOn.php';
+
+require_once __DIR__ . '/CLASS_CRUD/auth.class.php';
+$auth = new Auth();
+if (!$auth->is_connected()) {
+    header('Location: ./front/includes/pages/login');
+}
 ?>
 
 <!DOCTYPE html>
