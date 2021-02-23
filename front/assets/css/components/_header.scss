@@ -1,5 +1,4 @@
 header {
-    background-color: $beige;
     z-index: 9999;
     position: fixed;
     top: 0;
@@ -13,20 +12,20 @@ header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            @media (max-width: 705px) {
+            @media (max-width: 480px) {
                 display: none;
-             }
+            }
 
-             .header-right {
+            .header-right {
                 flex-basis: 20%;
-    
+
                 .header-right-container {
                     display: flex;
                     align-items: center;
                     justify-content: flex-end;
-    
+
                     .icon_recherche {
-                        height: 40px;
+                        height: 30px;
                         margin-right: 10px;
                     }
                     .button-container {
@@ -35,7 +34,7 @@ header {
                         justify-content: space-between;
                         align-items: center;
                         height: 100%;
-    
+
                         .connect-button {
                             margin-top: 10px;
                         }
@@ -46,22 +45,28 @@ header {
 
         .mobile {
             display: none;
-            @media (max-width: 705px) {
+            @media (max-width: 480px) {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-             }
+            }
 
-             .icon_recherche, .icon_account {
-                 height: 22px;
-             }
+            .icon_recherche,
+            .icon_account {
+                height: 24px;
+            }
         }
 
         .logo {
-            height: 48px;
-            @media (max-width: 705px) {
-                height: 22px;
-             }
+            height: 28px;
+            @media (max-width: 480px) {
+                height: 24px;
+            }
+        }
+    }
+    @media screen and (max-width: 950px) {
+        .header-container {
+            background: $beige;
         }
     }
 }

@@ -25,14 +25,16 @@ $auth = new AUTH();
                 <img src="../../../assets/images/logo_lecopin.svg" alt="Logo du site avec écrit l'écopins" class="logo">
                 <div class="header-right">
                     <div class="header-right-container">
-                        <img src="../../../assets/images/search_icon.svg" alt="Icon de recherche" class="icon_recherche">
+                        <svg class="icon_recherche" width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19.0026 18.1601L29.76 28.9175M19.1044 3.65079C23.1789 7.72533 23.1853 14.3251 19.1186 18.3918C15.0519 22.4585 8.45213 22.4521 4.3776 18.3776C0.303063 14.3031 0.296708 7.70329 4.3634 3.6366C8.4301 -0.430098 15.0299 -0.423743 19.1044 3.65079Z" stroke="#1C1F1B" />
+                        </svg>
                         <?php if ($auth->is_connected()) : ?>
-                            <?php if ($auth->is_admin()): ?>
+                            <?php if ($auth->is_admin()) : ?>
                                 <div class="button-container">
                                     <a href="../../../../index1.php">ADMIN</a>
                                 </div>
                             <?php endif ?>
-                        <?php else: ?>
+                        <?php else : ?>
                             <div class="button-container">
                                 <?php
                                 $buttonTitle = "Inscription";
@@ -60,3 +62,7 @@ $auth = new AUTH();
         </div>
     </header>
     <main>
+
+
+
+        <!-- <img src="../../../assets/images/search_icon.svg" alt="Icon de recherche" class="icon_recherche"> -->
