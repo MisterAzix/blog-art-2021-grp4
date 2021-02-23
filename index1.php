@@ -64,6 +64,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
 					<a class="list-group-item" href="./front/includes/pages/contact/">Contact</a>
 					<a class="list-group-item" href="./front/includes/pages/home/">Home</a>
 					<a class="list-group-item" href="./front/includes/pages/login/">Login</a>
+					<a class="list-group-item" href="./front/includes/pages/logout/">Logout</a>
 					<a class="list-group-item" href="./front/includes/pages/plan/">Plan</a>
 					<a class="list-group-item" href="./front/includes/pages/register/">Register</a>
 				</div>
