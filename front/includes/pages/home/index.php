@@ -16,6 +16,10 @@ require_once '../../commons/header.php';
 
 <!-- WRITE HTML CODE BELOW -->
 
+<?php require '../../components/article.php';
+?>
+<?php require '../../components/sub_article.php';
+?>
 
 
 <?php require_once '../../commons/footer.php' ?>
