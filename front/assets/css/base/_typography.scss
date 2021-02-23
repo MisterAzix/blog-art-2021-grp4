@@ -1,6 +1,8 @@
 h3 {
-    font-family: "DM serif Display", serif;
-    font-size: 2.5rem;
+    font-family: $font-title;
+    font-size: 2.3rem;
     font-weight: $weight-regular;
-    line-height: 2.5rem;
+    color: $black;
+    line-height: 2.3rem;
+    margin: 1rem 0;
 }
