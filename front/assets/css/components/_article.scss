@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 15% 20% 5% 20%;
+    margin: 0 auto;
     flex-direction: row;
     width: 60%;
 
@@ -14,6 +14,7 @@
         width: 50%;
 
         &::before {
+            z-index: -1;
             content: "";
             display: block;
             position: absolute;
@@ -27,6 +28,7 @@
         }
     
         &::after {
+            z-index: -1;
             content: "";
             display: block;
             position: absolute;

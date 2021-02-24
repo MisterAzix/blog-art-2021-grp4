@@ -1,50 +1,67 @@
 .homepage_container {
-    .slideshow {
+    .homepage-intro {
         position: relative;
-        .slides {
-            display: none;
-        }
-        .fade {
-            -webkit-animation-name: fade;
-            -webkit-animation-duration: 1.5s;
-            animation-name: fade;
-            animation-duration: 1.5s;
-        }
-        .line_container {
-            display: flex;
-            justify-content: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
 
-            .line-item {
-                height: 16px;
-                display: inline-block;
-                cursor: pointer;
-                &:hover .line {
-                    background-color: $greentxt;
-                    width: 100px;
-                    height: 4px;
-                }
+        .slideshow {
+            position: relative;
 
-                .line {
-                    height: 2px;
-                    width: 70px;
-                    margin: 0 2px;
-                    background-color: #bbb;
+            .slides {
+                display: none;
+            }
+
+            .fade {
+                -webkit-animation-name: fade;
+                -webkit-animation-duration: 1.5s;
+                animation-name: fade;
+                animation-duration: 1.5s;
+            }
+
+            .line_container {
+                display: flex;
+                justify-content: center;
+                margin: 32px 0;
+                position: absolute;
+                bottom: -100px;
+                left: 50%;
+                transform: translateX(-50%);
+
+                .line-item {
+                    height: 16px;
                     display: inline-block;
-                    transition: all 0.2s ease-in-out;
+                    cursor: pointer;
 
-                    &.active {
-                        background-color: $greentxt;
-                    }
-                    &:hover {
+                    &:hover .line {
                         background-color: $greentxt;
                         width: 100px;
                         height: 4px;
+                    }
+
+                    .line {
+                        height: 2px;
+                        width: 70px;
+                        margin: 0 5px;
+                        background-color: #bbb;
+                        display: inline-block;
+                        transition: all 0.2s ease-in-out;
+                        border-radius: 4px;
+
+                        &.active {
+                            background-color: $greentxt;
+                        }
                     }
                 }
             }
         }
     }
+
     .all_articles {
+        margin: 0 250px;
+
         h2 {
             font-family: $font-title;
             font-size: 56px;
@@ -52,7 +69,15 @@
             color: $black;
             text-align: center;
         }
-        .article {
+
+        @media (max-width: 960px) {
+            margin: 0 150px;
+        }
+        @media (max-width: 960px) {
+            margin: 0 50px;
+        }
+        @media (max-width: 480px) {
+            margin: 0;
         }
     }
 }
