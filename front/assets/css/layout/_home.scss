@@ -1,7 +1,6 @@
 .homepage_container {
     .homepage-intro {
         position: relative;
-
         display: flex;
         justify-content: center;
         align-items: center;
@@ -24,11 +23,15 @@
 
             .line_container {
                 display: flex;
-                flex-direction: row;
                 justify-content: center;
+                margin: 32px 0;
+                position: absolute;
+                bottom: -100px;
+                left: 50%;
+                transform: translateX(-50%);
 
                 .line-item {
-                    height: 24px;
+                    height: 16px;
                     display: inline-block;
                     cursor: pointer;
 
@@ -38,47 +41,33 @@
                         height: 4px;
                     }
 
-                .fade {
-                    -webkit-animation-name: fade;
-                    -webkit-animation-duration: 1.5s;
-                    animation-name: fade;
-                    animation-duration: 1.5s;
-                }
-
-                .line_container {
-                    display: flex;
-                    justify-content: center;
-                    margin: 32px 0;
-                    position: absolute;
-                    bottom: -100px;
-                    left: 50%;
-                    transform: translateX(-50%);
-
-                    .line-item {
-                        height: 16px;
-                        display: inline-block;
-                        cursor: pointer;
-
-                    /*  &:active {
-                        background-color: $greentxt; */
-
-                    &.active .animation{
-                        display: block;
-                        background: $greentxt;
-                        width: 0px;
+                    .line {
                         height: 2px;
-                        animation: soulignement 4.5s ease-out;
-                        animation-delay: 0s;
+                        width: 70px;
+                        margin: 0 5px;
+                        background-color: #bbb;
+                        display: inline-block;
+                        transition: all 0.2s ease-in-out;
+                        border-radius: 4px;
 
-                        @keyframes soulignement {
-                            0% {
-                                width: 0%;
+                        &.active .animation{
+                            display: block;
+                            background: $greentxt;
+                            width: 0px;
+                            height: 2px;
+                            animation: soulignement 4.5s ease-out;
+                            animation-delay: 0s;
+    
+                            @keyframes soulignement {
+                                0% {
+                                    width: 0%;
+                                }
+                                100% {
+                                    width: 100%;
+                                }
                             }
-                            100% {
-                                width: 100%;
-                            }
-                        }
-                    } 
+                        } 
+                    }
                 }
             }
         }
