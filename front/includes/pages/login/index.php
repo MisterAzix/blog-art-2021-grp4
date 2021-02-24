@@ -43,7 +43,7 @@ require_once '../../commons/header.php';
         <?php if ($error) : ?>
             <span id="error" style="display: none;"><?= $error ?></span>
         <?php endif ?>
-        
+
         <h2>Connexion</h2>
         <div class="input_container">
             <form action="" method="POST">
@@ -56,10 +56,10 @@ require_once '../../commons/header.php';
                     <label>Mot de passe</label>
                 </div>
                 <a href="">Mot de passe oublié ?</a>
-                <button class="login_button" type="submit">Se connecter</button>
+                <button class="button" type="submit">Se connecter</button>
             </form>
         </div>
-        <p>Pas de compte ? <a href="../../pages/register/index.php">Inscris-toi ! </a> </p>
+        <p>Pas de compte ? <a href="../../pages/register">Inscris-toi !</a></p>
     </div>
 </div>
 
