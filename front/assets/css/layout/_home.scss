@@ -12,10 +12,11 @@
         }
         .line_container {
             display: flex;
+            flex-direction: row;
             justify-content: center;
 
             .line-item {
-                height: 16px;
+                height: 24px;
                 display: inline-block;
                 cursor: pointer;
                 &:hover .line {
@@ -32,17 +33,30 @@
                     display: inline-block;
                     transition: all 0.2s ease-in-out;
 
-                    &.active {
-                        background-color: $greentxt;
-                    }
-                    &:hover {
-                        background-color: $greentxt;
-                        width: 100px;
-                        height: 4px;
-                    }
+                    /*  &:active {
+                        background-color: $greentxt; */
+
+                    &.active .animation{
+                        display: block;
+                        background: $greentxt;
+                        width: 0px;
+                        height: 2px;
+                        animation: soulignement 4.5s ease-out;
+                        animation-delay: 0s;
+
+                        @keyframes soulignement {
+                            0% {
+                                width: 0%;
+                            }
+                            100% {
+                                width: 100%;
+                            }
+                        }
+                    } 
                 }
             }
         }
+
     }
     .all_articles {
         h2 {
