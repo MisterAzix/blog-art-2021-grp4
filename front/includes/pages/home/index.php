@@ -37,9 +37,9 @@ require_once '../../commons/header.php';
             <?php require '../../components/article.php'; ?>
         </div>
         <div class="line_container">
-            <span class="line" onclick="currentSlide(1)"></span>
-            <span class="line" onclick="currentSlide(2)"></span>
-            <span class="line" onclick="currentSlide(3)"></span>
+            <div class="line-item" onclick="currentSlide(1)"><span class="line"></span></div>
+            <div class="line-item" onclick="currentSlide(2)"><span class="line"></span></div>
+            <div class="line-item" onclick="currentSlide(3)"><span class="line"></span></div>
         </div>
     </div>
 
