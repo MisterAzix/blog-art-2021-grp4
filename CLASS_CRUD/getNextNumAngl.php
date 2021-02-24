@@ -20,7 +20,7 @@ function getNextNumAngl($numLang)
     $libLangSelect = substr($numLang, 0, 4);
     $parmNumLang = $libLangSelect . '%';
 
-    $requete = "SELECT MAX(numLang) AS numLang FROM ANGLE WHERE numLang LIKE '$parmNumLang';";
+    $requete = "SELECT MAX(numLang) AS numLang FROM angle WHERE numLang LIKE '$parmNumLang';";
     $result = $db->query($requete);
 
     if ($result) {
@@ -28,7 +28,7 @@ function getNextNumAngl($numLang)
         $numLang = $tuple["numLang"];
         if (is_null($numLang)) {    // New lang dans ANGLE
             // Récup dernière PK utilisée
-            $requete = "SELECT MAX(numAngl) AS numAngl FROM ANGLE;";
+            $requete = "SELECT MAX(numAngl) AS numAngl FROM angle;";
             $result = $db->query($requete);
             $tuple = $result->fetch();
             $numAngl = $tuple["numAngl"];
@@ -40,7 +40,7 @@ function getNextNumAngl($numLang)
             $numSeq2Angl = 1;
         } else {
             // Récup dernière PK pour FK sélectionnée
-            $requete = "SELECT MAX(numAngl) AS numAngl FROM ANGLE WHERE numLang LIKE '$parmNumLang' ;";
+            $requete = "SELECT MAX(numAngl) AS numAngl FROM angle WHERE numLang LIKE '$parmNumLang' ;";
             $result = $db->query($requete);
             $tuple = $result->fetch();
             $numAngl = $tuple["numAngl"];
