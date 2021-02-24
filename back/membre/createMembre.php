@@ -36,12 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 && !empty($_POST['email1Memb']) && !empty($_POST['pass1Memb']) && !empty($_POST['pass2Memb']
                     && !empty($_POST['idStat']))
             ) {
-                $prenomMemb = ctrlSaisies($_POST['prenomMemb']);
-                $nomMemb = ctrlSaisies($_POST['nomMemb']);
-                $pseudoMemb = ctrlSaisies($_POST['pseudoMemb']);
-                $eMailMemb = ctrlSaisies($_POST['email1Memb']);
-                $pass1Memb = ctrlSaisies($_POST['pass1Memb']);
-                $pass2Memb = ctrlSaisies($_POST['pass2Memb']);
+                $prenomMemb = $_POST['prenomMemb'];
+                $nomMemb = $_POST['nomMemb'];
+                $pseudoMemb = $_POST['pseudoMemb'];
+                $eMailMemb = $_POST['email1Memb'];
+                $pass1Memb = $_POST['pass1Memb'];
+                $pass2Memb = $_POST['pass2Memb'];
                 $passMemb = passConfirm($pass1Memb, $pass2Memb);
                 $idStat = $_POST['idStat'];
 
@@ -151,7 +151,7 @@ $allStatus = $statut->get_AllStatuts();
 
                             <div class="form-group mb-3 col-6">
                                 <label for="email1Memb"><b>Email :</b></label>
-                                <input class="form-control" type="email" name="email1Memb" maxlength="80" value="<?= $email1Memb ?>" placeholder="john@doe.fr" />
+                                <input class="form-control" type="email" name="email1Memb" maxlength="80" value="<?= $eMailMemb ?>" placeholder="john@doe.fr" />
                             </div>
                         </div>
 

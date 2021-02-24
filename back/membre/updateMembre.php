@@ -29,12 +29,12 @@ if (isset($_GET['id'])) {
     $numMemb = $_GET['id'];
     $result = $membre->get_1Membre($numMemb);
     if (!$result) header('Location: ./membre.php');
-    $prenomMemb = $result->prenomMemb;
-    $nomMemb = $result->nomMemb;
-    $pseudoMemb = $result->pseudoMemb;
-    $eMailMemb = $result->eMailMemb;
-    $password = $result->passMemb;
-    $idStat = $result->idStat;
+    $prenomMemb = ctrlSaisies($result->prenomMemb);
+    $nomMemb = ctrlSaisies($result->nomMemb);
+    $pseudoMemb = ctrlSaisies($result->pseudoMemb);
+    $eMailMemb = ctrlSaisies($result->eMailMemb);
+    $password = ctrlSaisies($result->passMemb);
+    $idStat = ctrlSaisies($result->idStat);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!empty($_POST['g-recaptcha-response'])) {
@@ -47,11 +47,11 @@ if (isset($_GET['id'])) {
                     && !empty($_POST['email1Memb']) && !empty($_POST['pass1Memb']) && !empty($_POST['pass2Memb'])
                     && !empty($_POST['idStat'])
                 ) {
-                    $prenomMemb = ctrlSaisies($_POST['prenomMemb']);
-                    $nomMemb = ctrlSaisies($_POST['nomMemb']);
-                    $pseudoMemb = ctrlSaisies($_POST['pseudoMemb']);
-                    $eMailMemb = ctrlSaisies($_POST['email1Memb']);
-                    $pass1Memb = ctrlSaisies($_POST['pass1Memb']);
+                    $prenomMemb = $_POST['prenomMemb'];
+                    $nomMemb = $_POST['nomMemb'];
+                    $pseudoMemb = $_POST['pseudoMemb'];
+                    $eMailMemb = $_POST['email1Memb'];
+                    $pass1Memb = $_POST['pass1Memb'];
                     $pass2Memb = $_POST['pass2Memb'];
                     $passMemb = password_hash($pass2Memb, PASSWORD_DEFAULT, ['cost' => 12]);
                     $idStat = $_POST['idStat'];

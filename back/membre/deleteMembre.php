@@ -33,10 +33,10 @@ if (isset($_GET['id'])) {
     $numMemb = $_GET['id'];
     $result = $membre->get_1Membre($numMemb);
     if (!$result) header('Location: ./membre.php');
-    $prenomMemb = $result->prenomMemb;
-    $nomMemb = $result->nomMemb;
-    $pseudoMemb = $result->pseudoMemb;
-    $eMailMemb = $result->eMailMemb;
+    $prenomMemb = ctrlSaisies($result->prenomMemb);
+    $nomMemb = ctrlSaisies($result->nomMemb);
+    $pseudoMemb = ctrlSaisies($result->pseudoMemb);
+    $eMailMemb = ctrlSaisies($result->eMailMemb);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!empty($_POST['g-recaptcha-response'])) {
