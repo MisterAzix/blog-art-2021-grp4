@@ -10,6 +10,7 @@
     $pseudoMemb = "";
     $pass1Memb = "";
     $pass2Memb = "";
+    $eMailMemb = "";
     $email1Memb = "";
     $email2Memb = "";
     $dtCreaMemb = "";

@@ -57,16 +57,28 @@ if (isset($_GET['id'])) {
                     $idStat = $_POST['idStat'];
 
                     if (strlen($prenomMemb) >= 2 && strlen($nomMemb) >= 2 && strlen($pseudoMemb) >= 2) {
-                        if (passCheck($pass1Memb)) {
-                            if (passConfirm($password, $pass1Memb)) {
-                                // Ajout effectif d'un membre
-                                $membre->update($numMemb, $prenomMemb, $nomMemb, $pseudoMemb, $eMailMemb, $passMemb, $idStat);
-                                header('Location: ./membre.php');
+                        if (usernameCheck($pseudoMemb)) {
+                            if (filter_var($eMailMemb, FILTER_VALIDATE_EMAIL)) {
+                                if (emailCheck($eMailMemb)) {
+                                    if (passCheck($pass1Memb)) {
+                                        if (passConfirm($password, $pass1Memb)) {
+                                            // Ajout effectif d'un membre
+                                            $membre->update($numMemb, $prenomMemb, $nomMemb, $pseudoMemb, $eMailMemb, $passMemb, $idStat);
+                                            header('Location: ./membre.php');
+                                        } else {
+                                            $error = 'Mot de passe incorrect !';
+                                        }
+                                    } else {
+                                        $error = 'Le mot de passe doit contenir entre 8 et 64 caractère, au moins une minuscule, une majuscule et un nombre !';
+                                    }
+                                } else {
+                                    $error = 'L\'adresse mail est déjà utilisée.';
+                                }
                             } else {
-                                $error = 'Mot de passe incorrect !';
+                                $error = 'Adresse mail invalide.';
                             }
                         } else {
-                            $error = 'Le mot de passe doit contenir entre 8 et 64 caractère, au moins une minuscule, une majuscule et un nombre !';
+                            $error = 'Le pseudo est déjà utilisé.';
                         }
                     } else {
                         $error = "La longueur minimale du prénom, du nom ou du pseudo est de 2 caractères !";
@@ -83,6 +95,20 @@ if (isset($_GET['id'])) {
             $error = "Captcha invalide !";
         }
     }
+}
+
+function usernameCheck($pseudoMemb)
+{
+    global $membre;
+    $result = $membre->get_AllMembresByPseudo($pseudoMemb);
+    return $result ? false : true;
+}
+
+function emailCheck($eMailMemb)
+{
+    global $membre;
+    $result = $membre->get_AllMembresByEmail($eMailMemb);
+    return $result ? false : true;
 }
 
 function passCheck(string $pass2Memb): bool
