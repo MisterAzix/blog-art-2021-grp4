@@ -1,52 +1,57 @@
-.sign_container{
-    margin-top:8%;
-    margin-bottom:2%;
+.sign_container {
+    margin-top: 8%;
+    margin-bottom: 2%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    .illustration{
+
+    .illustration {
         flex-basis: 100%;
         text-align: center;
-       img{
-           width: 100%;
-           min-width:200px;
-           height: auto;
-         }
-        
+
+        img {
+            width: 100%;
+            min-width: 200px;
+            height: auto;
+        }
     }
-    .login{
-        align-items:flex-start;
+
+    .login {
+        align-items: flex-start;
         display: flex;
         flex-direction: column;
         flex-basis: 50%;
-       
 
-        h2{
+        h2 {
             font-family: $font-title;
             font-weight: $weight-regular;
 
-            font-size:56px;
-            color:$black;
+            font-size: 56px;
+            color: $black;
         }
-            .input_container{
-                width:100%;
-                .input{
-                    width:100%;
-                }
-            }
-                a{
-                    font-family:$font-text;
-                    font-size: 16px;
-                    color:$black;
-                }
 
-            p{
-            font-family:$font-text;
-            font-size: 16px;
-            color:$black;
+        .input_container {
+            width: 100%;
+
+            .input {
+                width: 100%;
+            }
         }
-        .login_button{
+
+        a {
+            font-family: $font-text;
+            font-size: 16px;
+            color: $black;
+        }
+
+        p {
+            font-family: $font-text;
+            font-size: 16px;
+            color: $black;
+        }
+
+        .login_button {
             padding: 20px 40px;
             border-radius: 40px;
             font-size: 28px;
@@ -55,5 +60,4 @@
             margin-top: 40px;
         }
     }
-
 }
