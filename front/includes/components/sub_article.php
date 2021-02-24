@@ -1,7 +1,7 @@
 <div class="sub_article_components_container">
     <div class="container">
         <div class="left-part">
-            <p class="info"> <span class="underline">Évenements</span> | Publié le 09 Février 2021 à 10h35</p>
+            <p class="info"><span class="underline">Évenements</span> | Publié le 09 Février 2021 à 10h35</p>
             <h3>Bordeaux, écologie et environnement</h3>
             <div class="text-and-button">
                 <p class="text">Les projets ambitieux de la Mairie de Bordeaux ne concordent pas toujours avec l’opinion publique.
