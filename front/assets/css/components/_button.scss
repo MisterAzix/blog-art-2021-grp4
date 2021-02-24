@@ -1,5 +1,4 @@
-button {
-    
+.button {
     padding: 7px 13px;
     background: linear-gradient(140deg, #cefa7d, #9fea9c);
     outline: none;
@@ -12,26 +11,19 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 14px;
-    border-radius: 19px;
-    transition: transform 0.4s ease, background-color 0.4s ease, border 0.4s ease;
+    border-radius: 16px;
+    transition: transform 0.3s ease, background-color 0.3s ease, border 0.3s ease;
    
-
     &:hover {
         transform: scale(1.05);
-        background: linear-gradient(40deg, #cefa7d, #9fea9c);
-
     }
 
-    &.connect-button {
+    &.button-empty {
         border: 2px solid #b1f091;
         background: #fffbf2;
 
         &:hover {
-            border: 2px solid #b1f091;
             background: #b1f091;
         }
     }
 }
-
-/* to bottom right 
-transform: background:linear-gradient(2deg);*/

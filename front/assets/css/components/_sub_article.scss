@@ -8,9 +8,8 @@
     max-width: 70%;
     position: relative;
 
-
     &::before {
-        content: '';
+        content: "";
         z-index: 5;
         display: block;
         position: absolute;
@@ -23,7 +22,7 @@
     }
 
     &::after {
-        content: '';
+        content: "";
         z-index: 5;
         display: block;
         position: absolute;
@@ -54,30 +53,28 @@
             .underline {
                 text-decoration: underline;
             }
-        }   
-        
+        }
+
         h3 {
             @media screen and (max-width: 700px) {
-                    font-size: 2rem;
-            }    
+                font-size: 2rem;
+            }
         }
 
         .text-and-button {
             margin-right: 0;
             margin-top: 0;
-                
+
             @media screen and (max-width: 900px) {
-            position: relative;
-            margin-right: -210px;
-            margin-top: 120px;
+                position: relative;
+                margin-right: -210px;
+                margin-top: 120px;
             }
 
             @media screen and (max-width: 700px) {
                 margin-right: -200px;
-            }           
-      
+            }
         }
-
 
         .text {
             font-family: $font-text;
@@ -87,11 +84,11 @@
             line-height: 1.5rem;
 
             @media screen and (max-width: 700px) {
-                    font-size: 0.9rem;
+                font-size: 0.9rem;
             }
         }
 
-        .button {
+        .button-container {
             display: flex;
             justify-content: flex-end;
             .article_button {
@@ -114,6 +111,4 @@
             }
         }
     }
-
- 
 }
