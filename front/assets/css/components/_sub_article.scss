@@ -9,29 +9,31 @@
     position: relative;
 
     &::before {
+        z-index: -1;
         content: "";
-        z-index: 5;
         display: block;
         position: absolute;
         top: -20px;
         left: -20px;
-        width: 250px;
-        height: 150px;
+        width: 400px;
+        height: 200px;
         border-top: 1px solid $black;
         border-left: 1px solid $black;
+        border-top-left-radius: 16px;
     }
 
     &::after {
+        z-index: -1;
         content: "";
-        z-index: 5;
         display: block;
         position: absolute;
         bottom: -20px;
         right: -20px;
-        width: 250px;
-        height: 150px;
+        width: 400px;
+        height: 200px;
         border-bottom: 1px solid $black;
         border-right: 1px solid $black;
+        border-bottom-right-radius: 16px;
     }
 
     .container {
@@ -50,6 +52,7 @@
             font-weight: $weight-thin;
             color: $black;
             line-height: 20px;
+
             .underline {
                 text-decoration: underline;
             }
@@ -91,6 +94,7 @@
         .button-container {
             display: flex;
             justify-content: flex-end;
+
             .article_button {
                 width: 120px;
             }
@@ -102,7 +106,7 @@
             width: 272px;
             height: 272px;
             object-fit: cover;
-            border-radius: 30px;
+            border-radius: 16px;
             position: relative;
 
             @media screen and (max-width: 900px) {
