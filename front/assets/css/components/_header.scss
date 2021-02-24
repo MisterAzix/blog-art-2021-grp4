@@ -18,16 +18,49 @@ header {
 
             .header-right {
                 flex-basis: 20%;
+                width: 100%;
 
                 .header-right-container {
                     display: flex;
                     align-items: center;
                     justify-content: flex-end;
-
-                    .icon_recherche {
+                    width: 100%;
+                    
+                    
+                    .example{
+                        max-width: 400px;
+                        display: flex;
+                        flex-direction: row;
+                        input{
+                            padding: 10px;
+                            font-size: 17px;
+                            border: none;
+                            border-bottom: 1px solid grey;
+                            float: left;
+                            background-color: $beige;
+                            outline: none;
+                          }
+                        button {
+                            float: left;
+                            padding: 10px;
+                            color: black;
+                            background: none;
+                            font-size: 17px;
+                            border:none;
+                            cursor: pointer;
+                            }
+                                &::after {
+                                    content: "";
+                                    clear: both;
+                                    display: table;
+                                }
+                        .icon_recherche {
                         height: 30px;
                         margin-right: 10px;
+                       }
                     }
+
+                    
                     .button-container {
                         display: flex;
                         flex-direction: column;
