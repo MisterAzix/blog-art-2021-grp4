@@ -20,7 +20,7 @@ function getNextNumThem($numLang)
     $libLangSelect = substr($numLang, 0, 4);
     $parmNumLang = $libLangSelect . '%';
 
-    $requete = "SELECT MAX(numLang) AS numLang FROM THEMATIQUE WHERE numLang LIKE '$parmNumLang';";
+    $requete = "SELECT MAX(numLang) AS numLang FROM thematique WHERE numLang LIKE '$parmNumLang';";
     $result = $db->query($requete);
 
     if ($result) {
@@ -28,7 +28,7 @@ function getNextNumThem($numLang)
         $numLang = $tuple["numLang"];
         if (is_null($numLang)) {    // New lang dans THEMATIQUE
             // Récup dernière PK utilisée
-            $requete = "SELECT MAX(numThem) AS numThem FROM THEMATIQUE;";
+            $requete = "SELECT MAX(numThem) AS numThem FROM thematique;";
             $result = $db->query($requete);
             $tuple = $result->fetch();
             $numThem = $tuple["numThem"];
@@ -40,7 +40,7 @@ function getNextNumThem($numLang)
             $numSeq2Them = 1;
         } else {
             // Récup dernière PK pour FK sélectionnée
-            $requete = "SELECT MAX(numThem) AS numThem FROM THEMATIQUE WHERE numLang LIKE '$parmNumLang' ;";
+            $requete = "SELECT MAX(numThem) AS numThem FROM thematique WHERE numLang LIKE '$parmNumLang' ;";
             $result = $db->query($requete);
             $tuple = $result->fetch();
             $numThem = $tuple["numThem"];

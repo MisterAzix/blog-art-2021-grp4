@@ -20,7 +20,7 @@ function getNextnumMotCle($numLang)
     $libLangSelect = substr($numLang, 0, 4);
     $parmNumLang = $libLangSelect . '%';
 
-    $requete = "SELECT MAX(numLang) AS numLang FROM MOTCLE WHERE numLang LIKE '$parmNumLang';";
+    $requete = "SELECT MAX(numLang) AS numLang FROM motcle WHERE numLang LIKE '$parmNumLang';";
     $result = $db->query($requete);
 
     if ($result) {
@@ -28,7 +28,7 @@ function getNextnumMotCle($numLang)
         $numLang = $tuple["numLang"];
         if (is_null($numLang)) {    // New lang dans MOTCLE
             // Récup dernière PK utilisée
-            $requete = "SELECT MAX(numMotCle) AS numMotCle FROM MOTCLE;";
+            $requete = "SELECT MAX(numMotCle) AS numMotCle FROM motcle;";
             $result = $db->query($requete);
             $tuple = $result->fetch();
             $numMotCle = $tuple["numMotCle"];
@@ -40,7 +40,7 @@ function getNextnumMotCle($numLang)
             $numSeq2MoCle = 1;
         } else {
             // Récup dernière PK pour FK sélectionnée
-            $requete = "SELECT MAX(numMotCle) AS numMotCle FROM MOTCLE WHERE numLang LIKE '$parmNumLang' ;";
+            $requete = "SELECT MAX(numMotCle) AS numMotCle FROM motcle WHERE numLang LIKE '$parmNumLang' ;";
             $result = $db->query($requete);
             $tuple = $result->fetch();
             $numMotCle = $tuple["numMotCle"];
