@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . '../../CONNECT/database.php';
-/** Gèrer les connexions des utilisateurs.
+/** Gèrer l'authentification des membres.
  * AUTH
  */
 class AUTH
@@ -21,9 +21,9 @@ class AUTH
     }
 
     /**
-     * is_connected
+     * is_connected permet de vérifier si le membre est connecté
      *
-     * @return bool
+     * @return bool true : est connecté | false : n'est pas connecté
      */
     public function is_connected(): bool
     {
@@ -34,9 +34,9 @@ class AUTH
     }
     
     /**
-     * is_admin
+     * is_admin permet de verifier si le membre est administrateur
      *
-     * @return bool
+     * @return bool true : est administrateur | false : n'est pas administrateur
      */
     public function is_admin(): bool
     {
@@ -53,7 +53,7 @@ class AUTH
     }
 
     /**
-     * get_connected_id
+     * get_connected_id permet de récupérer l'id du membre connecté
      *
      * @return void
      */
@@ -66,11 +66,11 @@ class AUTH
     }
     
     /**
-     * login
+     * login permet de connecter un membre
      *
      * @param  string $email
      * @param  string $password
-     * @return bool
+     * @return bool true : la connexion a réussi | false : la connexion a échouée
      */
     public function login(string $email, string $password): bool
     {
@@ -88,7 +88,7 @@ class AUTH
     }
     
     /**
-     * logout
+     * logout permet la deconnexion du membre
      *
      * @return void
      */

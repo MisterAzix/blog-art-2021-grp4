@@ -5,12 +5,13 @@ require_once __DIR__ . '../../CONNECT/database.php';
 
 class COMMENT
 {
-	function get_1Comment($numSeqCom)
+	function get_1Comment($numSeqCom, $numArt)
 	{
 		global $db;
-		$query = $db->prepare("SELECT * FROM comment WHERE numSeqCom=:numSeqCom");
+		$query = $db->prepare("SELECT * FROM comment WHERE numSeqCom=:numSeqCom AND numArt = :numArt");
 		$query->execute([
-			'numSeqCom' => $numSeqCom
+			'numSeqCom' => $numSeqCom,
+			'numArt' => $numArt
 		]);
 		$result = $query->fetch(PDO::FETCH_OBJ);
 		return $result;
@@ -28,6 +29,17 @@ class COMMENT
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM comment WHERE numArt=:numArt");
+		$query->execute([
+			'numArt' => $numArt
+		]);
+		$result = $query->fetchAll(PDO::FETCH_OBJ);
+		return $result;
+	}
+
+	function get_AllCommentsPlusByArticle($numArt)
+	{
+		global $db;
+		$query = $db->prepare("SELECT * FROM commentplus WHERE numArt=:numArt ORDER BY numSeqCom");
 		$query->execute([
 			'numArt' => $numArt
 		]);

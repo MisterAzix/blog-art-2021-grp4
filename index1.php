@@ -9,6 +9,12 @@
 
 // Mode DEV
 require_once __DIR__ . '/util/utilErrOn.php';
+
+require_once __DIR__ . '/CLASS_CRUD/auth.class.php';
+$auth = new Auth();
+if (!$auth->is_connected()) {
+    header('Location: ./front/includes/pages/login');
+}
 ?>
 
 <!DOCTYPE html>
@@ -64,6 +70,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
 					<a class="list-group-item" href="./front/includes/pages/contact/">Contact</a>
 					<a class="list-group-item" href="./front/includes/pages/home/">Home</a>
 					<a class="list-group-item" href="./front/includes/pages/login/">Login</a>
+					<a class="list-group-item" href="./front/includes/pages/logout/">Logout</a>
 					<a class="list-group-item" href="./front/includes/pages/plan/">Plan</a>
 					<a class="list-group-item" href="./front/includes/pages/register/">Register</a>
 				</div>

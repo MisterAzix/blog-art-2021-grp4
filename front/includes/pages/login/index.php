@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($login) {
             header('Location: ../home');
         } else {
-            $error = 'Error : Invalid password or email!';
+            $error = 'Identifiants incorrects !';
         }
         unset($_POST['email'], $_POST['password']);
     }
@@ -41,7 +41,7 @@ require_once '../../commons/header.php';
     </div>
     <div class='login'>
         <?php if ($error) : ?>
-            <span id="error" ><?= $error ?></span>
+            <span id="error" style="display: none;"><?= $error ?></span>
         <?php endif ?>
         
         <h2>Connexion</h2>

@@ -50,18 +50,8 @@ $auth = new AUTH();
                             <?php endif ?>
                         <?php else : ?>
                             <div class="button-container">
-                                <?php
-                                $buttonTitle = "Inscription";
-                                $buttonHref = '';
-                                $buttonClass = 'nav_button';
-                                require '../../components/button.php';
-                                ?>
-                                <?php
-                                $buttonTitle = "Connexion";
-                                $buttonHref = '';
-                                $buttonClass = 'connect-button';
-                                require '../../components/button.php';
-                                ?>
+                                <a class="button" href="../pages/register/">Inscription</a>
+                                <a class="button button-empty" href="../pages/login/">Connexion</a>
                             </div>
                         <?php endif ?>
                     </div>

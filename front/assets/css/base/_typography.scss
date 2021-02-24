@@ -2,9 +2,11 @@ h3 {
     font-family: $font-title;
     font-size: 2.5rem;
     font-weight: $weight-regular;
-    line-height: 2.5rem;
+    color: $black;
+    line-height: 2.3rem;
+    margin: 1rem 0;
 }
 
-p, span, input {
+p, span, input, .notyf {
     font-family: $font-text;
 }
