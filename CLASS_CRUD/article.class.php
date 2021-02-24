@@ -24,6 +24,14 @@ class ARTICLE
 		return $result;
 	}
 
+	function get_AllFavArticles()
+	{
+		global $db;
+		$query = $db->query('SELECT libTitrArt, libAccrochArt, l.numArt, count(likeA) count FROM article a INNER JOIN likeart l on a.numArt = l.numArt GROUP BY l.numArt ORDER BY count DESC LIMIT 3');
+		$result = $query->fetchAll(PDO::FETCH_OBJ);
+		return $result;
+	}
+
 	function get_AllArticlesByAngl($numAngl)
 	{
 		global $db;

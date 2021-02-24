@@ -19,48 +19,53 @@ $thematique = new THEMATIQUE();
 
 // Appel méthode : tous les angles en BDD
 $allArticles = $article->get_AllArticles();
+$allFavArticles = $article->get_AllFavArticles();
 $allThematics = $thematique->get_AllThematiques();
 
 require_once '../../commons/header.php';
 ?>
 
 <!-- WRITE HTML CODE BELOW -->
-<div class="homepage_container">
-    <div class="slideshow">
-        <div class="slides fade">
-            <?php require '../../components/article.php'; ?>
-        </div>
-        <div class="slides fade">
-            <?php require '../../components/article.php'; ?>
-        </div>
-        <div class="slides fade">
-            <?php require '../../components/article.php'; ?>
-        </div>
-        <div class="line_container">
-            <div class="line-item" onclick="currentSlide(1)">
-                <span class="line"><div class="animation"></div></span>
-            </div>
-            <div class="line-item" onclick="currentSlide(2)">
-                <span class="line"><div class="animation"></div></span>
-            </div>
-            <div class="line-item" onclick="currentSlide(3)">
-                <span class="line"><div class="animation"></div></span>
-            </div>
-        </div>
-    </div>
+<main class="homepage_container">
 
-    <div class="all_articles">
+    <section class="homepage-intro">
+        <div class="slideshow">
+            <?php foreach ($allFavArticles as $article) : ?>
+                <div class="slides fade">
+                    <div class="article_components_container">
+                        <div class="text_container">
+                            <h2><?= $article->libTitrArt ?></h2>
+                            <p><?= $article->libAccrochArt ?></p>
+                            <div class="button-container">
+                                <a class="button" href="../article/index.php?id=<?= $article->numArt ?>">Lire l'article</a>
+                            </div>
+                        </div>
+                        <div class="image">
+                            <img src="../../../assets/images/drone.jpg" alt="photo colorée de bordeaux vue de haut">
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach ?>
+            <div class="line_container">
+                <div class="line-item" onclick="currentSlide(1)"><span class="line"><div class="animation"></div></span></div>
+                <div class="line-item" onclick="currentSlide(2)"><span class="line"><div class="animation"></div></span></div>
+                <div class="line-item" onclick="currentSlide(3)"><span class="line"><div class="animation"></div></span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="all_articles">
         <h2>Tous mes articles</h2>
         <div class="article">
             <?php foreach ($allArticles as $article) : ?>
                 <div class="sub_article_components_container">
                     <div class="container">
                         <div class="left-part">
-                            <p class="info"><span class="underline"><?= $allThematics[array_search($article->numThem, array_column($allThematics, 'numThem'))]->libThem ?></span> | Publié le <?= dateChangeFormat($article->dtCreArt, "Y-m-d H:i:s", "d F Y à H\hi") ?></p>
+                            <p class="info"><?= $allThematics[array_search($article->numThem, array_column($allThematics, 'numThem'))]->libThem ?> | Publié le <?= dateChangeFormat($article->dtCreArt, "Y-m-d H:i:s", "d F Y à H\hi") ?></p>
                             <h3><?= $article->libTitrArt ?></h3>
                             <div class="text-and-button">
                                 <p class="text">
-                                    <?= $article->libAccrochArt ?>
+                                    <?= $article->libChapoArt ?>
                                 </p>
                                 <div class="button-container">
                                     <a class="button" href="../article/index.php?id=<?= $article->numArt ?>">Lire l'article</a>
@@ -73,18 +78,9 @@ require_once '../../commons/header.php';
                     </div>
                 </div>
             <?php endforeach ?>
-            <?php require '../../components/sub_article.php';
-            ?>
-            <?php require '../../components/sub_article.php';
-            ?>
-            <?php require '../../components/sub_article.php';
-            ?>
         </div>
-    </div>
+    </section>
 
-
-
-</div>
-
+</main>
 
 <?php require_once '../../commons/footer.php' ?>
