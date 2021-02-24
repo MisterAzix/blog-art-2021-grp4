@@ -66,20 +66,12 @@ require_once '../../commons/header.php';
                 <div class="suggestion">
                     <img src="../../../assets/images/philippe-barre.jpg" alt="philippebarreImage">
                         <p>Phillipe Barre : Anticonformiste et créateur d’un éco-système</p>
-                        <?php 
-                        $buttonTitle='Lire l\'article';
-                        $buttonClass='read_button';
-                        require '../../components/button.php';
-                        ?>
+                        <a class="button" href="../article/">Lire l'article</a>
                 </div>
                 <div class="suggestion">
                     <img src="../../../assets/images/jardin.jpg" alt="jardinImage">
                         <p>Écologique et insolite C’est possible !</p>
-                        <?php 
-                        $buttonTitle='Lire l\'article';
-                        $buttonClass='read_button';
-                        require '../../components/button.php';
-                        ?>
+                        <a class="button" href="../article/">Lire l'article</a>
                 </div>
             </div>
         </div>
