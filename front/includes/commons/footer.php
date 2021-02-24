@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     <script src="../../../assets/js/notyf.js"></script>
     <script src="../../../assets/js/slideshow.js"></script>
+    <script src="../../../assets/js/searchBar.js"></script>
 </body>
 
 </html>

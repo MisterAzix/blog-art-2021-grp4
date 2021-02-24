@@ -34,8 +34,7 @@ require_once '../../commons/header.php';
             <span class="line" onclick="currentSlide(1)"></span> 
             <span class="line" onclick="currentSlide(2)"></span> 
             <span class="line" onclick="currentSlide(3)"></span> 
-</div>
-
+        </div>
     </div>
    
     <div class="all_articles">
