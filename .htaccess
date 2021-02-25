@@ -59,15 +59,15 @@ RewriteEngine on
 #--------------------------------------------------
 
 RewriteEngine on
-RewriteRule dashboard dashboard.php [L]
-RewriteRule accueil /front/includes/pages/home.php [L]
-RewriteRule connexion /front/includes/pages/login.php [L]
-RewriteRule inscription /front/includes/pages/register.php [L]
-RewriteRule deconnexion /front/includes/pages/logout.php [L]
-RewriteRule contact /front/includes/pages/contact.php [L]
-RewriteRule plan /front/includes/pages/plan.php [L]
-RewriteRule cgu /front/includes/pages/cgu.php [L]
-RewriteRule article/([a-zA-Z0-9]+) /front/includes/pages/article.php?numArt=$1 [L]
+RewriteRule ^dashboard dashboard.php [L]
+RewriteRule ^accueil /front/includes/pages/home.php [L]
+RewriteRule ^connexion /front/includes/pages/login.php [L]
+RewriteRule ^inscription /front/includes/pages/register.php [L]
+RewriteRule ^deconnexion /front/includes/pages/logout.php [L]
+RewriteRule ^contact /front/includes/pages/contact.php [L]
+RewriteRule ^plan /front/includes/pages/plan.php [L]
+RewriteRule ^cgu /front/includes/pages/cgu.php [L]
+RewriteRule ^article/([a-zA-Z0-9]+) /front/includes/pages/article.php?numArt=$1 [L]
 
 ErrorDocument 403 /front/includes/pages/errors/403.php
 ErrorDocument 404 /front/includes/pages/errors/404.php
