@@ -31,8 +31,8 @@ if (isset($_GET['id'])) {
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!empty($_POST['submit']) && $_POST['submit'] === 'Modifier' && !empty($_POST['libThem'])) {
-            $numThem = ctrlSaisies($_GET['id']);
-            $libThem = ctrlSaisies($_POST['libThem']);
+            $numThem = $_GET['id'];
+            $libThem = $_POST['libThem'];
 
             if (strlen($libThem) >= 3) {
                 // Modification effective de la thématique

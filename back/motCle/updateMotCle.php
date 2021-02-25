@@ -31,8 +31,8 @@ if (isset($_GET['id'])) {
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!empty($_POST['submit']) && $_POST['submit'] === 'Modifier' && !empty($_POST['libMotCle'])) {
-            $numMotCle = ctrlSaisies($_GET['id']);
-            $libMotCle = ctrlSaisies($_POST['libMotCle']);
+            $numMotCle = $_GET['id'];
+            $libMotCle = $_POST['libMotCle'];
 
             if (strlen($libMotCle) >= 3) {
                 // Modification effective du mot clé

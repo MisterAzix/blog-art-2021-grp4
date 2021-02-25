@@ -25,12 +25,18 @@ if (isset($_GET['id'])) {
     $result = $statut->get_1Statut($_GET['id']);
     $libStat = ctrlSaisies($result->libStat);
 
-    if (isset($_POST['Submit']) && $libStat) {
-        if ($_POST['Submit'] === 'Modifier') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (!empty($_POST['submit']) && $_POST['submit'] === 'Modifier' && !empty($_POST['libStat'])) {
+            $libStat = $_POST['libStat'];
+
             // Modification effective du statut
             $statut->update($_GET['id'], $_POST['libStat']);
 
             header('Location: ./statut.php');
+        } elseif (!empty($_POST['submit']) && $_POST['submit'] === 'Initialiser') {
+            header('Location: ./updateStatut.php?id=' . $_GET['id']);
+        } else {
+            $error = 'Merci de renseigner tous les champs du formulaire.';
         }
     }
 }
@@ -56,7 +62,7 @@ require_once __DIR__ . '/../common/header.php';
 
                     <div class="form-group mb-3">
                         <label for="libStat"><b>Nom du statut :</b></label>
-                        <input class="form-control" type="text" name="libStat" id="libStat" size="80" maxlength="80" value="<?= $libStat ?>" autofocus="autofocus" />
+                        <input class="form-control" type="text" name="libStat" size="80" maxlength="80" value="<?= $libStat ?>" autofocus="autofocus" />
                     </div>
 
                     <div class="form-group">
