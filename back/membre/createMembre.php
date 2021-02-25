@@ -86,25 +86,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-function usernameCheck($pseudoMemb)
+/**
+ * usernameCheck Permet de vérifier si le pseudo renseigné n'existe pas déjà en base de donnée
+ *
+ * @param  string $pseudoMemb
+ * @return bool true : Le pseudo n'existe pas en base de donnée | false : Le pseudo est déjà utilisé
+ */
+function usernameCheck(string $pseudoMemb): bool
 {
     global $membre;
-    $result = $membre->get_AllMembresByPseudo($pseudoMemb);
+    $result = $membre->get_1MembreByPseudo($pseudoMemb);
     return $result ? false : true;
 }
 
-function emailCheck($eMailMemb)
+/**
+ * emailCheck Permet de vérifier si l'email renseigné n'existe pas déjà en base de donnée
+ *
+ * @param  string $eMailMemb
+ * @return bool true : L'email n'existe pas en base de donnée | false : L'email est déjà utilisé
+ */
+function emailCheck(string $eMailMemb): bool
 {
     global $membre;
-    $result = $membre->get_AllMembresByEmail($eMailMemb);
+    $result = $membre->get_1MembreByEmail($eMailMemb);
     return $result ? false : true;
 }
 
+/**
+ * passCheck Permet de vérifier si le mot de passe vérifie les certaines règles
+ *
+ * @param  string $pass1Memb Mot de passe provenant du premier input
+ * @return bool true : Le mot de passe respecte les règles | false : il ne respecte pas les règles
+ */
 function passCheck(string $pass1Memb): bool
 {
-    $uppercase = preg_match('@[A-Z]@', $pass1Memb);
-    $lowercase = preg_match('@[a-z]@', $pass1Memb);
-    $number = preg_match('@[0-9]@', $pass1Memb);
+    $uppercase = preg_match('@[A-Z]@', $pass1Memb); //Le mot de passe contient au moins une majuscule
+    $lowercase = preg_match('@[a-z]@', $pass1Memb); //Le mot de passe contient au moins une minuscule
+    $number = preg_match('@[0-9]@', $pass1Memb); //Le mot de passe contient au moins un chiffre
 
     if ($uppercase && $lowercase && $number && strlen($pass1Memb) >= 8 && strlen($pass1Memb) <= 64) {
         return true;
@@ -112,7 +130,14 @@ function passCheck(string $pass1Memb): bool
     return false;
 }
 
-function passConfirm(string $pass1Memb, string $pass2Memb)
+/**
+ * passConfirm Permet de vérifier si le mot de passe et la confirmation sont égaux
+ *
+ * @param  string $pass1Memb Mot de passe provenant du premier input
+ * @param  string $pass2Memb Confirmation du mot de passe
+ * @return string Renvoie le mot de passe hasher à stocker en base de donnée
+ */
+function passConfirm(string $pass1Memb, string $pass2Memb):string
 {
     $passMemb = null;
     if ($pass1Memb === $pass2Memb) {

@@ -62,7 +62,7 @@ if (isset($_GET['id'])) {
                         if (usernameCheck($pseudoMemb)) {
                             if (filter_var($eMailMemb, FILTER_VALIDATE_EMAIL)) {
                                 if (emailCheck($eMailMemb)) {
-                                    if (passCheck($pass1Memb)) {
+                                    if (passCheck($pass2Memb)) {
                                         if (passConfirm($password, $pass1Memb)) {
                                             // Ajout effectif d'un membre
                                             $membre->update($numMemb, $prenomMemb, $nomMemb, $pseudoMemb, $eMailMemb, $passMemb, $idStat);
@@ -99,25 +99,43 @@ if (isset($_GET['id'])) {
     }
 }
 
-function usernameCheck($pseudoMemb)
+/**
+ * usernameCheck Permet de vérifier si le pseudo renseigné n'existe pas déjà en base de donnée
+ *
+ * @param  string $pseudoMemb
+ * @return bool true : Le pseudo n'existe pas en base de donnée | false : Le pseudo est déjà utilisé
+ */
+function usernameCheck(string $pseudoMemb): bool
 {
     global $membre;
-    $result = $membre->get_AllMembresByPseudo($pseudoMemb);
+    $result = $membre->get_1MembreByPseudo($pseudoMemb);
     return $result ? false : true;
 }
 
-function emailCheck($eMailMemb)
+/**
+ * emailCheck Permet de vérifier si l'email renseigné n'existe pas déjà en base de donnée
+ *
+ * @param  string $eMailMemb
+ * @return bool true : L'email n'existe pas en base de donnée | false : L'email est déjà utilisé
+ */
+function emailCheck(string $eMailMemb): bool
 {
     global $membre;
-    $result = $membre->get_AllMembresByEmail($eMailMemb);
+    $result = $membre->get_1MembreByEmail($eMailMemb);
     return $result ? false : true;
 }
 
+/**
+ * passCheck Permet de vérifier si le mot de passe vérifie les certaines règles
+ *
+ * @param  string $pass2Memb Mot de passe provenant du premier input
+ * @return bool true : Le mot de passe respecte les règles | false : il ne respecte pas les règles
+ */
 function passCheck(string $pass2Memb): bool
 {
-    $uppercase = preg_match('@[A-Z]@', $pass2Memb);
-    $lowercase = preg_match('@[a-z]@', $pass2Memb);
-    $number = preg_match('@[0-9]@', $pass2Memb);
+    $uppercase = preg_match('@[A-Z]@', $pass2Memb); //Le mot de passe contient au moins une majuscule
+    $lowercase = preg_match('@[a-z]@', $pass2Memb); //Le mot de passe contient au moins une minuscule
+    $number = preg_match('@[0-9]@', $pass2Memb); //Le mot de passe contient au moins un chiffre
 
     if ($uppercase && $lowercase && $number && strlen($pass2Memb) >= 8 && strlen($pass2Memb) <= 64) {
         return true;
@@ -125,6 +143,13 @@ function passCheck(string $pass2Memb): bool
     return false;
 }
 
+/**
+ * passConfirm Permet de vérifier si le mot de passe renseigné dans l'input 1 est le même qu'en base de donnée
+ *
+ * @param  string $password
+ * @param  string $pass1Memb
+ * @return bool
+ */
 function passConfirm(string $password, string $pass1Memb): bool
 {
     if (password_verify($pass1Memb, $password)) return true;
