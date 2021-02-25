@@ -1,11 +1,17 @@
 <?php
+//========================================//
+//
+//              contact.php
+//
+//========================================//
+
 // WRITE YOUR PHP LOGIC HERE
 $page_title = 'Home';
 $page_description = '';
 
 
 
-require_once '../../commons/header.php';
+require_once __DIR__ . '/../commons/header.php';
 ?>
 <!-- WRITE HTML CODE BELOW -->
 
@@ -44,7 +50,7 @@ require_once '../../commons/header.php';
 
 <div class='sign_container layout'>
     <div class='illustration'>
-        <img src="../../../assets/images/Cool Kids - High Tech.png" alt="loginImage">
+        <img src="/front/assets/images/Cool Kids - High Tech.png" alt="loginImage">
     </div>
     <div class='contact'>
         <h2>Besoin de me contacter ?</h2>
@@ -78,4 +84,4 @@ require_once '../../commons/header.php';
         </div>
 </div>
 
-<?php require_once '../../commons/footer.php' ?>
+<?php require_once __DIR__ . '/../commons/footer.php' ?>

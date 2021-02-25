@@ -1,0 +1,72 @@
+<files .htaccess>
+order allow,deny
+deny from all
+</files>
+
+<files .gitignore>
+order allow,deny
+deny from all
+</files>
+
+<files config.json>
+order allow,deny
+deny from all
+</files>
+
+<files README.md>
+order allow,deny
+deny from all
+</files>
+
+<files CLASS_CRUD>
+order allow,deny
+deny from all
+</files>
+
+<files CONNECT>
+order allow,deny
+deny from all
+</files>
+
+<files img>
+order allow,deny
+deny from all
+</files>
+
+<files js>
+order allow,deny
+deny from all
+</files>
+
+<files photos>
+order allow,deny
+deny from all
+</files>
+
+<files upload>
+order allow,deny
+deny from all
+</files>
+
+# Le serveur doit suivre les liens symboliques :
+Options +FollowSymlinks
+
+# Activation du module de réécriture d'URL :
+RewriteEngine on
+
+#--------------------------------------------------
+# Règles de réécriture d'URL :
+#--------------------------------------------------
+
+RewriteRule ^dashboard dashboard.php [L]
+RewriteRule ^accueil /front/includes/pages/home.php [L]
+RewriteRule ^connexion /front/includes/pages/login.php [L]
+RewriteRule ^inscription /front/includes/pages/register.php [L]
+RewriteRule ^deconnexion /front/includes/pages/logout.php [L]
+RewriteRule ^contact /front/includes/pages/contact.php [L]
+RewriteRule ^plan /front/includes/pages/plan.php [L]
+RewriteRule ^cgu /front/includes/pages/cgu.php [L]
+RewriteRule ^article/([a-zA-Z0-9]+) /front/includes/pages/article.php?numArt=$1 [L]
+
+ErrorDocument 403 /front/includes/pages/errors/403.php
+ErrorDocument 404 /front/includes/pages/errors/404.php

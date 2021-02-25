@@ -1,7 +1,7 @@
 <?php
 //========================================//
 //
-//             cgu/index.php
+//                cgu.php
 //
 //========================================//
 
@@ -10,8 +10,7 @@ $page_title = 'Mentions Légales';
 $page_description = '';
 
 
-
-require_once '../../commons/header.php';
+require_once __DIR__ . '/../commons/header.php';
 ?>
 
 <!-- WRITE HTML CODE BELOW -->
@@ -233,4 +232,4 @@ require_once '../../commons/header.php';
 
             
 
-<?php require_once '../../commons/footer.php' ?>
+<?php require_once __DIR__ . '/../commons/footer.php' ?>
