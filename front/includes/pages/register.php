@@ -1,7 +1,7 @@
 <?php
 //========================================//
 //
-//          register/index.php
+//              register.php
 //
 //========================================//
 
@@ -10,13 +10,13 @@ $page_title = 'Register';
 $page_description = '';
 
 
-require_once '../../commons/header.php';
+require_once '../commons/header.php';
 ?>
 
 <!-- WRITE HTML CODE BELOW -->
 <div class="sign_container layout">
     <div class="illustration">
-        <img src="../../../assets/images/Capture_d_écran_2021-02-09_à_15.47.20-removebg.png" alt="loginImage">
+        <img src="/front/assets/images/Capture_d_écran_2021-02-09_à_15.47.20-removebg.png" alt="loginImage">
     </div>
     <div class="register">
         <h2>Hey ! Inscris-toi ici ! </h2>
@@ -47,7 +47,7 @@ require_once '../../commons/header.php';
                 <div class="checkbox-container">
                     <div class="checkbox">
                         <input type="checkbox" id="cgu" name="cgu">
-                        <label for="cgu">J'accepte les <a href="../cgu/index.php">conditions générales d'utilisations</a>.</label>
+                        <label for="cgu">J'accepte les <a href="/cgu">conditions générales d'utilisations</a>.</label>
                     </div>
 
                     <div class="checkbox">
@@ -64,4 +64,4 @@ require_once '../../commons/header.php';
 </div>
 
 
-<?php require_once '../../commons/footer.php' ?>
+<?php require_once '../commons/footer.php' ?>

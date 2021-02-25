@@ -1,7 +1,7 @@
 <?php
 //========================================//
 //
-//           article/index.php
+//              article.php
 //
 //========================================//
 
@@ -11,7 +11,7 @@ $page_description = '';
 
 
 
-require_once '../../commons/header.php';
+require_once '../commons/header.php';
 ?>
 
 <!-- WRITE HTML CODE BELOW -->
@@ -22,8 +22,8 @@ require_once '../../commons/header.php';
                 <div class="info">
                     <p>09/02/2021</p>
                     <div class="trait"></div>
-                    <a href=""> <img src="../../../assets/images/Vector-2.png" alt="loginImage">56</a>
-                    <a href=""><img src="../../../assets/images/Vector-3.png" alt="loginImage">22</a>
+                    <a href=""><img src="/front/assets/images/Vector-2.png" alt="loginImage">56</a>
+                    <a href=""><img src="/front/assets/images/Vector-3.png" alt="loginImage">22</a>
                 </div>
             </div>
             <div class="text">
@@ -48,9 +48,9 @@ require_once '../../commons/header.php';
                     Notre belle endormie a encore de beaux jours devant elle. Végétaliser c’est bien, mais redoubler d’efforts sur les autres questions essentielles de la ville c’est mieux ! Faisons confiance au temps et attendons de voir ce que va donner le projet d’ici quelques années. J’attends une belle évolution de cet aspect là !
                 </p>
                 <div class="info_bottom">
-                    <a href=""><img src="../../../assets/images/share-2 1.png" alt="loginImage"></a>
-                    <a href=""> <img src="../../../assets/images/Vector-2.png" alt="loginImage">56</a>
-                    <a href=""><img src="../../../assets/images/Vector-3.png" alt="loginImage">22</a>
+                    <a href=""><img src="/front/assets/images/share-2 1.png" alt="loginImage"></a>
+                    <a href=""><img src="/front/assets/images/Vector-2.png" alt="loginImage">56</a>
+                    <a href=""><img src="/front/assets/images/Vector-3.png" alt="loginImage">22</a>
                     <button class="button">Commentaires</button>
                 </div>
             </div>
@@ -60,27 +60,27 @@ require_once '../../commons/header.php';
             <p>Lis mes autres articles:</p>
             <div class="sug_container">
                 <div class="suggestion">
-                    <img src="../../../assets/images/philippe-barre.jpg" alt="philippebarreImage">
+                    <img src="/front/assets/images/philippe-barre.jpg" alt="philippebarreImage">
                     <p>Phillipe Barre : Anticonformiste et créateur d’un éco-système</p>
                     <a class="button" href="../article/">Lire l'article</a>
                 </div>
                 <div class="suggestion">
-                    <img src="../../../assets/images/jardin.jpg" alt="jardinImage">
+                    <img src="/front/assets/images/jardin.jpg" alt="jardinImage">
                     <p>Écologique et insolite C’est possible !</p>
-                    <a class="button" href="../article/">Lire l'article</a>
+                    <a class="button" href="/article">Lire l'article</a>
                 </div>
             </div>
         </div>
     </div>
     <div class="illustration">
-        <img src="../../../assets/images/home.jpg" alt="homeImage">
+        <img src="/front/assets/images/home.jpg" alt="homeImage">
     </div>
 
     <div class="container_comment" style="display: none;">
         <?php
-        require '../../components/comment.php';
+        require '../components/comment.php';
         ?>
     </div>
 </div>
 
-<?php require_once '../../commons/footer.php' ?>
+<?php require_once '../commons/footer.php' ?>
