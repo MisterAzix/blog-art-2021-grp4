@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
     $libStat = ctrlSaisies($result->libStat);
 
     if (isset($_POST['Submit']) && $libStat) {
-        if ($_POST['Submit'] === 'Valider') {
+        if ($_POST['Submit'] === 'Modifier') {
             // Modification effective du statut
             $statut->update($_GET['id'], $_POST['libStat']);
 
@@ -60,8 +60,8 @@ require_once __DIR__ . '/../common/header.php';
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
-                        <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
+                        <input type="submit" value="Initialiser" name="submit" class="btn btn-primary" />
+                        <input type="submit" value="Modifier" name="submit" class="btn btn-success" />
                     </div>
                 </form>
             </div>

@@ -74,12 +74,13 @@ if (isset($_GET['id'])) {
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (
+            !empty($_POST['submit']) && $_POST['submit'] === 'Modifier' &&
             !empty($_POST['libTitrArt']) && !empty($_POST['libChapoArt']) && !empty($_POST['libAccrochArt'])
             && !empty($_POST['parag1Art']) && !empty($_POST['libSsTitr1Art']) && !empty($_POST['parag2Art'])
             && !empty($_POST['libSsTitr2Art']) && !empty($_POST['parag3Art']) && !empty($_POST['libConclArt'])
             /*&& !empty($_POST['urlPhotArt'])*/ && !empty($_POST['numAngl']) && !empty($_POST['numThem'])
         ) {
-            $numArt = ctrlSaisies($_GET['id']);
+            $numArt = $_GET['id'];
             $libTitrArt = $_POST['libTitrArt'];
             $libChapoArt = $_POST['libChapoArt'];
             $libAccrochArt = $_POST['libAccrochArt'];
@@ -114,7 +115,7 @@ if (isset($_GET['id'])) {
             } else {
                 $error = 'La longueur minimale des paragraphes est de 1000 caractères';
             }
-        } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
+        } else if (!empty($_POST['submit']) && $_POST['submit'] === 'Initialiser') {
             header('Location: ./updateArticle.php?id=' . $_GET['id']);
         } else {
             $error = 'Merci de renseigner tous les champs du formulaire.';
@@ -214,8 +215,8 @@ require_once __DIR__ . '/../common/header.php';
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
-                        <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
+                        <input type="submit" value="Initialiser" name="submit" class="btn btn-primary" />
+                        <input type="submit" value="Modifier" name="submit" class="btn btn-success" />
                     </div>
                 </form>
             </div>

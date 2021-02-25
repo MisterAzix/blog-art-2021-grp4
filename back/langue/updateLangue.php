@@ -20,7 +20,6 @@ $langue = new LANGUE();
 include __DIR__ . '/initLangue.php';
 $error = null;
 
-
 // controle des saisies du formulaire
 if (isset($_GET['id'])) {
     $result = $langue->get_1Langue($_GET['id']);
@@ -29,12 +28,12 @@ if (isset($_GET['id'])) {
     $selectedPays = ctrlSaisies($result->numPays);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (!empty($_POST['lib1Lang']) && !empty($_POST['lib2Lang'])) {
-            $numLang = ctrlSaisies($_GET['id']);
-            $lib1Lang = ctrlSaisies($_POST['lib1Lang']);
-            $lib2Lang = ctrlSaisies($_POST['lib2Lang']);
+        if (!empty($_POST['submit']) && $_POST['submit'] === 'Modifier' && !empty($_POST['lib1Lang']) && !empty($_POST['lib2Lang'])) {
+            $numLang = $_GET['id'];
+            $lib1Lang = $_POST['lib1Lang'];
+            $lib2Lang = $_POST['lib2Lang'];
 
-            if (strlen($lib1Lang) >= 5 && strlen($lib2Lang) >= 5) {
+            if (strlen($lib1Lang) >= 3 && strlen($lib2Lang) >= 3) {
                 // Modification effective du statut
                 $langue->update($numLang, $lib1Lang, $lib2Lang);
 
@@ -42,7 +41,7 @@ if (isset($_GET['id'])) {
             } else {
                 $error = 'La longueur minimale d\'une langue ou d\'un libellé est de 5 caractères.';
             }
-        } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
+        } else if (!empty($_POST['submit']) && $_POST['submit'] === 'Initialiser') {
             header('Location: ./updateLangue.php?id=' . $_GET['id']);
         } else {
             $error = 'Merci de renseigner tous les champs du formulaire.';
@@ -95,8 +94,8 @@ require_once __DIR__ . '/../common/header.php';
                         </div>
 
                         <div class="form-group">
-                            <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
-                            <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
+                            <input type="submit" value="Initialiser" name="submit" class="btn btn-primary" />
+                            <input type="submit" value="Modifier" name="submit" class="btn btn-success" />
                         </div>
                     </fieldset>
                 </form>

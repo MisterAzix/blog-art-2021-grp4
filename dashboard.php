@@ -1,9 +1,9 @@
 <?php
 ///////////////////////////////////////////////////////////////
 //
-//  Gestion des CRUD (PDO) - 23 Janvier 2021
+//    Gestion des CRUD (PDO) - 25 Février 2021
 //
-//  Script  : index1.php 	-		BLOGART21 (Etud)
+//    Script  : dashboard.php     -		BLOGART21 (Etud)
 //
 ///////////////////////////////////////////////////////////////
 
@@ -27,6 +27,12 @@ if (!$auth->is_connected()) {
 	<meta name="description" content="" />
 	<meta name="author" content="" />
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	<style>
+		body {
+			background-color: #fffbf2;
+		}
+	</style>
 </head>
 
 <body>

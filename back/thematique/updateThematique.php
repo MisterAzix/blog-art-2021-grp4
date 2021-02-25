@@ -30,7 +30,7 @@ if (isset($_GET['id'])) {
     $selectedLang = ctrlSaisies($result->numLang);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (!empty($_POST['libThem'])) {
+        if (!empty($_POST['submit']) && $_POST['submit'] === 'Modifier' && !empty($_POST['libThem'])) {
             $numThem = ctrlSaisies($_GET['id']);
             $libThem = ctrlSaisies($_POST['libThem']);
 
@@ -42,7 +42,7 @@ if (isset($_GET['id'])) {
             } else {
                 $error = 'La longueur minimale d\'une thématique est de 3 caractères.';
             }
-        } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
+        } else if (!empty($_POST['submit']) && $_POST['submit'] === 'Initialiser') {
             header('Location: ./updateThematique.php?id=' . $_GET['id']);
         } else {
             $error = 'Merci de renseigner tous les champs du formulaire.';
@@ -91,8 +91,8 @@ require_once __DIR__ . '/../common/header.php';
                         </div>
 
                         <div class="form-group">
-                            <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
-                            <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
+                            <input type="submit" value="Initialiser" name="submit" class="btn btn-primary" />
+                            <input type="submit" value="Modifier" name="submit" class="btn btn-success" />
                         </div>
                     </fieldset>
                 </form>

@@ -24,6 +24,8 @@ $article = new ARTICLE();
 include __DIR__ . '/initMotCleArticle.php';
 $error = null;
 
+var_dump($_GET['numArt']);
+
 if (isset($_GET['numArt'])) {
     $result = $motclearticle->get_AllMotCleArtByArticle($_GET['numArt']);
     if (!$result) header('Location: ./motCleArticle.php');
@@ -34,7 +36,10 @@ if (isset($_GET['numArt'])) {
     //var_dump($_POST['numMotCle']);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (!empty($_POST['numMotCle']) && count($_POST['numMotCle']) > 0) {
+        if (
+            !empty($_POST['submit']) && $_POST['submit'] === 'Modifier' &&
+            !empty($_POST['numMotCle']) && count($_POST['numMotCle']) > 0
+        ) {
             $numArt = ctrlSaisies($_GET['numArt']);
             $keywordToAdd = array_diff($_POST['numMotCle'], $selectedKeywords);
             $keywordToDel = array_diff($selectedKeywords, $_POST['numMotCle']);
@@ -46,8 +51,8 @@ if (isset($_GET['numArt'])) {
                 $motclearticle->delete($numArt, $numMotCle);
             }
             header('Location: ./motCleArticle.php');
-        } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
-            header('Location: ./updateMotCleArticle.php?numArt=' . $_GET['id']);
+        } else if (!empty($_POST['submit']) && $_POST['submit'] === 'Initialiser') {
+            header('Location: ./updateMotCleArt.php?numArt=' . $_GET['numArt']);
         } else {
             $error = 'Merci de renseigner tous les champs du formulaire.';
         }
@@ -99,14 +104,14 @@ require_once __DIR__ . '/../common/header.php';
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
-                        <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
+                        <input type="submit" value="Initialiser" name="submit" class="btn btn-primary" />
+                        <input type="submit" value="Modifier" name="submit" class="btn btn-success" />
                     </div>
                 </form>
             </div>
         </div>
 
-        <?php require_once __DIR__ . '/footerStatut.php' ?>
+        <?php require_once __DIR__ . '/footerMotCleArticle.php' ?>
     </div>
 </main>
 <?php require_once __DIR__ . '/../common/footer.php' ?>

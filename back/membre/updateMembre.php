@@ -44,6 +44,7 @@ if (isset($_GET['id'])) {
 
             if ($responseData->success) {
                 if (
+                    !empty($_POST['submit']) && $_POST['submit'] === 'Modifier' && 
                     !empty($_POST['prenomMemb']) && !empty($_POST['nomMemb']) && !empty($_POST['pseudoMemb'])
                     && !empty($_POST['email1Memb']) && !empty($_POST['pass1Memb']) && !empty($_POST['pass2Memb'])
                     && !empty($_POST['idStat'])
@@ -84,7 +85,7 @@ if (isset($_GET['id'])) {
                     } else {
                         $error = "La longueur minimale du prénom, du nom ou du pseudo est de 2 caractères !";
                     }
-                } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
+                } else if (!empty($_POST['submit']) && $_POST['submit'] === 'Initialiser') {
                     header('Location: ./updateMembre.php?id=' . $_GET['id']);
                 } else {
                     $error = 'Merci de renseigner tous les champs du formulaire.';
@@ -207,8 +208,8 @@ require_once __DIR__ . '/../common/header.php';
 
                     <!-- BUTTONS -->
                     <div class="form-group d-flex justify-content-center">
-                        <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary m-2" />
-                        <input type="submit" value="Modifier" name="Submit" class="btn btn-success m-2" />
+                        <input type="submit" value="Initialiser" name="submit" class="btn btn-primary m-2" />
+                        <input type="submit" value="Modifier" name="submit" class="btn btn-success m-2" />
                     </div>
                 </form>
             </div>
