@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST['email']) && !empty($_POST['password'])) {
         $login = $auth->login($_POST['email'], $_POST['password']);
         if ($login) {
-            header('Location: ../home');
+            header('Location: /accueil');
         } else {
             $error = 'Identifiants incorrects !';
         }

@@ -23,9 +23,9 @@ require_once __DIR__ . '/../commons/header.php';
         <div class="section_container">
             <div class="section">
                 <h2>Acces rapide</h2>
-                <a href="/home">Page d'accueil</a>
-                <a href="/register">Inscription</a>
-                <a href="/login">Connexion</a>
+                <a href="/accueil">Page d'accueil</a>
+                <a href="/inscription">Inscription</a>
+                <a href="/connexion">Connexion</a>
                 <a href="/contact">Me contacter</a>
                 <a href="/cgu">Mentions légale</a>
             </div>
