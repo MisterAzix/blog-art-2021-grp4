@@ -6,6 +6,7 @@
 //  Script  : createArticle.php  (ETUD)   -   BLOGART21
 //
 ///////////////////////////////////////////////////////////////
+$pageTile = 'Article';
 
 // Mode DEV
 require_once __DIR__ . '/../../util/utilErrOn.php';
@@ -107,123 +108,100 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $perpectives = $angle->get_AllAngles();
 $thematics = $thematique->get_AllThematiques();
+
+require_once __DIR__ . '/../common/header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
+<main class="container">
+    <div class="d-flex flex-column">
+        <h1>BLOGART21 Admin - Gestion du CRUD Article</h1>
+        <hr>
 
-<head>
-    <meta charset="utf-8" />
-    <title>Admin - Gestion du CRUD Article</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+        <div class="row d-flex justify-content-center">
+            <div class="col-8">
+                <h2>Ajout d'un article</h2>
 
-    <!-- <link href="../css/style.css" rel="stylesheet" type="text/css" /> -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+                <?php if ($error) : ?>
+                    <div class="alert alert-danger"><?= $error ?: '' ?></div>
+                <?php endif ?>
 
-<body>
-    <main class="container">
-        <div class="d-flex flex-column">
-            <h1>BLOGART21 Admin - Gestion du CRUD Article</h1>
-            <hr>
+                <form class="form" method="post" action="" enctype="multipart/form-data">
+                    <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ?: '' ?>" />
 
-            <div class="row d-flex justify-content-center">
-                <div class="col-8">
-                    <h2>Ajout d'un article</h2>
-
-                    <?php if ($error) : ?>
-                        <div class="alert alert-danger"><?= $error ?: '' ?></div>
-                    <?php endif ?>
-
-                    <form class="form" method="post" action="" enctype="multipart/form-data">
-                        <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ?: '' ?>" />
-
-                        <div class="row">
-                            <div class="form-group mb-3 col-6">
-                                <label for="libTitrArt"><b>Titre de l'article :</b></label>
-                                <input class="form-control" type="text" name="libTitrArt" id="libTitrArt" maxlength="100" value="<?= $libTitrArt ?>" placeholder="Un bon titre putaclic" autofocus="autofocus" />
-                            </div>
-                            <div class="form-group mb-3 col-6">
-                                <label for="urlPhotArt"><b>Image :</b></label>
-                                <input type="file" class="form-control" name="urlPhotArt">
-                            </div>
+                    <div class="row">
+                        <div class="form-group mb-3 col-6">
+                            <label for="libTitrArt"><b>Titre de l'article :</b></label>
+                            <input class="form-control" type="text" name="libTitrArt" id="libTitrArt" maxlength="100" value="<?= $libTitrArt ?>" placeholder="Un bon titre putaclic" autofocus="autofocus" />
                         </div>
-
-                        <div class="form-group mb-3">
-                            <label for="libChapoArt"><b>Chapeau :</b></label>
-                            <textarea class="form-control" type="text" name="libChapoArt" id="libChapoArt" cols="30" rows="2" maxlength="500" placeholder="Chapeau vert (car je suis plein d'ideés)"><?= $libChapoArt ?></textarea>
-                            <span class="pull-right label label-default" id="count_message" style="background-color: smoke; margin-top: -20px; margin-right: 5px;"></span>
+                        <div class="form-group mb-3 col-6">
+                            <label for="urlPhotArt"><b>Image :</b></label>
+                            <input type="file" class="form-control" name="urlPhotArt">
                         </div>
+                    </div>
 
-                        <div class="form-group mb-3">
-                            <label for="libAccrochArt"><b>Accroche :</b></label>
-                            <input class="form-control" type="text" name="libAccrochArt" id="libAccrochArt" maxlength="100" value="<?= $libAccrochArt ?>" placeholder="Une super accroche" />
-                        </div>
+                    <div class="form-group mb-3">
+                        <label for="libChapoArt"><b>Chapeau :</b></label>
+                        <textarea class="form-control" type="text" name="libChapoArt" id="libChapoArt" cols="30" rows="2" maxlength="500" placeholder="Chapeau vert (car je suis plein d'ideés)"><?= $libChapoArt ?></textarea>
+                        <span class="pull-right label label-default" id="count_message" style="background-color: smoke; margin-top: -20px; margin-right: 5px;"></span>
+                    </div>
 
-                        <div class="form-group mb-3">
-                            <label for="libSsTitr1Art"><b>Paragraphe 1 :</b></label>
-                            <input class="form-control" type="text" name="libSsTitr1Art" id="libSsTitr1Art" maxlength="100" value="<?= $libSsTitr1Art ?>" placeholder="Titre 1er article" />
-                            <textarea class="form-control" type="text" name="parag1Art" id="parag1Art" cols="30" rows="3" maxlength="1200" placeholder="Premièrement..."><?= $parag1Art ?></textarea>
-                        </div>
+                    <div class="form-group mb-3">
+                        <label for="libAccrochArt"><b>Accroche :</b></label>
+                        <input class="form-control" type="text" name="libAccrochArt" id="libAccrochArt" maxlength="100" value="<?= $libAccrochArt ?>" placeholder="Une super accroche" />
+                    </div>
 
-                        <div class="form-group mb-3">
-                            <label for="libSsTitr2Art"><b>Paragraphe 2 :</b></label>
-                            <input class="form-control" type="text" name="libSsTitr2Art" id="libSsTitr2Art" maxlength="100" value="<?= $libSsTitr2Art ?>" placeholder="Titre 2eme article" />
-                            <textarea class="form-control" type="text" name="parag2Art" id="parag2Art" cols="30" rows="3" maxlength="1200" placeholder="Ensuite..."><?= $parag2Art ?></textarea>
-                        </div>
+                    <div class="form-group mb-3">
+                        <label for="libSsTitr1Art"><b>Paragraphe 1 :</b></label>
+                        <input class="form-control" type="text" name="libSsTitr1Art" id="libSsTitr1Art" maxlength="100" value="<?= $libSsTitr1Art ?>" placeholder="Titre 1er article" />
+                        <textarea class="form-control" type="text" name="parag1Art" id="parag1Art" cols="30" rows="3" maxlength="1200" placeholder="Premièrement..."><?= $parag1Art ?></textarea>
+                    </div>
 
-                        <div class="form-group mb-3">
-                            <label for="parag3Art"><b>Paragraphe 3 :</b></label>
-                            <textarea class="form-control" type="text" name="parag3Art" id="parag3Art" cols="30" rows="3" maxlength="1200" placeholder="Dans ce troisième paragraphe..."><?= $parag3Art ?></textarea>
-                        </div>
+                    <div class="form-group mb-3">
+                        <label for="libSsTitr2Art"><b>Paragraphe 2 :</b></label>
+                        <input class="form-control" type="text" name="libSsTitr2Art" id="libSsTitr2Art" maxlength="100" value="<?= $libSsTitr2Art ?>" placeholder="Titre 2eme article" />
+                        <textarea class="form-control" type="text" name="parag2Art" id="parag2Art" cols="30" rows="3" maxlength="1200" placeholder="Ensuite..."><?= $parag2Art ?></textarea>
+                    </div>
 
-                        <div class="form-group mb-3">
-                            <label for="libConclArt"><b>Conclusion :</b></label>
-                            <textarea class="form-control" type="text" name="libConclArt" id="libConclArt" cols="30" rows="2" maxlength="800" placeholder="En conclusion..."><?= $libConclArt ?></textarea>
-                        </div>
+                    <div class="form-group mb-3">
+                        <label for="parag3Art"><b>Paragraphe 3 :</b></label>
+                        <textarea class="form-control" type="text" name="parag3Art" id="parag3Art" cols="30" rows="3" maxlength="1200" placeholder="Dans ce troisième paragraphe..."><?= $parag3Art ?></textarea>
+                    </div>
 
-                        <div class="row">
-                            <div class="form-group mb-3 col-6">
-                                <label for="numAngl"><b>Angle :</b></label>
-                                <select name="numAngl" class="form-control" id="numAngl">
-                                    <option value="">--Choississez un angle--</option>
-                                    <?php foreach ($perpectives as $perpective) : ?>
-                                        <option value="<?= $perpective->numAngl ?>"><?= $perpective->libAngl ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                            </div>
-                            <div class="form-group mb-3 col-6">
-                                <label for="numThem"><b>Thématique :</b></label>
-                                <select name="numThem" class="form-control" id="numThem">
-                                    <option value="">--Choississez une thématique--</option>
-                                    <?php foreach ($thematics as $thematic) : ?>
-                                        <option value="<?= $thematic->numThem ?>"><?= $thematic->libThem ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                            </div>
-                        </div>
+                    <div class="form-group mb-3">
+                        <label for="libConclArt"><b>Conclusion :</b></label>
+                        <textarea class="form-control" type="text" name="libConclArt" id="libConclArt" cols="30" rows="2" maxlength="800" placeholder="En conclusion..."><?= $libConclArt ?></textarea>
+                    </div>
 
-                        <div class="form-group">
-                            <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
-                            <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
+                    <div class="row">
+                        <div class="form-group mb-3 col-6">
+                            <label for="numAngl"><b>Angle :</b></label>
+                            <select name="numAngl" class="form-control" id="numAngl">
+                                <option value="">--Choississez un angle--</option>
+                                <?php foreach ($perpectives as $perpective) : ?>
+                                    <option value="<?= $perpective->numAngl ?>"><?= $perpective->libAngl ?></option>
+                                <?php endforeach ?>
+                            </select>
                         </div>
-                    </form>
-                </div>
+                        <div class="form-group mb-3 col-6">
+                            <label for="numThem"><b>Thématique :</b></label>
+                            <select name="numThem" class="form-control" id="numThem">
+                                <option value="">--Choississez une thématique--</option>
+                                <?php foreach ($thematics as $thematic) : ?>
+                                    <option value="<?= $thematic->numThem ?>"><?= $thematic->libThem ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
+                        <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
+                    </div>
+                </form>
             </div>
-
-            <?php
-            require_once __DIR__ . '/footerArticle.php';
-
-            require_once __DIR__ . '/footer.php';
-            ?>
         </div>
-    </main>
 
-    <!-- SCRIPT -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="../../js/char_counter.js"></script>
-</body>
-
-</html>
+        <?php require_once __DIR__ . '/footerArticle.php' ?>
+    </div>
+</main>
+<?php require_once __DIR__ . '/../common/footer.php' ?>

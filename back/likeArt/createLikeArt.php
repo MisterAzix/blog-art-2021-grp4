@@ -6,6 +6,7 @@
 //  Script  : createLikeArt.php  (ETUD)   -   BLOGART21
 //
 ///////////////////////////////////////////////////////////////
+$pageTitle = 'LikeArt';
 
 // Mode DEV
 require_once __DIR__ . '/../../util/utilErrOn.php';
@@ -41,83 +42,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $allMembers = $membre->get_AllMembres();
 $allArticles = $article->get_AllArticles();
+
+require_once __DIR__ . '/../common/header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
+<main class="container">
+    <div class="d-flex flex-column">
+        <h1>BLOGART21 Admin - Gestion du CRUD LikeArt</h1>
+        <hr>
 
-<head>
-    <meta charset="utf-8" />
-    <title>Admin - Gestion du CRUD LikeArt</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+        <div class="row d-flex justify-content-center">
+            <div class="col-8">
+                <h2>Ajout d'un like sur un article</h2>
 
-    <!-- <link href="../css/style.css" rel="stylesheet" type="text/css" /> -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+                <?php if ($error) : ?>
+                    <div class="alert alert-danger"><?= $error ?: '' ?></div>
+                <?php endif ?>
 
-<body>
-    <main class="container">
-        <div class="d-flex flex-column">
-            <h1>BLOGART21 Admin - Gestion du CRUD LikeArt</h1>
-            <hr>
+                <form class="form" method="post" action="" enctype="multipart/form-data">
 
-            <div class="row d-flex justify-content-center">
-                <div class="col-8">
-                    <h2>Ajout d'un like sur un article</h2>
+                    <fieldset>
+                        <legend class="legend1">Formulaire Langue...</legend>
 
-                    <?php if ($error) : ?>
-                        <div class="alert alert-danger"><?= $error ?: '' ?></div>
-                    <?php endif ?>
+                        <input type="hidden" name="numMemb" value="<?= isset($_GET['numMemb']) ?: '' ?>" />
+                        <input type="hidden" name="numArt" value="<?= isset($_GET['numArt']) ?: '' ?>" />
 
-                    <form class="form" method="post" action="" enctype="multipart/form-data">
-
-                        <fieldset>
-                            <legend class="legend1">Formulaire Langue...</legend>
-
-                            <input type="hidden" name="numMemb" value="<?= isset($_GET['numMemb']) ?: '' ?>" />
-                            <input type="hidden" name="numArt" value="<?= isset($_GET['numArt']) ?: '' ?>" />
-
-                            <div class="row">
-                                <div class="form-group mb-3 col-6">
-                                    <label for="numMemb"><b>Membre :</b></label>
-                                    <select name="numMemb" class="form-control" id="numMemb">
-                                        <option value="">--Choississez un membre--</option>
-                                        <?php foreach ($allMembers as $member) : ?>
-                                            <option value="<?= $member->numMemb ?>"><?= $member->pseudoMemb ?></option>
-                                        <?php endforeach ?>
-                                    </select>
-                                </div>
-
-                                <div class="form-group mb-3 col-6">
-                                    <label for="numArt"><b>Article :</b></label>
-                                    <select name="numArt" class="form-control" id="numArt">
-                                        <option value="">--Choississez un article--</option>
-                                        <?php foreach ($allArticles as $article) : ?>
-                                            <option value="<?= $article->numArt ?>"><?= $article->libTitrArt ?></option>
-                                        <?php endforeach ?>
-                                    </select>
-                                </div>
+                        <div class="row">
+                            <div class="form-group mb-3 col-6">
+                                <label for="numMemb"><b>Membre :</b></label>
+                                <select name="numMemb" class="form-control" id="numMemb">
+                                    <option value="">--Choississez un membre--</option>
+                                    <?php foreach ($allMembers as $member) : ?>
+                                        <option value="<?= $member->numMemb ?>"><?= $member->pseudoMemb ?></option>
+                                    <?php endforeach ?>
+                                </select>
                             </div>
 
-
-                            <div class="form-group">
-                                <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
-                                <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
+                            <div class="form-group mb-3 col-6">
+                                <label for="numArt"><b>Article :</b></label>
+                                <select name="numArt" class="form-control" id="numArt">
+                                    <option value="">--Choississez un article--</option>
+                                    <?php foreach ($allArticles as $article) : ?>
+                                        <option value="<?= $article->numArt ?>"><?= $article->libTitrArt ?></option>
+                                    <?php endforeach ?>
+                                </select>
                             </div>
-                        </fieldset>
-                    </form>
-                </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
+                            <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
+                        </div>
+                    </fieldset>
+                </form>
             </div>
-
-            <?php
-            require_once __DIR__ . '/footerLikeArt.php';
-
-            require_once __DIR__ . '/footer.php';
-            ?>
         </div>
-    </main>
-</body>
 
-</html>
+        <?php require_once __DIR__ . '/footerLikeArt.php' ?>
+    </div>
+</main>
+<?php require_once __DIR__ . '/../common/footer.php' ?>

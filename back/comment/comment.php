@@ -6,6 +6,7 @@
 //  Script  : comment.php  (ETUD)   -   BLOGART21
 //
 /////////////////////////////////////////////////////
+$pageTitle = 'Commentaire';
 
 // Mode DEV
 require_once __DIR__ . '/../../util/utilErrOn.php';
@@ -44,7 +45,7 @@ Article 1
 */
 
 foreach ($allOrdered as $articleComments) {
-    
+
     $mainComments[] = "SELECT * FROM comment WHERE numArt = $article->numArt AND numSeqCom NOT IN (SELECT numSeqComR FROM commentplus WHERE numArt = $article->numArt)";
     foreach ($mainComments as $mainComment) {
         subComment($mainComment);
@@ -59,28 +60,11 @@ function subComment($mainComment)
     $subComment[] = [];
 }
 
+require_once __DIR__ . '/../common/header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
+<main class="container">
+    <h1>BLOGART21 Admin - Gestion du CRUD Commentaire</h1>
 
-<head>
-    <meta charset="utf-8" />
-    <title>Admin - Gestion du CRUD Commentaire</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body>
-    <main class="container">
-        <h1>BLOGART21 Admin - Gestion du CRUD Commentaire</h1>
-
-
-        <?php require_once __DIR__ . '/footer.php'; ?>
-    </main>
-</body>
-
-</html>
+</main>
+<?php require_once __DIR__ . '/../common/footer.php' ?>

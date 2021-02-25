@@ -6,6 +6,7 @@
 //  Script  : updateMotCleArt.php  (ETUD)   -   BLOGART21
 //
 ///////////////////////////////////////////////////////////////
+$pageTitle = 'Mots Clés Article';
 
 // Mode DEV
 require_once __DIR__ . '/../../util/utilErrOn.php';
@@ -55,76 +56,57 @@ if (isset($_GET['numArt'])) {
 
 $allMotsCles = $motcle->get_AllMotsCles();
 $allArticles = $article->get_AllArticles();
+
+require_once __DIR__ . '/../common/header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
+<main class="container">
+    <div class="d-flex flex-column">
+        <h1>BLOGART21 Admin - Gestion du CRUD MotCleArticle</h1>
+        <hr>
 
-<head>
-    <meta charset="utf-8" />
-    <title>Admin - Gestion du CRUD LikeArt</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+        <div class="row d-flex justify-content-center">
+            <div class="col-8">
+                <h2>Ajout d'un mot-clé sur un article</h2>
 
-    <!-- <link href="../css/style.css" rel="stylesheet" type="text/css" /> -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+                <?php if ($error) : ?>
+                    <div class="alert alert-danger"><?= $error ?: '' ?></div>
+                <?php endif ?>
 
-<body>
-    <main class="container">
-        <div class="d-flex flex-column">
-            <h1>BLOGART21 Admin - Gestion du CRUD MotCleArticle</h1>
-            <hr>
+                <form class="form" method="post" action="" enctype="multipart/form-data">
+                    <input type="hidden" name="numArt" value="<?= isset($_GET['numArt']) ?: '' ?>" />
 
-            <div class="row d-flex justify-content-center">
-                <div class="col-8">
-                    <h2>Ajout d'un mot-clé sur un article</h2>
-
-                    <?php if ($error) : ?>
-                        <div class="alert alert-danger"><?= $error ?: '' ?></div>
-                    <?php endif ?>
-
-                    <form class="form" method="post" action="" enctype="multipart/form-data">
-                        <input type="hidden" name="numArt" value="<?= isset($_GET['numArt']) ?: '' ?>" />
-
-                        <div class="row">
-                            <div class="form-group mb-3 col-6">
-                                <label for="numArt"><b>Article :</b></label>
-                                <select name="numArt" class="form-control" disabled>
-                                    <option value="">--Choississez un article--</option>
-                                    <?php foreach ($allArticles as $article) : ?>
-                                        <option value="<?= $article->numArt ?>" <?= ($article->numArt === $_GET['numArt']) ? 'selected' : '' ?>><?= $article->libTitrArt ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                            </div>
-
-                            <div class="form-group mb-3 col-6">
-                                <label for="numMotCle[]"><b>Mots-Clés :</b></label>
-                                <select name="numMotCle[]" class="form-control" multiple>
-                                    <option value="">--Choississez un ou plusieurs mot(s)-clé(s)--</option>
-                                    <?php foreach ($allMotsCles as $motcle) : ?>
-                                        <option value="<?= $motcle->numMotCle ?>" <?= in_array($motcle->numMotCle, $selectedKeywords) ? 'selected' : '' ?>><?= $motcle->libMotCle ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                            </div>
+                    <div class="row">
+                        <div class="form-group mb-3 col-6">
+                            <label for="numArt"><b>Article :</b></label>
+                            <select name="numArt" class="form-control" disabled>
+                                <option value="">--Choississez un article--</option>
+                                <?php foreach ($allArticles as $article) : ?>
+                                    <option value="<?= $article->numArt ?>" <?= ($article->numArt === $_GET['numArt']) ? 'selected' : '' ?>><?= $article->libTitrArt ?></option>
+                                <?php endforeach ?>
+                            </select>
                         </div>
 
-                        <div class="form-group">
-                            <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
-                            <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
+                        <div class="form-group mb-3 col-6">
+                            <label for="numMotCle[]"><b>Mots-Clés :</b></label>
+                            <select name="numMotCle[]" class="form-control" multiple>
+                                <option value="">--Choississez un ou plusieurs mot(s)-clé(s)--</option>
+                                <?php foreach ($allMotsCles as $motcle) : ?>
+                                    <option value="<?= $motcle->numMotCle ?>" <?= in_array($motcle->numMotCle, $selectedKeywords) ? 'selected' : '' ?>><?= $motcle->libMotCle ?></option>
+                                <?php endforeach ?>
+                            </select>
                         </div>
-                    </form>
-                </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
+                        <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
+                    </div>
+                </form>
             </div>
-
-            <?php
-            require_once __DIR__ . '/footerMotCleArticle.php';
-
-            require_once __DIR__ . '/footer.php';
-            ?>
         </div>
-    </main>
-</body>
 
-</html>
+        <?php require_once __DIR__ . '/footerStatut.php' ?>
+    </div>
+</main>
+<?php require_once __DIR__ . '/../common/footer.php' ?>

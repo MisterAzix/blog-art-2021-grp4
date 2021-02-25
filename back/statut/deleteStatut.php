@@ -6,6 +6,7 @@
 //  Script  : deleteStatut.php  (ETUD)   -   BLOGART21
 //
 ///////////////////////////////////////////////////////////////
+$pageTitle = 'Statut';
 
 // Mode DEV
 require_once __DIR__ . '/../../util/utilErrOn.php';
@@ -49,82 +50,40 @@ if (isset($_GET['id'])) {
         }
     }
 }
+
+require_once __DIR__ . '/../common/header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
+<main class="container">
+    <div class="d-flex flex-column">
+        <h1>BLOGART21 Admin - Gestion du CRUD Statut</h1>
 
-<head>
-    <meta charset="utf-8" />
-    <title>Admin - Gestion du CRUD Statut</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
 
-    <link href="../css/style.css" rel="stylesheet" type="text/css" />
-    <style type="text/css">
-        #p1 {
-            max-width: 600px;
-            width: 600px;
-            max-height: 200px;
-            height: 200px;
-            border: 1px solid #000000;
-            background-color: whitesmoke;
-            /* Coins arrondis et couleur du cadre */
-            border: 2px solid grey;
-            -moz-border-radius: 8px;
-            -webkit-border-radius: 8px;
-            border-radius: 8px;
-        }
+        <div class="row d-flex justify-content-center">
+            <div class="col-8">
+                <h2>Suppression d'un statut</h2>
 
-        .error {
-            padding: 2px;
-            border: solid 0px black;
-            color: red;
-            font-style: italic;
-            border-radius: 5px;
-        }
-    </style>
-</head>
+                <?php if ($error) : ?>
+                    <div class="alert alert-danger"><?= $error ?: '' ?></div>
+                <?php endif ?>
 
-<body>
-    <h1>BLOGART21 Admin - Gestion du CRUD Statut</h1>
-    <h2>Suppression d'un statut</h2>
+                <form method="post" action="" enctype="multipart/form-data">
+                    <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ?: '' ?>" />
 
-    <?php if ($error) : ?>
-        <div class="error"><?= $error ?: '' ?></div>
-    <?php endif ?>
+                    <div class="form-group mb-3">
+                        <label class="control-label" for="libStat"><b>Nom du statut :</b></label>
+                        <input class="form-control" type="text" name="libStat" id="libStat" size="80" maxlength="80" value="<?= $libStat ?>" disabled="disabled" />
+                    </div>
 
-    <form method="post" action="" enctype="multipart/form-data">
-
-        <fieldset>
-            <legend class="legend1">Formulaire Statut...</legend>
-
-            <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ?: '' ?>" />
-
-            <div class="control-group">
-                <label class="control-label" for="libStat"><b>Nom du statut :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-                <input type="text" name="libStat" id="libStat" size="80" maxlength="80" value="<?= $libStat ?>" disabled="disabled" />
+                    <div class="form-group">
+                        <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
+                        <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
+                    </div>
+                </form>
             </div>
+        </div>
 
-            <div class="control-group">
-                <div class="controls">
-                    <br><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="submit" value="Annuler" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
-                    <br>
-                </div>
-            </div>
-        </fieldset>
-    </form>
-    <br>
-    <?php
-    require_once __DIR__ . '/footerStatut.php';
-
-    require_once __DIR__ . '/footer.php';
-    ?>
-</body>
-
-</html>
+        <?php require_once __DIR__ . '/footerStatut.php' ?>
+    </div>
+</main>
+<?php require_once __DIR__ . '/../common/footer.php' ?>

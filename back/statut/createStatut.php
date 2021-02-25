@@ -6,6 +6,7 @@
 //  Script  : createStatut.php  (ETUD)   -   BLOGART21
 //
 ///////////////////////////////////////////////////////////////
+$pageTitle = 'Statut';
 
 // Mode DEV
 require_once __DIR__ . '/../../util/utilErrOn.php';
@@ -33,56 +34,39 @@ if (isset($_POST['libStat'])) {
         $error = 'La longueur minimale d\'un statut est de 5 caractères.';
     }
 }
+
+require_once __DIR__ . '/../common/header.php';
 ?>
+<main class="container">
+    <div class="d-flex flex-column">
+        <h1>BLOGART21 Admin - Gestion du CRUD Statut</h1>
+        <hr>
 
-<!DOCTYPE html>
-<html lang="fr">
+        <div class="row d-flex justify-content-center">
+            <div class="col-8">
+                <h2>Ajout d'un statut</h2>
 
-<head>
-    <meta charset="utf-8" />
-    <title>Admin - Gestion du CRUD Statut</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+                <?php if ($error) : ?>
+                    <div class="alert alert-danger"><?= $error ?: '' ?></div>
+                <?php endif ?>
 
-    <link href="../css/style.css" rel="stylesheet" type="text/css" />
-</head>
+                <form method="post" action="./createStatut.php" enctype="multipart/form-data">
+                    <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ?: '' ?>" />
 
-<body>
-    <h1>BLOGART21 Admin - Gestion du CRUD Statut</h1>
-    <h2>Ajout d'un statut</h2>
+                    <div class="form-group mb-3">
+                        <label class="control-label" for="libStat"><b>Nom du statut :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
+                        <input class="form-control" type="text" name="libStat" id="libStat" size="80" maxlength="80" value="<?= $libStat ?>" autofocus="autofocus" />
+                    </div>
 
-    <h3><?= $error ?: '' ?></h3>
-
-    <form method="post" action="./createStatut.php" enctype="multipart/form-data">
-
-        <fieldset>
-            <legend class="legend1">Formulaire Statut...</legend>
-
-            <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ?: '' ?>" />
-
-            <div class="control-group">
-                <label class="control-label" for="libStat"><b>Nom du statut :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></label>
-                <input type="text" name="libStat" id="libStat" size="80" maxlength="80" value="<?= $libStat ?>" autofocus="autofocus" />
+                    <div class="form-group">
+                        <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
+                        <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
+                    </div>
+                </form>
             </div>
+        </div>
 
-            <div class="control-group">
-                <div class="controls">
-                    <br><br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="submit" value="Initialiser" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="submit" value="Valider" style="cursor:pointer; padding:5px 20px; background-color:lightsteelblue; border:dotted 2px grey; border-radius:5px;" name="Submit" />
-                    <br>
-                </div>
-            </div>
-        </fieldset>
-    </form>
-    <?php
-    require_once __DIR__ . '/footerStatut.php';
-
-    require_once __DIR__ . '/footer.php';
-    ?>
-</body>
-
-</html>
+        <?php require_once __DIR__ . '/footerStatut.php' ?>
+    </div>
+</main>
+<?php require_once __DIR__ . '/../common/footer.php' ?>
