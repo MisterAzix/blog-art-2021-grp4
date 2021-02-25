@@ -22,7 +22,7 @@ $allArticles = $article->get_AllArticles();
 $allFavArticles = $article->get_AllFavArticles();
 $allThematics = $thematique->get_AllThematiques();
 
-require_once '../commons/header.php';
+require_once __DIR__ . '/../commons/header.php';
 ?>
 
 <!-- WRITE HTML CODE BELOW -->
@@ -83,4 +83,4 @@ require_once '../commons/header.php';
 
 </main>
 
-<?php require_once '../commons/footer.php' ?>
+<?php require_once __DIR__ . '/../commons/footer.php' ?>

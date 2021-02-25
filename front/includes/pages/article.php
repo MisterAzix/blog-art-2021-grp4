@@ -11,7 +11,7 @@ $page_description = '';
 
 
 
-require_once '../commons/header.php';
+require_once __DIR__ . '/../commons/header.php';
 ?>
 
 <!-- WRITE HTML CODE BELOW -->
@@ -78,9 +78,9 @@ require_once '../commons/header.php';
 
     <div class="container_comment" style="display: none;">
         <?php
-        require '../components/comment.php';
+        require __DIR__ . '/../components/comment.php';
         ?>
     </div>
 </div>
 
-<?php require_once '../commons/footer.php' ?>
+<?php require_once __DIR__ . '/../commons/footer.php' ?>
