@@ -28,16 +28,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $lib2Lang = ctrlSaisies($_POST['lib2Lang']);
         $numPays = $_POST['numPays'];
 
-        if (strlen($lib1Lang) >= 5 && strlen($lib2Lang) >= 5) {
+        if (strlen($lib1Lang) >= 3 && strlen($lib2Lang) >= 3) {
             // Ajout effectif de la langue
             $langue->create($lib1Lang, $lib2Lang, $numPays);
 
             header('Location: ./langue.php');
         } else {
-            $error = 'La longueur minimale d\'une langue ou d\'un libellé est de 5 caractères.';
+            $error = 'La longueur minimale d\'une langue ou d\'un libellé est de 3 caractères.';
         }
-    } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
-        header('Location: ./createLangue.php');
     } else {
         $error = 'Merci de renseigner tous les champs du formulaire.';
     }
@@ -89,8 +87,8 @@ require_once __DIR__ . '/../common/header.php';
                         </div>
 
                         <div class="form-group">
-                            <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
-                            <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
+                            <input type="reset" value="Initialiser" class="btn btn-primary" />
+                            <input type="submit" value="Créer" name="submit" class="btn btn-success" />
                         </div>
                     </fieldset>
                 </form>

@@ -39,7 +39,7 @@ if (isset($_GET['id'])) {
 
                 header('Location: ./langue.php');
             } else {
-                $error = 'La longueur minimale d\'une langue ou d\'un libellé est de 5 caractères.';
+                $error = 'La longueur minimale d\'une langue ou d\'un libellé est de 3 caractères.';
             }
         } else if (!empty($_POST['submit']) && $_POST['submit'] === 'Initialiser') {
             header('Location: ./updateLangue.php?id=' . $_GET['id']);

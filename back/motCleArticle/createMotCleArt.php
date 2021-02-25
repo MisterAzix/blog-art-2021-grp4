@@ -33,8 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $motclearticle->create($numArt, $numMotCle);
         }
         header('Location: ./motCleArticle.php');
-    } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
-        header('Location: ./createMotCleArt.php');
     } else {
         $error = 'Merci de renseigner tous les champs du formulaire.';
     }
@@ -85,8 +83,8 @@ require_once __DIR__ . '/../common/header.php';
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
-                        <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
+                        <input type="reset" value="Initialiser" class="btn btn-primary" />
+                        <input type="submit" value="Ajouter" name="Submit" class="btn btn-success" />
                     </div>
                 </form>
             </div>

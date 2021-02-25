@@ -33,8 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $likeart->createOrUpdate($numMemb, $numArt);
         header('Location: ./likeArt.php');
-    } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
-        header('Location: ./createLikeArt.php');
     } else {
         $error = 'Merci de renseigner tous les champs du formulaire.';
     }
@@ -60,41 +58,36 @@ require_once __DIR__ . '/../common/header.php';
                 <?php endif ?>
 
                 <form class="form" method="post" action="" enctype="multipart/form-data">
+                    <input type="hidden" name="numMemb" value="<?= isset($_GET['numMemb']) ?: '' ?>" />
+                    <input type="hidden" name="numArt" value="<?= isset($_GET['numArt']) ?: '' ?>" />
 
-                    <fieldset>
-                        <legend class="legend1">Formulaire Langue...</legend>
-
-                        <input type="hidden" name="numMemb" value="<?= isset($_GET['numMemb']) ?: '' ?>" />
-                        <input type="hidden" name="numArt" value="<?= isset($_GET['numArt']) ?: '' ?>" />
-
-                        <div class="row">
-                            <div class="form-group mb-3 col-6">
-                                <label for="numMemb"><b>Membre :</b></label>
-                                <select name="numMemb" class="form-control" id="numMemb">
-                                    <option value="">--Choississez un membre--</option>
-                                    <?php foreach ($allMembers as $member) : ?>
-                                        <option value="<?= $member->numMemb ?>"><?= $member->pseudoMemb ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                            </div>
-
-                            <div class="form-group mb-3 col-6">
-                                <label for="numArt"><b>Article :</b></label>
-                                <select name="numArt" class="form-control" id="numArt">
-                                    <option value="">--Choississez un article--</option>
-                                    <?php foreach ($allArticles as $article) : ?>
-                                        <option value="<?= $article->numArt ?>"><?= $article->libTitrArt ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                            </div>
+                    <div class="row">
+                        <div class="form-group mb-3 col-6">
+                            <label for="numMemb"><b>Membre :</b></label>
+                            <select name="numMemb" class="form-control" id="numMemb">
+                                <option value="">--Choississez un membre--</option>
+                                <?php foreach ($allMembers as $member) : ?>
+                                    <option value="<?= $member->numMemb ?>"><?= $member->pseudoMemb ?></option>
+                                <?php endforeach ?>
+                            </select>
                         </div>
 
-
-                        <div class="form-group">
-                            <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
-                            <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
+                        <div class="form-group mb-3 col-6">
+                            <label for="numArt"><b>Article :</b></label>
+                            <select name="numArt" class="form-control" id="numArt">
+                                <option value="">--Choississez un article--</option>
+                                <?php foreach ($allArticles as $article) : ?>
+                                    <option value="<?= $article->numArt ?>"><?= $article->libTitrArt ?></option>
+                                <?php endforeach ?>
+                            </select>
                         </div>
-                    </fieldset>
+                    </div>
+
+
+                    <div class="form-group">
+                        <input type="reset" value="Initialiser" class="btn btn-primary" />
+                        <input type="submit" value="Créer" name="submit" class="btn btn-success" />
+                    </div>
                 </form>
             </div>
         </div>

@@ -22,16 +22,16 @@ $error = null;
 $libStat = null;
 
 // Controle des saisies du formulaire
-if (isset($_POST['libStat'])) {
+if (!empty($_POST['libStat'])) {
     $libStat = ctrlSaisies($_POST['libStat']);
 
-    if (strlen($libStat) >= 5) {
+    if (strlen($libStat) >= 4) {
         // Ajout effectif du statut
         $statut->create($libStat);
 
         header('Location: ./statut.php');
     } else {
-        $error = 'La longueur minimale d\'un statut est de 5 caractères.';
+        $error = 'La longueur minimale d\'un statut est de 4 caractères.';
     }
 }
 
@@ -59,8 +59,8 @@ require_once __DIR__ . '/../common/header.php';
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
-                        <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
+                        <input type="reset" value="Initialiser" class="btn btn-primary" />
+                        <input type="submit" value="Créer" name="submit" class="btn btn-success" />
                     </div>
                 </form>
             </div>

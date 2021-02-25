@@ -198,8 +198,8 @@ require_once __DIR__ . '/../common/header.php';
 
                     <!-- BUTTONS -->
                     <div class="form-group d-flex justify-content-center">
-                        <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary m-2" />
-                        <input type="submit" value="S'inscrire" name="Submit" class="btn btn-success m-2" />
+                        <input type="reset" value="Initialiser" class="btn btn-primary m-2" />
+                        <input type="submit" value="S'inscrire" name="submit" class="btn btn-success m-2" />
                     </div>
                 </form>
             </div>

@@ -34,8 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $likecom->createOrUpdate($numMemb, $numSeqCom, $numArt);
         header('Location: ./likeCom.php');
-    } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
-        header('Location: ./createLikeCom.php');
     } else {
         $error = 'Merci de renseigner tous les champs du formulaire.';
     }
@@ -89,8 +87,8 @@ require_once __DIR__ . '/../common/header.php';
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
-                        <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
+                        <input type="reset" value="Initialiser" class="btn btn-primary" />
+                        <input type="submit" value="Créer" name="submit" class="btn btn-success" />
                     </div>
                 </form>
             </div>
