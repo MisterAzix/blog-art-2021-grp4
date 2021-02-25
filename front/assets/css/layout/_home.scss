@@ -88,11 +88,28 @@
         @media (max-width: 960px) {
             margin: 0 150px;
         }
-        @media (max-width: 960px) {
-            margin: 0 50px;
-        }
         @media (max-width: 480px) {
             margin: 0;
+        }
+
+        .article{
+         
+        @media (max-width: 790px) {
+            position: relative;
+        }
+            .sub_article_components_container{
+              
+                &:nth-child(even) {
+                    margin-left: 24%;
+                }
+                &:nth-child(odd) {
+                    margin-left: 8%;
+                }
+                .container{
+                
+                
+                }  
+            }
         }
     }
 }

@@ -7,7 +7,10 @@
     flex-direction: row;
     max-width: 70%;
     position: relative;
-
+    @media (max-width:1159px) {
+        max-width: 90%;
+    }
+   
     &::before {
         z-index: -1;
         content: "";
@@ -27,7 +30,7 @@
         content: "";
         display: block;
         position: absolute;
-        bottom: -20px;
+        bottom: -10px;
         right: -20px;
         width: 150px;
         height: 100px;
@@ -59,8 +62,10 @@
         }
 
         h3 {
+            font-size: 1.8rem;
+            color: $black;
             @media screen and (max-width: 700px) {
-                font-size: 2rem;
+                font-size: 1.6rem;
             }
         }
 
@@ -76,7 +81,10 @@
 
             @media screen and (max-width: 700px) {
                 margin-right: -200px;
+                width: 100%;
             }
+          
+          
         }
 
         .text {
@@ -85,9 +93,11 @@
             font-weight: $weight-thin;
             color: $black;
             line-height: 1.5rem;
+            margin-bottom:0 ;
 
-            @media screen and (max-width: 700px) {
-                font-size: 0.9rem;
+            @media screen and (max-width: 780px) {
+                margin:0;
+                width: 100%;
             }
         }
 
@@ -95,6 +105,9 @@
             display: flex;
             justify-content: flex-end;
 
+            @media (max-width: 790px) {
+                justify-content: flex-start;
+                }
             .article_button {
                 width: 120px;
             }
@@ -103,16 +116,19 @@
 
     .image {
         img {
-            width: 272px;
-            height: 272px;
+            width: 200px;
+            height: 200px;
             object-fit: cover;
             border-radius: 16px;
             position: relative;
+                @media (max-width: 790px) {
+                position: absolute;
+                right: 0;
+                top: 0;
+                z-index: -1990;
+                }
+          
 
-            @media screen and (max-width: 900px) {
-                width: 200px;
-                height: 200px;
-            }
         }
     }
 }
