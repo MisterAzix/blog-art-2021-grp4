@@ -37,7 +37,7 @@ if (isset($_GET['id'])) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_POST['Submit'])) {
             switch ($_POST['Submit']) {
-                case 'Valider':
+                case 'Supprimer':
                     $articles = $article->get_AllArticlesByAngl($numAngl);
 
                     if (!$articles) {
@@ -76,32 +76,27 @@ require_once __DIR__ . '/../common/header.php';
                 <?php endif ?>
 
                 <form class="form" method="post" action="" enctype="multipart/form-data">
+                    <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ?: '' ?>" />
 
-                    <fieldset>
-                        <legend class="legend1">Formulaire Angle...</legend>
+                    <div class="form-group mb-3">
+                        <label for="libAngl"><b>Nom de l'angle :</b></label>
+                        <input class="form-control" type="text" name="libAngl" id="libAngl" size="80" maxlength="80" value="<?= $libAngl ?>" disabled />
+                    </div>
 
-                        <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ?: '' ?>" />
+                    <div class="form-group mb-3">
+                        <label for="numLang"><b>Langues :</b></label>
+                        <select name="numLang" class="form-control" id="numLang" disabled>
+                            <option value="">--Choississez une langue--</option>
+                            <?php foreach ($languages as $language) : ?>
+                                <option value="<?= $language->numLang ?>" <?= ($language->numLang === $selectedLang) ? 'selected' : '' ?>><?= $language->lib1Lang ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
 
-                        <div class="form-group mb-3">
-                            <label for="libAngl"><b>Nom de l'angle :</b></label>
-                            <input class="form-control" type="text" name="libAngl" id="libAngl" size="80" maxlength="80" value="<?= $libAngl ?>" disabled />
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label for="numLang"><b>Langues :</b></label>
-                            <select name="numLang" class="form-control" id="numLang" disabled>
-                                <option value="">--Choississez une langue--</option>
-                                <?php foreach ($languages as $language) : ?>
-                                    <option value="<?= $language->numLang ?>" <?= ($language->numLang === $selectedLang) ? 'selected' : '' ?>><?= $language->lib1Lang ?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
-                            <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
-                        </div>
-                    </fieldset>
+                    <div class="form-group mb-3">
+                        <input type="submit" value="Annuler" name="Submit" class="btn btn-primary" />
+                        <input type="submit" value="Supprimer" name="Submit" class="btn btn-danger" />
+                    </div>
                 </form>
 
                 <?php if ($articles) : ?>

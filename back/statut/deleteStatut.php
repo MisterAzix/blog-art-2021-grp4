@@ -32,7 +32,7 @@ if (isset($_GET['id'])) {
 
     if (isset($_POST['Submit'])) {
         switch ($_POST['Submit']) {
-            case 'Valider':
+            case 'Supprimer':
                 $nbAllUsersByidStat = (int)($user->get_NbAllUsersByidStat($idStat));
 
                 if ($nbAllUsersByidStat < 1) {
@@ -75,10 +75,10 @@ require_once __DIR__ . '/../common/header.php';
                         <input class="form-control" type="text" name="libStat" id="libStat" size="80" maxlength="80" value="<?= $libStat ?>" disabled="disabled" />
                     </div>
 
-                    <div class="form-group">
-                        <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
-                        <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
-                    </div>
+                    <div class="form-group mb-3">
+                            <input type="submit" value="Annuler" name="Submit" class="btn btn-primary" />
+                            <input type="submit" value="Supprimer" name="Submit" class="btn btn-danger" />
+                        </div>
                 </form>
             </div>
         </div>

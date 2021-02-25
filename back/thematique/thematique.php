@@ -56,8 +56,6 @@ require_once __DIR__ . '/../common/header.php';
                 <?php endforeach  ?>
             </tbody>
         </table>
-
-        <?php require_once __DIR__ . '/footer.php' ?>
     </div>
 </main>
 <?php require_once __DIR__ . '/../common/footer.php' ?>

@@ -42,7 +42,7 @@ if (isset($_GET['id'])) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_POST['Submit'])) {
             switch ($_POST['Submit']) {
-                case 'Valider':
+                case 'Supprimer':
                     $angles = $angle->get_AllAnglesByLang($numLang);
                     $motcles = $motcle->get_AllMotClesByLang($numLang);
                     $thematiques = $thematique->get_AllThematiquesByLang($numLang);
@@ -83,36 +83,31 @@ require_once __DIR__ . '/../common/header.php';
                 <?php endif ?>
 
                 <form class="form" method="post" action="" enctype="multipart/form-data">
+                    <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>" />
 
-                    <fieldset>
-                        <legend class="legend1">Formulaire Langue...</legend>
+                    <div class="form-group mb-3">
+                        <label for="lib1Lang"><b>Nom de la langue :</b></label>
+                        <input class="form-control" type="text" name="lib1Lang" id="lib1Lang" size="80" maxlength="80" value="<?= $lib1Lang ?>" disabled />
+                    </div>
 
-                        <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ? $_GET['id'] : '' ?>" />
+                    <div class="form-group mb-3">
+                        <label for="lib2Lang"><b>Libellé de la langue :</b></label>
+                        <input class="form-control" type="text" name="lib2Lang" id="lib2Lang" size="80" maxlength="80" value="<?= $lib2Lang ?>" disabled />
+                    </div>
 
-                        <div class="form-group mb-3">
-                            <label for="lib1Lang"><b>Nom de la langue :</b></label>
-                            <input class="form-control" type="text" name="lib1Lang" id="lib1Lang" size="80" maxlength="80" value="<?= $lib1Lang ?>" disabled />
-                        </div>
+                    <div class="form-group mb-3">
+                        <label for="numPays"><b>Pays :</b></label>
+                        <select name="numPays" class="form-control" id="numPays" disabled>
+                            <?php foreach ($countries as $country) : ?>
+                                <option value="<?= $country->numPays ?>" <?= ($country->numPays === $selectedPays) ? 'selected' : '' ?>><?= $country->frPays ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
 
-                        <div class="form-group mb-3">
-                            <label for="lib2Lang"><b>Libellé de la langue :</b></label>
-                            <input class="form-control" type="text" name="lib2Lang" id="lib2Lang" size="80" maxlength="80" value="<?= $lib2Lang ?>" disabled />
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label for="numPays"><b>Pays :</b></label>
-                            <select name="numPays" class="form-control" id="numPays" disabled>
-                                <?php foreach ($countries as $country) : ?>
-                                    <option value="<?= $country->numPays ?>" <?= ($country->numPays === $selectedPays) ? 'selected' : '' ?>><?= $country->frPays ?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <input type="submit" value="Annuler" name="Submit" class="btn btn-primary" />
-                            <input type="submit" value="Valider" name="Submit" class="btn btn-danger" />
-                        </div>
-                    </fieldset>
+                    <div class="form-group mb-3">
+                        <input type="submit" value="Annuler" name="Submit" class="btn btn-primary" />
+                        <input type="submit" value="Supprimer" name="Submit" class="btn btn-danger" />
+                    </div>
                 </form>
 
                 <?php if ($angles) : ?>
