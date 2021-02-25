@@ -26,9 +26,9 @@
         h2 {
             font-family: $font-title;
             font-weight: $weight-regular;
-
             font-size: 56px;
             color: $black;
+            margin: 16px 0;
         }
 
         .input_container {
@@ -49,15 +49,6 @@
             font-family: $font-text;
             font-size: 16px;
             color: $black;
-        }
-
-        .login_button {
-            padding: 20px 40px;
-            border-radius: 40px;
-            font-size: 28px;
-            font-family: $font-text;
-            font-weight: $weight-bold;
-            margin-top: 40px;
         }
     }
 }

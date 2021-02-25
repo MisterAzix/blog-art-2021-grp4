@@ -47,19 +47,21 @@ require_once '../../commons/header.php';
         <h2>Connexion</h2>
         <div class="input_container">
             <form action="" method="POST">
-                <div class="group">
+                <div class="input-group">
                     <input class="input" name="email" type="mail" placeholder="Renseigne ton email" required />
                     <label>Email</label>
                 </div>
-                <div class="group">
+                <div class="input-group">
                     <input class="input" name="password" type="password" placeholder="Renseigne ton mot de passe" required />
                     <label>Mot de passe</label>
+                    <a class="tips" href="">Mot de passe oublié ?</a>
                 </div>
-                <a href="">Mot de passe oublié ?</a>
-                <button class="button" type="submit">Se connecter</button>
+                <div class="input-group">
+                    <button class="button button-submit" type="submit">Se connecter</button>
+                    <p class="tips">Pas de compte ? <a href="../../pages/register">Inscris-toi !</a></p>
+                </div>
             </form>
         </div>
-        <p>Pas de compte ? <a href="../../pages/register">Inscris-toi !</a></p>
     </div>
 </div>
 
