@@ -29,7 +29,7 @@ require_once '../../commons/header.php';
 <main class="homepage_container">
 
     <section class="homepage-intro">
-        <div class="slideshow">
+        <div class="slideshow" style="display:none;">
             <?php foreach ($allFavArticles as $article) : ?>
                 <div class="slides fade">
                     <div class="article_components_container">

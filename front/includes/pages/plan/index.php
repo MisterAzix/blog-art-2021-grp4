@@ -17,9 +17,11 @@ require_once '../../commons/header.php';
         <div class="section_container">
             <div class="section">
                 <h2>Acces rapide</h2>
-               <a href="../register">Inscription</a>
-               <a href="../login">Connexion</a>
-               <a href="../contact/">Me contacter</a>
+                <a href="../home/">Page d'accueil</a>
+                <a href="../register">Inscription</a>
+                <a href="../login">Connexion</a>
+                <a href="../contact/">Me contacter</a>
+                <a href="../cgu/">Mentions légale</a>
             </div>
         </div>
         <div class="path">

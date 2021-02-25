@@ -1,6 +1,7 @@
 .sign_container {
     .register {
         flex-basis: 50%;
+
         h2 {
             font-family: $font-title;
             font-size: 56px;
@@ -8,6 +9,7 @@
             font-weight: $weight-regular;
             width: 100%;
         }
+        
         .input_container {
             .info {
                 display: flex;
@@ -23,36 +25,9 @@
                     font-weight: $weight-extralight;
                 }
             }
+
             .input {
                 width: 100%;
-            }
-
-            .checkbox-container {
-                margin-top: 100px;
-
-                .checkbox {
-                    font-family: $font-text;
-                    color: $black;
-                    font-size: 14px;
-                    font-weight: $weight-semibold;
-                    margin-bottom: 5%;
-
-                    a {
-                        font-family: $font-text;
-                        color: $greentxt;
-                        font-size: 14px;
-                        font-weight: $weight-semibold;
-                    }
-                }
-            }
-
-            .login_button {
-                padding: 20px 40px;
-                border-radius: 40px;
-                font-size: 28px;
-                font-family: $font-text;
-                font-weight: $weight-bold;
-                margin-top: 40px;
             }
         }
     }

@@ -46,16 +46,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $idStat = $_POST['idStat'];
 
                 if (strlen($prenomMemb) >= 2 && strlen($nomMemb) >= 2 && strlen($pseudoMemb) >= 2) {
-                    if (passCheck($pass1Memb)) {
-                        if ($passMemb) {
-                            // Ajout effectif d'un membre
-                            $membre->create($prenomMemb, $nomMemb, $pseudoMemb, $eMailMemb, $passMemb, $idStat);
-                            header('Location: ./membre.php');
+                    if (usernameCheck($pseudoMemb)) {
+                        if (filter_var($eMailMemb, FILTER_VALIDATE_EMAIL)) {
+                            if (emailCheck($eMailMemb)) {
+                                if (passCheck($pass1Memb)) {
+                                    if ($passMemb) {
+                                        // Ajout effectif d'un membre
+                                        $membre->create($prenomMemb, $nomMemb, $pseudoMemb, $eMailMemb, $passMemb, $idStat);
+                                        header('Location: ./membre.php');
+                                    } else {
+                                        $error = 'La confirmation du mot de passe est différente !';
+                                    }
+                                } else {
+                                    $error = 'Le mot de passe doit contenir entre 8 et 64 caractère, au moins une minuscule, une majuscule et un nombre !';
+                                }
+                            } else {
+                                $error = 'L\'adresse mail est déjà utilisée.';
+                            }
                         } else {
-                            $error = 'La confirmation du mot de passe est différente !';
+                            $error = 'Adresse mail invalide.';
                         }
                     } else {
-                        $error = 'Le mot de passe doit contenir entre 8 et 64 caractère, au moins une minuscule, une majuscule et un nombre !';
+                        $error = 'Le pseudo est déjà utilisé.';
                     }
                 } else {
                     $error = "La longueur minimale du prénom, du nom ou du pseudo est de 2 caractères !";
@@ -71,6 +83,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $error = "Captcha invalide !";
     }
+}
+
+function usernameCheck($pseudoMemb)
+{
+    global $membre;
+    $result = $membre->get_AllMembresByPseudo($pseudoMemb);
+    return $result ? false : true;
+}
+
+function emailCheck($eMailMemb)
+{
+    global $membre;
+    $result = $membre->get_AllMembresByEmail($eMailMemb);
+    return $result ? false : true;
 }
 
 function passCheck(string $pass1Memb): bool
