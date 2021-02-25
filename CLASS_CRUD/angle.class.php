@@ -4,8 +4,14 @@
 require_once __DIR__ . '../../CONNECT/database.php';
 
 class ANGLE
-{
-	function get_1Angle($numAngl)
+{	
+	/**
+	 * get_1Angle Permet de récuper un seul angle en base de donnée
+	 *
+	 * @param  string $numAngl
+	 * @return object Renvoie un object comprenant les informations de l'angle récupéré
+	 */
+	function get_1Angle(string $numAngl): object
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM angle WHERE numAngl=:numAngl");
@@ -16,6 +22,11 @@ class ANGLE
 		return $result;
 	}
 
+	/**
+	 * get_AllAngles Permet de récupérer tous les angles en base de donnée
+	 *
+	 * @return array Renvoie un tableau d'object comprenant les informations de tous les angles
+	 */
 	function get_AllAngles()
 	{
 		global $db;
@@ -24,7 +35,13 @@ class ANGLE
 		return $result;
 	}
 
-	function get_AllAnglesByLang($numLang)
+	/**
+	 * get_AllAnglesByLang Permet de récupérer tous les angles en base de donnée en fonction d'une langue
+	 *
+	 * @param  string $numLang
+	 * @return array Renvoie un tableau d'object comprenant les informations de tous les angles récupérés
+	 */
+	function get_AllAnglesByLang(string $numLang)
 	{
 		global $db;
 		$query = $db->prepare('SELECT * FROM angle WHERE numLang = :numLang');
@@ -35,7 +52,14 @@ class ANGLE
 		return ($result);
 	}
 
-	function create($libAngl, $numLang)
+	/**
+	 * create Permet d'ajouter un nouvel angle en base de donnée
+	 *
+	 * @param  string $libAngl
+	 * @param  string $numLang
+	 * @return void
+	 */
+	function create(string $libAngl, string $numLang)
 	{
 		global $db;
 		require_once __DIR__ . '/getNextNumAngl.php';
@@ -56,8 +80,15 @@ class ANGLE
 			die('Erreur insert ANGLE : ' . $e->getMessage());
 		}
 	}
-
-	function update($numAngl, $libAngl)
+	
+	/**
+	 * update Permet de modifier un angle dans la base de donnée
+	 *
+	 * @param  string $numAngl
+	 * @param  string $libAngl
+	 * @return void
+	 */
+	function update(string $numAngl, string $libAngl)
 	{
 		global $db;
 		try {
@@ -76,7 +107,13 @@ class ANGLE
 		}
 	}
 
-	function delete($numAngl)
+	/**
+	 * delete Permet de supprimer un angle de la base de donnée
+	 *
+	 * @param  string $numAngl
+	 * @return void
+	 */
+	function delete(string $numAngl)
 	{
 		global $db;
 		try {
