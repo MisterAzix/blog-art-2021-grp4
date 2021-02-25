@@ -24,7 +24,7 @@ $auth = new AUTH();
     <header>
         <div class="header-container">
             <div class="desktop">
-                <a href="/home"><img src="/front/assets/images/logo_lecopin.svg" alt="Logo du site avec écrit l'écopins" class="logo"></a>
+                <a href="/accueil"><img src="/front/assets/images/logo_lecopin.svg" alt="Logo du site avec écrit l'écopins" class="logo"></a>
                 <div class="header-right">
                     <div class="header-right-container">
                         <div class="example">
@@ -57,8 +57,8 @@ $auth = new AUTH();
                             <?php endif ?>
                         <?php else : ?>
                             <div class="button-container">
-                                <a class="button" href="/register">Inscription</a>
-                                <a class="button button-empty" href="/login">Connexion</a>
+                                <a class="button" href="/inscription">Inscription</a>
+                                <a class="button button-empty" href="/connexion">Connexion</a>
                             </div>
                         <?php endif ?>
                     </div>
@@ -66,7 +66,7 @@ $auth = new AUTH();
             </div>
 
             <div class="mobile">
-                <a href="/login"><img src="/front/assets/images/account.svg" alt="Icon de compte" class="icon_account"></a>
+                <a href="/inscription"><img src="/front/assets/images/account.svg" alt="Icon de compte" class="icon_account"></a>
                 <a href="/accueil"><img src="/front/assets/images/logo_lecopin.svg" alt="Logo du site avec écrit l'écopins" class="logo"></a>
                 <div class="example">
                     <div id="inputSearch" class="inputSuggestion" style="display: none;">

@@ -58,7 +58,6 @@ RewriteEngine on
 # Règles de réécriture d'URL :
 #--------------------------------------------------
 
-RewriteEngine on
 RewriteRule ^dashboard dashboard.php [L]
 RewriteRule ^accueil /front/includes/pages/home.php [L]
 RewriteRule ^connexion /front/includes/pages/login.php [L]
