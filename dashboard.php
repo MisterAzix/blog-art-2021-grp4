@@ -13,7 +13,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
 require_once __DIR__ . '/CLASS_CRUD/auth.class.php';
 $auth = new Auth();
 if (!$auth->is_connected()) {
-    header('Location: /connexion');
+	header('Location: /connexion');
 }
 ?>
 
@@ -35,6 +35,7 @@ if (!$auth->is_connected()) {
 		<hr>
 		<div class="row d-flex justify-content-center">
 			<div class="col-8">
+				<h5>Liste des CRUD</h5>
 				<div class="list-group">
 					<a class="list-group-item list-group-item-success" href="./BACK/angle/angle.php"><b>Gestion du CRUD :</b> Angle </a>
 					<a class="list-group-item list-group-item-success" href="./BACK/article/article.php"><b>Gestion du CRUD :</b> Article </a>
@@ -76,7 +77,6 @@ if (!$auth->is_connected()) {
 				</div>
 			</div>
 		</div>
-		<?php require_once __DIR__ . '/footer.php' ?>
 	</main>
 </body>
 
