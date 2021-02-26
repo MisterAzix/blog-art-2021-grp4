@@ -6,7 +6,7 @@
 //========================================//
 
 // WRITE YOUR PHP LOGIC HERE
-$page_title = 'Login';
+$page_title = 'Connexion';
 $page_description = '';
 $error = null;
 

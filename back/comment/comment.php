@@ -26,6 +26,20 @@ foreach ($all as $key => $value) {
     $allOrdered[$value->numArt][$key] = $value;
 }
 
+$array = ['1' => ['1.1' => ['Yo'], '1.2' => ['1.1.1' => ['Yo'], '1.1.2' => ['1.1.1.1' => ['Yo'], '1.1.1.2' => ['Yo'], '1.1.1.3' => ['Yo']], '1.1.3' => ['Yo']], '1.3' => ['Yo']], '2' => ['2.1' => ['Yo'], '2.2' => ['2.2.1' => ['Yo'], '2.2.2' => ['Yo'], '2.2.3' => ['Yo']], '2.3' => ['Yo']], '3' => ['Yo']];
+
+function test($array)
+{
+    foreach ($array as $value) {
+        print_r($value);
+        test($value);
+    }
+}
+
+test($array);
+
+die();
+
 //$allComments[array_search($value->numSeqCom, array_column($allComments, 'numSeqCom'))]->libCom
 
 /* 
