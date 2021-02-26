@@ -10,7 +10,7 @@ $page_title = 'Inscription';
 $page_description = '';
 
 
-require_once __DIR__ . './../commons/header.php';
+require_once __DIR__ . '/../commons/header.php';
 ?>
 
 <!-- WRITE HTML CODE BELOW -->
@@ -64,4 +64,4 @@ require_once __DIR__ . './../commons/header.php';
 </div>
 
 
-<?php require_once __DIR__ . './../commons/footer.php' ?>
+<?php require_once __DIR__ . '/../commons/footer.php' ?>

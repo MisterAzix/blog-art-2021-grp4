@@ -9,11 +9,11 @@
 $page_title = 'Article';
 $page_description = '';
 
-require_once __DIR__ . './../../../util/dateChangeFormat.php';
+require_once __DIR__ . '/../../../util/dateChangeFormat.php';
 
 // Insertion classe ARTICLE
-require_once __DIR__ . './../../../CLASS_CRUD/article.class.php';
-require_once __DIR__ . './../../../CLASS_CRUD/thematique.class.php';
+require_once __DIR__ . '/../../../CLASS_CRUD/article.class.php';
+require_once __DIR__ . '/../../../CLASS_CRUD/thematique.class.php';
 $article = new ARTICLE();
 $thematique = new THEMATIQUE();
 
@@ -25,7 +25,7 @@ if (isset($_GET['numArt'])) {
 if (!$result) header('Location: /accueil');
 $thematic = $thematique->get_1Thematique($result->numThem);
 
-require_once __DIR__ . './../commons/header.php';
+require_once __DIR__ . '/../commons/header.php';
 ?>
 
 <!-- WRITE HTML CODE BELOW -->
@@ -79,12 +79,12 @@ require_once __DIR__ . './../commons/header.php';
 
     <div class="container_comment" style="display: block;">
         <?php
-        require __DIR__ . './../components/comment.php';
+        require __DIR__ . '/../components/comment.php';
         ?>
         <?php
-        require __DIR__ . './../components/sub_comment.php';
+        require __DIR__ . '/../components/sub_comment.php';
         ?>
     </div>
 </div>
 
-<?php require_once __DIR__ . './../commons/footer.php' ?>
+<?php require_once __DIR__ . '/../commons/footer.php' ?>

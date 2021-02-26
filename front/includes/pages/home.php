@@ -9,11 +9,11 @@
 $page_title = 'Acuueil';
 $page_description = '';
 
-require_once __DIR__ . './../../../util/dateChangeFormat.php';
+require_once __DIR__ . '/../../../util/dateChangeFormat.php';
 
 // Insertion classe ARTICLE
-require_once __DIR__ . './../../../CLASS_CRUD/article.class.php';
-require_once __DIR__ . './../../../CLASS_CRUD/thematique.class.php';
+require_once __DIR__ . '/../../../CLASS_CRUD/article.class.php';
+require_once __DIR__ . '/../../../CLASS_CRUD/thematique.class.php';
 $article = new ARTICLE();
 $thematique = new THEMATIQUE();
 
@@ -22,7 +22,7 @@ $allArticles = $article->get_AllArticles();
 $allFavArticles = $article->get_AllFavArticles();
 $allThematics = $thematique->get_AllThematiques();
 
-require_once __DIR__ . './../commons/header.php';
+require_once __DIR__ . '/../commons/header.php';
 ?>
 
 <!-- WRITE HTML CODE BELOW -->
@@ -85,4 +85,4 @@ require_once __DIR__ . './../commons/header.php';
 
 </main>
 
-<?php require_once __DIR__ . './../commons/footer.php' ?>
+<?php require_once __DIR__ . '/../commons/footer.php' ?>

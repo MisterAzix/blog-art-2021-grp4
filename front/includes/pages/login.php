@@ -11,8 +11,8 @@ $page_description = '';
 $error = null;
 
 // Insertion classe
-require_once __DIR__ . './../../../CLASS_CRUD/membre.class.php';
-require_once __DIR__ . './../../../CLASS_CRUD/auth.class.php';
+require_once __DIR__ . '/../../../CLASS_CRUD/membre.class.php';
+require_once __DIR__ . '/../../../CLASS_CRUD/auth.class.php';
 $membre = new MEMBRE();
 $auth = new AUTH();
 
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require_once __DIR__ . './../commons/header.php';
+require_once __DIR__ . '/../commons/header.php';
 ?>
 
 <div class='sign_container layout'>
@@ -65,4 +65,4 @@ require_once __DIR__ . './../commons/header.php';
     </div>
 </div>
 
-<?php require_once __DIR__ . './../commons/footer.php' ?>
+<?php require_once __DIR__ . '/../commons/footer.php' ?>

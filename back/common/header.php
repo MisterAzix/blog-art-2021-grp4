@@ -7,10 +7,10 @@
 //
 /////////////////////////////////////////////////////
 
-require_once __DIR__ . '/../../CLASS_CRUD/auth.class.php';
+require_once __DIR__ . './../../CLASS_CRUD/auth.class.php';
 $auth = new AUTH();
 
-if (!$auth->is_admin()) header('Location: /accueil');
+if (!$auth->is_admin()) header('Location: ./accueil');
 ?>
 
 <!DOCTYPE html>
