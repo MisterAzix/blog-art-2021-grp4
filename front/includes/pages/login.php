@@ -37,7 +37,7 @@ require_once __DIR__ . '/../commons/header.php';
 
 <div class='sign_container layout'>
     <div class='illustration'>
-        <img src="./front/assets/images/Capture_d_écran_2021-02-09_à_15.47.20-removebg.png" alt="loginImage">
+        <img src="/front/assets/images/Capture_d_écran_2021-02-09_à_15.47.20-removebg.png" alt="loginImage">
     </div>
     <div class='login'>
         <?php if ($error) : ?>

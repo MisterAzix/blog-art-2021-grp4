@@ -12,7 +12,7 @@ require_once __DIR__ . './../../util/utilErrOn.php';
 
 <footer class="container">
     <hr>
-    <h2>Retour à la gestion de tous les CRUD : <a href="./dashboard">Accueil</a></h2>
+    <h2>Retour à la gestion de tous les CRUD : <a href="/dashboard">Accueil</a></h2>
     <hr>
 </footer>
 

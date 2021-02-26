@@ -43,15 +43,21 @@ require_once __DIR__ . '/../commons/header.php';
                             </div>
                         </div>
                         <div class="image">
-                            <img src="./front/assets/images/drone.jpg" alt="photo colorée de bordeaux vue de haut">
+                            <img src="/front/assets/images/drone.jpg" alt="photo colorée de bordeaux vue de haut">
                         </div>
                     </div>
                 </div>
             <?php endforeach ?>
             <div class="line_container">
-                <div class="line-item" onclick="currentSlide(1)"><span class="line"><div class="animation"></div></span></div>
-                <div class="line-item" onclick="currentSlide(2)"><span class="line"><div class="animation"></div></span></div>
-                <div class="line-item" onclick="currentSlide(3)"><span class="line"><div class="animation"></div></span></div>
+                <div class="line-item" onclick="currentSlide(1)"><span class="line">
+                        <div class="animation"></div>
+                    </span></div>
+                <div class="line-item" onclick="currentSlide(2)"><span class="line">
+                        <div class="animation"></div>
+                    </span></div>
+                <div class="line-item" onclick="currentSlide(3)"><span class="line">
+                        <div class="animation"></div>
+                    </span></div>
             </div>
         </div>
     </section>
@@ -60,25 +66,25 @@ require_once __DIR__ . '/../commons/header.php';
         <h2>Tous mes articles</h2>
         <div class="article">
             <?php foreach ($allArticles as $article) : ?>
-                    <div class="sub_article_components_container">
-                        <div class="container">
-                            <div class="left-part">
-                                <p class="info"><?= $allThematics[array_search($article->numThem, array_column($allThematics, 'numThem'))]->libThem ?> | Publié le <?= dateChangeFormat($article->dtCreArt, "Y-m-d H:i:s", "d F Y à H\hi") ?></p>
-                                <h3><?= $article->libTitrArt ?></h3>
-                                <div class="text-and-button">
-                                    <p class="text">
-                                        <?= $article->libChapoArt ?>
-                                    </p>
-                                    <div class="button-container">
-                                        <a class="button" href="./article/<?= $article->numArt ?>">Lire l'article</a>
-                                    </div>
+                <div class="sub_article_components_container">
+                    <div class="container">
+                        <div class="left-part">
+                            <p class="info"><?= $allThematics[array_search($article->numThem, array_column($allThematics, 'numThem'))]->libThem ?> | Publié le <?= dateChangeFormat($article->dtCreArt, "Y-m-d H:i:s", "d F Y à H\hi") ?></p>
+                            <h3><?= $article->libTitrArt ?></h3>
+                            <div class="text-and-button">
+                                <p class="text">
+                                    <?= $article->libChapoArt ?>
+                                </p>
+                                <div class="button-container">
+                                    <a class="button" href="./article/<?= $article->numArt ?>">Lire l'article</a>
                                 </div>
                             </div>
-                                <div class="image">
-                                    <img src="./front/assets/images/drone.jpg" alt="photo colorée de bordeaux vue de haut">
-                                </div>
+                        </div>
+                        <div class="image">
+                            <img src="/front/assets/images/drone.jpg" alt="photo colorée de bordeaux vue de haut">
                         </div>
                     </div>
+                </div>
             <?php endforeach ?>
         </div>
     </section>
