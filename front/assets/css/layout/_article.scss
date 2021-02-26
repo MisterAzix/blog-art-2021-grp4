@@ -47,7 +47,7 @@
                         font-family: $font-text;
                         font-weight: $weight-thin;
                         color: $black;
-                        transform: rotate(90deg);
+                        transform: rotate(-90deg);
                     }
 
                     a {
@@ -70,7 +70,7 @@
                 flex-direction: column;
                 align-items: center;
 
-                h2 {
+                h1 {
                     font-size: 64px;
                     font-family: $font-title;
                     font-weight: $weight-regular;

@@ -10,8 +10,9 @@ class ARTICLE
 	 *
 	 * @param  string $numArt
 	 * @return object Renvoie un object comprenant les informations de l'article récupéré
+	 * @return bool false si rien n'est trouvé en base de donnée
 	 */
-	function get_1Article($numArt): object
+	function get_1Article($numArt)
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM article WHERE numArt=:numArt");
@@ -53,8 +54,9 @@ class ARTICLE
 	 *
 	 * @param  string $numAngl
 	 * @return array Renvoie un tableau d'object comprenant les informations de tous les articles récupérés
+	 * @return bool false si rien n'est trouvé en base de donnée
 	 */
-	function get_AllArticlesByAngl($numAngl): array
+	function get_AllArticlesByAngl($numAngl)
 	{
 		global $db;
 		$query = $db->prepare('SELECT * FROM article WHERE numAngl = :numAngl');
@@ -70,8 +72,9 @@ class ARTICLE
 	 *
 	 * @param  string $numThem
 	 * @return array Renvoie un tableau d'object comprenant les informations de tous les articles récupérés
+	 * @return bool false si rien n'est trouvé en base de donnée
 	 */
-	function get_AllArticlesByThem($numThem): array
+	function get_AllArticlesByThem($numThem)
 	{
 		global $db;
 		$query = $db->prepare('SELECT * FROM article WHERE numThem = :numThem');
