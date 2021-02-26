@@ -24,7 +24,7 @@ $auth = new AUTH();
     <header>
         <div class="header-container">
             <div class="desktop">
-                <a href="/accueil"><img src="/front/assets/images/logo_lecopin.svg" alt="Logo du site avec écrit l'écopins" class="logo"></a>
+                <a href="./accueil"><img src="./front/assets/images/logo_lecopin.svg" alt="Logo du site avec écrit l'écopins" class="logo"></a>
                 <div class="header-right">
                     <div class="header-right-container">
                         <div class="example">
@@ -52,13 +52,13 @@ $auth = new AUTH();
                         <?php if ($auth->is_connected()) : ?>
                             <?php if ($auth->is_admin()) : ?>
                                 <div class="button-container">
-                                    <a href="/dashboard">ADMIN</a>
+                                    <a href="./dashboard">ADMIN</a>
                                 </div>
                             <?php endif ?>
                         <?php else : ?>
                             <div class="button-container">
-                                <a class="button" href="/inscription">Inscription</a>
-                                <a class="button button-empty" href="/connexion">Connexion</a>
+                                <a class="button" href="./inscription">Inscription</a>
+                                <a class="button button-empty" href="./connexion">Connexion</a>
                             </div>
                         <?php endif ?>
                     </div>
@@ -94,5 +94,4 @@ $auth = new AUTH();
     <main>
 
 
-
-        <!-- <img src="../../../assets/images/search_icon.svg" alt="Icon de recherche" class="icon_recherche"> -->
+    <!-- <img src="../../../assets/images/search_icon.svg" alt="Icon de recherche" class="icon_recherche"> -->
