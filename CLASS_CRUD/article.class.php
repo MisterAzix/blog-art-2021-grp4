@@ -6,7 +6,7 @@ require_once __DIR__ . '../../CONNECT/database.php';
 class ARTICLE
 {
 	/**
-	 * get_1Article Permet de récuper un seul article en base de donnée
+	 * get_1Article Permet de récupérer un seul article en base de donnée
 	 *
 	 * @param  mixed $numArt
 	 * @return object Renvoie un object comprenant les informations de l'article récupéré
@@ -25,7 +25,7 @@ class ARTICLE
 	/**
 	 * get_AllArticles Permet de récupérer tous les articles en base de donnée
 	 *
-	 * @return array Renvoie un tableau d'object comprenant des informations de tous les articles
+	 * @return array Renvoie un tableau d'object comprenant les informations de tous les articles
 	 */
 	function get_AllArticles(): array
 	{
