@@ -4,8 +4,16 @@
 require_once __DIR__ . '../../CONNECT/database.php';
 
 class LIKECOM
-{
-	function get_1LikeCom($numMemb, $numSeqCom, $numArt)
+{	
+	/**
+	 * get_1LikeCom Permet de récupérer un seul like de commentaire en base de donnée
+	 *
+	 * @param  mixed $numMemb
+	 * @param  mixed $numSeqCom
+	 * @param  mixed $numArt
+	 * @return void Renvoie un object comprenant les informations du like de commentaire récupéré
+	 */
+	function get_1LikeCom(mixed $numMemb, mixed $numSeqCom, string $numArt)
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM likecom WHERE numMemb=:numMemb AND numSeqCom=:numSeqCom AND numArt=:numArt");
@@ -17,7 +25,12 @@ class LIKECOM
 		$result = $query->fetch(PDO::FETCH_OBJ);
 		return $result;
 	}
-
+	
+	/**
+	 * get_AllLikesCom Permet de récupérer tous les likes de commentaire en base de donnée
+	 *
+	 * @return void Renvoie un tableau d'object comprenant les informations de tous les like de commentaire
+	 */
 	function get_AllLikesCom()
 	{
 		global $db;
@@ -25,8 +38,15 @@ class LIKECOM
 		$result = $query->fetchAll(PDO::FETCH_OBJ);
 		return $result;
 	}
-
-	function get_AllLikesComByComment($numSeqCom, $numArt)
+	
+	/**
+	 * get_AllLikesComByComment Permet de récupérer tous les likes d'un commentaire
+	 *
+	 * @param  mixed $numSeqCom
+	 * @param  mixed $numArt
+	 * @return void Renvoie un tableau d'object comprenant les informations de tous les likes récupérés
+	 */
+	function get_AllLikesComByComment(mixed $numSeqCom, string $numArt)
 	{
 		global $db;
 		$query = $db->prepare('SELECT * FROM likecom WHERE numSeqCom = :numSeqCom AND numArt = :numArt');
@@ -37,8 +57,14 @@ class LIKECOM
 		$result = $query->fetchAll(PDO::FETCH_OBJ);
 		return $result;
 	}
-
-	function get_AllLikesComByMembre($numMemb)
+	
+	/**
+	 * get_AllLikesComByMembre Permet de récupérer tous les likes d'un membre
+	 *
+	 * @param  mixed $numMemb
+	 * @return void Renvoie un tableau d'object comprenant les informations de tous les likes récupérés
+	 */
+	function get_AllLikesComByMembre(mixed $numMemb)
 	{
 		global $db;
 		$query = $db->prepare('SELECT * FROM likecom WHERE numMemb = :numMemb');
@@ -49,7 +75,16 @@ class LIKECOM
 		return ($result);
 	}
 
-	function createOrUpdate($numMemb, $numSeqCom, $numArt)
+		
+	/**
+	 * createOrUpdate Permet d'ajouter un like de commentaire en base de donnée ou de modifier son état s'il existe déjà
+	 *
+	 * @param  mixed $numMemb
+	 * @param  mixed $numSeqCom
+	 * @param  mixed $numArt
+	 * @return void
+	 */
+	function createOrUpdate(mixed $numMemb, mixed $numSeqCom, string $numArt)
 	{
 		global $db;
 		try {
