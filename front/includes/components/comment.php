@@ -19,8 +19,13 @@
     </div>
 
     <div class="comment">
-        <p>Cet article est rtrès bien rédigé, je peux cependant  noter qu’à 8:34 il y a une faute d’ortographe. En effet, le COD étant placé avant le verbe et étant utilisé avec l’auxiliaire avoir, il se doit d’être accordé.  </p>
-        <button class="button">voir les réponses</button>
+        <p>Cet article est rtrès bien rédigé, je peux cependant  noter qu’à 8:34 il y a une faute d’ortographe. 
+            En effet, le COD étant placé avant le verbe et étant utilisé avec l’auxiliaire avoir, il se doit d’être accordé.  </p>
+        <button class="button">voir les réponses 
+            <svg class="arrow" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L5 5L9 1" stroke="#1C1F1B" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
     </div>
 
 </section>
