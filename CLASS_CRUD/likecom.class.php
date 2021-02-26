@@ -62,9 +62,9 @@ class LIKECOM
 	 * get_AllLikesComByMembre Permet de récupérer tous les likes d'un membre
 	 *
 	 * @param  string $numMemb
-	 * @return void Renvoie un tableau d'object comprenant les informations de tous les likes récupérés
+	 * @return array Renvoie un tableau d'object comprenant les informations de tous les likes récupérés
 	 */
-	function get_AllLikesComByMembre(string $numMemb)
+	function get_AllLikesComByMembre(string $numMemb): array
 	{
 		global $db;
 		$query = $db->prepare('SELECT * FROM likecom WHERE numMemb = :numMemb');

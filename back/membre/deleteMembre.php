@@ -16,15 +16,18 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
 require_once __DIR__ . '/../../CLASS_CRUD/likeart.class.php';
 require_once __DIR__ . '/../../CLASS_CRUD/likecom.class.php';
+require_once __DIR__ . '/../../CLASS_CRUD/comment.class.php';
 $membre = new MEMBRE();
 $likeart = new LIKEART();
 $likecom = new LIKECOM();
+$comment = new COMMENT();
 
 // Init variables form
 include __DIR__ . '/initMembre.php';
 $error = null;
 $likesart = null;
 $likescom = null;
+$comments = null;
 
 $config = file_get_contents('../../config.json');
 $configData = json_decode($config);
@@ -50,6 +53,7 @@ if (isset($_GET['id'])) {
                         case 'Supprimer':
                             $likesart = $likeart->get_AllLikesArtByMembre($numMemb);
                             $likescom = $likecom->get_AllLikesComByMembre($numMemb);
+                            $comments = $comment->get_AllCommentsByMembre($numMemb);
 
                             if (!$likesart && !$likescom) {
                                 // Suppression effective du membre
@@ -155,7 +159,16 @@ require_once __DIR__ . '/../common/header.php';
                     <h4>Like<?= (count($likescom) > 1) ? 's' : '' ?> Commentaire à supprimer :</h4>
                     <ul>
                         <?php foreach ($likescom as $likecom) : ?>
-                            <li><b><?= $likecom->numArt ?></b></li>
+                            <li><b>Article : <?= $likecom->numArt ?> | <?= $likecom->numSeqCom ?></b></li>
+                        <?php endforeach ?>
+                    </ul>
+                <?php endif ?>
+
+                <?php if ($comments) : ?>
+                    <h4>Commentaire<?= (count($comments) > 1) ? 's' : '' ?> à supprimer :</h4>
+                    <ul>
+                        <?php foreach ($comments as $com) : ?>
+                            <li><b>Article : <?= $com->numArt ?> | <?= $com->numSeqCom ?></b> <?= $com->libCom ?></li>
                         <?php endforeach ?>
                     </ul>
                 <?php endif ?>
