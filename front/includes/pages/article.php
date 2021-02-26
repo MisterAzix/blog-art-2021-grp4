@@ -76,9 +76,12 @@ require_once __DIR__ . '/../commons/header.php';
         <img src="/front/assets/images/home.jpg" alt="homeImage">
     </div>
 
-    <div class="container_comment" style="display: none;">
+    <div class="container_comment" style="display: block;">
         <?php
         require __DIR__ . '/../components/comment.php';
+        ?>
+         <?php
+        require __DIR__ . '/../components/sub_comment.php';
         ?>
     </div>
 </div>
