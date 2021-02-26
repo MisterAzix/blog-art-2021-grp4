@@ -10,8 +10,9 @@ class LANGUE
 	 *
 	 * @param  string $numLang
 	 * @return object Renvoie un object comprenant les informations de la langue récupérée
+	 * @return bool false si rien n'est trouvé en base de donnée
 	 */
-	function get_1Langue(string $numLang): object
+	function get_1Langue(string $numLang)
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM langue WHERE numLang=:numLang");
@@ -28,8 +29,9 @@ class LANGUE
 	 * @param  string $numLang
 	 * @param  string $numPays
 	 * @return object Renvoie un object comprenant les informations de la langue récupérée
+	 * @return bool false si rien n'est trouvé en base de donnée
 	 */
-	function get_1LangueByPays(string $numLang, string $numPays): object
+	function get_1LangueByPays(string $numLang, string $numPays)
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM langue WHERE numLang=:numLang AND numPays=:numPays");
@@ -59,8 +61,9 @@ class LANGUE
 	 *
 	 * @param  string $numPays
 	 * @return array Renvoie un tableau d'object comprenant les informations de toutes les langues récupérées
+	 * @return bool false si rien n'est trouvé en base de donnée
 	 */
-	function get_AllLanguesByPays(string $numPays): array
+	function get_AllLanguesByPays(string $numPays)
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM langue WHERE numPays=:numPays");

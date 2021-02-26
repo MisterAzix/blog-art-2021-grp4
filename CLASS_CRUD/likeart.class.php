@@ -11,8 +11,9 @@ class LIKEART
 	 * @param  string $numMemb
 	 * @param  string $numArt
 	 * @return object Renvoie un object comprenant les informations du like d'article récupéré
+	 * @return bool false si rien n'est trouvé en base de donnée
 	 */
-	function get_1LikeArt(string $numMemb, string $numArt): object
+	function get_1LikeArt(string $numMemb, string $numArt)
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM likeart WHERE numMemb=:numMemb AND numArt=:numArt");
@@ -42,8 +43,9 @@ class LIKEART
 	 *
 	 * @param  string $numArt
 	 * @return array Renvoie un tableau d'object comprenant les informations de tous les likes récupérés
+	 * @return bool false si rien n'est trouvé en base de donnée
 	 */
-	function get_AllLikesArtByArticle(string $numArt): array
+	function get_AllLikesArtByArticle(string $numArt)
 	{
 		global $db;
 		$query = $db->prepare('SELECT * FROM likeart WHERE numArt = :numArt');
@@ -59,8 +61,9 @@ class LIKEART
 	 *
 	 * @param  string $numMemb
 	 * @return array Renvoie un tableau d'object comprenant les informations de tous les likes récupérés
+	 * @return bool false si rien n'est trouvé en base de donnée
 	 */
-	function get_AllLikesArtByMembre(string $numMemb): array
+	function get_AllLikesArtByMembre(string $numMemb)
 	{
 		global $db;
 		$query = $db->prepare('SELECT * FROM likeart WHERE numMemb = :numMemb');

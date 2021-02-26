@@ -10,8 +10,9 @@ class ANGLE
 	 *
 	 * @param  string $numAngl
 	 * @return object Renvoie un object comprenant les informations de l'angle récupéré
+	 * @return bool false si rien n'est trouvé en base de donnée
 	 */
-	function get_1Angle(string $numAngl): object
+	function get_1Angle(string $numAngl)
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM angle WHERE numAngl=:numAngl");
@@ -40,6 +41,7 @@ class ANGLE
 	 *
 	 * @param  string $numLang
 	 * @return array Renvoie un tableau d'object comprenant les informations de tous les angles récupérés
+	 * @return bool false si rien n'est trouvé en base de donnée
 	 */
 	function get_AllAnglesByLang(string $numLang)
 	{

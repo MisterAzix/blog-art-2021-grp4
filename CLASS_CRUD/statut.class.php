@@ -10,8 +10,9 @@ class STATUT
 	 *
 	 * @param  string $idStat
 	 * @return object Renvoie un object contenant les informations du statut
+	 * @return bool false si rien n'est trouvé en base de donnée
 	 */
-	function get_1Statut(string $idStat): object
+	function get_1Statut(string $idStat)
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM statut WHERE idStat=:idStat");

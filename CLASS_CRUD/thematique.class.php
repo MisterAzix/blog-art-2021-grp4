@@ -10,8 +10,9 @@ class THEMATIQUE
 	 *
 	 * @param  string $numThem
 	 * @return object Renvoie un object avec les informations de la thématique
+	 * @return bool false si rien n'est trouvé en base de donnée
 	 */
-	function get_1Thematique(string $numThem): object
+	function get_1Thematique(string $numThem)
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM thematique WHERE numThem=:numThem");
@@ -40,8 +41,9 @@ class THEMATIQUE
 	 *
 	 * @param  string $numLang
 	 * @return array Renvoie un tableau d'objet contenant les informations des thématiques récupérées
+	 * @return bool false si rien n'est trouvé en base de donnée
 	 */
-	function get_AllThematiquesByLang(string $numLang): array
+	function get_AllThematiquesByLang(string $numLang)
 	{
 		global $db;
 		$query = $db->prepare('SELECT * FROM thematique WHERE numLang = :numLang');

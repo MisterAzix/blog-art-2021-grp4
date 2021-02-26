@@ -10,8 +10,9 @@ class MOTCLE
 	 *
 	 * @param  string $numMotCle
 	 * @return object Renvoie un object contenant les information du mot clé récupéré
+	 * @return bool false si rien n'est trouvé en base de donnée
 	 */
-	function get_1MotCle(string $numMotCle): object
+	function get_1MotCle(string $numMotCle)
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM motcle WHERE numMotCle=:numMotCle");
@@ -40,8 +41,9 @@ class MOTCLE
 	 *
 	 * @param  string $numLang
 	 * @return array Renvoie un tableau d'object contenant les informations des mots clés
+	 * @return bool false si rien n'est trouvé en base de donnée
 	 */
-	function get_AllMotClesByLang(string $numLang): array
+	function get_AllMotClesByLang(string $numLang)
 	{
 		global $db;
 		$query = $db->prepare('SELECT * FROM motcle WHERE numLang = :numLang');

@@ -11,8 +11,9 @@ class MOTCLEARTICLE
 	 * @param  string $numArt
 	 * @param  string $numMotCle
 	 * @return object Renvoie un object avec les informations du mot clé
+	 * @return bool false si rien n'est trouvé en base de donnée
 	 */
-	function get_1MotCleArt(string $numArt, string $numMotCle): object
+	function get_1MotCleArt(string $numArt, string $numMotCle)
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM motclearticle WHERE numArt=:numArt AND numMotCle=:numMotCle");
@@ -42,8 +43,9 @@ class MOTCLEARTICLE
 	 *
 	 * @param  string $numArt
 	 * @return array Renvoie un tableau d'object avec les informations des mots-clés
+	 * @return bool false si rien n'est trouvé en base de donnée
 	 */
-	function get_AllMotCleArtByArticle(string $numArt): array
+	function get_AllMotCleArtByArticle(string $numArt)
 	{
 		global $db;
 		$query = $db->prepare('SELECT * FROM motclearticle WHERE numArt = :numArt');

@@ -10,8 +10,9 @@ class MEMBRE
 	 *
 	 * @param  string $numMemb 
 	 * @return object Renvoie un object comprenant les informations du membre récupéré
+	 * @return bool false si rien n'est trouvé en base de donnée
 	 */
-	function get_1Membre($numMemb): object
+	function get_1Membre($numMemb)
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM membre WHERE numMemb=:numMemb");
@@ -40,8 +41,9 @@ class MEMBRE
 	 *
 	 * @param  string $pseudoMemb
 	 * @return object Renvoie un object comprenant les informations du membre récupéré
+	 * @return bool false si rien n'est trouvé en base de donnée
 	 */
-	function get_1MembreByPseudo($pseudoMemb): object
+	function get_1MembreByPseudo($pseudoMemb)
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM membre WHERE pseudoMemb=:pseudoMemb");
@@ -57,6 +59,7 @@ class MEMBRE
 	 *
 	 * @param  string $eMailMemb
 	 * @return object Renvoie un object comprenant les informations du membre récupéré
+	 * @return bool false si rien n'est trouvé en base de donnée
 	 */
 	function get_1MembreByEmail($eMailMemb)
 	{
@@ -68,7 +71,14 @@ class MEMBRE
 		$result = $query->fetchAll(PDO::FETCH_OBJ);
 		return $result;
 	}
-
+	
+	/**
+	 * get_AllMembresByStatut Permet de récupérer tous les membres en base de donnée en fonction d'un statut
+	 *
+	 * @param  mixed $idStat
+	 * @return array Renvoie un tableau d'object comprenant les informations de tous les membres récupérés
+	 * @return bool false si rien n'est trouvé en base de donnée
+	 */
 	function get_AllMembresByStatut($idStat)
 	{
 		global $db;
