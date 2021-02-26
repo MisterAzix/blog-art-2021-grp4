@@ -13,8 +13,10 @@
                 </div>
             </div>
         </div>
-        <div class="image">
-            <img src="../../../assets/images/drone.jpg" alt="photo colorée de bordeaux vue de haut">
+        <div class="overlay">
+            <div class="image">
+                <img src="../../../assets/images/drone.jpg" alt="photo colorée de bordeaux vue de haut">
+            </div>
         </div>
     </div>
 </div>
