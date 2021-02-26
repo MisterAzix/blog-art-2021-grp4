@@ -39,7 +39,7 @@ require_once __DIR__ . '/../commons/header.php';
                                 <p><?= $article->libAccrochArt ?></p>
                             </div>
                             <div class="button-container">
-                                <a class="button" href="/article/index.php?id=<?= $article->numArt ?>">Lire l'article</a>
+                                <a class="button" href="/article/<?= $article->numArt ?>">Lire l'article</a>
                             </div>
                         </div>
                         <div class="image">
@@ -70,7 +70,7 @@ require_once __DIR__ . '/../commons/header.php';
                                         <?= $article->libChapoArt ?>
                                     </p>
                                     <div class="button-container">
-                                        <a class="button" href="/article/index.php?id=<?= $article->numArt ?>">Lire l'article</a>
+                                        <a class="button" href="/article/<?= $article->numArt ?>">Lire l'article</a>
                                     </div>
                                 </div>
                             </div>
