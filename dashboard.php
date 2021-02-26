@@ -13,7 +13,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
 require_once __DIR__ . '/CLASS_CRUD/auth.class.php';
 $auth = new Auth();
 if (!$auth->is_connected()) {
-	header('Location: /connexion');
+	header('Location: ./connexion');
 }
 ?>
 
@@ -72,14 +72,14 @@ if (!$auth->is_connected()) {
 
 				<h5>Pages</h5>
 				<div class="list-group">
-					<a class="list-group-item" href="/article">Article</a>
-					<a class="list-group-item" href="/cgu">CGU</a>
-					<a class="list-group-item" href="/contact">Contact</a>
-					<a class="list-group-item" href="/accueil">Home</a>
-					<a class="list-group-item" href="/connexion">Login</a>
-					<a class="list-group-item" href="/deconnexion">Logout</a>
-					<a class="list-group-item" href="/plan">Plan</a>
-					<a class="list-group-item" href="/inscription">Register</a>
+					<a class="list-group-item" href="./article">Article</a>
+					<a class="list-group-item" href="./cgu">CGU</a>
+					<a class="list-group-item" href="./contact">Contact</a>
+					<a class="list-group-item" href="./accueil">Home</a>
+					<a class="list-group-item" href="./connexion">Login</a>
+					<a class="list-group-item" href="./deconnexion">Logout</a>
+					<a class="list-group-item" href="./plan">Plan</a>
+					<a class="list-group-item" href="./inscription">Register</a>
 				</div>
 			</div>
 		</div>

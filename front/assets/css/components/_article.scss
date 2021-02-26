@@ -3,12 +3,13 @@
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    flex-direction: row;
     width: 60%;
+
     @media screen and (max-width: 960px) {
-       flex-direction: column-reverse;
-       position: relative;
-       margin-top: 10%;
+        flex-direction: column-reverse;
+        position: relative;
+        margin-top: 10%;
+        width: 90%;
     }
 
     .text_container {
@@ -17,20 +18,24 @@
         margin-right: 50px;
         position: relative;
         width: 50%;
+
         @media screen and (max-width: 960px) {
             margin-right: 0;
             width: 74%;
             padding: 30px;
             justify-content: flex-end;
             height: 500px;
-         }
-         .overlay {
-             background: none;
-             padding: 10px;
-             @media screen and (max-width: 960px) {
+        }
+
+        .overlay {
+            background: none;
+            padding: 10px;
+
+            @media screen and (max-width: 960px) {
                 background: rgba(255, 255, 255, 0.7);
-             }
-         }
+            }
+        }
+
         &::before {
             z-index: -1;
             content: "";
@@ -43,11 +48,12 @@
             border-top: 1px solid $black;
             border-right: 1px solid $black;
             border-top-right-radius: 16px;
+
             @media screen and (max-width: 960px) {
                 display: none;
             }
         }
-    
+
         &::after {
             z-index: -1;
             content: "";
@@ -111,17 +117,20 @@
             width: 100%;
             height: 393px;
             object-fit: cover;
-            border-radius:16px;
+            border-radius: 16px;
+
             @media screen and (max-width: 960px) {
                 width: 80%;
                 height: 500px;
                 position: absolute;
-                left: 63px;
-                z-index: -99999;
+                left: 50%;
+                z-index: -999;
+                transform: translateX(-50%);
             }
-            @media screen and (max-width: 689px) {
-               width: 70%;
-               height: -300px;
+
+            @media screen and (max-width: 720px) {
+                width: 80%;
+                height: -300px;
             }
         }
     }

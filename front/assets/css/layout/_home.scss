@@ -50,14 +50,14 @@
                         transition: all 0.2s ease-in-out;
                         border-radius: 4px;
 
-                        &.active .animation{
+                        &.active .animation {
                             display: block;
                             background: $greentxt;
                             width: 0px;
                             height: 2px;
                             animation: soulignement 4.5s ease-out;
                             animation-delay: 0s;
-    
+
                             @keyframes soulignement {
                                 0% {
                                     width: 0%;
@@ -66,16 +66,16 @@
                                     width: 100%;
                                 }
                             }
-                        } 
+                        }
                     }
                 }
             }
         }
-
     }
 
     .all_articles {
         margin: 0 250px;
+        
         @media (max-width: 960px) {
             margin: 0 150px;
         }
@@ -94,20 +94,26 @@
             }
         }
 
-       
+        .article {
+            @media (max-width: 790px) {
+                position: relative;
+            }
 
-        .article{
-         
-        @media (max-width: 790px) {
-            position: relative;
-        }
-            .sub_article_components_container{
-              
+            .sub_article_components_container {
                 &:nth-child(even) {
                     margin-left: 24%;
+
+                    @media (max-width: 1280px) {
+                        margin: 100px auto;
+                    }
                 }
+
                 &:nth-child(odd) {
                     margin-left: 8%;
+
+                    @media (max-width: 720px) {
+                        margin: 100px auto;
+                    }
                 }
             }
         }
