@@ -6,10 +6,12 @@
     margin: 100px auto;
     flex-direction: row;
     max-width: 70%;
+    z-index: 9999;
     position: relative;
     @media (max-width:1159px) {
         max-width: 90%;
     }
+    
    
     &::before {
         content: '';
@@ -44,8 +46,11 @@
         flex-direction: row;
         width: 100%;
 
+
+
         .left-part {
             padding-right: 20px;
+            z-index: 2;
         }
 
         .info {
@@ -74,6 +79,7 @@
         .text-and-button {
             margin-right: 0;
             margin-top: 0;
+            z-index: 2;
                 
             @media screen and (max-width: 900px) {
             position: relative;
@@ -126,6 +132,26 @@
         }
     }
 
+<<<<<<< HEAD
+    
+
+    .image {  
+        z-index: -1;
+        opacity: 0.4;
+        img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 30px;
+        position: relative;
+       
+            @media (max-width: 790px) {
+            position: absolute;
+            right: 0;
+            top: 0;
+           
+            }
+=======
     .image {
         img {
             width: 200px;
@@ -139,6 +165,7 @@
                 top: 0;
                 z-index: -1990;
                 }
+>>>>>>> 7acfad5f4e9e7bed6d00fc9ab6e85357f89ad6ba
         }
-    }
+    }  
 }
