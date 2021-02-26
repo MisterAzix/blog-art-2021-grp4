@@ -6,6 +6,7 @@
 //  Script  : createMembre.php  (ETUD)   -   BLOGART21
 //
 ///////////////////////////////////////////////////////////////
+$pageTitle = 'Membre';
 
 // Mode DEV
 require_once __DIR__ . '/../../util/utilErrOn.php';
@@ -85,25 +86,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-function usernameCheck($pseudoMemb)
+/**
+ * usernameCheck Permet de vérifier si le pseudo renseigné n'existe pas déjà en base de donnée
+ *
+ * @param  string $pseudoMemb
+ * @return bool true : Le pseudo n'existe pas en base de donnée | false : Le pseudo est déjà utilisé
+ */
+function usernameCheck(string $pseudoMemb): bool
 {
     global $membre;
-    $result = $membre->get_AllMembresByPseudo($pseudoMemb);
+    $result = $membre->get_1MembreByPseudo($pseudoMemb);
     return $result ? false : true;
 }
 
-function emailCheck($eMailMemb)
+/**
+ * emailCheck Permet de vérifier si l'email renseigné n'existe pas déjà en base de donnée
+ *
+ * @param  string $eMailMemb
+ * @return bool true : L'email n'existe pas en base de donnée | false : L'email est déjà utilisé
+ */
+function emailCheck(string $eMailMemb): bool
 {
     global $membre;
-    $result = $membre->get_AllMembresByEmail($eMailMemb);
+    $result = $membre->get_1MembreByEmail($eMailMemb);
     return $result ? false : true;
 }
 
+/**
+ * passCheck Permet de vérifier si le mot de passe vérifie les certaines règles
+ *
+ * @param  string $pass1Memb Mot de passe provenant du premier input
+ * @return bool true : Le mot de passe respecte les règles | false : il ne respecte pas les règles
+ */
 function passCheck(string $pass1Memb): bool
 {
-    $uppercase = preg_match('@[A-Z]@', $pass1Memb);
-    $lowercase = preg_match('@[a-z]@', $pass1Memb);
-    $number = preg_match('@[0-9]@', $pass1Memb);
+    $uppercase = preg_match('@[A-Z]@', $pass1Memb); //Le mot de passe contient au moins une majuscule
+    $lowercase = preg_match('@[a-z]@', $pass1Memb); //Le mot de passe contient au moins une minuscule
+    $number = preg_match('@[0-9]@', $pass1Memb); //Le mot de passe contient au moins un chiffre
 
     if ($uppercase && $lowercase && $number && strlen($pass1Memb) >= 8 && strlen($pass1Memb) <= 64) {
         return true;
@@ -111,7 +130,14 @@ function passCheck(string $pass1Memb): bool
     return false;
 }
 
-function passConfirm(string $pass1Memb, string $pass2Memb)
+/**
+ * passConfirm Permet de vérifier si le mot de passe et la confirmation sont égaux
+ *
+ * @param  string $pass1Memb Mot de passe provenant du premier input
+ * @param  string $pass2Memb Confirmation du mot de passe
+ * @return string Renvoie le mot de passe hasher à stocker en base de donnée
+ */
+function passConfirm(string $pass1Memb, string $pass2Memb):string
 {
     $passMemb = null;
     if ($pass1Memb === $pass2Memb) {
@@ -121,111 +147,90 @@ function passConfirm(string $pass1Memb, string $pass2Memb)
 }
 
 $allStatus = $statut->get_AllStatuts();
+
+require_once __DIR__ . '/../common/header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
+<main class="container">
+    <div class="d-flex flex-column">
+        <h1>BLOGART21 Admin - Gestion du CRUD Membre</h1>
+        <hr>
 
-<head>
-    <meta charset="utf-8" />
-    <title>Admin - Gestion du CRUD Membre</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+        <div class="row d-flex justify-content-center">
+            <div class="col-8">
+                <h2>Ajout d'un membre</h2>
 
-    <!-- SCRIPT -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                <?php if ($error) : ?>
+                    <div class="alert alert-danger"><?= $error ?: '' ?></div>
+                <?php endif ?>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+                <form class="form" method="post" action="" enctype="multipart/form-data">
+                    <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ?: '' ?>" />
 
-<body>
-    <main class="container">
-        <div class="d-flex flex-column">
-            <h1>BLOGART21 Admin - Gestion du CRUD Membre</h1>
-            <hr>
-
-            <div class="row d-flex justify-content-center">
-                <div class="col-8">
-                    <h2>Ajout d'un membre</h2>
-
-                    <?php if ($error) : ?>
-                        <div class="alert alert-danger"><?= $error ?: '' ?></div>
-                    <?php endif ?>
-
-                    <form class="form" method="post" action="" enctype="multipart/form-data">
-                        <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ?: '' ?>" />
-
-                        <!-- INPUTS -->
-                        <div class="row">
-                            <div class="form-group mb-3 col-6">
-                                <label for="prenomMemb"><b>Prénom :</b></label>
-                                <input class="form-control" type="text" name="prenomMemb" pattern="[A-Za-z].{2,80}" value="<?= $prenomMemb ?>" placeholder="John" autofocus="autofocus" />
-                            </div>
-
-                            <div class="form-group mb-3 col-6">
-                                <label for="nomMemb"><b>Nom :</b></label>
-                                <input class="form-control" type="text" name="nomMemb" pattern="[A-Za-z].{2,80}" value="<?= $nomMemb ?>" placeholder="Doe" />
-                            </div>
+                    <!-- INPUTS -->
+                    <div class="row">
+                        <div class="form-group mb-3 col-6">
+                            <label for="prenomMemb"><b>Prénom :</b></label>
+                            <input class="form-control" type="text" name="prenomMemb" pattern="[A-Za-z].{2,80}" value="<?= $prenomMemb ?>" placeholder="John" autofocus="autofocus" />
                         </div>
 
-                        <div class="row">
-                            <div class="form-group mb-3 col-6">
-                                <label for="pseudoMemb"><b>Pseudo :</b></label>
-                                <input class="form-control" type="text" name="pseudoMemb" pattern="[A-Za-z0-9].{2,80}" value="<?= $pseudoMemb ?>" placeholder="JohnD33" />
-                            </div>
+                        <div class="form-group mb-3 col-6">
+                            <label for="nomMemb"><b>Nom :</b></label>
+                            <input class="form-control" type="text" name="nomMemb" pattern="[A-Za-z].{2,80}" value="<?= $nomMemb ?>" placeholder="Doe" />
+                        </div>
+                    </div>
 
-                            <div class="form-group mb-3 col-6">
-                                <label for="email1Memb"><b>Email :</b></label>
-                                <input class="form-control" type="email" name="email1Memb" maxlength="80" value="<?= $eMailMemb ?>" placeholder="john@doe.fr" />
-                            </div>
+                    <div class="row">
+                        <div class="form-group mb-3 col-6">
+                            <label for="pseudoMemb"><b>Pseudo :</b></label>
+                            <input class="form-control" type="text" name="pseudoMemb" pattern="[A-Za-z0-9].{2,80}" value="<?= $pseudoMemb ?>" placeholder="JohnD33" />
                         </div>
 
-                        <div class="row">
-                            <div class="form-group mb-3 col-6">
-                                <label for="pass1Memb"><b>Mot de passe :</b></label>
-                                <input class="form-control" type="password" name="pass1Memb" maxlength="80" value="<?= $pass1Memb ?>" placeholder="••••••••••" />
-                            </div>
+                        <div class="form-group mb-3 col-6">
+                            <label for="email1Memb"><b>Email :</b></label>
+                            <input class="form-control" type="email" name="email1Memb" maxlength="80" value="<?= $eMailMemb ?>" placeholder="john@doe.fr" />
+                        </div>
+                    </div>
 
-                            <div class="form-group mb-3 col-6">
-                                <label for="pass2Memb"><b>Confirmation Mot de passe :</b></label>
-                                <input class="form-control" type="password" name="pass2Memb" maxlength="80" value="<?= $pass2Memb ?>" placeholder="••••••••••" />
-                            </div>
+                    <div class="row">
+                        <div class="form-group mb-3 col-6">
+                            <label for="pass1Memb"><b>Mot de passe :</b></label>
+                            <input class="form-control" type="password" name="pass1Memb" maxlength="80" value="<?= $pass1Memb ?>" placeholder="••••••••••" />
                         </div>
 
-                        <div class="form-group mb-3 d-flex justify-content-center">
-                            <div class="col-6">
-                                <label for="idStat"><b>Statut :</b></label>
-                                <select name="idStat" class="form-control" id="idStat">
-                                    <option value="">--Choississez un statut--</option>
-                                    <?php foreach ($allStatus as $status) : ?>
-                                        <option value="<?= $status->idStat ?>"><?= $status->libStat ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                            </div>
+                        <div class="form-group mb-3 col-6">
+                            <label for="pass2Memb"><b>Confirmation Mot de passe :</b></label>
+                            <input class="form-control" type="password" name="pass2Memb" maxlength="80" value="<?= $pass2Memb ?>" placeholder="••••••••••" />
                         </div>
+                    </div>
 
-                        <!-- CAPTCHA -->
-                        <div class="d-flex justify-content-center">
-                            <div class="g-recaptcha" data-sitekey="<?= $configData->CAPTCHA_SITE_KEY ?>"></div>
+                    <div class="form-group mb-3 d-flex justify-content-center">
+                        <div class="col-6">
+                            <label for="idStat"><b>Statut :</b></label>
+                            <select name="idStat" class="form-control" id="idStat">
+                                <option value="">--Choississez un statut--</option>
+                                <?php foreach ($allStatus as $status) : ?>
+                                    <option value="<?= $status->idStat ?>"><?= $status->libStat ?></option>
+                                <?php endforeach ?>
+                            </select>
                         </div>
+                    </div>
 
-                        <!-- BUTTONS -->
-                        <div class="form-group d-flex justify-content-center">
-                            <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary m-2" />
-                            <input type="submit" value="S'inscrire" name="Submit" class="btn btn-success m-2" />
-                        </div>
-                    </form>
-                </div>
+                    <!-- CAPTCHA -->
+                    <div class="d-flex justify-content-center">
+                        <div class="g-recaptcha" data-sitekey="<?= $configData->CAPTCHA_SITE_KEY ?>"></div>
+                    </div>
+
+                    <!-- BUTTONS -->
+                    <div class="form-group d-flex justify-content-center">
+                        <input type="reset" value="Initialiser" class="btn btn-primary m-2" />
+                        <input type="submit" value="S'inscrire" name="submit" class="btn btn-success m-2" />
+                    </div>
+                </form>
             </div>
-
-            <?php
-            require_once __DIR__ . '/footerMembre.php';
-
-            require_once __DIR__ . '/footer.php';
-            ?>
         </div>
-    </main>
-</body>
 
-</html>
+        <?php require_once __DIR__ . '/footerMembre.php' ?>
+    </div>
+</main>
+<?php require_once __DIR__ . '/../common/footer.php' ?>

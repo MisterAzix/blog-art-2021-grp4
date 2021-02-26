@@ -4,8 +4,14 @@
 require_once __DIR__ . '../../CONNECT/database.php';
 
 class STATUT
-{
-	function get_1Statut($idStat)
+{	
+	/**
+	 * get_1Statut Permet de récupérer un statut en base de donnée
+	 *
+	 * @param  string $idStat
+	 * @return object Renvoie un object contenant les informations du statut
+	 */
+	function get_1Statut(string $idStat): object
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM statut WHERE idStat=:idStat");
@@ -15,16 +21,27 @@ class STATUT
 		$result = $query->fetch(PDO::FETCH_OBJ);
 		return $result;
 	}
-
-	function get_AllStatuts()
+	
+	/**
+	 * get_AllStatuts Permet de récupérer tous les statuts en base de donnée
+	 *
+	 * @return array Renvoie un tableau d'object comprenant les informations de tous les statuts
+	 */
+	function get_AllStatuts(): array
 	{
 		global $db;
 		$query = $db->query('SELECT * FROM statut');
 		$result = $query->fetchAll(PDO::FETCH_OBJ);
 		return $result;
 	}
-
-	function create($libStat)
+	
+	/**
+	 * create Permet l'ajout d'un statut en base de donnée
+	 *
+	 * @param  string $libStat
+	 * @return void
+	 */
+	function create(string $libStat)
 	{
 		global $db;
 		try {
@@ -41,8 +58,15 @@ class STATUT
 			die('Erreur insert STATUT : ' . $e->getMessage());
 		}
 	}
-
-	function update($idStat, $libStat)
+	
+	/**
+	 * update Permet la modification d'un statut de la base de donnée
+	 *
+	 * @param  string $idStat
+	 * @param  string $libStat
+	 * @return void
+	 */
+	function update(string $idStat, string $libStat)
 	{
 		global $db;
 		try {
@@ -60,8 +84,14 @@ class STATUT
 			die('Erreur update STATUT : ' . $e->getMessage());
 		}
 	}
-
-	function delete($idStat)
+	
+	/**
+	 * delete Permet la suppression d'un statut de la base de donnée
+	 *
+	 * @param  string $idStat
+	 * @return void
+	 */
+	function delete(string $idStat)
 	{
 		global $db;
 		try {

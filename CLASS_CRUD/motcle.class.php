@@ -4,8 +4,14 @@
 require_once __DIR__ . '../../CONNECT/database.php';
 
 class MOTCLE
-{
-	function get_1MotCle($numMotCle)
+{	
+	/**
+	 * get_1MotCle Permet de récupérer un mot clé
+	 *
+	 * @param  string $numMotCle
+	 * @return object Renvoie un object contenant les information du mot clé récupéré
+	 */
+	function get_1MotCle(string $numMotCle): object
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM motcle WHERE numMotCle=:numMotCle");
@@ -15,16 +21,27 @@ class MOTCLE
 		$result = $query->fetch(PDO::FETCH_OBJ);
 		return $result;
 	}
-
-	function get_AllMotsCles()
+	
+	/**
+	 * get_AllMotsCles Permet de récupérer tous les mots clés
+	 *
+	 * @return array Renvoie un tableau d'object contenant les informations des mots clés
+	 */
+	function get_AllMotsCles(): array
 	{
 		global $db;
 		$query = $db->query('SELECT * FROM motcle');
 		$result = $query->fetchAll(PDO::FETCH_OBJ);
 		return $result;
 	}
-
-	function get_AllMotClesByLang($numLang)
+	
+	/**
+	 * get_AllMotClesByLang Permet de récupérer tous les mots clés d'une langue
+	 *
+	 * @param  string $numLang
+	 * @return array Renvoie un tableau d'object contenant les informations des mots clés
+	 */
+	function get_AllMotClesByLang(string $numLang): array
 	{
 		global $db;
 		$query = $db->prepare('SELECT * FROM motcle WHERE numLang = :numLang');
@@ -34,8 +51,15 @@ class MOTCLE
 		$result = $query->fetchAll(PDO::FETCH_OBJ);
 		return ($result);
 	}
-
-	function create($libMotCle, $numLang)
+	
+	/**
+	 * create Permet d'ajouter un mot clé à la base de donnée
+	 *
+	 * @param  string $libMotCle
+	 * @param  string $numLang
+	 * @return void
+	 */
+	function create(string $libMotCle, string $numLang)
 	{
 		global $db;
 		try {
@@ -53,8 +77,15 @@ class MOTCLE
 			die('Erreur insert MOTCLE : ' . $e->getMessage());
 		}
 	}
-
-	function update($numMotCle, $libMotCle)
+	
+	/**
+	 * update Permet de modifier un mot clé en base de donnée
+	 *
+	 * @param  string $numMotCle
+	 * @param  string $libMotCle
+	 * @return void
+	 */
+	function update(string $numMotCle, string $libMotCle)
 	{
 		global $db;
 		try {
@@ -72,8 +103,14 @@ class MOTCLE
 			die('Erreur update MOTCLE : ' . $e->getMessage());
 		}
 	}
-
-	function delete($numMotCle)
+	
+	/**
+	 * delete Permet de supprimer un mot clé de la base de donnée
+	 *
+	 * @param  string $numMotCle
+	 * @return void
+	 */
+	function delete(string $numMotCle)
 	{
 		global $db;
 		try {

@@ -76,6 +76,12 @@
 
     .all_articles {
         margin: 0 250px;
+        @media (max-width: 960px) {
+            margin: 0 150px;
+        }
+        @media (max-width: 880px) {
+            margin: 35px;
+        }
 
         h2 {
             font-family: $font-title;
@@ -83,14 +89,12 @@
             font-weight: $weight-regular;
             color: $black;
             text-align: center;
+            @media screen and (max-width: 689px) {
+                font-size: 28px;
+            }
         }
 
-        @media (max-width: 960px) {
-            margin: 0 150px;
-        }
-        @media (max-width: 480px) {
-            margin: 0;
-        }
+       
 
         .article{
          

@@ -6,7 +6,7 @@
 //========================================//
 
 // WRITE YOUR PHP LOGIC HERE
-$page_title = 'Home';
+$page_title = 'Acuueil';
 $page_description = '';
 
 require_once __DIR__ . '/../../../util/dateChangeFormat.php';

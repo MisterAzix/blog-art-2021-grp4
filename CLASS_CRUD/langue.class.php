@@ -4,8 +4,14 @@
 require_once __DIR__ . '../../CONNECT/database.php';
 
 class LANGUE
-{
-	function get_1Langue($numLang)
+{	
+	/**
+	 * get_1Langue Permet de récuper une seule langue en base de donnée
+	 *
+	 * @param  string $numLang
+	 * @return object Renvoie un object comprenant les informations de la langue récupérée
+	 */
+	function get_1Langue(string $numLang): object
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM langue WHERE numLang=:numLang");
@@ -15,8 +21,15 @@ class LANGUE
 		$result = $query->fetch(PDO::FETCH_OBJ);
 		return $result;
 	}
-
-	function get_1LangueByPays($numLang, $numPays)
+	
+	/**
+	 * get_1LangueByPays Permet de récupérer une langue en base de donnée en fonction d'un pays
+	 *
+	 * @param  string $numLang
+	 * @param  string $numPays
+	 * @return object Renvoie un object comprenant les informations de la langue récupérée
+	 */
+	function get_1LangueByPays(string $numLang, string $numPays): object
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM langue WHERE numLang=:numLang AND numPays=:numPays");
@@ -27,16 +40,27 @@ class LANGUE
 		$result = $query->fetch(PDO::FETCH_OBJ);
 		return $result;
 	}
-
-	function get_AllLangues()
+	
+	/**
+	 * get_AllLangues Permet de récupérer toutes les langues en base de donnée
+	 *
+	 * @return array Renvoie un tableau d'object comprenant les informations de toutes les langues
+	 */
+	function get_AllLangues(): array
 	{
 		global $db;
 		$query = $db->query('SELECT * FROM langue');
 		$result = $query->fetchAll(PDO::FETCH_OBJ);
 		return $result;
 	}
-
-	function get_AllLanguesByPays($numPays)
+	
+	/**
+	 * get_AllLanguesByPays Permet de récupérer toutes les langues en base de donnée en fonction d'un pays
+	 *
+	 * @param  string $numPays
+	 * @return array Renvoie un tableau d'object comprenant les informations de toutes les langues récupérées
+	 */
+	function get_AllLanguesByPays(string $numPays): array
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM langue WHERE numPays=:numPays");
@@ -46,16 +70,29 @@ class LANGUE
 		$result = $query->fetchAll(PDO::FETCH_OBJ);
 		return $result;
 	}
-
-	function get_AllPays()
+	
+	/**
+	 * get_AllPays Permet de récupérer tous les pays en base de donnée
+	 *
+	 * @return array Renvoie un tableau d'object comprenant les informations de tous les pays
+	 */
+	function get_AllPays(): array
 	{
 		global $db;
 		$query = $db->query('SELECT * FROM pays');
 		$result = $query->fetchAll(PDO::FETCH_OBJ);
 		return $result;
 	}
-
-	function create($lib1Lang, $lib2Lang, $numPays)
+	
+	/**
+	 * create Permet d'ajouter une nouvelle langue en base de donnée
+	 *
+	 * @param  string $lib1Lang
+	 * @param  string $lib2Lang
+	 * @param  string $numPays
+	 * @return void
+	 */
+	function create(string $lib1Lang, string $lib2Lang, string $numPays)
 	{
 		global $db;
 		require_once __DIR__ . '/getNextNumLang.php';
@@ -77,8 +114,16 @@ class LANGUE
 			die('Erreur create LANGUE : ' . $e->getMessage());
 		}
 	}
-
-	function update($numLang, $lib1Lang, $lib2Lang)
+	
+	/**
+	 * update Permet de modifier une langue dans la base de donnée
+	 *
+	 * @param  string $numLang
+	 * @param  string $lib1Lang
+	 * @param  string $lib2Lang
+	 * @return void
+	 */
+	function update(string $numLang, string $lib1Lang, string $lib2Lang)
 	{
 		global $db;
 		try {
@@ -97,9 +142,14 @@ class LANGUE
 			die('Erreur update LANGUE : ' . $e->getMessage());
 		}
 	}
-
-	// Ctrl FK sur THEMATIQUE, ANGLE, MOTCLE avec del
-	function delete($numLang)
+	
+	/**
+	 * delete Permet de supprimer une langue de la base de donnée
+	 *
+	 * @param  string $numLang
+	 * @return void
+	 */
+	function delete(string $numLang)
 	{
 		global $db;
 		try {
