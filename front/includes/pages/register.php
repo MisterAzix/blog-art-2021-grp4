@@ -7,7 +7,7 @@
 
 // WRITE YOUR PHP LOGIC HERE
 $page_title = 'Inscription';
-$page_description = '';
+$page_description = "Inscrit toi dès aujourd'hui afin de réagir à différents articles sur l'écologie !";
 
 
 require_once __DIR__ . '/../commons/header.php';

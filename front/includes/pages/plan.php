@@ -7,8 +7,7 @@
 
 // WRITE YOUR PHP LOGIC HERE
 $page_title = 'Plan du site';
-$page_description = '';
-
+$page_description = "Tu souhaites naviguer rapidement à travers le blog pour lire mes articles sur l'écologie, tu es au bon endroit !";
 
 
 require_once __DIR__ . '/../commons/header.php';

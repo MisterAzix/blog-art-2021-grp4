@@ -7,7 +7,7 @@
 
 // WRITE YOUR PHP LOGIC HERE
 $page_title = 'Connexion';
-$page_description = '';
+$page_description = "Connecte toi dès maintenant pour réagir à mes articles sur l'écologie !";
 $error = null;
 
 // Insertion classe

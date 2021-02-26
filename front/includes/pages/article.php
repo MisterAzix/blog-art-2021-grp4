@@ -7,7 +7,7 @@
 
 // WRITE YOUR PHP LOGIC HERE
 $page_title = 'Article';
-$page_description = '';
+$page_description = "Retrouve tous mes articles sur l'écologie, évenement, acteur clé, insolite, c'est ici que ça se passe !";
 
 require_once __DIR__ . '/../../../util/dateChangeFormat.php';
 
