@@ -8,10 +8,10 @@ class MOTCLE
 	/**
 	 * get_1MotCle Permet de récupérer un mot clé
 	 *
-	 * @param  mixed $numMotCle
+	 * @param  string $numMotCle
 	 * @return object Renvoie un object contenant les information du mot clé récupéré
 	 */
-	function get_1MotCle(mixed $numMotCle): object
+	function get_1MotCle(string $numMotCle): object
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM motcle WHERE numMotCle=:numMotCle");
@@ -81,11 +81,11 @@ class MOTCLE
 	/**
 	 * update Permet de modifier un mot clé en base de donnée
 	 *
-	 * @param  mixed $numMotCle
+	 * @param  string $numMotCle
 	 * @param  string $libMotCle
 	 * @return void
 	 */
-	function update(mixed $numMotCle, string $libMotCle)
+	function update(string $numMotCle, string $libMotCle)
 	{
 		global $db;
 		try {
@@ -107,10 +107,10 @@ class MOTCLE
 	/**
 	 * delete Permet de supprimer un mot clé de la base de donnée
 	 *
-	 * @param  mixed $numMotCle
+	 * @param  string $numMotCle
 	 * @return void
 	 */
-	function delete(mixed $numMotCle)
+	function delete(string $numMotCle)
 	{
 		global $db;
 		try {

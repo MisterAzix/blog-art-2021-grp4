@@ -14,18 +14,18 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 
 // Insertion classe
 require_once __DIR__ . '/../../CLASS_CRUD/statut.class.php';
+require_once __DIR__ . '/../../CLASS_CRUD/membre.class.php';
 $statut = new STATUT();
-require_once __DIR__ . '/../../CLASS_CRUD/user.class.php';
-$user = new USER();
+$membre = new MEMBRE();
 
 // Init variables form
 include __DIR__ . '/initStatut.php';
 $error = null;
-
+$members = null;
 
 // Controle des saisies du formulaire
 if (isset($_GET['id'])) {
-    $idStat = ctrlSaisies($_GET['id']);
+    $idStat = $_GET['id'];
     $result = $statut->get_1Statut($idStat);
     if (!$result) header('Location: ./statut.php');
     $libStat = ctrlSaisies($result->libStat);
@@ -33,9 +33,9 @@ if (isset($_GET['id'])) {
     if (isset($_POST['Submit'])) {
         switch ($_POST['Submit']) {
             case 'Supprimer':
-                $nbAllUsersByidStat = (int)($user->get_NbAllUsersByidStat($idStat));
+                $members = $membre->get_AllMembresByStatut($idStat);
 
-                if ($nbAllUsersByidStat < 1) {
+                if (!$members) {
                     // Suppression effective du statut
                     $count = $statut->delete($idStat);
                     ($count == 1) ? header('Location: ./statut.php') : die('Erreur delete STATUT !');
@@ -76,10 +76,20 @@ require_once __DIR__ . '/../common/header.php';
                     </div>
 
                     <div class="form-group mb-3">
-                            <input type="submit" value="Annuler" name="Submit" class="btn btn-primary" />
-                            <input type="submit" value="Supprimer" name="Submit" class="btn btn-danger" />
-                        </div>
+                        <input type="submit" value="Annuler" name="Submit" class="btn btn-primary" />
+                        <input type="submit" value="Supprimer" name="Submit" class="btn btn-danger" />
+                    </div>
                 </form>
+
+                <?php if ($members) : ?>
+                    <h4>Membre<?= (count($members) > 1) ? 's' : '' ?> à supprimer :</h4>
+                    <ul>
+                        <?php foreach ($members as $member) : ?>
+                            <li><b><?= $member->numMemb ?> :</b> <?= $member->pseudoMemb ?></li>
+                        <?php endforeach ?>
+                    </ul>
+                <?php endif ?>
+
             </div>
         </div>
 

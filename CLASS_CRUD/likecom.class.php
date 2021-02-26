@@ -8,12 +8,12 @@ class LIKECOM
 	/**
 	 * get_1LikeCom Permet de récupérer un seul like de commentaire en base de donnée
 	 *
-	 * @param  mixed $numMemb
-	 * @param  mixed $numSeqCom
-	 * @param  mixed $numArt
+	 * @param  string $numMemb
+	 * @param  string $numSeqCom
+	 * @param  string $numArt
 	 * @return void Renvoie un object comprenant les informations du like de commentaire récupéré
 	 */
-	function get_1LikeCom(mixed $numMemb, mixed $numSeqCom, string $numArt)
+	function get_1LikeCom(string $numMemb, string $numSeqCom, string $numArt)
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM likecom WHERE numMemb=:numMemb AND numSeqCom=:numSeqCom AND numArt=:numArt");
@@ -42,11 +42,11 @@ class LIKECOM
 	/**
 	 * get_AllLikesComByComment Permet de récupérer tous les likes d'un commentaire
 	 *
-	 * @param  mixed $numSeqCom
-	 * @param  mixed $numArt
+	 * @param  string $numSeqCom
+	 * @param  string $numArt
 	 * @return void Renvoie un tableau d'object comprenant les informations de tous les likes récupérés
 	 */
-	function get_AllLikesComByComment(mixed $numSeqCom, string $numArt)
+	function get_AllLikesComByComment(string $numSeqCom, string $numArt)
 	{
 		global $db;
 		$query = $db->prepare('SELECT * FROM likecom WHERE numSeqCom = :numSeqCom AND numArt = :numArt');
@@ -61,10 +61,10 @@ class LIKECOM
 	/**
 	 * get_AllLikesComByMembre Permet de récupérer tous les likes d'un membre
 	 *
-	 * @param  mixed $numMemb
+	 * @param  string $numMemb
 	 * @return void Renvoie un tableau d'object comprenant les informations de tous les likes récupérés
 	 */
-	function get_AllLikesComByMembre(mixed $numMemb)
+	function get_AllLikesComByMembre(string $numMemb)
 	{
 		global $db;
 		$query = $db->prepare('SELECT * FROM likecom WHERE numMemb = :numMemb');
@@ -79,12 +79,12 @@ class LIKECOM
 	/**
 	 * createOrUpdate Permet d'ajouter un like de commentaire en base de donnée ou de modifier son état s'il existe déjà
 	 *
-	 * @param  mixed $numMemb
-	 * @param  mixed $numSeqCom
-	 * @param  mixed $numArt
+	 * @param  string $numMemb
+	 * @param  string $numSeqCom
+	 * @param  string $numArt
 	 * @return void
 	 */
-	function createOrUpdate(mixed $numMemb, mixed $numSeqCom, string $numArt)
+	function createOrUpdate(string $numMemb, string $numSeqCom, string $numArt)
 	{
 		global $db;
 		try {

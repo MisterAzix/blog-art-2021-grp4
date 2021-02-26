@@ -8,11 +8,11 @@ class LIKEART
 	/**
 	 * get_1LikeArt Permet de récupérer un seul like d'article en base de donnée
 	 *
-	 * @param  mixed $numMemb
+	 * @param  string $numMemb
 	 * @param  string $numArt
 	 * @return object Renvoie un object comprenant les informations du like d'article récupéré
 	 */
-	function get_1LikeArt(mixed $numMemb, string $numArt): object
+	function get_1LikeArt(string $numMemb, string $numArt): object
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM likeart WHERE numMemb=:numMemb AND numArt=:numArt");
@@ -57,10 +57,10 @@ class LIKEART
 	/**
 	 * get_AllLikesArtByMembre Permet de récupérer tous les likes d'un membre
 	 *
-	 * @param  mixed $numMemb
+	 * @param  string $numMemb
 	 * @return array Renvoie un tableau d'object comprenant les informations de tous les likes récupérés
 	 */
-	function get_AllLikesArtByMembre(mixed $numMemb): array
+	function get_AllLikesArtByMembre(string $numMemb): array
 	{
 		global $db;
 		$query = $db->prepare('SELECT * FROM likeart WHERE numMemb = :numMemb');
@@ -74,11 +74,11 @@ class LIKEART
 	/**
 	 * createOrUpdate Permet d'ajouter un like d'article en base de donnée ou de modifier son état s'il existe déjà
 	 *
-	 * @param  mixed $numMemb
+	 * @param  string $numMemb
 	 * @param  string $numArt
 	 * @return void
 	 */
-	function createOrUpdate(mixed $numMemb, string $numArt)
+	function createOrUpdate(string $numMemb, string $numArt)
 	{
 		global $db;
 		try {

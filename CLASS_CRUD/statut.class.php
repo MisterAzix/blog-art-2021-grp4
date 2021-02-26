@@ -8,10 +8,10 @@ class STATUT
 	/**
 	 * get_1Statut Permet de récupérer un statut en base de donnée
 	 *
-	 * @param  mixed $idStat
+	 * @param  string $idStat
 	 * @return object Renvoie un object contenant les informations du statut
 	 */
-	function get_1Statut(mixed $idStat): object
+	function get_1Statut(string $idStat): object
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM statut WHERE idStat=:idStat");
@@ -62,11 +62,11 @@ class STATUT
 	/**
 	 * update Permet la modification d'un statut de la base de donnée
 	 *
-	 * @param  mixed $idStat
+	 * @param  string $idStat
 	 * @param  string $libStat
 	 * @return void
 	 */
-	function update(mixed $idStat, string $libStat)
+	function update(string $idStat, string $libStat)
 	{
 		global $db;
 		try {
@@ -88,10 +88,10 @@ class STATUT
 	/**
 	 * delete Permet la suppression d'un statut de la base de donnée
 	 *
-	 * @param  mixed $idStat
+	 * @param  string $idStat
 	 * @return void
 	 */
-	function delete(mixed $idStat)
+	function delete(string $idStat)
 	{
 		global $db;
 		try {

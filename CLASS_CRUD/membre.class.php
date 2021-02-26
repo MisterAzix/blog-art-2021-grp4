@@ -8,7 +8,7 @@ class MEMBRE
 	/**
 	 * get_1Membre Permet de récuper un seul membre en base de donnée
 	 *
-	 * @param  mixed $numMemb 
+	 * @param  string $numMemb 
 	 * @return object Renvoie un object comprenant les informations du membre récupéré
 	 */
 	function get_1Membre($numMemb): object
@@ -68,6 +68,17 @@ class MEMBRE
 		$result = $query->fetchAll(PDO::FETCH_OBJ);
 		return $result;
 	}
+
+	function get_AllMembresByStatut($idStat)
+	{
+		global $db;
+		$query = $db->prepare("SELECT * FROM membre WHERE idStat=:idStat");
+		$query->execute([
+			'idStat' => $idStat
+		]);
+		$result = $query->fetchAll(PDO::FETCH_OBJ);
+		return $result;
+	}
 	
 	/**
 	 * create Permet d'ajouter un nouveau membre en base de donnée
@@ -77,7 +88,7 @@ class MEMBRE
 	 * @param  string $pseudoMemb
 	 * @param  string $eMailMemb
 	 * @param  string $passMemb
-	 * @param  mixed $idStat
+	 * @param  string $idStat
 	 * @return void
 	 */
 	function create($prenomMemb, $nomMemb, $pseudoMemb, $eMailMemb, $passMemb, $idStat)
@@ -140,7 +151,7 @@ class MEMBRE
 	/**
 	 * delete Permet de supprimer un membre de la base de donnée
 	 *
-	 * @param  mixed $numMemb
+	 * @param  string $numMemb
 	 * @return void
 	 */
 	function delete($numMemb)

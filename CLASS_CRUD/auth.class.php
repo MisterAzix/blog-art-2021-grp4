@@ -77,7 +77,7 @@ class AUTH
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        $result = $this->membre->get_AllMembresByEmail($email);
+        $result = $this->membre->get_1MembreByEmail($email);
         if ($result) {
             if (password_verify($password, $result[0]->passMemb)) {
                 $_SESSION['logged'] = $result[0]->numMemb;

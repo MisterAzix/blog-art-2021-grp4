@@ -8,7 +8,7 @@ class ARTICLE
 	/**
 	 * get_1Article Permet de récupérer un seul article en base de donnée
 	 *
-	 * @param  mixed $numArt
+	 * @param  string $numArt
 	 * @return object Renvoie un object comprenant les informations de l'article récupéré
 	 */
 	function get_1Article($numArt): object
@@ -51,7 +51,7 @@ class ARTICLE
 	/**
 	 * get_AllArticlesByAngl Permet de récupérer tous les article en base de donnée en fonction d'un angle
 	 *
-	 * @param  mixed $numAngl
+	 * @param  string $numAngl
 	 * @return array Renvoie un tableau d'object comprenant les informations de tous les articles récupérés
 	 */
 	function get_AllArticlesByAngl($numAngl): array
@@ -68,7 +68,7 @@ class ARTICLE
 	/**
 	 * get_AllArticlesByThem Permet de récupérer tous les article en base de donnée en fonction d'une thématique
 	 *
-	 * @param  mixed $numThem
+	 * @param  string $numThem
 	 * @return array Renvoie un tableau d'object comprenant les informations de tous les articles récupérés
 	 */
 	function get_AllArticlesByThem($numThem): array
@@ -85,7 +85,7 @@ class ARTICLE
 	/**
 	 * create Permet d'ajouter un nouvel article en base de donnée
 	 *
-	 * @param  mixed $dtCreArt
+	 * @param  string $dtCreArt
 	 * @param  string $libTitrArt
 	 * @param  string $libChapoArt
 	 * @param  string $libAccrochArt
@@ -101,7 +101,7 @@ class ARTICLE
 	 * @return void
 	 */
 	function create(
-		mixed $dtCreArt,
+		string $dtCreArt,
 		string $libTitrArt,
 		string $libChapoArt,
 		string $libAccrochArt,
@@ -153,7 +153,7 @@ class ARTICLE
 	/**
 	 * update Permet de modifier un article dans la base de donnée
 	 *
-	 * @param  mixed $numArt
+	 * @param  string $numArt
 	 * @param  string $libTitrArt
 	 * @param  string $libChapoArt
 	 * @param  string $libAccrochArt
@@ -169,7 +169,7 @@ class ARTICLE
 	 * @return void
 	 */
 	function update(
-		mixed $numArt,
+		string $numArt,
 		string $libTitrArt,
 		string $libChapoArt,
 		string $libAccrochArt,
@@ -217,10 +217,10 @@ class ARTICLE
 	/**
 	 * delete Permet de supprimer un article de la base de donnée
 	 *
-	 * @param  mixed $numArt
+	 * @param  string $numArt
 	 * @return void
 	 */
-	function delete(mixed $numArt)
+	function delete(string $numArt)
 	{
 		global $db;
 		try {
