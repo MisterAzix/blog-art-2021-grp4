@@ -10,13 +10,13 @@ $page_title = 'Inscription';
 $page_description = '';
 
 
-require_once __DIR__ . '/../commons/header.php';
+require_once __DIR__ . './../commons/header.php';
 ?>
 
 <!-- WRITE HTML CODE BELOW -->
 <div class="sign_container layout">
     <div class="illustration">
-        <img src="/front/assets/images/Capture_d_écran_2021-02-09_à_15.47.20-removebg.png" alt="loginImage">
+        <img src="./front/assets/images/Capture_d_écran_2021-02-09_à_15.47.20-removebg.png" alt="loginImage">
     </div>
     <div class="register">
         <h2>Hey ! Inscris-toi ici ! </h2>
@@ -64,4 +64,4 @@ require_once __DIR__ . '/../commons/header.php';
 </div>
 
 
-<?php require_once __DIR__ . '/../commons/footer.php' ?>
+<?php require_once __DIR__ . './../commons/footer.php' ?>

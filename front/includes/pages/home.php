@@ -9,11 +9,11 @@
 $page_title = 'Acuueil';
 $page_description = '';
 
-require_once __DIR__ . '/../../../util/dateChangeFormat.php';
+require_once __DIR__ . './../../../util/dateChangeFormat.php';
 
 // Insertion classe ARTICLE
-require_once __DIR__ . '/../../../CLASS_CRUD/article.class.php';
-require_once __DIR__ . '/../../../CLASS_CRUD/thematique.class.php';
+require_once __DIR__ . './../../../CLASS_CRUD/article.class.php';
+require_once __DIR__ . './../../../CLASS_CRUD/thematique.class.php';
 $article = new ARTICLE();
 $thematique = new THEMATIQUE();
 
@@ -22,7 +22,7 @@ $allArticles = $article->get_AllArticles();
 $allFavArticles = $article->get_AllFavArticles();
 $allThematics = $thematique->get_AllThematiques();
 
-require_once __DIR__ . '/../commons/header.php';
+require_once __DIR__ . './../commons/header.php';
 ?>
 
 <!-- WRITE HTML CODE BELOW -->
@@ -39,11 +39,11 @@ require_once __DIR__ . '/../commons/header.php';
                                 <p><?= $article->libAccrochArt ?></p>
                             </div>
                             <div class="button-container">
-                                <a class="button" href="/article/<?= $article->numArt ?>">Lire l'article</a>
+                                <a class="button" href="./article/<?= $article->numArt ?>">Lire l'article</a>
                             </div>
                         </div>
                         <div class="image">
-                            <img src="/front/assets/images/drone.jpg" alt="photo colorée de bordeaux vue de haut">
+                            <img src="./front/assets/images/drone.jpg" alt="photo colorée de bordeaux vue de haut">
                         </div>
                     </div>
                 </div>
@@ -70,12 +70,12 @@ require_once __DIR__ . '/../commons/header.php';
                                         <?= $article->libChapoArt ?>
                                     </p>
                                     <div class="button-container">
-                                        <a class="button" href="/article/<?= $article->numArt ?>">Lire l'article</a>
+                                        <a class="button" href="./article/<?= $article->numArt ?>">Lire l'article</a>
                                     </div>
                                 </div>
                             </div>
                                 <div class="image">
-                                    <img src="/front/assets/images/drone.jpg" alt="photo colorée de bordeaux vue de haut">
+                                    <img src="./front/assets/images/drone.jpg" alt="photo colorée de bordeaux vue de haut">
                                 </div>
                         </div>
                     </div>
@@ -85,4 +85,4 @@ require_once __DIR__ . '/../commons/header.php';
 
 </main>
 
-<?php require_once __DIR__ . '/../commons/footer.php' ?>
+<?php require_once __DIR__ . './../commons/footer.php' ?>

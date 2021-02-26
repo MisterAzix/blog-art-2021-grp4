@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../../CLASS_CRUD/auth.class.php';
+require_once __DIR__ . './../../../CLASS_CRUD/auth.class.php';
 $auth = new AUTH();
 ?>
 
@@ -15,7 +15,7 @@ $auth = new AUTH();
     <meta name="description" content="<?= !empty($page_title) ? $page_description : "Découvert de nombreux articles sur l'écologie !" ?>">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
-    <link rel="stylesheet" href="/front/assets/css/main.css">
+    <link rel="stylesheet" href="./front/assets/css/main.css">
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
@@ -66,8 +66,8 @@ $auth = new AUTH();
             </div>
 
             <div class="mobile">
-                <a href="/inscription"><img src="/front/assets/images/account.svg" alt="Icon de compte" class="icon_account"></a>
-                <a href="/accueil"><img src="/front/assets/images/logo_lecopin.svg" alt="Logo du site avec écrit l'écopins" class="logo"></a>
+                <a href="./inscription"><img src="./front/assets/images/account.svg" alt="Icon de compte" class="icon_account"></a>
+                <a href="./accueil"><img src="./front/assets/images/logo_lecopin.svg" alt="Logo du site avec écrit l'écopins" class="logo"></a>
                 <div class="example">
                     <div id="inputSearch" class="inputSuggestion" style="display: none;">
                         <input type="text" placeholder="Search..." name="search">

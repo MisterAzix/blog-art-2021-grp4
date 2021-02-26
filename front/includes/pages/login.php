@@ -11,20 +11,20 @@ $page_description = '';
 $error = null;
 
 // Insertion classe
-require_once __DIR__ . '/../../../CLASS_CRUD/membre.class.php';
-require_once __DIR__ . '/../../../CLASS_CRUD/auth.class.php';
+require_once __DIR__ . './../../../CLASS_CRUD/membre.class.php';
+require_once __DIR__ . './../../../CLASS_CRUD/auth.class.php';
 $membre = new MEMBRE();
 $auth = new AUTH();
 
 if ($auth->is_connected()) {
-    header('Location: /accueil');
+    header('Location: ./accueil');
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST['email']) && !empty($_POST['password'])) {
         $login = $auth->login($_POST['email'], $_POST['password']);
         if ($login) {
-            header('Location: /accueil');
+            header('Location: ./accueil');
         } else {
             $error = 'Identifiants incorrects !';
         }
@@ -32,12 +32,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require_once __DIR__ . '/../commons/header.php';
+require_once __DIR__ . './../commons/header.php';
 ?>
 
 <div class='sign_container layout'>
     <div class='illustration'>
-        <img src="/front/assets/images/Capture_d_écran_2021-02-09_à_15.47.20-removebg.png" alt="loginImage">
+        <img src="./front/assets/images/Capture_d_écran_2021-02-09_à_15.47.20-removebg.png" alt="loginImage">
     </div>
     <div class='login'>
         <?php if ($error) : ?>
@@ -58,11 +58,11 @@ require_once __DIR__ . '/../commons/header.php';
                 </div>
                 <div class="input-group">
                     <button class="button button-submit" type="submit">Se connecter</button>
-                    <p class="tips">Pas de compte ? <a href="../pages/register">Inscris-toi !</a></p>
+                    <p class="tips">Pas de compte ? <a href="./register">Inscris-toi !</a></p>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
-<?php require_once __DIR__ . '/../commons/footer.php' ?>
+<?php require_once __DIR__ . './../commons/footer.php' ?>
