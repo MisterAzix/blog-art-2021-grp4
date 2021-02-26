@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         && !empty($_POST['libSsTitr2Art']) && !empty($_POST['parag3Art']) && !empty($_POST['libConclArt'])
         /*&& !empty($_POST['urlPhotArt'])*/ && !empty($_POST['numAngl']) && !empty($_POST['numThem'])
     ) {
-        $dtCreArt = date("Y-m-d H:i:s");
+        //$dtCreArt = date("Y-m-d H:i:s");
         $libTitrArt = $_POST['libTitrArt'];
         $libChapoArt = $_POST['libChapoArt'];
         $libAccrochArt = $_POST['libAccrochArt'];
@@ -78,10 +78,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $numAngl = $_POST['numAngl'];
         $numThem = $_POST['numThem'];
 
-        if (strlen($parag1Art) >= 1000 && strlen($parag2Art) >= 1000 && strlen($parag3Art) >= 1000) {
+        if (strlen($parag1Art) >= 10 && strlen($parag2Art) >= 10 && strlen($parag3Art) >= 10) {
             // Ajout effectif de l'article'
             $article->create(
-                $dtCreArt,
                 $libTitrArt,
                 $libChapoArt,
                 $libAccrochArt,

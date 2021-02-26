@@ -101,7 +101,6 @@ class ARTICLE
 	 * @return void
 	 */
 	function create(
-		string $dtCreArt,
 		string $libTitrArt,
 		string $libChapoArt,
 		string $libAccrochArt,
@@ -111,7 +110,7 @@ class ARTICLE
 		string $libSsTitr2Art,
 		string $parag3Art,
 		string $libConclArt,
-		string $urlPhotArt,
+		string $urlPhotArt = null,
 		string $numAngl,
 		string $numThem
 	) {
@@ -122,12 +121,11 @@ class ARTICLE
 			$db->beginTransaction();
 			$query = $db->prepare(
 				'INSERT INTO article (dtCreArt, libTitrArt, libChapoArt, libAccrochArt, parag1Art, 
-				libSsTitr1Art, parag2Art, libSsTitr2Art, parag3Art, libConclArt, urlPhotArt, numAngl, numThem)
-				VALUES (:dtCreArt, :libTitrArt, :libChapoArt, :libAccrochArt, :parag1Art, :libSsTitr1Art, 
-				:parag2Art, :libSsTitr2Art, :parag3Art, :libConclArt, :urlPhotArt, :numAngl, :numThem)'
+				libSsTitr1Art, parag2Art, libSsTitr2Art, parag3Art, libConclArt, ' . ($urlPhotArt ? ' :urlPhotArt,' : '') . ' numAngl, numThem)
+				VALUES (NOW(), :libTitrArt, :libChapoArt, :libAccrochArt, :parag1Art, :libSsTitr1Art, 
+				:parag2Art, :libSsTitr2Art, :parag3Art, :libConclArt,' . ($urlPhotArt ? ' :urlPhotArt,' : '') . ' :numAngl, :numThem)'
 			);
-			$query->execute([
-				'dtCreArt' => $dtCreArt,
+			$array = [
 				'libTitrArt' => $libTitrArt,
 				'libChapoArt' => $libChapoArt,
 				'libAccrochArt' => $libAccrochArt,
@@ -137,10 +135,11 @@ class ARTICLE
 				'libSsTitr2Art' => $libSsTitr2Art,
 				'parag3Art' => $parag3Art,
 				'libConclArt' => $libConclArt,
-				'urlPhotArt' => $urlPhotArt,
 				'numAngl' => $numAngl,
 				'numThem' => $numThem
-			]);
+			];
+			!empty($urlPhotArt) ? $array['urlPhotArt'] = $urlPhotArt : null;
+			$query->execute($array);
 			$db->commit();
 			$query->closeCursor();
 		} catch (PDOException $e) {
