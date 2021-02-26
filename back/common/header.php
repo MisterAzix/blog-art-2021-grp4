@@ -30,3 +30,6 @@ if (!$auth->is_admin()) header('Location: ./accueil');
 </head>
 
 <body>
+    <header>
+        <img src="../img/logo_lecopin.svg" alt="">
+    </header>

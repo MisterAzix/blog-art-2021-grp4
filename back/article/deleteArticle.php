@@ -109,7 +109,7 @@ require_once __DIR__ . '/../common/header.php';
                     <div class="form-group mb-3">
                         <label for="libChapoArt"><b>Chapeau :</b></label>
                         <div class="input-group">
-                            <textarea data-maxlength="500" class="form-control" type="text" name="libChapoArt" id="libChapoArt" rows="2" maxlength="500" placeholder="Chapeau vert (car je suis plein d'ideés)" disabled><?= $libChapoArt ?></textarea>
+                            <textarea data-maxlength="500" class="form-control" type="text" name="libChapoArt" id="libChapoArt" rows="3" maxlength="500" placeholder="Chapeau vert (car je suis plein d'ideés)" disabled><?= $libChapoArt ?></textarea>
                             <span class="input-group-text" id="libChapoArt-span">0/0</span>
                         </div>
                     </div>
@@ -125,7 +125,7 @@ require_once __DIR__ . '/../common/header.php';
                     <div class="form-group mb-3">
                         <label for="parag1Art"><b>Paragraphe 1 :</b></label>
                         <div class="input-group">
-                            <textarea data-maxlength="1200" class="form-control" type="text" name="parag1Art" id="parag1Art" rows="3" maxlength="1200" placeholder="Premièrement..." disabled><?= $parag1Art ?></textarea>
+                            <textarea data-maxlength="1200" class="form-control" type="text" name="parag1Art" id="parag1Art" rows="5" maxlength="1200" placeholder="Premièrement..." disabled><?= $parag1Art ?></textarea>
                             <span class="input-group-text" id="parag1Art-span">0/0</span>
                         </div>
                     </div>
@@ -141,7 +141,7 @@ require_once __DIR__ . '/../common/header.php';
                     <div class="form-group mb-3">
                         <label for="parag2Art"><b>Paragraphe 2 :</b></label>
                         <div class="input-group">
-                            <textarea data-maxlength="1200" class="form-control" type="text" name="parag2Art" id="parag2Art" rows="3" maxlength="1200" placeholder="Ensuite..." disabled><?= $parag2Art ?></textarea>
+                            <textarea data-maxlength="1200" class="form-control" type="text" name="parag2Art" id="parag2Art" rows="5" maxlength="1200" placeholder="Ensuite..." disabled><?= $parag2Art ?></textarea>
                             <span class="input-group-text" id="parag2Art-span">0/0</span>
                         </div>
 
@@ -158,7 +158,7 @@ require_once __DIR__ . '/../common/header.php';
                     <div class="form-group mb-3">
                         <label for="parag3Art"><b>Paragraphe 3 :</b></label>
                         <div class="input-group">
-                            <textarea data-maxlength="1200" class="form-control" type="text" name="parag3Art" id="parag3Art" rows="3" maxlength="1200" placeholder="Dans ce troisième paragraphe..." disabled><?= $parag3Art ?></textarea>
+                            <textarea data-maxlength="1200" class="form-control" type="text" name="parag3Art" id="parag3Art" rows="5" maxlength="1200" placeholder="Dans ce troisième paragraphe..." disabled><?= $parag3Art ?></textarea>
                             <span class="input-group-text" id="parag3Art-span">0/0</span>
                         </div>
                     </div>
@@ -166,7 +166,7 @@ require_once __DIR__ . '/../common/header.php';
                     <div class="form-group mb-3">
                         <label for="libConclArt"><b>Conclusion :</b></label>
                         <div class="input-group">
-                            <textarea data-maxlength="800" class="form-control" type="text" name="libConclArt" id="libConclArt" rows="2" maxlength="800" placeholder="En conclusion..." disabled><?= $libConclArt ?></textarea>
+                            <textarea data-maxlength="800" class="form-control" type="text" name="libConclArt" id="libConclArt" rows="4" maxlength="800" placeholder="En conclusion..." disabled><?= $libConclArt ?></textarea>
                             <span class="input-group-text" id="libConclArt-span">0/0</span>
                         </div>
                     </div>
