@@ -4,8 +4,14 @@
 require_once __DIR__ . '../../CONNECT/database.php';
 
 class THEMATIQUE
-{
-	function get_1Thematique($numThem)
+{	
+	/**
+	 * get_1Thematique Permet de récupérer une thématique dans la base de donnée
+	 *
+	 * @param  string $numThem
+	 * @return object Renvoie un object avec les informations de la thématique
+	 */
+	function get_1Thematique(string $numThem): object
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM thematique WHERE numThem=:numThem");
@@ -15,16 +21,28 @@ class THEMATIQUE
 		$result = $query->fetch(PDO::FETCH_OBJ);
 		return $result;
 	}
-
-	function get_AllThematiques()
+	
+	/**
+	 * get_AllThematiques Permet de récupérer toutes les thématiques
+	 *
+	 * @return array Renvoie un tableau d'objet contenant les informations des thématiques
+	 */
+	function get_AllThematiques(): array
 	{
 		global $db;
 		$query = $db->query('SELECT * FROM thematique');
 		$result = $query->fetchAll(PDO::FETCH_OBJ);
 		return $result;
 	}
-
-	function get_AllThematiquesByLang($numLang){
+	
+	/**
+	 * get_AllThematiquesByLang Permet de récupérer toutes les thématiques en fonction d'une langue
+	 *
+	 * @param  string $numLang
+	 * @return array Renvoie un tableau d'objet contenant les informations des thématiques récupérées
+	 */
+	function get_AllThematiquesByLang(string $numLang): array
+	{
 		global $db;
 		$query = $db->prepare('SELECT * FROM thematique WHERE numLang = :numLang');
 		$query->execute([
@@ -33,8 +51,15 @@ class THEMATIQUE
 		$result = $query->fetchAll(PDO::FETCH_OBJ);
 		return ($result);
 	}
-
-	function create($libThem, $numLang)
+	
+	/**
+	 * create Permet d'ajouter une thématique à la base de donnée
+	 *
+	 * @param  string $libThem
+	 * @param  string $numLang
+	 * @return void
+	 */
+	function create(string $libThem, string $numLang)
 	{
 		global $db;
 		require_once __DIR__ . './getNextNumThem.php';
@@ -55,8 +80,15 @@ class THEMATIQUE
 			die('Erreur insert THEMATIQUE : ' . $e->getMessage());
 		}
 	}
-
-	function update($numThem, $libThem)
+	
+	/**
+	 * update Permet de modifier une thématique de la base de donnée
+	 *
+	 * @param  string $numThem
+	 * @param  string $libThem
+	 * @return void
+	 */
+	function update(string $numThem, string $libThem)
 	{
 		global $db;
 		try {
@@ -74,8 +106,14 @@ class THEMATIQUE
 			die('Erreur update THEMATIQUE : ' . $e->getMessage());
 		}
 	}
-
-	function delete($numThem)
+	
+	/**
+	 * delete Permet de supprimer une thématique de la base de donnée
+	 *
+	 * @param  string $numThem
+	 * @return void
+	 */
+	function delete(string $numThem)
 	{
 		global $db;
 		try {

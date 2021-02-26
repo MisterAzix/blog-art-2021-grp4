@@ -6,7 +6,7 @@
 //========================================//
 
 // WRITE YOUR PHP LOGIC HERE
-$page_title = 'Home';
+$page_title = 'Me contacter';
 $page_description = '';
 
 

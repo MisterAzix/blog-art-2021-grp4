@@ -6,6 +6,7 @@
 //  Script  : createMotCle.php  (ETUD)   -   BLOGART21
 //
 ///////////////////////////////////////////////////////////////
+$pageTitle = 'Mot Clé';
 
 // Mode DEV
 require_once __DIR__ . '/../../util/utilErrOn.php';
@@ -36,82 +37,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $error = 'La longueur minimale d\'un mot clé est de 3 caractères.';
         }
-    } else if (!empty($_POST['Submit']) && $_POST['Submit'] === 'Initialiser') {
-        header('Location: ./createMotcle.php');
     } else {
         $error = 'Merci de renseigner tous les champs du formulaire.';
     }
 }
 
 $languages = $langue->get_AllLangues();
+
+require_once __DIR__ . '/../common/header.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
+<main class="container">
+    <div class="d-flex flex-column">
+        <h1>BLOGART21 Admin - Gestion du CRUD Mot CLé</h1>
+        <hr>
 
-<head>
-    <meta charset="utf-8" />
-    <title>Admin - Gestion du CRUD Mot CLé</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+        <div class="row d-flex justify-content-center">
+            <div class="col-8">
+                <h2>Ajout d'un mot clé</h2>
 
-    <!-- <link href="../css/style.css" rel="stylesheet" type="text/css" /> -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
+                <?php if ($error) : ?>
+                    <div class="alert alert-danger"><?= $error ?: '' ?></div>
+                <?php endif ?>
 
-<body>
-    <main class="container">
-        <div class="d-flex flex-column">
-            <h1>BLOGART21 Admin - Gestion du CRUD Mot CLé</h1>
-            <hr>
+                <form class="form" method="post" action="" enctype="multipart/form-data">
 
-            <div class="row d-flex justify-content-center">
-                <div class="col-8">
-                    <h2>Ajout d'un mot clé</h2>
+                    <fieldset>
+                        <legend class="legend1">Formulaire Mot CLé...</legend>
 
-                    <?php if ($error) : ?>
-                        <div class="alert alert-danger"><?= $error ?: '' ?></div>
-                    <?php endif ?>
+                        <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ?: '' ?>" />
 
-                    <form class="form" method="post" action="" enctype="multipart/form-data">
+                        <div class="form-group mb-3">
+                            <label for="libMotCle"><b>Nom du mot clé :</b></label>
+                            <input class="form-control" type="text" name="libMotCle" id="libMotCle" size="80" maxlength="80" value="<?= $libMotCle ?>" autofocus="autofocus" />
+                        </div>
 
-                        <fieldset>
-                            <legend class="legend1">Formulaire Mot CLé...</legend>
+                        <div class="form-group mb-3">
+                            <label for="numLang"><b>Langues :</b></label>
+                            <select name="numLang" class="form-control" id="numLang">
+                                <option value="">--Choississez une langue--</option>
+                                <?php foreach ($languages as $language) : ?>
+                                    <option value="<?= $language->numLang ?>"><?= $language->lib1Lang ?></option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
 
-                            <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ?: '' ?>" />
-
-                            <div class="form-group mb-3">
-                                <label for="libMotCle"><b>Nom du mot clé :</b></label>
-                                <input class="form-control" type="text" name="libMotCle" id="libMotCle" size="80" maxlength="80" value="<?= $libMotCle ?>" autofocus="autofocus" />
-                            </div>
-
-                            <div class="form-group mb-3">
-                                <label for="numLang"><b>Langues :</b></label>
-                                <select name="numLang" class="form-control" id="numLang">
-                                    <option value="">--Choississez une langue--</option>
-                                    <?php foreach ($languages as $language) : ?>
-                                        <option value="<?= $language->numLang ?>"><?= $language->lib1Lang ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <input type="submit" value="Initialiser" name="Submit" class="btn btn-primary" />
-                                <input type="submit" value="Valider" name="Submit" class="btn btn-success" />
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
+                        <div class="form-group">
+                            <input type="reset" value="Initialiser" class="btn btn-primary" />
+                            <input type="submit" value="Créer" name="submit" class="btn btn-success" />
+                        </div>
+                    </fieldset>
+                </form>
             </div>
-
-            <?php
-            require_once __DIR__ . '/footerMotCle.php';
-
-            require_once __DIR__ . '/footer.php';
-            ?>
         </div>
-    </main>
-</body>
 
-</html>
+        <?php require_once __DIR__ . '/footerMotCle.php' ?>
+    </div>
+</main>
+<?php require_once __DIR__ . '/../common/footer.php' ?>

@@ -4,8 +4,15 @@
 require_once __DIR__ . '../../CONNECT/database.php';
 
 class LIKEART
-{
-	function get_1LikeArt($numMemb, $numArt)
+{	
+	/**
+	 * get_1LikeArt Permet de récupérer un seul like d'article en base de donnée
+	 *
+	 * @param  string $numMemb
+	 * @param  string $numArt
+	 * @return object Renvoie un object comprenant les informations du like d'article récupéré
+	 */
+	function get_1LikeArt(string $numMemb, string $numArt): object
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM likeart WHERE numMemb=:numMemb AND numArt=:numArt");
@@ -16,16 +23,27 @@ class LIKEART
 		$result = $query->fetch(PDO::FETCH_OBJ);
 		return $result;
 	}
-
-	function get_AllLikesArt()
+	
+	/**
+	 * get_AllLikesArt Permet de récupérer tous les likes d'article en base de donnée
+	 *
+	 * @return array Renvoie un tableau d'object comprenant les informations de tous les like d'article
+	 */
+	function get_AllLikesArt(): array
 	{
 		global $db;
 		$query = $db->query('SELECT * FROM likeart');
 		$result = $query->fetchAll(PDO::FETCH_OBJ);
 		return $result;
 	}
-
-	function get_AllLikesArtByArticle($numArt)
+	
+	/**
+	 * get_AllLikesArtByArticle Permet de récupérer tous les likes d'un article
+	 *
+	 * @param  string $numArt
+	 * @return array Renvoie un tableau d'object comprenant les informations de tous les likes récupérés
+	 */
+	function get_AllLikesArtByArticle(string $numArt): array
 	{
 		global $db;
 		$query = $db->prepare('SELECT * FROM likeart WHERE numArt = :numArt');
@@ -35,8 +53,14 @@ class LIKEART
 		$result = $query->fetchAll(PDO::FETCH_OBJ);
 		return $result;
 	}
-
-	function get_AllLikesArtByMembre($numMemb)
+	
+	/**
+	 * get_AllLikesArtByMembre Permet de récupérer tous les likes d'un membre
+	 *
+	 * @param  string $numMemb
+	 * @return array Renvoie un tableau d'object comprenant les informations de tous les likes récupérés
+	 */
+	function get_AllLikesArtByMembre(string $numMemb): array
 	{
 		global $db;
 		$query = $db->prepare('SELECT * FROM likeart WHERE numMemb = :numMemb');
@@ -46,8 +70,15 @@ class LIKEART
 		$result = $query->fetchAll(PDO::FETCH_OBJ);
 		return ($result);
 	}
-
-	function createOrUpdate($numMemb, $numArt)
+	
+	/**
+	 * createOrUpdate Permet d'ajouter un like d'article en base de donnée ou de modifier son état s'il existe déjà
+	 *
+	 * @param  string $numMemb
+	 * @param  string $numArt
+	 * @return void
+	 */
+	function createOrUpdate(string $numMemb, string $numArt)
 	{
 		global $db;
 		try {

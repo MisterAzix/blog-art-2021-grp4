@@ -36,6 +36,17 @@ class COMMENT
 		return $result;
 	}
 
+	function get_AllCommentsByMembre($numMemb)
+	{
+		global $db;
+		$query = $db->prepare("SELECT * FROM comment WHERE numMemb=:numMemb");
+		$query->execute([
+			'numMemb' => $numMemb
+		]);
+		$result = $query->fetchAll(PDO::FETCH_OBJ);
+		return $result;
+	}
+
 	function get_AllCommentsPlusByArticle($numArt)
 	{
 		global $db;

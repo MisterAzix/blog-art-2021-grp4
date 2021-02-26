@@ -4,8 +4,14 @@
 require_once __DIR__ . '../../CONNECT/database.php';
 
 class MEMBRE
-{
-	function get_1Membre($numMemb)
+{	
+	/**
+	 * get_1Membre Permet de récuper un seul membre en base de donnée
+	 *
+	 * @param  string $numMemb 
+	 * @return object Renvoie un object comprenant les informations du membre récupéré
+	 */
+	function get_1Membre($numMemb): object
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM membre WHERE numMemb=:numMemb");
@@ -15,27 +21,44 @@ class MEMBRE
 		$result = $query->fetch(PDO::FETCH_OBJ);
 		return $result;
 	}
-
-	function get_AllMembres()
+	
+	/**
+	 * get_AllMembres Permet de récupérer tous les utilisateurs en base de donnée
+	 *
+	 * @return array Renvoie un tableau d'object comprenant des informations de tous les membres
+	 */
+	function get_AllMembres(): array
 	{
 		global $db;
 		$query = $db->query('SELECT * FROM membre');
 		$result = $query->fetchAll(PDO::FETCH_OBJ);
 		return $result;
 	}
-
-	function get_AllMembresByPseudo($pseudoMemb)
+	
+	/**
+	 * get_AllMembresByPseudo Permet de récupérer un membre en base de donnée en fonction de son pseudo
+	 *
+	 * @param  string $pseudoMemb
+	 * @return object Renvoie un object comprenant les informations du membre récupéré
+	 */
+	function get_1MembreByPseudo($pseudoMemb): object
 	{
 		global $db;
 		$query = $db->prepare("SELECT * FROM membre WHERE pseudoMemb=:pseudoMemb");
 		$query->execute([
 			'pseudoMemb' => $pseudoMemb
 		]);
-		$result = $query->fetchAll(PDO::FETCH_OBJ);
+		$result = $query->fetch(PDO::FETCH_OBJ);
 		return $result;
 	}
 
-	function get_AllMembresByEmail($eMailMemb)
+	/**
+	 * get_AllMembresByPseudo Permet de récupérer un membre en base de donnée en fonction de son email
+	 *
+	 * @param  string $eMailMemb
+	 * @return object Renvoie un object comprenant les informations du membre récupéré
+	 */
+	function get_1MembreByEmail($eMailMemb)
 	{
 		global $db;
 		$query = $db->prepare("SELECT numMemb, passMemb FROM membre WHERE eMailMemb=:eMailMemb");
@@ -46,6 +69,28 @@ class MEMBRE
 		return $result;
 	}
 
+	function get_AllMembresByStatut($idStat)
+	{
+		global $db;
+		$query = $db->prepare("SELECT * FROM membre WHERE idStat=:idStat");
+		$query->execute([
+			'idStat' => $idStat
+		]);
+		$result = $query->fetchAll(PDO::FETCH_OBJ);
+		return $result;
+	}
+	
+	/**
+	 * create Permet d'ajouter un nouveau membre en base de donnée
+	 *
+	 * @param  string $prenomMemb
+	 * @param  string $nomMemb
+	 * @param  string $pseudoMemb
+	 * @param  string $eMailMemb
+	 * @param  string $passMemb
+	 * @param  string $idStat
+	 * @return void
+	 */
 	function create($prenomMemb, $nomMemb, $pseudoMemb, $eMailMemb, $passMemb, $idStat)
 	{
 		global $db;
@@ -68,7 +113,18 @@ class MEMBRE
 			die('Erreur create MEMBRE : ' . $e->getMessage());
 		}
 	}
-
+	
+	/**
+	 * update Permet de modifier un membre dans la base de donnée
+	 *
+	 * @param  string $numMemb
+	 * @param  string $prenomMemb
+	 * @param  string $nomMemb
+	 * @param  string $pseudoMemb
+	 * @param  string $eMailMemb
+	 * @param  string $passMemb
+	 * @return void
+	 */
 	function update($numMemb, $prenomMemb, $nomMemb, $pseudoMemb, $eMailMemb, $passMemb)
 	{
 		global $db;
@@ -91,8 +147,13 @@ class MEMBRE
 			die('Erreur update MEMBRE : ' . $e->getMessage());
 		}
 	}
-
-	// Ctrl FK sur LIKECOM, LIKEART avec del
+	
+	/**
+	 * delete Permet de supprimer un membre de la base de donnée
+	 *
+	 * @param  string $numMemb
+	 * @return void
+	 */
 	function delete($numMemb)
 	{
 		global $db;
