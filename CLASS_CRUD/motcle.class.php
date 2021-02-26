@@ -38,7 +38,7 @@ class MOTCLE
 	/**
 	 * get_AllMotClesByLang Permet de récupérer tous les mots clés d'une langue
 	 *
-	 * @param  mixed $numLang
+	 * @param  string $numLang
 	 * @return array Renvoie un tableau d'object contenant les informations des mots clés
 	 */
 	function get_AllMotClesByLang(string $numLang): array
@@ -55,8 +55,8 @@ class MOTCLE
 	/**
 	 * create Permet d'ajouter un mot clé à la base de donnée
 	 *
-	 * @param  mixed $libMotCle
-	 * @param  mixed $numLang
+	 * @param  string $libMotCle
+	 * @param  string $numLang
 	 * @return void
 	 */
 	function create(string $libMotCle, string $numLang)
@@ -82,7 +82,7 @@ class MOTCLE
 	 * update Permet de modifier un mot clé en base de donnée
 	 *
 	 * @param  mixed $numMotCle
-	 * @param  mixed $libMotCle
+	 * @param  string $libMotCle
 	 * @return void
 	 */
 	function update(mixed $numMotCle, string $libMotCle)
