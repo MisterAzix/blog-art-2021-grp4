@@ -21,4 +21,4 @@ function showSlides(n) {
 setInterval(() => {
     slideIndex++
     showSlides(slideIndex)
-}, 900000);
+}, 4000);
