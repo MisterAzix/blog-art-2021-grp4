@@ -132,6 +132,7 @@
         }
     }
 
+<<<<<<< HEAD
     
 
     .image {  
@@ -150,6 +151,21 @@
             top: 0;
            
             }
+=======
+    .image {
+        img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 30px;
+            position: relative;
+                @media (max-width: 790px) {
+                position: absolute;
+                right: 0;
+                top: 0;
+                z-index: -1990;
+                }
+>>>>>>> 7acfad5f4e9e7bed6d00fc9ab6e85357f89ad6ba
         }
     }  
 }
