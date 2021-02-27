@@ -10,6 +10,7 @@
     <!-- SCRIPT JS -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <script src="/front/assets/js/cookie.js"></script>
     <script src="/front/assets/js/notyf.js"></script>
     <script src="/front/assets/js/slideshow.js"></script>
     <script src="/front/assets/js/searchBar.js"></script>

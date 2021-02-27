@@ -1,4 +1,4 @@
-$(".boutonSearch").click(function() {
+$(".boutonSearch").click(function () {
     if ($('#inputSearch').is(':visible')) {
         $('#inputSearch').fadeOut()
 
@@ -6,7 +6,7 @@ $(".boutonSearch").click(function() {
         $('#crossIcon').hide()
     } else {
         $('#inputSearch').fadeIn()
-        
+
         $('#crossIcon').show()
         $('#searchIcon').hide()
     }

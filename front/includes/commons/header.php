@@ -96,6 +96,7 @@ $auth = new AUTH();
                 </div>
             </div>
     </header>
+    <?php require_once __DIR__ . './cookie.php' ?>
     <main>
 
 
