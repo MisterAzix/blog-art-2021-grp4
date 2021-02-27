@@ -21,14 +21,14 @@ if ($auth->is_connected()) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (!empty($_POST['email']) && !empty($_POST['password'])) {
-        $login = $auth->login($_POST['email'], $_POST['password']);
+    if (!empty($_POST['emailOrUsername']) && !empty($_POST['password'])) {
+        $login = $auth->login($_POST['emailOrUsername'], $_POST['password']);
         if ($login) {
             header('Location: ./accueil');
         } else {
             $error = 'Identifiants incorrects !';
         }
-        unset($_POST['email'], $_POST['password']);
+        unset($_POST['emailOrUsername'], $_POST['password']);
     }
 }
 
@@ -44,21 +44,21 @@ require_once __DIR__ . '/../commons/header.php';
             <span id="error" style="display: none;"><?= $error ?></span>
         <?php endif ?>
 
-        <h2>Connexion</h2>
+        <h1>Connexion</h1>
         <div class="input_container">
             <form action="" method="POST">
                 <div class="input-group">
-                    <input class="input" name="email" type="mail" placeholder="Renseigne ton email" required />
-                    <label>Email</label>
+                    <input class="input" name="emailOrUsername" type="text" placeholder="Renseigne ton pseudo ou ton email" required />
+                    <label for="emailOrUsername">Pseudo ou Email</label>
                 </div>
                 <div class="input-group">
                     <input class="input" name="password" type="password" placeholder="Renseigne ton mot de passe" required />
-                    <label>Mot de passe</label>
+                    <label for="password">Mot de passe</label>
                     <a class="tips" href="">Mot de passe oublié ?</a>
                 </div>
                 <div class="input-group">
                     <button class="button button-submit" type="submit">Se connecter</button>
-                    <p class="tips">Pas de compte ? <a href="./register">Inscris-toi !</a></p>
+                    <p class="tips">Pas de compte ? <a href="./inscription">Inscris-toi !</a></p>
                 </div>
             </form>
         </div>
