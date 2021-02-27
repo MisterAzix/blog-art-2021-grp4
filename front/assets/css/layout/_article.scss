@@ -55,6 +55,12 @@
                         font-family: $font-text;
                         font-weight: $weight-thin;
                         color: $black;
+                        cursor: pointer;
+                        transition: transform 0.3s ease;
+                
+                        &:hover {
+                            transform: scale(1.1);
+                        }
                     }
 
                     .trait {
@@ -116,6 +122,30 @@
                     justify-content: space-between;
                     align-items: center;
                     width: 250px;
+
+                    a {
+                        font-size: 16px;
+                        font-family: $font-text;
+                        font-weight: $weight-thin;
+                        color: $black;
+                        cursor: pointer;
+                        transition: transform 0.3s ease;
+                
+                        &:hover {
+                            transform: scale(1.1);
+                        }
+                    }
+                }
+            }
+
+            .like {
+                &.active {
+                    color: $greentxt !important;
+                    
+                    path
+                    {
+                        fill: $greentxt;
+                    }
                 }
             }
         }
@@ -200,5 +230,15 @@
         top: 0;
         right: 0;
         width: 50%;
+        z-index: 99999;
+        transform: translateX(100%);
+        transition: 0.6s ease;
+        border: 3.5px solid #eeeae0;
+        
+        &.active {
+            transform: translateX(0);
+        }
+
+
     }
 }

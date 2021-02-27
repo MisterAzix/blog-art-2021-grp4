@@ -6,7 +6,7 @@
 //========================================//
 
 // WRITE YOUR PHP LOGIC HERE
-$page_title = 'Acuueil';
+$page_title = 'Accueil';
 $page_description = '';
 
 require_once __DIR__ . '/../../../util/dateChangeFormat.php';
@@ -39,7 +39,7 @@ require_once __DIR__ . '/../commons/header.php';
                                 <p><?= $article->libAccrochArt ?></p>
                             </div>
                             <div class="button-container">
-                                <a class="button" href="./article/<?= $article->numArt ?>">Lire l'article</a>
+                                <a class="button" href="/article/<?= $article->numArt ?>">Lire l'article</a>
                             </div>
                         </div>
                         <div class="image">
@@ -76,7 +76,7 @@ require_once __DIR__ . '/../commons/header.php';
                                     <?= $article->libChapoArt ?>
                                 </p>
                                 <div class="button-container">
-                                    <a class="button" href="./article/<?= $article->numArt ?>">Lire l'article</a>
+                                    <a class="button" href="/article/<?= $article->numArt ?>">Lire l'article</a>
                                 </div>
                             </div>
                         </div>

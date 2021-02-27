@@ -58,7 +58,7 @@ require_once __DIR__ . '/../commons/header.php';
                 </div>
                 <div class="input-group">
                     <button class="button button-submit" type="submit">Se connecter</button>
-                    <p class="tips">Pas de compte ? <a href="./register">Inscris-toi !</a></p>
+                    <p class="tips">Pas de compte ? <a href="/inscription">Inscris-toi !</a></p>
                 </div>
             </form>
         </div>

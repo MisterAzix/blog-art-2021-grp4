@@ -1,5 +1,5 @@
 header {
-    z-index: 100;
+    z-index: 9999;
     position: fixed;
     top: 0;
     left: 0;
@@ -70,11 +70,15 @@ header {
                             background-color: #fffbf2;
                             border: 3.5px solid #eeeae0;
                             border-radius: 6px;
-                            width: 100%;
+                            width: 40%;
                             position: absolute;
-                            top: calc(100% + 10px);
-                            left: 0;
+                            top: 100%;
+                            right: 0;
                             padding: 60px;
+
+                            @media (max-width: 480px) {
+                                width: calc(100% - 60px * 2);
+                            }
 
                             a {
                                 display: inline-block;
@@ -89,6 +93,17 @@ header {
                                 &:first-child {
                                     margin-top: 0;
                                 }
+                            }
+
+                            p {
+                                display: inline-block;
+                                font-family: $font-title;
+                                font-size: 18px;
+                                font-weight: $weight-regular;
+                                line-height: 25px;
+                                color: $black;
+                                text-decoration: none;
+                                margin-top: 30px;
                             }
 
                             &::before {
@@ -145,6 +160,100 @@ header {
             .icon_recherche,
             .icon_account {
                 height: 24px;
+            }
+
+            .example {
+                max-width: 400px;
+                display: flex;
+                flex-direction: row;
+
+                .inputSuggestion {
+                    position: relative;
+                }
+
+                input {
+                    padding: 10px;
+                    font-size: 17px;
+                    border: none;
+                    border-bottom: 1px solid grey;
+                    float: left;
+                    background-color: $beige;
+                    outline: none;
+                }
+
+                button {
+                    float: left;
+                    padding: 10px;
+                    color: black;
+                    background: none;
+                    font-size: 17px;
+                    border: none;
+                    cursor: pointer;
+                }
+
+                &::after {
+                    content: "";
+                    clear: both;
+                    display: table;
+                }
+
+                .icon_recherche {
+                    height: 30px;
+                    margin-right: 10px;
+                }
+
+                .suggestion {
+                    background-color: #fffbf2;
+                    border: 3.5px solid #eeeae0;
+                    border-radius: 6px;
+                    width: calc(100% - 60px * 2);
+                    position: absolute;
+                    top: calc(100% + 10px);
+                    left: 0;
+                    padding: 60px;
+                    z-index: 99999;
+
+                    a {
+                        display: inline-block;
+                        font-family: $font-title;
+                        font-size: 18px;
+                        font-weight: $weight-regular;
+                        line-height: 25px;
+                        color: $black;
+                        text-decoration: none;
+                        margin-top: 30px;
+
+                        &:first-child {
+                            margin-top: 0;
+                        }
+                    }
+
+                    &::before {
+                        content: "";
+                        z-index: 5;
+                        display: block;
+                        position: absolute;
+                        top: 20px;
+                        left: 20px;
+                        width: 60px;
+                        height: 50px;
+                        border-top: 1px solid $black;
+                        border-left: 1px solid $black;
+                    }
+
+                    &::after {
+                        content: "";
+                        z-index: 5;
+                        display: block;
+                        position: absolute;
+                        bottom: 20px;
+                        right: 20px;
+                        width: 60px;
+                        height: 50px;
+                        border-bottom: 1px solid $black;
+                        border-right: 1px solid $black;
+                    }
+                }
             }
         }
 

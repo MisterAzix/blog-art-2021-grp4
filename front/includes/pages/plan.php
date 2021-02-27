@@ -9,7 +9,12 @@
 $page_title = 'Plan du site';
 $page_description = '';
 
+// Insertion classe ARTICLE
+require_once __DIR__ . '/../../../CLASS_CRUD/article.class.php';
+$article = new ARTICLE();
 
+// Appel méthode : tous les angles en BDD
+$allArticles = $article->get_AllArticles();
 
 require_once __DIR__ . '/../commons/header.php';
 ?>
@@ -23,11 +28,11 @@ require_once __DIR__ . '/../commons/header.php';
         <div class="section_container">
             <div class="section">
                 <h2>Acces rapide</h2>
-                <a href="./accueil">Page d'accueil</a>
-                <a href="./inscription">Inscription</a>
-                <a href="./connexion">Connexion</a>
-                <a href="./contact">Me contacter</a>
-                <a href="./cgu">Mentions légale</a>
+                <a href="/accueil">Page d'accueil</a>
+                <a href="/inscription">Inscription</a>
+                <a href="/connexion">Connexion</a>
+                <a href="/contact">Me contacter</a>
+                <a href="/cgu">Mentions légale</a>
             </div>
         </div>
         <div class="path">
@@ -39,9 +44,9 @@ require_once __DIR__ . '/../commons/header.php';
         <div class="section_container">
             <div class="section">
                 <h2>tous mes articles</h2>
-                <a href="./article">Bordeaux, écologie et environnement</a>
-                <a href="./article">Écologique et insolite,c’est possible !</a>
-                <a href="./article">Phillipe Barre : Anticonformiste et créateur d’un éco-systeme</a>
+                <?php foreach ($allArticles as $article) : ?>
+                    <a href="./article/<?= $article->numArt ?>"><?= $article->libTitrArt ?></a>
+                <?php endforeach ?>
             </div>
         </div>
     </div>
