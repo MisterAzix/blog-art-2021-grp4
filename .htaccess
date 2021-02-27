@@ -41,8 +41,6 @@ RewriteRule ^article/([a-zA-Z0-9]+) /front/includes/pages/article.php?numArt=$1 
 RedirectMatch 403 ^/BDD/.*$
 RedirectMatch 403 ^/CLASS_CRUD/.*$
 RedirectMatch 403 ^/CONNECT/.*$
-RedirectMatch 403 ^/img/.*$
-RedirectMatch 403 ^/js/.*$
 RedirectMatch 403 ^/photos/.*$
 RedirectMatch 403 ^/upload/.*$
 RedirectMatch 403 ^/util/.*$

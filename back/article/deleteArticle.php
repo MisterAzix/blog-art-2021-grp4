@@ -88,12 +88,17 @@ require_once __DIR__ . '/../common/header.php';
                 <?php endif ?>
 
                 <form class="form" method="post" action="" enctype="multipart/form-data">
-                    <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ?: '' ?>" />
+                    <input type="hidden" id="id" name="id" value="<?= isset($_GET['id']) ?: '' ?>" disabled/>
 
                     <div class="row">
                         <div class="form-group mb-3 col-6">
-                            <label for="libTitrArt"><b>Titre de l'article</b></label>
-                            <input class="form-control" type="text" name="libTitrArt" id="libTitrArt" maxlength="100" value="<?= $libTitrArt ?>" placeholder="Un bon titre putaclic" disabled />
+
+                            <label for="libTitrArt"><b>Titre de l'article :</b></label>
+                            <div class="input-group">
+                                <input data-maxlength="100" class="form-control" type="text" name="libTitrArt" id="libTitrArt" maxlength="100" value="<?= $libTitrArt ?>" placeholder="Un bon titre putaclic" autofocus="autofocus" disabled/>
+                                <span class="input-group-text" id="libTitrArt-span">0/0</span>
+                            </div>
+
                         </div>
                         <div class="form-group mb-3 col-6">
                             <label for="urlPhotArt"><b>Image :</b></label>
@@ -102,36 +107,68 @@ require_once __DIR__ . '/../common/header.php';
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="libChapoArt"><b>Chapeau</b></label>
-                        <textarea class="form-control" type="text" name="libChapoArt" id="libChapoArt" cols="30" rows="2" maxlength="500" placeholder="Chapeau vert (car je suis plein d'ideés)" disabled><?= $libChapoArt ?></textarea>
-                        <span class="pull-right label label-default" id="count_message" style="background-color: smoke; margin-top: -20px; margin-right: 5px;"></span>
+                        <label for="libChapoArt"><b>Chapeau :</b></label>
+                        <div class="input-group">
+                            <textarea data-maxlength="500" class="form-control" type="text" name="libChapoArt" id="libChapoArt" rows="3" maxlength="500" placeholder="Chapeau vert (car je suis plein d'ideés)" disabled><?= $libChapoArt ?></textarea>
+                            <span class="input-group-text" id="libChapoArt-span">0/0</span>
+                        </div>
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="libAccrochArt"><b>Accroche</b></label>
-                        <input class="form-control" type="text" name="libAccrochArt" id="libAccrochArt" maxlength="100" value="<?= $libAccrochArt ?>" placeholder="Une super accroche" disabled />
+                        <label for="libAccrochArt"><b>Accroche :</b></label>
+                        <div class="input-group">
+                            <input data-maxlength="100" class="form-control" type="text" name="libAccrochArt" id="libAccrochArt" maxlength="100" value="<?= $libAccrochArt ?>" placeholder="Une super accroche" disabled/>
+                            <span class="input-group-text" id="libAccrochArt-span">0/0</span>
+                        </div>
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="libSsTitr1Art"><b>Paragraphe 1</b></label>
-                        <input class="form-control" type="text" name="libSsTitr1Art" id="libSsTitr1Art" maxlength="100" value="<?= $libSsTitr1Art ?>" placeholder="Titre 1er article" disabled />
-                        <textarea class="form-control" type="text" name="parag1Art" id="parag1Art" cols="30" rows="3" maxlength="1200" placeholder="Premièrement..." disabled><?= $parag1Art ?></textarea>
+                        <label for="parag1Art"><b>Paragraphe 1 :</b></label>
+                        <div class="input-group">
+                            <textarea data-maxlength="1200" class="form-control" type="text" name="parag1Art" id="parag1Art" rows="5" maxlength="1200" placeholder="Premièrement..." disabled><?= $parag1Art ?></textarea>
+                            <span class="input-group-text" id="parag1Art-span">0/0</span>
+                        </div>
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="libSsTitr2Art"><b>Paragraphe 2</b></label>
-                        <input class="form-control" type="text" name="libSsTitr2Art" id="libSsTitr2Art" maxlength="100" value="<?= $libSsTitr2Art ?>" placeholder="Titre 2eme article" disabled />
-                        <textarea class="form-control" type="text" name="parag2Art" id="parag2Art" cols="30" rows="3" maxlength="1200" placeholder="Ensuite..." disabled><?= $parag2Art ?></textarea>
+                        <label for="libSsTitr1Art"><b>Intertitre 1 :</b></label>
+                        <div class="input-group">
+                            <input data-maxlength="100" class="form-control" type="text" name="libSsTitr1Art" id="libSsTitr1Art" maxlength="100" value="<?= $libSsTitr1Art ?>" placeholder="Titre 1er article" disabled/>
+                            <span class="input-group-text" id="libSsTitr1Art-span">0/0</span>
+                        </div>
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="parag3Art"><b>Paragraphe 3</b></label>
-                        <textarea class="form-control" type="text" name="parag3Art" id="parag3Art" cols="30" rows="3" maxlength="1200" placeholder="Dans ce troisième paragraphe..." disabled><?= $parag3Art ?></textarea>
+                        <label for="parag2Art"><b>Paragraphe 2 :</b></label>
+                        <div class="input-group">
+                            <textarea data-maxlength="1200" class="form-control" type="text" name="parag2Art" id="parag2Art" rows="5" maxlength="1200" placeholder="Ensuite..." disabled><?= $parag2Art ?></textarea>
+                            <span class="input-group-text" id="parag2Art-span">0/0</span>
+                        </div>
+
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="libConclArt"><b>Conclusion</b></label>
-                        <textarea class="form-control" type="text" name="libConclArt" id="libConclArt" cols="30" rows="2" maxlength="800" placeholder="En conclusion..." disabled><?= $libConclArt ?></textarea>
+                        <label for="libSsTitr2Art"><b>Intertitre 2 :</b></label>
+                        <div class="input-group">
+                            <input data-maxlength="100" class="form-control" type="text" name="libSsTitr2Art" id="libSsTitr2Art" maxlength="100" value="<?= $libSsTitr2Art ?>" placeholder="Titre 2eme article" disabled/>
+                            <span class="input-group-text" id="libSsTitr2Art-span">0/0</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="parag3Art"><b>Paragraphe 3 :</b></label>
+                        <div class="input-group">
+                            <textarea data-maxlength="1200" class="form-control" type="text" name="parag3Art" id="parag3Art" rows="5" maxlength="1200" placeholder="Dans ce troisième paragraphe..." disabled><?= $parag3Art ?></textarea>
+                            <span class="input-group-text" id="parag3Art-span">0/0</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label for="libConclArt"><b>Conclusion :</b></label>
+                        <div class="input-group">
+                            <textarea data-maxlength="800" class="form-control" type="text" name="libConclArt" id="libConclArt" rows="4" maxlength="800" placeholder="En conclusion..." disabled><?= $libConclArt ?></textarea>
+                            <span class="input-group-text" id="libConclArt-span">0/0</span>
+                        </div>
                     </div>
 
                     <div class="row">
@@ -175,3 +212,4 @@ require_once __DIR__ . '/../common/header.php';
         <?php require_once __DIR__ . '/footerArticle.php' ?>
     </div>
 </main>
+<?php require_once __DIR__ . '/../common/footer.php' ?>

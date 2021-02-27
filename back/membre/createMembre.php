@@ -137,7 +137,7 @@ function passCheck(string $pass1Memb): bool
  * @param  string $pass2Memb Confirmation du mot de passe
  * @return string Renvoie le mot de passe hasher à stocker en base de donnée
  */
-function passConfirm(string $pass1Memb, string $pass2Memb):string
+function passConfirm(string $pass1Memb, string $pass2Memb): string
 {
     $passMemb = null;
     if ($pass1Memb === $pass2Memb) {

@@ -1,3 +1,12 @@
+*::-webkit-scrollbar {
+    width: 10px;
+    background-color: $beige;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: $greentxt;
+}
+
 html {
     min-width: fit-content;
     overflow-x: hidden;

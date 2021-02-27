@@ -7,7 +7,7 @@
 
 // WRITE YOUR PHP LOGIC HERE
 $page_title = 'Mentions Légales';
-$page_description = '';
+$page_description = "Page de mentions légales, et du Contrat Général d’Utilisation. Cette page est nécessaire pour m'éviter d'éventuels ennuies.";
 
 
 require_once __DIR__ . '/../commons/header.php';

@@ -68,16 +68,16 @@ class AUTH
     /**
      * login permet de connecter un membre
      *
-     * @param  string $email
+     * @param  string $emailOrUsername
      * @param  string $password
      * @return bool true : la connexion a réussi | false : la connexion a échouée
      */
-    public function login(string $email, string $password): bool
+    public function login(string $emailOrUsername, string $password): bool
     {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        $result = $this->membre->get_1MembreByEmail($email);
+        $result = $this->membre->get_1MembreByEmailOrUsername($emailOrUsername);
         if ($result) {
             if (password_verify($password, $result[0]->passMemb)) {
                 $_SESSION['logged'] = $result[0]->numMemb;

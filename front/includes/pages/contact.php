@@ -7,7 +7,7 @@
 
 // WRITE YOUR PHP LOGIC HERE
 $page_title = 'Me contacter';
-$page_description = '';
+$page_description = "Tu veux me contacter, m'envoyer un doux message, alors c'est ici que ça se passe.";
 
 
 

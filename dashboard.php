@@ -22,17 +22,13 @@ if (!$auth->is_connected()) {
 
 <head>
 	<title>Gestion des CRUD</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="description" content="" />
-	<meta name="author" content="" />
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-	<style>
-		body {
-			background-color: #fffbf2;
-		}
-	</style>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/back/css/style.css">
 </head>
 
 <body>
@@ -72,7 +68,7 @@ if (!$auth->is_connected()) {
 
 				<h5>Pages</h5>
 				<div class="list-group">
-					<a class="list-group-item" href="./article">Article</a>
+					<a class="list-group-item" href="./article/1">Article</a>
 					<a class="list-group-item" href="./cgu">CGU</a>
 					<a class="list-group-item" href="./contact">Contact</a>
 					<a class="list-group-item" href="./accueil">Home</a>
