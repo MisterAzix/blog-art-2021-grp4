@@ -31,5 +31,5 @@ if (!$auth->is_admin()) header('Location: ./accueil');
 
 <body>
     <header>
-        <img src="../img/logo_lecopin.svg" alt="">
+        <a href="/dashboard.php"><img src="../img/logo_lecopin.svg" alt="Logo permettant de retourner au dashboard"></a>
     </header>

@@ -16,9 +16,11 @@ require_once __DIR__ . '/../../util/ctrlSaisies.php';
 require_once __DIR__ . '/../../CLASS_CRUD/article.class.php';
 require_once __DIR__ . '/../../CLASS_CRUD/angle.class.php';
 require_once __DIR__ . '/../../CLASS_CRUD/thematique.class.php';
+require_once __DIR__ . '/../../CLASS_CRUD/langue.class.php';
 $article = new ARTICLE();
 $angle = new ANGLE();
 $thematique = new THEMATIQUE();
+$langue = new LANGUE();
 
 // Init variables form
 include __DIR__ . '/initArticle.php';
@@ -125,6 +127,7 @@ if (isset($_GET['id'])) {
 
 $perpectives = $angle->get_AllAngles();
 $thematics = $thematique->get_AllThematiques();
+$languages = $langue->get_AllLangues();
 
 require_once __DIR__ . '/../common/header.php';
 ?>
@@ -226,26 +229,40 @@ require_once __DIR__ . '/../common/header.php';
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="form-group mb-3 col-6">
-                            <label for="numAngl"><b>Angle :</b></label>
-                            <select name="numAngl" class="form-control" id="numAngl">
-                                <option value="">--Choississez un angle--</option>
-                                <?php foreach ($perpectives as $perpective) : ?>
-                                    <option value="<?= $perpective->numAngl ?>" <?= ($perpective->numAngl === $selectedAngl) ? 'selected' : '' ?>><?= $perpective->libAngl ?></option>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
-                        <div class="form-group mb-3 col-6">
-                            <label for="numThem"><b>Thématique :</b></label>
-                            <select name="numThem" class="form-control" id="numThem">
-                                <option value="">--Choississez une thématique--</option>
-                                <?php foreach ($thematics as $thematic) : ?>
-                                    <option value="<?= $thematic->numThem ?>" <?= ($thematic->numThem === $selectedThem) ? 'selected' : '' ?>><?= $thematic->libThem ?></option>
-                                <?php endforeach ?>
-                            </select>
+                    <div class="form-group mb-3">
+                        <label for="numLang"><b>Langue :</b></label>
+                        <select name="numLang" class="form-control" id="ajax-numLang">
+                            <option value="">--Choississez une langue--</option>
+                            <?php foreach ($languages as $language) : ?>
+                                <option value="<?= $language->numLang ?>" <?= ($perpectives[0]->numLang === $language->numLang) ? 'selected' : '' ?>><?= $language->lib1Lang ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+
+                    <div id="ajax-container">
+                        <div class="row">
+                            <div class="form-group mb-3 col-6">
+                                <label for="numAngl"><b>Angle :</b></label>
+                                <select name="numAngl" class="form-control" id="numAngl">
+                                    <option value="">--Choississez un angle--</option>
+                                    <?php foreach ($perpectives as $perpective) : ?>
+                                        <option value="<?= $perpective->numAngl ?>" <?= ($perpective->numAngl === $selectedAngl) ? 'selected' : '' ?>><?= $perpective->libAngl ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3 col-6">
+                                <label for="numThem"><b>Thématique :</b></label>
+                                <select name="numThem" class="form-control" id="numThem">
+                                    <option value="">--Choississez une thématique--</option>
+                                    <?php foreach ($thematics as $thematic) : ?>
+                                        <option value="<?= $thematic->numThem ?>" <?= ($thematic->numThem === $selectedThem) ? 'selected' : '' ?>><?= $thematic->libThem ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
                         </div>
                     </div>
+
+
 
                     <div class="form-group">
                         <input type="submit" value="Initialiser" name="submit" class="btn btn-primary" />
