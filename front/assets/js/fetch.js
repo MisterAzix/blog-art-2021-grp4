@@ -4,7 +4,7 @@ $(document).ready(function() {
         var value = $(this).val()
         if(value.length >= 2) {
             $.ajax({
-                url: '/front/includes/commons/fetch.php',
+                url: '/front/functions/fetch.php',
                 type: 'POST',
                 data: 'request=' + value,
                 beforeSend: function() {
@@ -17,7 +17,7 @@ $(document).ready(function() {
             })
         } else {
             $.ajax({
-                url: '/front/includes/commons/fetch.php',
+                url: '/front/functions/fetch.php',
                 type: 'POST',
                 data: 'request=' + '',
                 beforeSend: function() {

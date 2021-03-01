@@ -7,5 +7,12 @@ $('#closeComment').click(()=>{
 })
 
 $('.like').click(()=>{
+    $.post('/front/functions/likeSwitch.php', { numArt: $('.like').data().numart })
+        .done((data, text, jqxhr) => {
+            $('.like span').html(jqxhr.responseText)
+        })
+        .fail(jqxhr => {
+            console.log(jqxhr.responseText);
+        });
     $('.like').toggleClass('active')
 })

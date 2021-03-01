@@ -4,7 +4,7 @@
 require_once __DIR__ . '../../CONNECT/database.php';
 
 class LIKEART
-{	
+{
 	/**
 	 * get_1LikeArt Permet de récupérer un seul like d'article en base de donnée
 	 *
@@ -24,7 +24,7 @@ class LIKEART
 		$result = $query->fetch(PDO::FETCH_OBJ);
 		return $result;
 	}
-	
+
 	/**
 	 * get_AllLikesArt Permet de récupérer tous les likes d'article en base de donnée
 	 *
@@ -37,7 +37,7 @@ class LIKEART
 		$result = $query->fetchAll(PDO::FETCH_OBJ);
 		return $result;
 	}
-	
+
 	/**
 	 * get_AllLikesArtByArticle Permet de récupérer tous les likes d'un article
 	 *
@@ -48,14 +48,14 @@ class LIKEART
 	function get_AllLikesArtByArticle(string $numArt)
 	{
 		global $db;
-		$query = $db->prepare('SELECT * FROM likeart WHERE numArt = :numArt');
+		$query = $db->prepare('SELECT * FROM likeart WHERE numArt = :numArt AND likeA = 1');
 		$query->execute([
 			'numArt' => $numArt
 		]);
 		$result = $query->fetchAll(PDO::FETCH_OBJ);
 		return $result;
 	}
-	
+
 	/**
 	 * get_AllLikesArtByMembre Permet de récupérer tous les likes d'un membre
 	 *
@@ -66,14 +66,26 @@ class LIKEART
 	function get_AllLikesArtByMembre(string $numMemb)
 	{
 		global $db;
-		$query = $db->prepare('SELECT * FROM likeart WHERE numMemb = :numMemb');
+		$query = $db->prepare('SELECT * FROM likeart WHERE numMemb = :numMemb AND likeA = 1');
 		$query->execute([
 			'numMemb' => $numMemb
 		]);
 		$result = $query->fetchAll(PDO::FETCH_OBJ);
 		return ($result);
 	}
-	
+
+	function isMembreLikeArticle(string $numMemb, string $numArt): bool
+	{
+		global $db;
+		$query = $db->prepare('SELECT * FROM likeart WHERE numMemb = :numMemb AND numArt=:numArt AND likeA = 1');
+		$query->execute([
+			'numMemb' => $numMemb,
+			'numArt' => $numArt,
+		]);
+		$result = $query->fetch(PDO::FETCH_OBJ);
+		return $result ? true : false;
+	}
+
 	/**
 	 * createOrUpdate Permet d'ajouter un like d'article en base de donnée ou de modifier son état s'il existe déjà
 	 *

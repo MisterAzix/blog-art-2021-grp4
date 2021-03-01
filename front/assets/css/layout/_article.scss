@@ -15,10 +15,11 @@
         width: 100%;
 
         .article {
+            position: relative;
             display: flex;
 
             .absolute {
-                position: absolute;
+                position: fixed;
                 left: 20px;
                 top: 200px;
 
@@ -57,7 +58,7 @@
                         color: $black;
                         cursor: pointer;
                         transition: transform 0.3s ease;
-                
+
                         &:hover {
                             transform: scale(1.1);
                         }
@@ -122,6 +123,7 @@
                     justify-content: space-between;
                     align-items: center;
                     width: 250px;
+                    margin: 16px 0;
 
                     a {
                         font-size: 16px;
@@ -130,7 +132,7 @@
                         color: $black;
                         cursor: pointer;
                         transition: transform 0.3s ease;
-                
+
                         &:hover {
                             transform: scale(1.1);
                         }
@@ -141,9 +143,8 @@
             .like {
                 &.active {
                     color: $greentxt !important;
-                    
-                    path
-                    {
+
+                    path {
                         fill: $greentxt;
                     }
                 }
@@ -206,18 +207,24 @@
         width: 100%;
 
         img {
-            width: 100%;
-            height: 100%;
+            z-index: -1;
+            position: fixed;
+            top: 0;
+            height: 100vh;
+            width: 50vw;
             object-fit: cover;
+            opacity: 0.8;
+            filter: blur(2px);
 
             @media (max-width: 721px) {
                 margin-top: 25%;
                 border-radius: 50px;
                 width: 413px;
-                height: 470px;
+                /* height: 470px; */
                 object-fit: cover;
             }
             @media (max-width: 540px) {
+                position: relative;
                 width: 253px;
                 height: 270px;
             }
@@ -230,15 +237,13 @@
         top: 0;
         right: 0;
         width: 50%;
-        z-index: 99999;
+        z-index: 1000;
         transform: translateX(100%);
         transition: 0.6s ease;
         border: 3.5px solid #eeeae0;
-        
+
         &.active {
             transform: translateX(0);
         }
-
-
     }
 }

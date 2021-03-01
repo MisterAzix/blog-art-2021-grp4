@@ -55,7 +55,7 @@ class AUTH
     /**
      * get_connected_id permet de récupérer l'id du membre connecté
      *
-     * @return void
+     * @return int
      */
     public function get_connected_id()
     {
