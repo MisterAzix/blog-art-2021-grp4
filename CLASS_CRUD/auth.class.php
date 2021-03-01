@@ -62,7 +62,7 @@ class AUTH
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
-        return $_SESSION['logged'];
+        return isset($_SESSION['logged']) ? $_SESSION['logged'] : false;
     }
     
     /**

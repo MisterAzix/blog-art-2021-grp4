@@ -6,7 +6,9 @@ $auth = new AUTH;
 $likes = null;
 
 if (!empty($_POST['numArt'])) {
-    $likeart->createOrUpdate($auth->get_connected_id(), $_POST['numArt']);
+    $connectedMemb = $auth->get_connected_id();
+    if (!$connectedMemb) die('notConnected');
+    $likeart->createOrUpdate($connectedMemb, $_POST['numArt']);
     $result = $likeart->get_AllLikesArtByArticle($_POST['numArt']);
 }
 

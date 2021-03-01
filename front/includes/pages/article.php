@@ -24,6 +24,7 @@ $comment = new COMMENT();
 $auth = new AUTH();
 
 $result = null;
+$isLiked = null;
 
 if (isset($_GET['numArt'])) {
     $result = $article->get_1Article($_GET['numArt']);
@@ -35,7 +36,8 @@ $likesArticle = $likeartResult ? count($likeartResult) : 0;
 $commentResult = $comment->get_AllCommentsByArticle($_GET['numArt']);
 $likesComment = $commentResult ? count($commentResult) : 0;
 
-$isLiked = $likeart->isMembreLikeArticle($auth->get_connected_id(), $_GET['numArt']);
+$connectedMemb = $auth->get_connected_id();
+$isLiked = $connectedMemb ? $likeart->isMembreLikeArticle($connectedMemb, $_GET['numArt']) : null;
 
 require_once __DIR__ . '/../commons/header.php';
 ?>
