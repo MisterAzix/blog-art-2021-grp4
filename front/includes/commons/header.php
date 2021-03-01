@@ -97,8 +97,5 @@ $auth = new AUTH();
                 </div>
             </div>
     </header>
-    <!--<?php require_once __DIR__ . '/cookie.php' ?>-->
+    <?php if (!isset($_COOKIE['accepted'])) require_once __DIR__ . '/cookie.php' ?>
     <main>
-
-
-        <!-- <img src="../../../assets/images/search_icon.svg" alt="Icon de recherche" class="icon_recherche"> -->
