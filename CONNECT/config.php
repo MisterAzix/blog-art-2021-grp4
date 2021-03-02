@@ -1,6 +1,5 @@
 <?php
-$config = file_get_contents(__DIR__ . '/../config.json');
-$configData = json_decode($config);
+require_once __DIR__ . '/../config.php';
 
 // nom de votre serveur (ou 127.0.0.1)
 $hostBD = $configData->DB_HOSTNAME;

@@ -17,8 +17,7 @@ $statut = new STATUT();
 
 $error = null;
 
-$config = file_get_contents(__DIR__ . '/../../../config.json');
-$configData = json_decode($config);
+require_once __DIR__ . '/../../../config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST['g-recaptcha-response'])) {
