@@ -22,7 +22,7 @@ $('.like').click(() => {
     $('.like').toggleClass('active')
 });
 
-$('.button-thumb').click(e => {
+$('#comment-body').on('click', '.button-thumb', function(e) {
     $.post('/front/functions/likeSwitch.php', { numSeqCom: e.currentTarget.id.match(/\d+/)[0], numArt: $('.button-thumb').data().numart })
         .done((data, text, jqxhr) => {
             let likes = $(`#${e.currentTarget.id} span`).html();

@@ -6,11 +6,15 @@
     align-items: center;
     background-color: $beige;
 
-    .comment_user_container {
-        display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
+    #comment-body {
         width: 100%;
+        
+        .comment_user_container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            width: 100%;
+        }
     }
 
     .header {
@@ -48,8 +52,13 @@
                 width: 60%;
             }
 
-            .sendIcon {
-                cursor: pointer;
+            button {
+                background: none;
+                border: none;
+
+                .sendIcon {
+                    cursor: pointer;
+                }
             }
         }
     }

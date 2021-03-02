@@ -123,29 +123,34 @@ require_once __DIR__ . '/../commons/header.php';
 
                     <p>Commentaires (<?= $commentNumber ?>)</p>
                 </div>
-                <div class="comment_input">
-                    <input class="input" name="comment" type="text" placeholder="Exprime toi..." required />
+                <form action="" method="POST" class="comment_input">
+                    <input type="text" name="numArt" value="<?= $_GET['numArt'] ?>" style="display: none;">
+                    <input class="input" name="libCom" type="text" placeholder="Exprime toi..." required>
                     <!-- DEBUT SVG -->
-                    <svg class="sendIcon" width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20.5183 9.24863C20.518 9.35464 20.4872 9.45829 20.4297 9.54708C20.3722 9.63588 20.2905 9.70604 20.1943 9.74911L0.754337 18.4531C0.686619 18.4842 0.612701 18.4991 0.538337 18.4966C0.460936 18.4962 0.384478 18.4795 0.313824 18.4476C0.24317 18.4158 0.179866 18.3695 0.127936 18.3117C0.0534237 18.2234 0.00900695 18.1135 0.00122948 17.9979C-0.00654798 17.8823 0.0227252 17.7673 0.0847365 17.6697L4.55594 10.4563L11.3383 9.24863L4.55594 8.04095L0.0847365 0.827508C0.0227252 0.729965 -0.00654798 0.614937 0.00122948 0.499369C0.00900695 0.383802 0.0534237 0.273806 0.127936 0.185588C0.20457 0.0990103 0.30621 0.0388045 0.418569 0.0134342C0.530927 -0.011936 0.648352 -0.001195 0.754337 0.0441476L20.1943 8.74815C20.2905 8.79122 20.3722 8.86138 20.4297 8.95017C20.4872 9.03897 20.518 9.14262 20.5183 9.24863Z" fill="url(#paint0_linear)" />
-                        <defs>
-                            <linearGradient id="paint0_linear" x1="11.1528" y1="37.156" x2="-25.9348" y2="19.0903" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#9FEA9C" />
-                                <stop offset="1" stop-color="#CEFA7D" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
+                    <button type="submit">
+                        <svg class="sendIcon" width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.5183 9.24863C20.518 9.35464 20.4872 9.45829 20.4297 9.54708C20.3722 9.63588 20.2905 9.70604 20.1943 9.74911L0.754337 18.4531C0.686619 18.4842 0.612701 18.4991 0.538337 18.4966C0.460936 18.4962 0.384478 18.4795 0.313824 18.4476C0.24317 18.4158 0.179866 18.3695 0.127936 18.3117C0.0534237 18.2234 0.00900695 18.1135 0.00122948 17.9979C-0.00654798 17.8823 0.0227252 17.7673 0.0847365 17.6697L4.55594 10.4563L11.3383 9.24863L4.55594 8.04095L0.0847365 0.827508C0.0227252 0.729965 -0.00654798 0.614937 0.00122948 0.499369C0.00900695 0.383802 0.0534237 0.273806 0.127936 0.185588C0.20457 0.0990103 0.30621 0.0388045 0.418569 0.0134342C0.530927 -0.011936 0.648352 -0.001195 0.754337 0.0441476L20.1943 8.74815C20.2905 8.79122 20.3722 8.86138 20.4297 8.95017C20.4872 9.03897 20.518 9.14262 20.5183 9.24863Z" fill="url(#paint0_linear)" />
+                            <defs>
+                                <linearGradient id="paint0_linear" x1="11.1528" y1="37.156" x2="-25.9348" y2="19.0903" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#9FEA9C" />
+                                    <stop offset="1" stop-color="#CEFA7D" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </button>
                     <!-- FIN SVG -->
-                </div>
+                </form>
             </div>
 
             <div class="separator"><span></span></div>
 
-            <?php foreach ($commentResult as $com) : ?>
-                <?php require __DIR__ . '/../components/comment.php' ?>
-                <!-- Séparateur -->
-                <div class="separator"><span></span></div>
-            <?php endforeach ?>
+            <div id="comment-body">
+                <?php foreach ($commentResult as $com) : ?>
+                    <?php require __DIR__ . '/../components/comment.php' ?>
+                    <!-- Séparateur -->
+                    <div class="separator"><span></span></div>
+                <?php endforeach ?>
+            </div>
         </section>
 
 

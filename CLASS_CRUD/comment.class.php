@@ -110,6 +110,7 @@ class COMMENT
 	 * @param  mixed $numArt
 	 * @param  mixed $libCom
 	 * @param  mixed $numMemb
+	 * @return object
 	 * @return void
 	 */
 	function create(int $numArt, string $libCom, int $numMemb)
@@ -119,7 +120,7 @@ class COMMENT
 		$numSeqCom = getNextNumCom($numArt);
 		try {
 			$db->beginTransaction();
-			$query = $db->prepare('INSERT INTO comment (numSeqCom, numArt, dtCreCom, libCom, attModOK, affComOK, numMemb) VALUES (:numSeqCom, :numArt, NOW(), :libCom, 1, 1, :numMemb)');
+			$query = $db->prepare("INSERT INTO comment (numSeqCom, numArt, dtCreCom, libCom, attModOK, affComOK, numMemb) VALUES (:numSeqCom, :numArt, NOW(), :libCom, 1, 1, :numMemb)");
 			$query->execute([
 				'numSeqCom' => $numSeqCom,
 				'numArt' => $numArt,
@@ -128,6 +129,8 @@ class COMMENT
 			]);
 			$db->commit();
 			$query->closeCursor();
+			$result = $this->get_1Comment($numSeqCom, $numArt);
+			return $result;
 		} catch (PDOException $e) {
 			$db->rollBack();
 			$query->closeCursor();
