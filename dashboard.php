@@ -12,7 +12,7 @@ require_once __DIR__ . '/util/utilErrOn.php';
 
 require_once __DIR__ . '/CLASS_CRUD/auth.class.php';
 $auth = new Auth();
-if (!$auth->is_connected()) {
+if (!$auth->is_admin()) {
 	header('Location: ./connexion');
 }
 ?>
