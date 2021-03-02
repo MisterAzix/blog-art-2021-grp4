@@ -9,8 +9,8 @@
 
 //Se lance si le serveur est lancé sur une machine comprenant des variables d'environnement.
 if (getenv('BLOGART_ENV') === true) {
-	$config = file_get_contents(__DIR__ . '/config.json');
-	$configData = json_decode($config);
+	$path = __DIR__ . '/config.jso';
+	$configData = file_exists($path) ? json_decode(file_get_contents($path)) : new stdClass();
 	$configData->CAPTCHA_SITE_KEY = getenv('CAPTCHA_SITE_KEY');
 	$configData->CAPTCHA_SECRET_KEY = getenv('CAPTCHA_SECRET_KEY');
 	$configData->DB_HOSTNAME = getenv('DB_HOSTNAME');
