@@ -7,6 +7,22 @@
 //
 ///////////////////////////////////////////////////////////////
 
+//Se lance si le serveur est lancé sur une machine comprenant des variables d'environnement.
+if (getenv('BLOGART_ENV') === true) {
+	$config = file_get_contents(__DIR__ . '/config.json');
+	$configData = json_decode($config);
+	$configData->CAPTCHA_SITE_KEY = getenv('CAPTCHA_SITE_KEY');
+	$configData->CAPTCHA_SECRET_KEY = getenv('CAPTCHA_SECRET_KEY');
+	$configData->DB_HOSTNAME = getenv('DB_HOSTNAME');
+	$configData->DB_NAME = getenv('DB_NAME');
+	$configData->DB_USER = getenv('DB_USER');
+	$configData->DB_PASSWORD = getenv('DB_PASSWORD');
+	$newJsonString = json_encode($configData);
+	file_put_contents('config.json', $newJsonString);
+}
+
+
+
 // Mode DEV
 require_once __DIR__ . '/util/utilErrOn.php';
 
