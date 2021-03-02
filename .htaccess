@@ -28,7 +28,7 @@ RewriteEngine on
 # Règles de réécriture d'URL :
 #--------------------------------------------------
 
-RewriteRule ^dashboard dashboard.php [L]
+RewriteRule ^dashboard index.php [L]
 RewriteRule ^accueil /front/includes/pages/home.php [L]
 RewriteRule ^connexion /front/includes/pages/login.php [L]
 RewriteRule ^inscription /front/includes/pages/register.php [L]
