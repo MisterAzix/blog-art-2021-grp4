@@ -51,7 +51,7 @@ class LIKECOM
 	function get_AllLikesComByComment(string $numSeqCom, string $numArt)
 	{
 		global $db;
-		$query = $db->prepare('SELECT * FROM likecom WHERE numSeqCom = :numSeqCom AND numArt = :numArt');
+		$query = $db->prepare('SELECT * FROM likecom WHERE numSeqCom = :numSeqCom AND numArt = :numArt AND likeC = 1');
 		$query->execute([
 			'numSeqCom' => $numSeqCom,
 			'numArt' => $numArt
@@ -76,6 +76,19 @@ class LIKECOM
 		]);
 		$result = $query->fetchAll(PDO::FETCH_OBJ);
 		return ($result);
+	}
+
+	function isMembreLikeComment(string $numMemb, string $numSeqCom, string $numArt): bool
+	{
+		global $db;
+		$query = $db->prepare('SELECT * FROM likecom WHERE numMemb = :numMemb AND numSeqCom=:numSeqCom AND numArt=:numArt AND likeC = 1');
+		$query->execute([
+			'numMemb' => $numMemb,
+			'numSeqCom' => $numSeqCom,
+			'numArt' => $numArt
+		]);
+		$result = $query->fetch(PDO::FETCH_OBJ);
+		return $result ? true : false;
 	}
 
 		

@@ -80,7 +80,7 @@ class LIKEART
 		$query = $db->prepare('SELECT * FROM likeart WHERE numMemb = :numMemb AND numArt=:numArt AND likeA = 1');
 		$query->execute([
 			'numMemb' => $numMemb,
-			'numArt' => $numArt,
+			'numArt' => $numArt
 		]);
 		$result = $query->fetch(PDO::FETCH_OBJ);
 		return $result ? true : false;

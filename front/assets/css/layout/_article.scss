@@ -236,11 +236,13 @@
         background-color: $beige;
         top: 0;
         right: 0;
-        width: 50%;
+        width: 45%;
+        height: 100vh;
         z-index: 1000;
         transform: translateX(100%);
         transition: 0.6s ease;
         border: 3.5px solid #eeeae0;
+        overflow-y: scroll;
 
         &.active {
             transform: translateX(0);

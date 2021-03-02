@@ -8,8 +8,9 @@
 
     .comment_user_container {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: flex-start;
+        width: 100%;
     }
 
     .header {
@@ -63,7 +64,8 @@
     }
 
     .user_info {
-        margin-right: 30px;
+        margin-right: 32px;
+        width: 150px;
 
         h3 {
             font-size: 1.5rem;
@@ -91,7 +93,7 @@
         .button-comm {
             display: flex;
             flex-direction: row;
-            justify-content: left;
+            justify-content: flex-start;
             align-items: center;
 
             p {
@@ -102,6 +104,16 @@
         .button-thumb,
         .button-comm {
             margin-right: 10px;
+        }
+
+        .button-thumb {
+            &.active {
+                color: $greentxt !important;
+
+                path {
+                    fill: $greentxt;
+                }
+            }
         }
     }
 
@@ -119,11 +131,10 @@
 }
 
 .separator {
-    padding: 32px 0;
-    width: 250px;
+    width: 20vw;
     display: flex;
     justify-content: center;
-    margin: 0 auto;
+    margin: 48px auto;
 
     span {
         background: #1c1f1bbb;

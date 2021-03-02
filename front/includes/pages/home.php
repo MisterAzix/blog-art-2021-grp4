@@ -6,7 +6,7 @@
 //========================================//
 
 // WRITE YOUR PHP LOGIC HERE
-$page_title = 'Acuueil';
+$page_title = 'Accueil';
 $page_description = "Bienvenue sur L'écopins, Mylène Micoton pour vous servir ! Voici mon un blog traitant tout plein sujet sur l'écologie.";
 
 require_once __DIR__ . '/../../../util/dateChangeFormat.php';

@@ -67,7 +67,7 @@ class COMMENT
 	function get_AllowedMainCommentsByArticle(int $numArt)
 	{
 		global $db;
-		$query = $db->prepare("SELECT * FROM comment WHERE numArt = :numArt AND numSeqCom NOT IN (SELECT numSeqComR FROM commentplus WHERE numArt = :numArt) AND attModOK = 1 AND affComOK = 1 AND delLogiq = 0");
+		$query = $db->prepare("SELECT * FROM comment WHERE numArt = :numArt AND numSeqCom NOT IN (SELECT numSeqComR FROM commentplus WHERE numArt = :numArt) AND attModOK = 1 AND affComOK = 1 AND delLogiq = 0 ORDER BY dtCreCom DESC");
 		$query->execute([
 			'numArt' => $numArt
 		]);
