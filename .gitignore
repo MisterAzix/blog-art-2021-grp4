@@ -2,10 +2,6 @@ CONNECT/config.php
 BDD/
 upload/
 config.json
-front/assets/css/main.css
-front/assets/css/main.css.map
 front/includes/work.php
 .DS_Store
-front/includes/work/index.php
-front/includes/pages/work
 .vscode/
