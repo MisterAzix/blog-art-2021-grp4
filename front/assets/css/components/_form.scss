@@ -1,0 +1,96 @@
+.input-group {
+    position: relative;
+    margin-bottom: 32px;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .input {
+        font-family: $font-text;
+        color: $black;
+        font-size: 14px;
+        padding: 20px;
+        display: block;
+        width: 25%;
+        height: 48px;
+        border: 1px solid #999;
+        border-radius: 8px;
+        background-color: $beige;
+
+        &:focus {
+            outline: none;
+        }        
+
+        /* active state */
+        &:focus ~ label,
+        &:valid ~ label {
+            top: -12px;
+            font-size: 16px;
+            color: $greentxt;
+            background: $beige;
+            border-radius: 4px;
+        }
+
+        &:focus,
+        &:valid {
+            top: -10px;
+            color: $black;
+            border: 1px solid $greentxt;
+        }
+
+        &::placeholder {
+            color: #999;
+            opacity: 0;
+            transition: 0.2s ease;
+        }
+
+        &:focus::placeholder,
+        &:valid::placeholder {
+            opacity: 1;
+        }
+    }
+
+    label {
+        font-family: $font-text;
+        color: #999;
+        background: none;
+        font-size: 18px;
+        font-weight: 500;
+        position: absolute;
+        pointer-events: none;
+        left: 16px;
+        top: 33%;
+        padding: 0 4px;
+        transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;
+    }
+
+    .tips {
+        position: absolute;
+        left: 0;
+        top: calc(100% + 8px);
+        font-size: 0.8rem;
+        margin: 0 10px;
+    }
+}
+
+.checkbox-container {
+    padding: 20px 0;
+
+    .checkbox {
+        font-family: $font-text;
+        color: $black;
+        font-size: 0.9rem;
+        font-weight: $weight-semibold;
+        margin: 10px 0;
+
+        a {
+            font-family: $font-text;
+            color: $greentxt;
+            font-size: 0.9rem;
+            font-weight: $weight-semibold;
+        }
+    }
+}

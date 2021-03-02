@@ -1,0 +1,58 @@
+/**
+ * Description of script style.css
+ *
+ * @author Maxence Breuilles
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
+
+@font-face {
+    font-family: "Metropolis";
+    src: url("/front/assets/font/Metropolis-Regular.otf") format("truetype");
+    font-weight: 400;
+}
+
+
+:root {
+    --background-color: #fffbf2;
+    --primary-color: #a9e763;
+    --secondary-color: #1c1f1b;
+}
+
+* {
+	box-sizing: border-box;
+	font-family: 'Metropolis', sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'DM Serif Display', sans-serif;
+}
+
+h1 {
+	margin: 32px 0;
+}
+
+*::-webkit-scrollbar {
+    width: 10px;
+    background-color: var(--background-color);
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+}
+
+header img {
+    position: fixed;
+    height: 32px;
+    top: 32px;
+    left: 32px;
+}

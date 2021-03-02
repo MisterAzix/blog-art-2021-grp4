@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap");
+
+@font-face {
+    font-family: "Metropolis";
+    src: url("../font/Metropolis-Thin.otf") format("truetype");
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: "Metropolis";
+    src: url("../font/Metropolis-ExtraLight.otf") format("truetype");
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: "Metropolis";
+    src: url("../font/Metropolis-Regular.otf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Metropolis";
+    src: url("../font/Metropolis-SemiBold.otf") format("truetype");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "Metropolis";
+    src: url("../font/Metropolis-Bold.otf") format("truetype");
+    font-weight: 700;
+}
+
+$beige: #fffbf2;
+$greentxt: #a9e763;
+$green: linear-gradient(0.95turn, #aae797, #ccf580);
+$black: #1c1f1b;
+
+$font-title: "DM Serif Display", serif;
+$font-text: "Metropolis", sans-serif;
+
+$weight-thin: 100;
+$weight-extralight: 200;
+$weight-regular: 400;
+$weight-semibold: 600;
+$weight-bold: 700;

@@ -1,0 +1,104 @@
+.plan_container{
+    margin: 10% 0 15% 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media (max-width: 500px) {
+        margin: 35% 0 15% 0;
+     }
+
+      
+    .title{
+        p{
+           font-family: $font-title;
+           font-weight: $weight-regular;
+           color: $black;
+           font-size: 64px;
+           text-align: center;
+           position:relative;
+           display: inline-block;
+           @media (max-width: 500px) {
+            font-size: 28px;
+         }
+        }
+        
+        span{
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            background: $greentxt;
+            width: 0px;
+            height: 4px;
+            border-radius: 5px;
+            animation: soulignement 1s ease forwards;
+            animation-delay: 1.5s;
+        }
+    }
+
+    .sections{
+        width: 100%;
+        justify-content: center;
+        display: flex;
+        flex-direction: row;
+    @media (max-width: 765px) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+        .path{
+            display: block;
+            @media (max-width: 765px) {
+                display: none;
+            }
+        }
+        .section_container{
+            flex-basis: 33%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            @media (max-width: 765px) {
+               align-items:f lex-start;
+            }
+            .section {
+                max-width: 70%;
+                @media (max-width: 765px) {
+                    max-width: none;
+                }
+            }
+            h2{
+                font-family: $font-title;
+                font-weight: $weight-regular;
+                color: $black;
+                font-size: 24px;
+                text-transform: uppercase;
+                @media (max-width: 500px) {
+                    font-size: 18px;
+                 }
+            }
+            a{
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                text-decoration: none;
+                margin-bottom: 40px;
+                font-family: $font-text;
+                font-weight: $weight-extralight;
+                color: $black;
+                font-size: 18px;
+                @media (max-width: 765px) {
+                    margin-top: 20px;
+                }
+                @media (max-width: 500px) {
+                    font-size: 14px;
+                 }
+            } 
+        }
+    } 
+}
+@keyframes soulignement {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+    }   

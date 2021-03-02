@@ -1,0 +1,130 @@
+.homepage_container {
+    .homepage-intro {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+
+        .slideshow {
+            position: relative;
+
+            .slides {
+                display: none;
+            }
+
+            .fade {
+                -webkit-animation-name: fade;
+                -webkit-animation-duration: 1.5s;
+                animation-name: fade;
+                animation-duration: 1.5s;
+            }
+
+            .line_container {
+                display: flex;
+                justify-content: center;
+                margin: 32px 0;
+                position: absolute;
+                bottom: -100px;
+                left: 50%;
+                transform: translateX(-50%);
+
+                .line-item {
+                    height: 16px;
+                    display: inline-block;
+                    cursor: pointer;
+
+                    &:hover .line {
+                        background-color: $greentxt;
+                        width: 100px;
+                        height: 4px;
+                    }
+
+                    .line {
+                        height: 2px;
+                        width: 70px;
+                        margin: 0 5px;
+                        background-color: #bbb;
+                        display: inline-block;
+                        transition: all 0.2s ease-in-out;
+                        border-radius: 4px;
+
+                        &.active .animation {
+                            display: block;
+                            background: $greentxt;
+                            width: 0px;
+                            height: 2px;
+                            animation: soulignement 4.5s ease-out;
+                            animation-delay: 0s;
+
+                            @keyframes soulignement {
+                                0% {
+                                    width: 0%;
+                                }
+                                100% {
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .all_articles {
+        margin: 0 250px;
+        
+        @media (max-width: 960px) {
+            margin: 0 150px;
+        }
+        @media (max-width: 880px) {
+            margin: 35px;
+        }
+
+        h2 {
+            font-family: $font-title;
+            font-size: 56px;
+            font-weight: $weight-regular;
+            color: $black;
+            text-align: center;
+            @media screen and (max-width: 689px) {
+                font-size: 28px;
+            }
+        }
+
+        .article {
+            @media (max-width: 790px) {
+                position: relative;
+            }
+
+            .sub_article_components_container {
+                &:nth-child(even) {
+                    margin-left: 24%;
+
+                    @media (max-width: 1280px) {
+                        margin: 100px auto;
+                    }
+                }
+
+                &:nth-child(odd) {
+                    margin-left: 8%;
+
+                    @media (max-width: 720px) {
+                        margin: 100px auto;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: 0.8;
+    }
+    to {
+        opacity: 1;
+    }
+}

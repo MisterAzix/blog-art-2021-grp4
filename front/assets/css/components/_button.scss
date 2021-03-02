@@ -1,0 +1,38 @@
+.button {
+    padding: 7px 13px;
+    background: linear-gradient(140deg, #cefa7d, #9fea9c);
+    outline: none;
+    cursor: pointer;
+    font-family: $font-text;
+    font-weight: 200;
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 16px;
+    transition: transform 0.3s ease, background-color 0.3s ease,
+        border 0.3s ease;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+    &.button-empty {
+        border: 2px solid #b1f091;
+        background: #fffbf2;
+
+        &:hover {
+            background: #b1f091;
+        }
+    }
+
+    &.button-submit {
+        padding: 16px 32px;
+        border-radius: 2rem;
+        font-size: 1.5rem;
+        font-weight: $weight-bold;
+        margin-top: 32px;
+    }
+}
