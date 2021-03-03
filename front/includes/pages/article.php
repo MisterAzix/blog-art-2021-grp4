@@ -96,7 +96,7 @@ require_once __DIR__ . '/../commons/header.php';
             <div class="sug_container">
                 <?php
                 foreach ($OtherArticles as $other) :
-                $img = file_exists("../../../upload/$other->urlPhotArt") ? "/upload/$other->urlPhotArt" : "/front/assets/images/drone.jpg";
+                $img = file_exists("../../../upload/". !empty($other->urlPhotArt) ? $other->urlPhotArt : 'null') ? "/upload/$other->urlPhotArt" : "/front/assets/images/drone.jpg";
                 ?>
                     <div class="suggestion">
                         <img src="<?= $img ?>" alt="Other Article <?= $other->numArt ?> Thumbnail">
@@ -108,7 +108,7 @@ require_once __DIR__ . '/../commons/header.php';
         </div>
     </div>
     <div class="illustration">
-        <?php $img = file_exists("../../../upload/$result->urlPhotArt") ? "/upload/$result->urlPhotArt" : "/front/assets/images/drone.jpg"; ?>
+        <?php $img = file_exists("../../../upload/". !empty($other->urlPhotArt) ? $other->urlPhotArt : 'null') ? "/upload/$result->urlPhotArt" : "/front/assets/images/drone.jpg"; ?>
         <img src="<?= $img ?>" alt="homeImage">
     </div>
 

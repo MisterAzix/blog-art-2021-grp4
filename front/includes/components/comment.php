@@ -41,6 +41,10 @@ $isLiked = $connectedMemb ? $likecom->isMembreLikeComment($connectedMemb, $com->
                 <span>0</span>
             </a>
         </div>
+        <?php if ($auth->is_admin()) : ?>
+            <!-- <button class="button button-danger" type="submit">Supprimer</button> -->
+            <!-- Tentative d'intégration suppression des commentaires mais event click non detecté -->
+        <?php endif ?>
         <!-- <button class="button">Répondre</button> -->
         <!-- Réponse aux commentaires non intégré -->
     </div>

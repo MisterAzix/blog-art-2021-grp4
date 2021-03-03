@@ -58,7 +58,7 @@ $auth = new AUTH();
                         <?php if ($auth->is_connected()) : ?>
                             <?php if ($auth->is_admin()) : ?>
                                 <div class="button-container">
-                                    <a href="/dashboard">ADMIN</a>
+                                    <a class="button" href="/dashboard">ADMIN</a>
                                 </div>
                             <?php endif ?>
                         <?php else : ?>

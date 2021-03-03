@@ -31,7 +31,7 @@ require_once __DIR__ . '/../commons/header.php';
     <section class="homepage-intro">
         <div class="slideshow">
             <?php foreach ($allFavArticles as $article) :
-                $img = file_exists("../../../upload/$article->urlPhotArt") ? "/upload/$article->urlPhotArt" : "/front/assets/images/drone.jpg";
+                $img = file_exists("../../../upload/" . !empty($article->urlPhotArt) ? $article->urlPhotArt : '1') ? "/upload/$article->urlPhotArt" : "/front/assets/images/drone.jpg";
             ?>
                 <div class="slides fade">
                     <div class="article_components_container">
@@ -68,7 +68,7 @@ require_once __DIR__ . '/../commons/header.php';
         <h2>Tous mes articles</h2>
         <div class="article">
             <?php foreach ($allArticles as $article) :
-                $img = file_exists("../../../upload/$article->urlPhotArt") ? "/upload/$article->urlPhotArt" : "/front/assets/images/drone.jpg";
+                $img = file_exists("../../../upload/" . !empty($article->urlPhotArt) ? $article->urlPhotArt : 'null') ? "/upload/$article->urlPhotArt" : "/front/assets/images/drone.jpg";
             ?>
                 <div class="sub_article_components_container">
                     <div class="container">
