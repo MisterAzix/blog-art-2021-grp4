@@ -1,6 +1,5 @@
 CONNECT/config.php
 BDD/
-upload/
 config.json
 front/includes/work.php
 .DS_Store
