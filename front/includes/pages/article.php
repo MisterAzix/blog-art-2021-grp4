@@ -30,6 +30,7 @@ if (isset($_GET['numArt'])) {
     $result = $article->get_1Article($_GET['numArt']);
 }
 if (!$result) header('Location: /accueil');
+/* if (!$result) header('Location: ./home.php'); */
 $thematic = $thematique->get_1Thematique($result->numThem);
 $likeartResult = $likeart->get_AllLikesArtByArticle($_GET['numArt']);
 $likesArticle = $likeartResult ? count($likeartResult) : 0;
@@ -97,11 +98,13 @@ require_once __DIR__ . '/../commons/header.php';
                 <?php
                 foreach ($OtherArticles as $other) :
                 $img = file_exists("../../../upload/". (!empty($other->urlPhotArt) ? $other->urlPhotArt : 'null')) ? "/upload/$other->urlPhotArt" : "/front/assets/images/drone.jpg";
+                /* $img = file_exists("../../../upload/". (!empty($other->urlPhotArt) ? $other->urlPhotArt : 'null')) ? "../../../upload/$other->urlPhotArt" : "../../assets/images/drone.jpg"; */
                 ?>
                     <div class="suggestion">
                         <img src="<?= $img ?>" alt="Other Article <?= $other->numArt ?> Thumbnail">
                         <p><?= $other->libTitrArt ?></p>
                         <a class="button" href="/article/<?= $other->numArt ?>">Lire l'article</a>
+                        <!-- <a class="button" href="./article.php/<?= $other->numArt ?>">Lire l'article</a> -->
                     </div>
                 <?php endforeach ?>
             </div>
@@ -109,6 +112,7 @@ require_once __DIR__ . '/../commons/header.php';
     </div>
     <div class="illustration">
         <?php $img = file_exists("../../../upload/". (!empty($result->urlPhotArt) ? $result->urlPhotArt : 'null')) ? "/upload/$result->urlPhotArt" : "/front/assets/images/drone.jpg"; ?>
+        <?php //$img = file_exists("../../../upload/". (!empty($result->urlPhotArt) ? $result->urlPhotArt : 'null')) ? "../../../upload/$result->urlPhotArt" : "../../assets/images/drone.jpg"; ?>
         <img src="<?= $img ?>" alt="homeImage">
     </div>
 

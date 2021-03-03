@@ -24,8 +24,6 @@ $article = new ARTICLE();
 include __DIR__ . '/initMotCleArticle.php';
 $error = null;
 
-var_dump($_GET['numArt']);
-
 if (isset($_GET['numArt'])) {
     $result = $motclearticle->get_AllMotCleArtByArticle($_GET['numArt']);
     if (!$result) header('Location: ./motCleArticle.php');

@@ -16,9 +16,11 @@ $isAdmin = $auth->is_admin();
     <title>L'écopin <?= !empty($page_title) ? "- $page_title" : '' ?></title>
     <meta name="description" content="<?= !empty($page_title) ? $page_description : "Découvert de nombreux articles sur l'écologie !" ?>">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png"> -->
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png"> -->
     <link rel="manifest" href="/site.webmanifest">
+    <!-- <link rel="manifest" href="../../../site.webmanifest"> -->
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -26,6 +28,7 @@ $isAdmin = $auth->is_admin();
     <meta property="og:title" content="L'écopin - Accueil">
     <meta property="og:description" content="Bienvenue sur L'écopins, Mylène Micoton pour vous servir ! Voici mon un blog traitant tout plein sujet sur l'écologie à Bordeaux.">
     <meta property="og:image" content="/front/assets/images/Capture_d_écran_2021-02-09_à_15.47.20-removebg">
+    <!-- <meta property="og:image" content="../../assets/images/Capture_d_écran_2021-02-09_à_15.47.20-removebg"> -->
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
@@ -33,10 +36,12 @@ $isAdmin = $auth->is_admin();
     <meta property="twitter:title" content="L'écopin - Accueil">
     <meta property="twitter:description" content="Bienvenue sur L'écopins, Mylène Micoton pour vous servir ! Voici mon un blog traitant tout plein sujet sur l'écologie à Bordeaux.">
     <meta property="twitter:image" content="/front/assets/images/Capture_d_écran_2021-02-09_à_15.47.20-removebg">
+    <!-- <meta property="twitter:image" content="../../assets/images/Capture_d_écran_2021-02-09_à_15.47.20-removebg"> -->
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <link rel="stylesheet" href="/front/assets/css/main.css">
+    <!-- <link rel="stylesheet" href="../../assets/css/main.css"> -->
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
@@ -46,17 +51,13 @@ $isAdmin = $auth->is_admin();
         <div class="header-container">
             <div class="desktop">
                 <a href="/accueil"><img src="/front/assets/images/logo_lecopin.svg" alt="Logo du site avec écrit l'écopins" class="logo"></a>
+                <!-- <a href="../pages/home.php"><img src="../../assets/images/logo_lecopin.svg" alt="Logo du site avec écrit l'écopins" class="logo"></a> -->
                 <div class="header-right">
                     <div class="header-right-container">
                         <div class="example">
                             <div class="inputSearch" style="display: none;">
                                 <input id="fetchval" type="text" placeholder="Search..." name="search">
                                 <div class="suggestion" id="suggestion_container" style="display: none;"></div>
-                                <!-- <div class="suggestion">
-                                    <a href="">Ecologique et insolite, c’est possible !</a>
-                                    <a href="">Bordeaux, écologie et environnement</a>
-                                    <a href="">Philippe Barre, anticonformiste et créateur d’un écosystème</a>
-                                </div> -->
                             </div>
                             <button class="searchIcon boutonSearch">
                                 <svg class="icon_recherche" width="31" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -75,12 +76,15 @@ $isAdmin = $auth->is_admin();
                             <?php if ($isAdmin) : ?>
                                 <div class="button-container">
                                     <a class="button" href="/dashboard">ADMIN</a>
+                                    <!-- <a class="button" href="../../../index.php">ADMIN</a> -->
                                 </div>
                             <?php endif ?>
                         <?php else : ?>
                             <div class="button-container">
                                 <a class="button" href="/inscription">Inscription</a>
+                                <!-- <a class="button" href="../pages/register">Inscription</a> -->
                                 <a class="button button-empty" href="/connexion">Connexion</a>
+                                <!-- <a class="button button-empty" href="../pages/login">Connexion</a> -->
                             </div>
                         <?php endif ?>
                     </div>
@@ -89,7 +93,9 @@ $isAdmin = $auth->is_admin();
 
             <div class="mobile">
                 <a href="/connexion"><img src="/front/assets/images/account.svg" alt="Icon de compte" class="icon_account"></a>
+                <!-- <a href="../pages/login.php"><img src="../../assets/images/account.svg" alt="Icon de compte" class="icon_account"></a> -->
                 <a href="/accueil" class="logoMobile"><img src="/front/assets/images/logo_lecopin.svg" alt="Logo du site avec écrit l'écopins" class="logo"></a>
+                <!-- <a href="../pages/home.php" class="logoMobile"><img src="../../assets/images/logo_lecopin.svg" alt="Logo du site avec écrit l'écopins" class="logo"></a> -->
                 <div class="example">
                     <div class="inputSearch" class="inputSuggestion" style="display: none;">
                         <input type="text" placeholder="Search..." name="search">
