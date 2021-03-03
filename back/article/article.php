@@ -51,7 +51,7 @@ require_once __DIR__ . '/../common/header.php';
                     <a href="./deleteArticle.php?id=<?= $row->numArt ?>"><i>Supprimer</i></a>
                 </div>
                 <div class="col-4">
-                    <img class="img-fluid" src="../../upload/<?= $row->urlPhotArt ?>" alt="">
+                    <img class="img-fluid" src="/upload/<?= $row->urlPhotArt ?>" alt="">
                 </div>
             </div>
 

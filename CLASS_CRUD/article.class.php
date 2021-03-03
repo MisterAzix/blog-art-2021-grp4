@@ -40,11 +40,29 @@ class ARTICLE
 	 * get_AllFavArticles Permet de récupérer les articles les plus likés
 	 *
 	 * @return array Retourne un tableau comprenant les 3 articles les plus likés
+	 * @return bool
 	 */
-	function get_AllFavArticles(): array
+	function get_AllFavArticles()
 	{
 		global $db;
-		$query = $db->query('SELECT libTitrArt, libAccrochArt, l.numArt, count(likeA) count FROM article a INNER JOIN likeart l on a.numArt = l.numArt GROUP BY l.numArt ORDER BY count DESC LIMIT 3');
+		$query = $db->query('SELECT libTitrArt, libAccrochArt, urlPhotArt, l.numArt, count(likeA) count FROM article a INNER JOIN likeart l on a.numArt = l.numArt GROUP BY l.numArt ORDER BY count DESC LIMIT 3');
+		$result = $query->fetchAll(PDO::FETCH_OBJ);
+		return $result;
+	}
+
+	/**
+	 * get_OtherArticles Permet de récupérer les articles les autres articles les plus likés
+	 *
+	 * @return array Retourne un tableau comprenant les 2 articles les plus likés
+	 * @return bool
+	 */
+	function get_OtherArticles($numArt)
+	{
+		global $db;
+		$query = $db->prepare('SELECT libTitrArt, libAccrochArt, urlPhotArt, l.numArt, count(likeA) count FROM article a INNER JOIN likeart l on a.numArt = l.numArt WHERE a.numArt!=:numArt GROUP BY l.numArt ORDER BY count DESC LIMIT 2');
+		$query->execute([
+			'numArt' => $numArt
+		]);
 		$result = $query->fetchAll(PDO::FETCH_OBJ);
 		return $result;
 	}
@@ -215,7 +233,7 @@ class ARTICLE
 			die('Erreur update ARTICLE : ' . $e->getMessage());
 		}
 	}
-	
+
 	/**
 	 * delete Permet de supprimer un article de la base de donnée
 	 *

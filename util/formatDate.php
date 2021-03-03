@@ -2,6 +2,7 @@
 
 /**
  * format Permet de transformer une date en un "Il y a x temps"
+ * by Grafikart
  *
  * @param  mixed $datetime
  * @return void

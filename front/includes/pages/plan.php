@@ -32,7 +32,7 @@ require_once __DIR__ . '/../commons/header.php';
                 <a href="/inscription">Inscription</a>
                 <a href="/connexion">Connexion</a>
                 <a href="/contact">Me contacter</a>
-                <a href="/cgu">Mentions légale</a>
+                <a href="/cgu">Mentions légales</a>
             </div>
         </div>
         <div class="path">

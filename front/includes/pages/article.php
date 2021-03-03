@@ -35,6 +35,7 @@ $likeartResult = $likeart->get_AllLikesArtByArticle($_GET['numArt']);
 $likesArticle = $likeartResult ? count($likeartResult) : 0;
 $commentResult = $comment->get_AllowedMainCommentsByArticle($_GET['numArt']);
 $commentNumber = $commentResult ? count($commentResult) : 0;
+$OtherArticles = $article->get_OtherArticles($_GET['numArt']);
 
 $connectedMemb = $auth->get_connected_id();
 $isLiked = $connectedMemb ? $likeart->isMembreLikeArticle($connectedMemb, $_GET['numArt']) : null;
@@ -93,21 +94,22 @@ require_once __DIR__ . '/../commons/header.php';
         <div class="suggestions">
             <p>Lis mes autres articles:</p>
             <div class="sug_container">
-                <div class="suggestion">
-                    <img src="/front/assets/images/philippe-barre.jpg" alt="philippebarreImage">
-                    <p>Phillipe Barre : Anticonformiste et créateur d’un éco-système</p>
-                    <a class="button" href="/article/6">Lire l'article</a>
-                </div>
-                <div class="suggestion">
-                    <img src="/front/assets/images/jardin.jpg" alt="jardinImage">
-                    <p>Écologique et insolite C’est possible !</p>
-                    <a class="button" href="/article/3">Lire l'article</a>
-                </div>
+                <?php
+                foreach ($OtherArticles as $other) :
+                $img = file_exists("../../../upload/". !empty($other->urlPhotArt) ? $other->urlPhotArt : 'null') ? "/upload/$other->urlPhotArt" : "/front/assets/images/drone.jpg";
+                ?>
+                    <div class="suggestion">
+                        <img src="<?= $img ?>" alt="Other Article <?= $other->numArt ?> Thumbnail">
+                        <p><?= $other->libTitrArt ?></p>
+                        <a class="button" href="/article/<?= $other->numArt ?>">Lire l'article</a>
+                    </div>
+                <?php endforeach ?>
             </div>
         </div>
     </div>
     <div class="illustration">
-        <img src="/front/assets/images/home.jpg" alt="homeImage">
+        <?php $img = file_exists("../../../upload/". !empty($other->urlPhotArt) ? $other->urlPhotArt : 'null') ? "/upload/$result->urlPhotArt" : "/front/assets/images/drone.jpg"; ?>
+        <img src="<?= $img ?>" alt="homeImage">
     </div>
 
     <div class="container_comment">

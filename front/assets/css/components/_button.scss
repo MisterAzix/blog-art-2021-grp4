@@ -35,4 +35,8 @@
         font-weight: $weight-bold;
         margin-top: 32px;
     }
+
+    &.button-danger {
+        background: #DC3545;
+    }
 }
