@@ -42,13 +42,13 @@ if (!$auth->is_admin()) {
 					<a class="list-group-item list-group-item-success" href="./back/angle/angle.php"><b>Gestion du CRUD :</b> Angle </a>
 					<a class="list-group-item list-group-item-success" href="./back/article/article.php"><b>Gestion du CRUD :</b> Article </a>
 					<a class="list-group-item disabled" href="./back/comment/comment.php"><b>Gestion du CRUD :</b> Commentaire </a>
-					<a class="list-group-item disabled" href="./back/commentplus/commentplus.php"><b>Gestion du CRUD :</b> Réponse sur Commentaire </a>
+					<a class="list-group-item disabled" href="./back/commentplus/commentPlus.php"><b>Gestion du CRUD :</b> Réponse sur Commentaire </a>
 					<a class="list-group-item list-group-item-success" href="./back/langue/langue.php"><b>Gestion du CRUD :</b> Langue </a>
-					<a class="list-group-item list-group-item-success" href="./back/likeart/likeart.php"><b>Gestion du CRUD :</b> Like Article </a>
-					<a class="list-group-item list-group-item-success" href="./back/likecom/likecom.php"><b>Gestion du CRUD :</b> Like Commentaire </a>
+					<a class="list-group-item list-group-item-success" href="./back/likeArt/likeArt.php"><b>Gestion du CRUD :</b> Like Article </a>
+					<a class="list-group-item list-group-item-success" href="./back/likeCom/likeCom.php"><b>Gestion du CRUD :</b> Like Commentaire </a>
 					<a class="list-group-item list-group-item-success" href="./back/membre/membre.php"><b>Gestion du CRUD :</b> Membre</a>
-					<a class="list-group-item list-group-item-success" href="./back/motcle/motcle.php"><b>Gestion du CRUD :</b> Mot-clé </a>
-					<a class="list-group-item list-group-item-success" href="./back/motclearticle/motclearticle.php"><b>Gestion du CRUD :</b> Mot-clé Article </a>
+					<a class="list-group-item list-group-item-success" href="./back/motCle/motCle.php"><b>Gestion du CRUD :</b> Mot-clé </a>
+					<a class="list-group-item list-group-item-success" href="./back/motCleArticle/motCleArticle.php"><b>Gestion du CRUD :</b> Mot-clé Article </a>
 					<a class="list-group-item list-group-item-success" href="./back/statut/statut.php"><b>Gestion du CRUD :</b> Statut</a>
 					<a class="list-group-item list-group-item-success" href="./back/thematique/thematique.php"><b>Gestion du CRUD :</b> Thématique </a>
 					<a class="list-group-item list-group-item-danger"><b>Gestion du CRUD :</b> User </a>

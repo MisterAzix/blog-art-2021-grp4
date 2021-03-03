@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . '/../../../CLASS_CRUD/auth.class.php';
 $auth = new AUTH();
+$isConnected = $auth->is_connected();
+$isAdmin = $auth->is_admin();
 ?>
 
 <!DOCTYPE html>
@@ -69,8 +71,8 @@ $auth = new AUTH();
                             </button>
                         </div>
 
-                        <?php if ($auth->is_connected()) : ?>
-                            <?php if ($auth->is_admin()) : ?>
+                        <?php if ($isConnected) : ?>
+                            <?php if ($isAdmin) : ?>
                                 <div class="button-container">
                                     <a class="button" href="/dashboard">ADMIN</a>
                                 </div>
