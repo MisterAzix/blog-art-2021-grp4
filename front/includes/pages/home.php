@@ -17,7 +17,7 @@ require_once __DIR__ . '/../../../CLASS_CRUD/thematique.class.php';
 $article = new ARTICLE();
 $thematique = new THEMATIQUE();
 
-// Appel méthode : tous les angles en BDD
+// Appel méthode
 $allArticles = $article->get_AllArticles();
 $allFavArticles = $article->get_AllFavArticles();
 $allThematics = $thematique->get_AllThematiques();
@@ -30,7 +30,9 @@ require_once __DIR__ . '/../commons/header.php';
 
     <section class="homepage-intro">
         <div class="slideshow">
-            <?php foreach ($allFavArticles as $article) : ?>
+            <?php foreach ($allFavArticles as $article) :
+                $img = file_exists("../../../upload/$article->urlPhotArt") ? "/upload/$article->urlPhotArt" : "/front/assets/images/drone.jpg";
+            ?>
                 <div class="slides fade">
                     <div class="article_components_container">
                         <div class="text_container">
@@ -43,7 +45,7 @@ require_once __DIR__ . '/../commons/header.php';
                             </div>
                         </div>
                         <div class="image">
-                            <img src="/front/assets/images/drone.jpg" alt="photo colorée de bordeaux vue de haut">
+                            <img src="<?= $img ?>" alt="photo colorée de bordeaux vue de haut">
                         </div>
                     </div>
                 </div>
@@ -65,7 +67,9 @@ require_once __DIR__ . '/../commons/header.php';
     <section class="all_articles">
         <h2>Tous mes articles</h2>
         <div class="article">
-            <?php foreach ($allArticles as $article) : ?>
+            <?php foreach ($allArticles as $article) :
+                $img = file_exists("../../../upload/$article->urlPhotArt") ? "/upload/$article->urlPhotArt" : "/front/assets/images/drone.jpg";
+            ?>
                 <div class="sub_article_components_container">
                     <div class="container">
                         <div class="left-part">
@@ -81,7 +85,7 @@ require_once __DIR__ . '/../commons/header.php';
                             </div>
                         </div>
                         <div class="image">
-                            <img src="/front/assets/images/drone.jpg" alt="photo colorée de bordeaux vue de haut">
+                            <img src="<?= $img ?>" alt="photo colorée de bordeaux vue de haut">
                         </div>
                     </div>
                 </div>

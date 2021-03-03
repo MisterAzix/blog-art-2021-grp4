@@ -42,7 +42,7 @@ RedirectMatch 403 ^/BDD/.*$
 RedirectMatch 403 ^/CLASS_CRUD/.*$
 RedirectMatch 403 ^/CONNECT/.*$
 RedirectMatch 403 ^/photos/.*$
-RedirectMatch 403 ^/upload/.*$
+# RedirectMatch 403 ^/upload/.*$
 RedirectMatch 403 ^/util/.*$
 
 ErrorDocument 403 /front/includes/pages/errors/403.php

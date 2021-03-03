@@ -16,7 +16,7 @@ require_once __DIR__ . '/../commons/header.php';
 <!-- WRITE HTML CODE BELOW -->
 
 <div class="cgu_container layout">
-<h1>Mention Légale </h1>
+<h1>Mentions Légales </h1>
 <h2><span></span>Définitions</h2>
 
     <p><b>Client :</b> tout professionnel ou personne physique capable au sens des articles 1123 et suivants du Code civil, ou personne morale, qui visite le Site objet des présentes conditions générales.<br>
