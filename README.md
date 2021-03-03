@@ -53,7 +53,7 @@ Il est nécessaire d'ajouter à la racine du projet un fichier **config.json** (
     "DB_PASSWORD": ""
 }
 ```
-Il est également possible de configurer des **variables d'environnement** du même nom, plus une nommée "BLOGART_ENV" avec une valeur à **true**, afin de remplacer ce fichier **config.json**
+Il est également possible de configurer des **variables d'environnement** du même nom, plus une nommée **"BLOGART_ENV"** avec une valeur à **true**, afin de remplacer ce fichier **config.json**
 
 
 ## Groupe 4 - L'écoPin
