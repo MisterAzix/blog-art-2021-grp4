@@ -11,7 +11,7 @@ Dans le cas de notre groupe, nous avons décidé de porter le blog autour de **l
 ### Installation de la base de donnée :
 
 Télécharger les fichiers de la base de donnée juste ici : https://drive.google.com/drive/folders/1VULdfyibNIiz2eB2PKoXGa4FSb4kA0w2?usp=sharing
-Créer une **base de donnée vierge** et y lancer tous les **scripts SQL**, selon l'éditeur nécessité de rajouter **"USE NOM_BASE_DE_DONNÉE"**
+Créer une **base de donnée vierge** et y lancer tous les **scripts SQL**. (selon l'éditeur de base de donnée, nécessité de rajouter **"USE NOM_BASE_DE_DONNÉE"** en début de chaque script)
 
 
 ### Virtual host ou host classique ?
