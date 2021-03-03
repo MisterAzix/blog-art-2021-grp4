@@ -18,6 +18,20 @@ $auth = new AUTH();
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
 
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mylene-micoton.herokuapp.com/accueil">
+    <meta property="og:title" content="L'écopin - Accueil">
+    <meta property="og:description" content="Bienvenue sur L'écopins, Mylène Micoton pour vous servir ! Voici mon un blog traitant tout plein sujet sur l'écologie à Bordeaux.">
+    <meta property="og:image" content="/front/assets/images/Capture_d_écran_2021-02-09_à_15.47.20-removebg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mylene-micoton.herokuapp.com/accueil">
+    <meta property="twitter:title" content="L'écopin - Accueil">
+    <meta property="twitter:description" content="Bienvenue sur L'écopins, Mylène Micoton pour vous servir ! Voici mon un blog traitant tout plein sujet sur l'écologie à Bordeaux.">
+    <meta property="twitter:image" content="/front/assets/images/Capture_d_écran_2021-02-09_à_15.47.20-removebg">
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <link rel="stylesheet" href="/front/assets/css/main.css">
