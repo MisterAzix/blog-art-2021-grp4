@@ -14,6 +14,7 @@ require_once __DIR__ . '/CLASS_CRUD/auth.class.php';
 $auth = new Auth();
 if (!$auth->is_admin()) {
 	header('Location: /accueil');
+	/* header('Location: ./front/includes/pages/home.php'); */
 }
 ?>
 
@@ -76,6 +77,14 @@ if (!$auth->is_admin()) {
 					<a class="list-group-item" href="./deconnexion">Logout</a>
 					<a class="list-group-item" href="./plan">Plan</a>
 					<a class="list-group-item" href="./inscription">Register</a>
+					<!-- <a class="list-group-item" href="./front/includes/pages/article?numArt=1">Article</a>
+					<a class="list-group-item" href="./front/includes/pages/cgu.php">CGU</a>
+					<a class="list-group-item" href="./front/includes/pages/contact.php">Contact</a>
+					<a class="list-group-item" href="./front/includes/pages/home.php">Home</a>
+					<a class="list-group-item" href="./front/includes/pages/login.php">Login</a>
+					<a class="list-group-item" href="./front/includes/pages/logout.php">Logout</a>
+					<a class="list-group-item" href="./front/includes/pages/plan.php">Plan</a>
+					<a class="list-group-item" href="./front/includes/pages/register.php">Register</a> -->
 				</div>
 			</div>
 		</div>

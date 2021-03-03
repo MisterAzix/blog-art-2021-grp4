@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $login = $auth->login($_POST['emailOrUsername'], $_POST['password']);
         if ($login) {
             header('Location: ./accueil');
+            /* header('Location: ./home.php'); */
         } else {
             $error = 'Identifiants incorrects !';
         }
@@ -38,6 +39,7 @@ require_once __DIR__ . '/../commons/header.php';
 <div class='sign_container layout'>
     <div class='illustration'>
         <img src="/front/assets/images/Capture_d_écran_2021-02-09_à_15.47.20-removebg.png" alt="loginImage">
+        <!-- <img src="../../assets/images/Capture_d_écran_2021-02-09_à_15.47.20-removebg.png" alt="loginImage"> -->
     </div>
     <div class='login'>
         <?php if ($error) : ?>
@@ -59,6 +61,7 @@ require_once __DIR__ . '/../commons/header.php';
                 <div class="input-group">
                     <button class="button button-submit" type="submit">Se connecter</button>
                     <p class="tips">Pas de compte ? <a href="/inscription">Inscris-toi !</a></p>
+                    <!-- <p class="tips">Pas de compte ? <a href="./register.php">Inscris-toi !</a></p> -->
                 </div>
             </form>
         </div>

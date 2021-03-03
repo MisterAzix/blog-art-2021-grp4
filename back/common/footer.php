@@ -13,6 +13,7 @@ require_once __DIR__ . './../../util/utilErrOn.php';
 <footer class="container">
     <hr>
     <h2>Retour à la gestion de tous les CRUD : <a href="/dashboard">Accueil</a></h2>
+    <!-- <h2>Retour à la gestion de tous les CRUD : <a href="../../index.php">Accueil</a></h2> -->
     <hr>
 </footer>
 
@@ -21,6 +22,8 @@ require_once __DIR__ . './../../util/utilErrOn.php';
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script src="/back/js/char_counter.js"></script>
 <script src="/back/js/ajax.js"></script>
+<!-- <script src="../js/char_counter.js"></script>
+<script src="../js/ajax.js"></script> -->
 
 </body>
 

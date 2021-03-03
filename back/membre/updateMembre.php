@@ -22,9 +22,6 @@ $statut = new STATUT();
 include __DIR__ . '/initMembre.php';
 $error = null;
 
-$config = file_get_contents('../../config.json');
-$configData = json_decode($config);
-
 // Controle des saisies du formulaire
 if (isset($_GET['id'])) {
     $numMemb = $_GET['id'];

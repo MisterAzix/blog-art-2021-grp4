@@ -22,9 +22,6 @@ $statut = new STATUT();
 include __DIR__ . '/initMembre.php';
 $error = null;
 
-$config = file_get_contents('../../config.json');
-$configData = json_decode($config);
-
 // Controle des saisies du formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST['g-recaptcha-response'])) {

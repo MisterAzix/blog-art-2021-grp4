@@ -33,6 +33,11 @@ require_once __DIR__ . '/../commons/header.php';
                 <a href="/connexion">Connexion</a>
                 <a href="/contact">Me contacter</a>
                 <a href="/cgu">Mentions légales</a>
+                <!-- <a href="./home">Page d'accueil</a>
+                <a href="./register">Inscription</a>
+                <a href="./login">Connexion</a>
+                <a href="./contact">Me contacter</a>
+                <a href="./cgu">Mentions légales</a> -->
             </div>
         </div>
         <div class="path">
@@ -46,6 +51,7 @@ require_once __DIR__ . '/../commons/header.php';
                 <h2>tous mes articles</h2>
                 <?php foreach ($allArticles as $article) : ?>
                     <a href="./article/<?= $article->numArt ?>"><?= $article->libTitrArt ?></a>
+                    <!-- <a href="./article.php/<?= $article->numArt ?>"><?= $article->libTitrArt ?></a> -->
                 <?php endforeach ?>
             </div>
         </div>
