@@ -1,10 +1,7 @@
 // Barre de recherche
 $(document).ready(function() {
-    console.log(1);
     $('#fetchval').keyup(function() {
-        console.log(2);
         let value = $(this).val();
-        console.log(value);
         if(value.length >= 2) {
             $.ajax({
                 url: '/front/functions/fetch.php',
