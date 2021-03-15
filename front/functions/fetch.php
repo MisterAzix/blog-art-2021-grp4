@@ -1,8 +1,8 @@
 <?php
 
 if ($_POST['request']) {
-    require_once __DIR__ . '/../../../CONNECT/database.php';
-    require_once __DIR__ . '/../../../util/utilErrOn.php';
+    require_once __DIR__ . '../../../CONNECT/database.php';
+    require_once __DIR__ . '../../../util/utilErrOn.php';
 
     // Crée un tableau pour les articles pour l'affichage
     $arrayArticle = array();
