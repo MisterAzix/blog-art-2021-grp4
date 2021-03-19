@@ -82,9 +82,9 @@ $isAdmin = $auth->is_admin();
                         <?php else : ?>
                             <div class="button-container">
                                 <a class="button" href="/inscription">Inscription</a>
-                                <!-- <a class="button" href="../pages/register">Inscription</a> -->
+                                <!-- <a class="button" href="../pages/register.php">Inscription</a> -->
                                 <a class="button button-empty" href="/connexion">Connexion</a>
-                                <!-- <a class="button button-empty" href="../pages/login">Connexion</a> -->
+                                <!-- <a class="button button-empty" href="../pages/login.php">Connexion</a> -->
                             </div>
                         <?php endif ?>
                     </div>

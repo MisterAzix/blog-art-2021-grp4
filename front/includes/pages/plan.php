@@ -33,11 +33,11 @@ require_once __DIR__ . '/../commons/header.php';
                 <a href="/connexion">Connexion</a>
                 <a href="/contact">Me contacter</a>
                 <a href="/cgu">Mentions légales</a>
-                <!-- <a href="./home">Page d'accueil</a>
-                <a href="./register">Inscription</a>
-                <a href="./login">Connexion</a>
-                <a href="./contact">Me contacter</a>
-                <a href="./cgu">Mentions légales</a> -->
+                <!-- <a href="./home.php">Page d'accueil</a>
+                <a href="./register.php">Inscription</a>
+                <a href="./login.php">Connexion</a>
+                <a href="./contact.php">Me contacter</a>
+                <a href="./cgu.php">Mentions légales</a> -->
             </div>
         </div>
         <div class="path">
